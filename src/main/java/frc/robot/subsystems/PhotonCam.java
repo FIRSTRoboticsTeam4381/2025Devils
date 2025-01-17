@@ -7,6 +7,7 @@ import org.photonvision.EstimatedRobotPose;
 import org.photonvision.PhotonCamera;
 import org.photonvision.PhotonPoseEstimator;
 import org.photonvision.PhotonPoseEstimator.PoseStrategy;
+import org.photonvision.targeting.PhotonPipelineResult;
 import org.photonvision.targeting.PhotonTrackedTarget;
 
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
@@ -37,7 +38,7 @@ public class PhotonCam extends SubsystemBase {
 
   public PhotonCam (String camera, Transform3d robotToCam)  {
     cam = new PhotonCamera(camera);
-    photonPoseEstimator = new PhotonPoseEstimator(aprilTagFieldLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, cam, robotToCam);
+    photonPoseEstimator = new PhotonPoseEstimator(aprilTagFieldLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, robotToCam);
 
     publisher = NetworkTableInstance.getDefault().getStructTopic(camera, Pose3d.struct).publish();
 
@@ -47,7 +48,10 @@ public class PhotonCam extends SubsystemBase {
   }
 
   public void periodic (){
-  Optional <EstimatedRobotPose> o = photonPoseEstimator.update();
+  for (PhotonPipelineResult result : cam.getAllUnreadResults())
+  {
+    Optional <EstimatedRobotPose> o = photonPoseEstimator.update(result);
+
     if (o.isPresent()) {
       EstimatedRobotPose e = o.get();
     
@@ -139,6 +143,7 @@ public class PhotonCam extends SubsystemBase {
         confidenceMatrix);
       }  
     }
+  }
     }
   
   
