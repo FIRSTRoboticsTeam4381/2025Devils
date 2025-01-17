@@ -149,11 +149,11 @@ public class PhotonCam extends SubsystemBase {
   
     //8.2106y m 16.5418x m
     public boolean inField(EstimatedRobotPose e) { 
-    { if (e.estimatedPose.getY() > 8.31) {
+    { if (e.estimatedPose.getY() > 8.1) {
       return false;
     } else if (e.estimatedPose.getY() < -0.1) {
       return false;
-    } if (e.estimatedPose.getX() > 16.6) {
+    } if (e.estimatedPose.getX() > 17.6) {
       return false;
     } else if (e.estimatedPose.getX() < -0.1) {
       return false;
