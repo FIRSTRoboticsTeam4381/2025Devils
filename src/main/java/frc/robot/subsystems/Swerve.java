@@ -38,6 +38,12 @@ public class Swerve extends SubsystemBase{
     public SwerveModule[] mSwerveMods;
     public AHRS gyro;
 
+    // Secondary references for automated logging
+    private SwerveModule FL;
+    private SwerveModule FR;
+    private SwerveModule BL;
+    private SwerveModule BR;
+
     StructArrayPublisher<SwerveModuleState> modStatusPublisher = NetworkTableInstance.getDefault()
         .getStructArrayTopic("Swerve/ModuleStatus", SwerveModuleState.struct).publish();
     StructArrayPublisher<SwerveModuleState> modTargetPublisher = NetworkTableInstance.getDefault()
@@ -64,6 +70,12 @@ public class Swerve extends SubsystemBase{
             new SwerveModule(2, Constants.Swerve.Mod2.constants),
             new SwerveModule(3, Constants.Swerve.Mod3.constants)
         };
+
+        // Set references for auto logging
+        FL = mSwerveMods[0];
+        FR = mSwerveMods[1];
+        BL = mSwerveMods[2];
+        BR = mSwerveMods[3];
 
         swerveOdometry = new SwerveDrivePoseEstimator(Constants.Swerve.swerveKinematics, getYaw(), getPositions(), startPose);
 
