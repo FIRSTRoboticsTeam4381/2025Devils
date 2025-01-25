@@ -21,9 +21,9 @@ public class ArmIntake extends SubsystemBase{
     public SparkMax intakeMotor3;
 
     public ArmIntake() {
-        intakeMotor1 = new SparkMax(50, MotorType.kBrushless);
-        intakeMotor2 = new SparkMax(51, MotorType.kBrushless);
-        intakeMotor3 = new SparkMax(52, MotorType.kBrushless);
+        intakeMotor1 = new SparkMax(58, MotorType.kBrushless);
+        intakeMotor2 = new SparkMax(59, MotorType.kBrushless);
+        intakeMotor3 = new SparkMax(60, MotorType.kBrushless);
 
         // ARM INTAKE contains 3 total motors
 
