@@ -8,9 +8,8 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.epilogue.Logged;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 @Logged
@@ -43,6 +42,15 @@ public class ArmIntake extends SubsystemBase{
 
         intakeMotor2.configure(motor2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         intakeMotor3.configure(motor3Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    
+        this.setDefaultCommand( // Stop motor I think
+            new FunctionalCommand(() -> {},
+                () -> intakeMotor1.set(0),
+                (killed) -> {},
+                () -> {return false;},
+                this)
+        );
+
     }
 
     @Override
