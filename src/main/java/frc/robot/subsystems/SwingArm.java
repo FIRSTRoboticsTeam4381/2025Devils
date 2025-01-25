@@ -8,6 +8,7 @@ import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkMaxConfig;
@@ -25,7 +26,7 @@ import frc.robot.commands.SparkPosition;
 public class SwingArm extends SubsystemBase {
   /** Creates a new SwingArm. */
   
-  public SparkMax rotate;
+  public SparkFlex rotate;
   public SparkMax extend;
   public AbsoluteEncoder angle;
 
@@ -44,7 +45,7 @@ public class SwingArm extends SubsystemBase {
   /** This is the ground intake **/
   public SwingArm()
   {
-    rotate = new SparkMax(50, MotorType.kBrushless);
+    rotate = new SparkFlex(50, MotorType.kBrushless);
     extend = new SparkMax(51, MotorType.kBrushless);
     
 
