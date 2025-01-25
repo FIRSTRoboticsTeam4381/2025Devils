@@ -38,6 +38,9 @@ public class SparkPosition extends Command{
     public SparkPosition(SparkBase m, double pos, ClosedLoopSlot slot, double err, Subsystem s){
         this(m, pos, slot, err, s, m.getEncoder()::getPosition);
     }
+    public SparkPosition(SparkBase m, double pos, double err, Subsystem s){
+        this(m, pos, ClosedLoopSlot.kSlot0, err, s, m.getEncoder()::getPosition);
+    }
 
     // Called when the command is initially scheduled
     @Override
