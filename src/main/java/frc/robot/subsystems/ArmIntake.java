@@ -41,7 +41,7 @@ public class ArmIntake extends SubsystemBase{
 
         SparkMaxConfig motor2Config = new SparkMaxConfig();
         motor2Config.apply(motor1Config);
-        motor2Config.follow(intakeMotor1, true); // might need to change invert
+        motor2Config.follow(intakeMotor1, true); // might need to change invert 
     
         SparkMaxConfig motor3Config = new SparkMaxConfig();
         motor3Config.apply(motor1Config); // Intakes just algae thus it is serpate from motor 1 and 2

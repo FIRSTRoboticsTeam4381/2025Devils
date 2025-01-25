@@ -45,8 +45,8 @@ public class SwingArm extends SubsystemBase {
   /** This is the ground intake **/
   public SwingArm()
   {
-    rotate = new SparkFlex(50, MotorType.kBrushless);
-    extend = new SparkMax(51, MotorType.kBrushless);
+    rotate = new SparkFlex(52, MotorType.kBrushless);
+    extend = new SparkMax(53, MotorType.kBrushless);
     
 
     SparkMaxConfig rotateConfig = new SparkMaxConfig();
