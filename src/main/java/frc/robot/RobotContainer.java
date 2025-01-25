@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.Autos;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.subsystems.ArmIntake;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.GroundIntake;
 import frc.robot.subsystems.PhotonCam;
 import frc.robot.subsystems.Swerve;
@@ -46,6 +47,7 @@ public class RobotContainer
   public final ArmIntake armIntake = new ArmIntake();
   public final SwingArm swingArm = new SwingArm();
   public final Wrist wrist = new Wrist();
+  public final Elevator elevator = new Elevator();
 
   
   //public final PhotonCam camA = new PhotonCam("Camera A", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(-7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/-4-Math.PI)) );
