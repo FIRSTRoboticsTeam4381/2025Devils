@@ -6,6 +6,8 @@ import com.revrobotics.spark.SparkBase.Warnings;
 import edu.wpi.first.epilogue.CustomLoggerFor;
 import edu.wpi.first.epilogue.logging.ClassSpecificLogger;
 import edu.wpi.first.epilogue.logging.EpilogueBackend;
+import edu.wpi.first.wpilibj.Alert;
+import edu.wpi.first.wpilibj.Alert.AlertType;
 
 /**
  * Custom logging class for Spark Max/Flex devices to log faults
@@ -14,8 +16,13 @@ import edu.wpi.first.epilogue.logging.EpilogueBackend;
 @CustomLoggerFor(SparkBase.class)
 public class SparkFaultLogger extends ClassSpecificLogger<SparkBase> {
 
+    private Alert motorFaults;
+    private Alert motorWarnings;
+
   public SparkFaultLogger() {
     super(SparkBase.class);
+    motorFaults = new Alert("null", AlertType.kError);
+    motorWarnings = new Alert("null", AlertType.kWarning);
   }
 
   @Override
@@ -43,6 +50,15 @@ public class SparkFaultLogger extends ClassSpecificLogger<SparkBase> {
 
     backend.log("Faults", s);
 
+    if(s.length() > 0)
+    {
+        motorFaults.setText("Spark "+motor.getDeviceId()+" faults: "+s);
+        motorFaults.set(true);
+    }
+    else
+        motorFaults.set(false);
+
+
     Warnings w = motor.getWarnings();
     s = "";
     if(w.brownout)
@@ -63,5 +79,13 @@ public class SparkFaultLogger extends ClassSpecificLogger<SparkBase> {
         s += "stall, ";
 
     backend.log("Warnings", s);
+
+    if(s.length() > 0)
+    {
+        motorWarnings.setText("Spark "+motor.getDeviceId()+" warnings: "+s);
+        motorWarnings.set(true);
+    }
+    else
+        motorWarnings.set(false);
   }
 }
