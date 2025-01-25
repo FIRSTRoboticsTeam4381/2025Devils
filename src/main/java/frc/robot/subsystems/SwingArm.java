@@ -80,7 +80,7 @@ public class SwingArm extends SubsystemBase {
 
   public Command goToAngle(double angle)
   {
-    return new SparkPosition(rotate, angle, 1.0, this);
+    return new SparkPosition(rotate, angle, 1.0, this).withName("Rotating to " + angle);
   }
 
   public double getExtension()
@@ -90,7 +90,7 @@ public class SwingArm extends SubsystemBase {
 
   public Command goToDistance(double distance)
   {
-    return new SparkPosition(extend, distance, 1.0, this);
+    return new SparkPosition(extend, distance, 1.0, this).withName("Going to "+ distance);
   }
 
 }

@@ -55,7 +55,7 @@ public class Elevator extends SubsystemBase {
    // up/down using the joystick
   public Command elevate(double speed)
   {
-    return new InstantCommand(() -> motor1.set(speed));
+    return new InstantCommand(() -> motor1.set(speed)).withName("Elevator Moving");
   }
 
 

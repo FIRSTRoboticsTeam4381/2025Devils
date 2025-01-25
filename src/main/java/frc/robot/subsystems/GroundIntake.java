@@ -63,12 +63,12 @@ public class GroundIntake extends SubsystemBase {
   // Bring in
   public Command intake()
   {
-    return new InstantCommand(() -> motor1.set(.7));
+    return new InstantCommand(() -> motor1.set(.7)).withName("Ground Intaking");
   }
 
   // Shoot out if stuck
   public Command outtake()
   {
-    return new InstantCommand(() -> motor1.set(.7));
+    return new InstantCommand(() -> motor1.set(.7)).withName("Ground Outtaking");
   }
 }
