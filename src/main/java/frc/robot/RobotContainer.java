@@ -15,17 +15,23 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.Autos;
 import frc.robot.commands.TeleopSwerve;
+import frc.robot.subsystems.ArmIntake;
+import frc.robot.subsystems.GroundIntake;
 import frc.robot.subsystems.PhotonCam;
 import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwingArm;
+import frc.robot.subsystems.Wrist;
 
 @Logged
-public class RobotContainer {
+public class RobotContainer 
+{
   
   // Controllers
   public final CommandXboxController driver = new CommandXboxController(0);
@@ -36,6 +42,10 @@ public class RobotContainer {
 
   // Subsystems
   public final Swerve swerve = new Swerve();
+  public final GroundIntake groundIntake = new GroundIntake();
+  public final ArmIntake armIntake = new ArmIntake();
+  public final SwingArm swingArm = new SwingArm();
+  public final Wrist wrist = new Wrist();
 
   
   //public final PhotonCam camA = new PhotonCam("Camera A", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(-7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/-4-Math.PI)) );
@@ -45,7 +55,8 @@ public class RobotContainer {
 
 
   // Constructor: set up the robot! 
-  public RobotContainer() {
+  public RobotContainer() 
+  {
     robotReference = this;
 
     // Set default commands here
@@ -70,7 +81,8 @@ public class RobotContainer {
     configureBindings();
   }
 
-  private void configureBindings() {
+  private void configureBindings() 
+  {
     swerve.setDefaultCommand(new TeleopSwerve(swerve, 
             driver::getLeftY,
             driver::getLeftX,
@@ -78,9 +90,11 @@ public class RobotContainer {
           //interpolateJoystick(driver::getLeftX,0.05), 
           interpolateJoystick (driver::getRightX,0.05),
              true, driver.leftBumper()::getAsBoolean));
-  }
+      
+    }
 
-  public Command getAutonomousCommand() {
+  public Command getAutonomousCommand() 
+  {
     double startDelay=SmartDashboard.getNumber("Start Delay", 0);
     return new SequentialCommandGroup( 
     new WaitCommand(startDelay), 
