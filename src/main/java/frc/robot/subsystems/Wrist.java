@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
@@ -11,13 +12,20 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
+import edu.wpi.first.epilogue.Logged;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.commands.SparkPosition;
 
+@Logged
 public class Wrist extends SubsystemBase {
   /** Creates a new Wrist. */
  
   public SparkMax wristMotor1; // Currently assuming one motor on the wrist
+
+  public AbsoluteEncoder position; 
   
   public Wrist() {
     wristMotor1 = new SparkMax(56, MotorType.kBrushless);
@@ -36,6 +44,10 @@ public class Wrist extends SubsystemBase {
         this)
     );
 
+  }
+
+  public Command wristToAngle(double position) {
+    return new SparkPosition(wristMotor1, position, 1.0, this).withName("Wrist to" + position); // I doubt this works
   }
 
   @Override
