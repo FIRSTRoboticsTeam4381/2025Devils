@@ -22,7 +22,7 @@ public class Hang extends SubsystemBase
 
   public Hang() 
   {
-      hang1 = new SparkMax(64, MotorType.kBrushless);
+      hang1 = new SparkMax(63, MotorType.kBrushless);
 
 
     SparkMaxConfig hang1Config = new SparkMaxConfig();
