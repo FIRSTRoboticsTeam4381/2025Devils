@@ -69,11 +69,11 @@ public class ArmIntake extends SubsystemBase{
     }
 
     public Command coralIntake() {
-        return new InstantCommand(() -> intakeMotor1.set(1)); 
+        return new InstantCommand(() -> intakeMotor3.set(1)); 
     }
 
     public Command coralEject() {
-        return new InstantCommand(() -> intakeMotor1.set(-1));
+        return new InstantCommand(() -> intakeMotor3.set(-1));
     }
 
     // STOP ---
