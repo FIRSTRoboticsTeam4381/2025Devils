@@ -44,12 +44,12 @@ public class RobotContainer
 
   // Subsystems
   public final Swerve swerve = new Swerve();
-  //public final GroundIntake groundIntake = new GroundIntake(); // Commented out. We will remove if we know for sure that we will not have a dedicated ground intake
+  public final GroundIntake groundIntake = new GroundIntake();
   public final ArmIntake armIntake = new ArmIntake();
   public final SwingArm swingArm = new SwingArm();
   public final Wrist wrist = new Wrist();
   public final Elevator elevator = new Elevator();
-  //public final Hang hang = new Hang(); // commented out for now
+  public final Hang hang = new Hang();
 
   
   //public final PhotonCam camA = new PhotonCam("Camera A", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(-7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/-4-Math.PI)) );
@@ -103,8 +103,7 @@ public class RobotContainer
       elevator.setDefaultCommand(elevator.elevatorJoystick(specialist :: getLeftY));
 
       //wrist joystick (specialist right Y)
-      wrist.setDefaultCommand(wrist.joystickControl(specialist::getRightY));
-      
+      wrist.setDefaultCommand(wrist.wristToAngle(driver.getRightY()));       // Currently driver (extend may be on specialist right y)
     }
 
   public Command getAutonomousCommand() 
