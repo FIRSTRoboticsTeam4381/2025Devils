@@ -16,13 +16,22 @@ import edu.wpi.first.wpilibj.Alert.AlertType;
 @CustomLoggerFor(SparkBase.class)
 public class SparkFaultLogger extends ClassSpecificLogger<SparkBase> {
 
-    private Alert motorFaults;
-    private Alert motorWarnings;
+    private Alert[] motorFaults;
+    private Alert[] motorWarnings;
 
   public SparkFaultLogger() {
     super(SparkBase.class);
-    motorFaults = new Alert("null", AlertType.kError);
-    motorWarnings = new Alert("null", AlertType.kWarning);
+    
+
+    motorFaults = new Alert[64];
+    motorWarnings = new Alert[64];
+
+    // Create for all 64 possible CAN ids
+    for(int j=0; j < 64; j++)
+    {
+        motorFaults[j] = new Alert("null", AlertType.kError);
+        motorWarnings[j] = new Alert("null", AlertType.kWarning);
+    }
   }
 
   @Override
@@ -30,6 +39,8 @@ public class SparkFaultLogger extends ClassSpecificLogger<SparkBase> {
 
     Faults f = motor.getFaults();
     String s = "";
+
+    int id = motor.getDeviceId();
 
     if(f.can)
         s += "CAN, ";
@@ -52,11 +63,11 @@ public class SparkFaultLogger extends ClassSpecificLogger<SparkBase> {
 
     if(s.length() > 0)
     {
-        motorFaults.setText("Spark "+motor.getDeviceId()+" faults: "+s);
-        motorFaults.set(true);
+        motorFaults[id].setText("Spark "+id+" faults: "+s);
+        motorFaults[id].set(true);
     }
     else
-        motorFaults.set(false);
+        motorFaults[id].set(false);
 
 
     Warnings w = motor.getWarnings();
@@ -82,10 +93,10 @@ public class SparkFaultLogger extends ClassSpecificLogger<SparkBase> {
 
     if(s.length() > 0)
     {
-        motorWarnings.setText("Spark "+motor.getDeviceId()+" warnings: "+s);
-        motorWarnings.set(true);
+        motorWarnings[id].setText("Spark "+motor.getDeviceId()+" warnings: "+s);
+        motorWarnings[id].set(true);
     }
     else
-        motorWarnings.set(false);
+        motorWarnings[id].set(false);
   }
 }

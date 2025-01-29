@@ -22,7 +22,7 @@ public class NavXLogger extends ClassSpecificLogger<AHRS>
     private Alert disconnected = new Alert("NavX disconnected!", AlertType.kError);
     private Alert isCalibrating = new Alert("NavX calibrating, please wait...", AlertType.kError);
     private Alert isMagCalibrating = new Alert("NavX magnometer calibrating, please wait...", AlertType.kError);
-    private Alert magError = new Alert("NavX EM interference problem!", AlertType.kError);
+    private Alert magError = new Alert("NavX EM interference problem!", AlertType.kWarning);
 
 
     public NavXLogger()
