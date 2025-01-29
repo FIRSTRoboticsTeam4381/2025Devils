@@ -88,12 +88,8 @@ public class SwingArm extends SubsystemBase {
     return new SparkPosition(rotate, angle, 1.0, this).withName("Rotating to " + angle);
   }
 
-  
-
  public Command swing(Supplier<Double> joystickValue) {
     return new RepeatCommand(
       new InstantCommand(() -> rotate.set(joystickValue.get()), this));
   }
-  
-
 }
