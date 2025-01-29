@@ -7,10 +7,12 @@ package frc.robot.subsystems;
 import java.util.function.Supplier;
 
 import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
@@ -26,16 +28,16 @@ import frc.robot.commands.SparkPosition;
 public class Wrist extends SubsystemBase {
   /** Creates a new Wrist. */
 
-  public SparkMax wristMotor1; // Currently assuming one motor on the wrist
+  public SparkFlex wristMotor1; // Currently assuming one motor on the wrist
 
   public AbsoluteEncoder position;
 
   public Supplier<Double> joystickValue;
 
   public Wrist() {
-    wristMotor1 = new SparkMax(56, MotorType.kBrushless);
+    wristMotor1 = new SparkFlex(56, MotorType.kBrushless);
 
-    SparkMaxConfig motor1Config = new SparkMaxConfig();
+    SparkFlexConfig motor1Config = new SparkFlexConfig();
 
     motor1Config.smartCurrentLimit(30).idleMode(IdleMode.kCoast);
 
