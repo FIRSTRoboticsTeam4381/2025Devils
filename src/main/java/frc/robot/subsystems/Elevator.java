@@ -54,19 +54,19 @@ public class Elevator extends SubsystemBase {
 
 
     // preset position commands:
-  public Command l1(double distance) {
-    return new SparkPosition(motor1, distance, 1.0, this);
+  public Command l1() {                         //(double distance) { // old but may need so idk
+    return new SparkPosition(motor1, 0, 1.0, this); // ALL DISTANCE VALUES will be determined after we get robot
   }
 
   public Command l2(double distance) {
-    return new SparkPosition(motor1, distance, 1.0, this);
+    return new SparkPosition(motor1, 0, 1.0, this);
   }
 
   public Command l3(double distance) {
-    return new SparkPosition(motor1, distance, 1.0, this);
+    return new SparkPosition(motor1, 0, 1.0, this);
   }
 
   public Command l4(double distance) {
-    return new SparkPosition(motor1, distance, 1.0, this);
+    return new SparkPosition(motor1, 0, 1.0, this);
   }
 }

@@ -102,6 +102,12 @@ public class RobotContainer
       specialist.b().onTrue(armIntake.coralIntake());
       specialist.x().onTrue(armIntake.algaeIntake());
 
+      // Elevator preset position controls
+      specialist.povUp().onTrue(elevator.l4(0)); // How do we determine the distance value here?
+      specialist.povLeft().onTrue(elevator.l3(0));
+      specialist.povRight().onTrue(elevator.l2(0));
+      specialist.povDown().onTrue(elevator.l1(0));
+
       //elevator joystick controls
       elevator.setDefaultCommand(elevator.elevatorJoystick(specialist :: getLeftY));
 
