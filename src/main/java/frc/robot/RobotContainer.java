@@ -103,9 +103,9 @@ public class RobotContainer
       specialist.x().onTrue(armIntake.algaeIntake());
 
       // Elevator preset position controls
-      specialist.povUp().onTrue(elevator.l4(0)); // How do we determine the distance value here?
-      specialist.povLeft().onTrue(elevator.l3(0));
-      specialist.povRight().onTrue(elevator.l2(0));
+      specialist.povUp().onTrue(elevator.l4()); // How do we determine the distance value here?
+      specialist.povLeft().onTrue(elevator.l3());
+      specialist.povRight().onTrue(elevator.l2());
       specialist.povDown().onTrue(elevator.l1());
 
       //elevator joystick controls
