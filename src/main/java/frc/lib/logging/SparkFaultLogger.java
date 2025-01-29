@@ -1,4 +1,4 @@
-package frc.robot;
+package frc.lib.logging;
 
 import com.revrobotics.spark.SparkBase;
 import com.revrobotics.spark.SparkBase.Faults;
