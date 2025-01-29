@@ -6,7 +6,6 @@ package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
-import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
@@ -22,8 +21,7 @@ public class Hang extends SubsystemBase
 
   public Hang() 
   {
-      hang1 = new SparkMax(63, MotorType.kBrushless);
-
+    hang1 = new SparkMax(63, MotorType.kBrushless);
 
     SparkMaxConfig hang1Config = new SparkMaxConfig();
       hang1Config
@@ -34,7 +32,10 @@ public class Hang extends SubsystemBase
   }
 
   @Override
-  public void periodic() {
+  public void periodic() 
+  {
     // This method will be called once per scheduler run
   }
+
+
 }

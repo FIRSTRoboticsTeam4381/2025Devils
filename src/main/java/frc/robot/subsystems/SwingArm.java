@@ -11,9 +11,13 @@ import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+import com.revrobotics.spark.config.ClosedLoopConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
+import com.revrobotics.spark.config.LimitSwitchConfig.Type;
 
-
+import edu.wpi.first.wpilibj.DutyCycle;
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -47,6 +51,7 @@ public class SwingArm extends SubsystemBase {
   {
     rotate = new SparkFlex(52, MotorType.kBrushless);
     extend = new SparkMax(53, MotorType.kBrushless);
+    angle = rotate.getAbsoluteEncoder();
     
 
     SparkMaxConfig rotateConfig = new SparkMaxConfig();
@@ -55,7 +60,10 @@ public class SwingArm extends SubsystemBase {
     rotateConfig
       .smartCurrentLimit(30)
       .idleMode(IdleMode.kCoast);
-    
+    rotateConfig.closedLoop
+      .feedbackSensor(FeedbackSensor.kAbsoluteEncoder);
+      
+
     rotate.configure(rotateConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     extendConfig
@@ -63,7 +71,7 @@ public class SwingArm extends SubsystemBase {
       .idleMode(IdleMode.kCoast);
     
     extend.configure(extendConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-  
+    /*
     this.setDefaultCommand(
       new FunctionalCommand(() -> {}, 
       () -> rotate.set(0), 
@@ -71,6 +79,7 @@ public class SwingArm extends SubsystemBase {
       () -> {return false;}, 
       this)
     );
+    */
   }
 
   public double getAngle()
@@ -91,6 +100,15 @@ public class SwingArm extends SubsystemBase {
   public Command goToDistance(double distance)
   {
     return new SparkPosition(extend, distance, 1.0, this).withName("Going to "+ distance);
+  }
+
+  public Command swing(double speed)
+  {
+    return new InstantCommand(() -> rotate.set(speed)).withName("Rotate moving");
+  }
+  public Command extend(double speed)
+  {
+    return new InstantCommand(() -> extend.set(speed)).withName("Rotate moving");
   }
 
 }

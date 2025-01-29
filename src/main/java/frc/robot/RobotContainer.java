@@ -25,6 +25,7 @@ import frc.robot.commands.TeleopSwerve;
 import frc.robot.subsystems.ArmIntake;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.GroundIntake;
+import frc.robot.subsystems.Hang;
 import frc.robot.subsystems.PhotonCam;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.SwingArm;
@@ -48,6 +49,7 @@ public class RobotContainer
   public final SwingArm swingArm = new SwingArm();
   public final Wrist wrist = new Wrist();
   public final Elevator elevator = new Elevator();
+  public final Hang hang = new Hang();
 
   
   //public final PhotonCam camA = new PhotonCam("Camera A", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(-7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/-4-Math.PI)) );
@@ -92,6 +94,16 @@ public class RobotContainer
           //interpolateJoystick(driver::getLeftX,0.05), 
           interpolateJoystick (driver::getRightX,0.05),
              true, driver.leftBumper()::getAsBoolean));
+      
+      //specialist.a().onTrue(GroundIntake.intake());
+      specialist.b().onTrue(armIntake.coralIntake());
+      specialist.x().onTrue(armIntake.algaeIntake());
+
+      //elevator joystick controls
+      elevator.setDefaultCommand(elevator.elevatorJoystick(specialist :: getLeftY));
+
+      //wrist joystick
+      wrist.setDefaultCommand(wrist.joystickControl(specialist :: getRightY));
       
     }
 
