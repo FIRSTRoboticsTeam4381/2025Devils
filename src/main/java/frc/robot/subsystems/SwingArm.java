@@ -35,7 +35,7 @@ public class SwingArm extends SubsystemBase {
   /** Creates a new SwingArm. */
   
   public SparkFlex rotate;
-  public SparkMax extend;
+  
   public AbsoluteEncoder angle;
 
   // The positions change them when we get them
@@ -44,22 +44,18 @@ public class SwingArm extends SubsystemBase {
   public static final double rotateL2 = 0;
   public static final double rotateL1 = 0;
   
-  public static final double extendL4 = 0;
-  public static final double extendL3 = 0;
-  public static final double extendL2 = 0;
-  public static final double extendL1 = 0;
-
+  
 
   /** This is the ground intake **/
   public SwingArm()
   {
     rotate = new SparkFlex(52, MotorType.kBrushless);
-    extend = new SparkMax(53, MotorType.kBrushless);
+    
     angle = rotate.getAbsoluteEncoder();
     
 
     SparkMaxConfig rotateConfig = new SparkMaxConfig();
-    SparkMaxConfig extendConfig = new SparkMaxConfig();
+    
 
     rotateConfig
       .smartCurrentLimit(30)
@@ -70,11 +66,7 @@ public class SwingArm extends SubsystemBase {
 
     rotate.configure(rotateConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
-    extendConfig
-      .smartCurrentLimit(30)
-      .idleMode(IdleMode.kCoast);
     
-    extend.configure(extendConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     /*
     this.setDefaultCommand(
       new FunctionalCommand(() -> {}, 
@@ -96,24 +88,12 @@ public class SwingArm extends SubsystemBase {
     return new SparkPosition(rotate, angle, 1.0, this).withName("Rotating to " + angle);
   }
 
-  public double getExtension()
-  {
-    return extend.get();
-  }
-
-  public Command goToDistance(double distance)
-  {
-    return new SparkPosition(extend, distance, 1.0, this).withName("Going to "+ distance);
-  }
+  
 
  public Command swing(Supplier<Double> joystickValue) {
     return new RepeatCommand(
       new InstantCommand(() -> rotate.set(joystickValue.get()), this));
   }
-  public Command extend(Supplier<Double> joystickValue)
-  {
-    return new RepeatCommand(
-      new InstantCommand(() -> extend.set(joystickValue.get()), this));
-  }
+  
 
 }
