@@ -30,7 +30,7 @@ public class Wrist extends SubsystemBase {
 
   public AbsoluteEncoder position;
 
-  public Supplier joystickValue;
+  public Supplier<Double> joystickValue;
 
   public Wrist() {
     wristMotor1 = new SparkMax(56, MotorType.kBrushless);
@@ -60,7 +60,7 @@ public class Wrist extends SubsystemBase {
   }
 
   public Command wristToAngle(double position) {
-    return new SparkPosition(wristMotor1, position, 1.0, this).withName("Wrist to" + position); // I doubt this works
+    return new SparkPosition(wristMotor1, position, 1.0, this).withName("Wrist to" + position); // Will add positions later
   }
 
   @Override
