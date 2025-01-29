@@ -24,6 +24,7 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.subsystems.ArmIntake;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Extender;
 import frc.robot.subsystems.GroundIntake;
 import frc.robot.subsystems.Hang;
 import frc.robot.subsystems.PhotonCam;
@@ -47,6 +48,7 @@ public class RobotContainer
   public final GroundIntake groundIntake = new GroundIntake();
   public final ArmIntake armIntake = new ArmIntake();
   public final SwingArm swingArm = new SwingArm();
+  public final Extender extender = new Extender();
   public final Wrist wrist = new Wrist();
   public final Elevator elevator = new Elevator();
   public final Hang hang = new Hang();
@@ -110,7 +112,7 @@ public class RobotContainer
       swingArm.setDefaultCommand(swingArm.swing(specialist :: getRightX));
 
       //extend joystick
-      swingArm.setDefaultCommand(swingArm.extend(specialist :: getRightY));
+      extender.setDefaultCommand(extender.extend(specialist :: getRightY));
       
     }
 
