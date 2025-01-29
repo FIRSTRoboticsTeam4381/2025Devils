@@ -102,8 +102,9 @@ public class RobotContainer
       //elevator joystick controls
       elevator.setDefaultCommand(elevator.elevatorJoystick(specialist :: getLeftY));
 
-      //wrist joystick (specialist right Y)
-      wrist.setDefaultCommand(wrist.wristToAngle(driver.getRightY()));       // Currently driver (extend may be on specialist right y)
+      //wrist joystick
+      wrist.setDefaultCommand(wrist.joystickControl(specialist :: getRightY));
+      
     }
 
   public Command getAutonomousCommand() 
