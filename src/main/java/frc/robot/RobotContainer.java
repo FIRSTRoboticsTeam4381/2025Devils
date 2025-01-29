@@ -106,7 +106,7 @@ public class RobotContainer
       specialist.povUp().onTrue(elevator.l4(0)); // How do we determine the distance value here?
       specialist.povLeft().onTrue(elevator.l3(0));
       specialist.povRight().onTrue(elevator.l2(0));
-      specialist.povDown().onTrue(elevator.l1(0));
+      specialist.povDown().onTrue(elevator.l1());
 
       //elevator joystick controls
       elevator.setDefaultCommand(elevator.elevatorJoystick(specialist :: getLeftY));
