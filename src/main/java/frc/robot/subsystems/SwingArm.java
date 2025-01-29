@@ -7,6 +7,9 @@ package frc.robot.subsystems;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+
+import java.util.function.Supplier;
+
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkMax;
@@ -21,6 +24,7 @@ import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.SparkPosition;
@@ -102,13 +106,14 @@ public class SwingArm extends SubsystemBase {
     return new SparkPosition(extend, distance, 1.0, this).withName("Going to "+ distance);
   }
 
-  public Command swing(double speed)
-  {
-    return new InstantCommand(() -> rotate.set(speed)).withName("Rotate moving");
+ public Command swing(Supplier<Double> joystickValue) {
+    return new RepeatCommand(
+      new InstantCommand(() -> rotate.set(joystickValue.get()), this));
   }
-  public Command extend(double speed)
+  public Command extend(Supplier<Double> joystickValue)
   {
-    return new InstantCommand(() -> extend.set(speed)).withName("Rotate moving");
+    return new RepeatCommand(
+      new InstantCommand(() -> extend.set(joystickValue.get()), this));
   }
 
 }
