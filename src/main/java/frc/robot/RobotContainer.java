@@ -99,10 +99,10 @@ public class RobotContainer
       specialist.b().onTrue(armIntake.coralIntake());
       specialist.x().onTrue(armIntake.algaeIntake());
 
-      //elevator joystick controls
-      elevator.setDefaultCommand(elevator.elevatorJoystick(specialist :: getLeftY));
-
-      //wrist joystick (specialist right Y)
+      //elevator joystick
+      elevator.setDefaultCommand(elevator.elevatorJoystick(specialist::getLeftY));
+      
+      //wrist joystick
       wrist.setDefaultCommand(wrist.joystickControl(specialist::getRightY));
       
     }
