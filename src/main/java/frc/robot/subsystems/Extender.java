@@ -63,4 +63,43 @@ public class Extender extends SubsystemBase
     return new RepeatCommand(
       new InstantCommand(() -> extend.set(joystickValue.get()), this));
   }
+
+  // GO TO command
+  public Command extendTo(double distance) {
+    return new SparkPosition(extend, distance, 1.0, this);
+  } 
+
+  
+   // preset reef position commands:
+   public Command l1() {
+    return extendTo(0).withName("Level 1");
+  }
+
+  public Command l2() {
+    return extendTo(0).withName("Level 2");
+  }
+
+  public Command l3() {
+    return extendTo(0).withName("Level 3");
+  }
+
+  public Command l4() {
+    return extendTo(0).withName("Level 4");
+  }
+
+  public Command barge() {
+    return extendTo(0).withName("Barge");
+  }
+
+  public Command groundPickup() {
+    return extendTo(0).withName("Ground Pickup");
+  }
+
+  public Command sourcePickup() {
+    return extendTo(0).withName("Source Pickup");
+  }
+
+  public Command processor() {
+    return extendTo(0).withName("Processor");
+  }
 }
