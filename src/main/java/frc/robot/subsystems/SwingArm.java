@@ -31,7 +31,8 @@ import frc.robot.commands.SparkPosition;
 
 
 
-public class SwingArm extends SubsystemBase {
+public class SwingArm extends SubsystemBase 
+{
   /** Creates a new SwingArm. */
   
   public SparkFlex rotate;
@@ -88,7 +89,33 @@ public class SwingArm extends SubsystemBase {
     return new SparkPosition(rotate, angle, 1.0, this).withName("Rotating to " + angle);
   }
 
- public Command swing(Supplier<Double> joystickValue) {
+  public Command l1() 
+  {
+    return goToAngle(0).withName("Level 1");
+  }
+
+  public Command l2() 
+  {
+    return goToAngle(0).withName("Level 2");
+  }
+
+  public Command l3() 
+  {
+    return goToAngle(0).withName("Level 3");
+  }
+
+  public Command l4() 
+  {
+    return goToAngle(0).withName("Level 4");
+  }
+
+  public Command coralStation() 
+  {
+    return goToAngle(0).withName("Corral Station");
+  }
+
+  public Command swing(Supplier<Double> joystickValue) 
+  {
     return new RepeatCommand(
       new InstantCommand(() -> rotate.set(joystickValue.get()), this));
   }
