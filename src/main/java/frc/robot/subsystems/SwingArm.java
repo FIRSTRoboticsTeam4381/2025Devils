@@ -88,6 +88,22 @@ public class SwingArm extends SubsystemBase {
     return new SparkPosition(rotate, angle, 1.0, this).withName("Rotating to " + angle);
   }
 
+  public Command sl1() {
+    return goToAngle(0).withName("Level 1");
+  }
+
+  public Command l2() {
+    return goToAngle(0).withName("Level 2");
+  }
+
+  public Command l3() {
+    return goToAngle(0).withName("Level 3");
+  }
+
+  public Command l4() {
+    return goToAngle(0).withName("Level 4");
+  }
+
  public Command swing(Supplier<Double> joystickValue) {
     return new RepeatCommand(
       new InstantCommand(() -> rotate.set(joystickValue.get()), this));
