@@ -88,7 +88,7 @@ public class SwingArm extends SubsystemBase {
     return new SparkPosition(rotate, angle, 1.0, this).withName("Rotating to " + angle);
   }
 
-  public Command sl1() {
+  public Command l1() {
     return goToAngle(0).withName("Level 1");
   }
 
