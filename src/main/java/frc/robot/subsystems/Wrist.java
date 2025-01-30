@@ -61,9 +61,48 @@ public class Wrist extends SubsystemBase {
         new InstantCommand(() -> wristMotor1.set(joystickValue.get()), this));
   }
 
-  public Command wristToAngle(double position) {
+  public Command wristPosition(double position) {
     return new SparkPosition(wristMotor1, position, 1.0, this).withName("Wrist to" + position); // Will add positions later
   }
+
+  // Level commands
+  public Command l1() {
+    return wristPosition(0).withName("Wrist Level 1"); // Will NEED to update positions (currently 0 as defualt)
+  }
+
+  public Command l2() {
+    return wristPosition(0).withName("Wrist Level 2");
+  }
+
+  public Command l3() {
+    return wristPosition(0).withName("Wrist Level 3");
+  }
+
+  public Command l4() {
+    return wristPosition(0).withName("Wrist Level 4");
+  }
+
+  // Scoring commands
+  public Command processorCommand() {
+    return wristPosition(0).withName("Processor Scoring");
+  }
+
+  public Command bargeCommand() {
+    return wristPosition(0).withName("Barge Scoring");
+  }
+
+  // Pickup commands
+  public Command groundPickup() {
+    return wristPosition(0).withName("Wrist Ground Pickup"); // Will need to change #s
+  }
+
+  public Command sourcePickup() {
+    return wristPosition(0).withName("Wrist Source Pickup");
+  }
+
+  // WILL NEED TO PROGRAM TO MAKE THE WRIST PARALLEL WITH GROUND(?)UNTIL IT IS INTO THE FINAL POSITION TO SCORE
+
+  
 
   @Override
   public void periodic() {
