@@ -13,17 +13,19 @@ import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.SparkPosition;
 
 public class Hang extends SubsystemBase 
 {
+  public SparkMax hang1;
 
-    public SparkMax hang1;
+  public AbsoluteEncoder position;
 
-    public AbsoluteEncoder position;
 
+  // create Hang
   public Hang() 
   {
     hang1 = new SparkMax(63, MotorType.kBrushless);
@@ -36,25 +38,27 @@ public class Hang extends SubsystemBase
     hang1.configure(hang1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
-  public Command hangPosition(double position) {
-    return new SparkPosition(hang1, position, 0, null).withName("Hang to " + position); // Will add positions later
+
+  public Command hangPosition(double position) 
+  {
+    return new SparkPosition(hang1, position, 0, null).withName("Hang to " + position);
   }
 
-  public Command hang() {
+  // hanging
+  public Command hang() 
+  {
     return hangPosition(0).withName("Hang");
   }
-
-  public Command unhang() {
+  public Command unhang() 
+  {
     return hangPosition(0).withName("Un Hang");
   }
-
 
 
   @Override
   public void periodic() 
   {
     // This method will be called once per scheduler run
+      SmartDashboard.putData(this);
   }
-
-
 }

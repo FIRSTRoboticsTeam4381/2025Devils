@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.Autos;
 import frc.robot.commands.TeleopSwerve;
-import frc.robot.subsystems.ArmIntake;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Extender;
 import frc.robot.subsystems.GroundIntake;
@@ -46,7 +46,7 @@ public class RobotContainer
   // Subsystems
   public final Swerve swerve = new Swerve();
   public final GroundIntake groundIntake = new GroundIntake();
-  public final ArmIntake armIntake = new ArmIntake();
+  public final Intake armIntake = new Intake();
   public final SwingArm swingArm = new SwingArm();
   public final Extender extender = new Extender();
   public final Wrist wrist = new Wrist();
@@ -109,10 +109,10 @@ public class RobotContainer
       specialist.povDown().onTrue(elevator.l1());
 
       //elevator joystick controls
-      elevator.setDefaultCommand(elevator.elevatorJoystick(specialist :: getLeftY));
+      elevator.setDefaultCommand(elevator.joystickCtrl(specialist :: getLeftY));
 
       //wrist joystick
-      wrist.setDefaultCommand(wrist.joystickControl(specialist :: getRightY));
+      wrist.setDefaultCommand(wrist.joystickCtrl(specialist :: getRightY));
 
       //swing joystick controls
       swingArm.setDefaultCommand(swingArm.swing(specialist :: getRightX));

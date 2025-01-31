@@ -19,59 +19,65 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.SparkPosition;
 
 @Logged
-public class Elevator extends SubsystemBase {
-
-    private SparkFlex motor1;
-
-
-   // create Elevator
-  public Elevator() {
-    motor1 = new SparkFlex(50, MotorType.kBrushless);
+public class Elevator extends SubsystemBase
+{
+    private SparkFlex elevator1;
 
 
-    SparkFlexConfig motor1Config = new SparkFlexConfig();
-      motor1Config
+  // create Elevator
+  public Elevator() 
+  {
+    elevator1 = new SparkFlex(50, MotorType.kBrushless);
+
+    SparkFlexConfig elevator1Config = new SparkFlexConfig();
+      elevator1Config
         .smartCurrentLimit(10)
         .idleMode(IdleMode.kCoast);
 
-    motor1.configure(motor1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    elevator1.configure(elevator1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
 
-  @Override
-   
-  public void periodic() {
-  // This method will be called once per scheduler run
-
-    SmartDashboard.putData(this);
-  }
-
-   // up/down using the joystick
-  public Command elevatorJoystick(Supplier<Double> joystickValue) {
+  // up/down joystickCtrl
+  public Command joystickCtrl(Supplier<Double> joystickValue) 
+  {
     return new RepeatCommand(
-      new InstantCommand(() -> motor1.set(joystickValue.get()), this));
+      new InstantCommand(() -> elevator1.set(joystickValue.get()), this));
   }
 
-  // GO TO command
-  public Command elevatorTo(double distance) {
-    return new SparkPosition(motor1, distance, 1.0, this);
+
+  // GO TO  command
+  public Command elevatorTo(double distance) 
+  {
+    return new SparkPosition(elevator1, distance, 1.0, this);
   } 
 
 
   // preset position commands:
-  public Command l1() {
-    return elevatorTo(0).withName("Level 1"); // ALL DISTANCE VALUES will be determined after we get robot
+  public Command l1() 
+  {
+    return elevatorTo(0).withName("Level 1");
   }
-
-  public Command l2() {
+  public Command l2() 
+  {
     return elevatorTo(0).withName("Level 2");
   }
-
-  public Command l3() {
+  public Command l3() 
+  {
     return elevatorTo(0).withName("Level 3");
   }
-
-  public Command l4() {
+  public Command l4() 
+  {
     return elevatorTo(0).withName("Level 4");
+  }
+  
+  
+  
+
+  @Override 
+  public void periodic() 
+  {
+    // This method will be called once per scheduler run
+      SmartDashboard.putData(this);
   }
 }
