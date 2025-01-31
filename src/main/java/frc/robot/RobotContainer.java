@@ -113,7 +113,7 @@ public class RobotContainer
       elevator.setDefaultCommand(elevator.elevatorJoystick(specialist :: getLeftY));
 
       //wrist joystick
-      wrist.setDefaultCommand(wrist.joystickControl(specialist :: getRightY));
+      wrist.setDefaultCommand(wrist.joystickControl(specialist :: getLeftTriggerAxis, specialist :: getRightTriggerAxis));
 
       //swing joystick controls
       swingArm.setDefaultCommand(swingArm.swing(specialist :: getRightX));

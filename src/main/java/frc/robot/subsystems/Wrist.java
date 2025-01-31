@@ -34,6 +34,8 @@ public class Wrist extends SubsystemBase {
 
   public Supplier<Double> joystickValue;
 
+  public double value;
+
   public Wrist() {
     wristMotor1 = new SparkFlex(56, MotorType.kBrushless);
 
@@ -54,11 +56,21 @@ public class Wrist extends SubsystemBase {
             },
             this));
 
+    value = 0;
   }
 
-  public Command joystickControl(Supplier<Double> joystickValue) {
+  public Command joystickControl(Supplier<Double> downJoystickValue, Supplier<Double> upJoystickValue) {
+    if(downJoystickValue.get() > 0)
+    {
+      value = -(downJoystickValue.get());
+    }
+    if(upJoystickValue.get() > 0)
+    {
+      value = upJoystickValue.get();
+    }
+
     return new RepeatCommand(
-        new InstantCommand(() -> wristMotor1.set(joystickValue.get()), this));
+        new InstantCommand(() -> wristMotor1.set(value), this));
   }
 
   public Command wristPosition(double position) {
