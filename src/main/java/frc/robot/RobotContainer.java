@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.commands.AdvancedCommands;
 import frc.robot.commands.Autos;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.subsystems.ArmIntake;
@@ -52,6 +53,7 @@ public class RobotContainer
   public final Wrist wrist = new Wrist();
   public final Elevator elevator = new Elevator();
   public final Hang hang = new Hang();
+  public final AdvancedCommands aCommands;
   
 
   
@@ -66,8 +68,7 @@ public class RobotContainer
   {
     robotReference = this;
 
-    // Set default commands here
-
+    aCommands = new AdvancedCommands(robotReference);
 
 
 
@@ -103,16 +104,16 @@ public class RobotContainer
       specialist.x().onTrue(armIntake.algaeIntake());
 
       // Elevator preset position controls
-      specialist.povUp().onTrue(elevator.l4()); // How do we determine the distance value here?
-      specialist.povLeft().onTrue(elevator.l3());
-      specialist.povRight().onTrue(elevator.l2());
-      specialist.povDown().onTrue(elevator.l1());
+      specialist.povUp().onTrue(aCommands.l4()); // How do we determine the distance value here?
+      specialist.povLeft().onTrue(aCommands.l3());
+      specialist.povRight().onTrue(aCommands.l2());
+      specialist.povDown().onTrue(aCommands.l1());
 
       //elevator joystick controls
       elevator.setDefaultCommand(elevator.elevatorJoystick(specialist :: getLeftY));
 
       //wrist joystick
-      wrist.setDefaultCommand(wrist.joystickControl(specialist :: getRightY));
+      wrist.setDefaultCommand(wrist.joystickControl(specialist :: getLeftTriggerAxis, specialist :: getRightTriggerAxis));
 
       //swing joystick controls
       swingArm.setDefaultCommand(swingArm.swing(specialist :: getRightX));
