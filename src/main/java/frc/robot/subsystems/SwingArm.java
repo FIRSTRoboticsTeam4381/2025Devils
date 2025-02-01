@@ -21,6 +21,7 @@ import com.revrobotics.spark.config.LimitSwitchConfig.Type;
 
 import edu.wpi.first.wpilibj.DutyCycle;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -118,5 +119,15 @@ public class SwingArm extends SubsystemBase
   {
     return new RepeatCommand(
       new InstantCommand(() -> rotate.set(joystickValue.get()), this));
+  }
+
+  
+
+
+   @Override
+  public void periodic() 
+  {
+    // This method will be called once per scheduler run
+      SmartDashboard.putData(this);
   }
 }
