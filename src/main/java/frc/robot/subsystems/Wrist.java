@@ -118,9 +118,9 @@ public class Wrist extends SubsystemBase
   {
     return wristPosition(0).withName("Wrist Ground Pickup"); // Will need to change #s
   }
-  public Command sourcePickup() 
+  public Command coralStation() 
   {
-    return wristPosition(0).withName("Wrist Source Pickup");
+    return wristPosition(0).withName("Wrist Coral Station");
   }
 
   // WILL NEED TO PROGRAM TO MAKE THE WRIST PARALLEL WITH GROUND(?)UNTIL IT IS INTO THE FINAL POSITION TO SCORE
