@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import java.util.function.Supplier;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.RobotContainer;
@@ -12,6 +14,8 @@ import frc.robot.RobotContainer;
 public class AdvancedCommands 
 {
   RobotContainer robot;
+
+  //public Supplier<Boolean> algaeBoolean = robot.armIntake.algaeSensor::get;
 
   public AdvancedCommands(RobotContainer r)
   {
@@ -75,6 +79,46 @@ public class AdvancedCommands
       //robot.extender.(),
       //robot.wrist.()
     ));
+  }
+
+  public Command intakeAlgae() {
+    return new ParallelCommandGroup(
+      robot.armIntake.algaeIntake()
+    ).until(
+      () -> robot.armIntake.algaeSensor.get()
+    ).andThen(
+      robot.armIntake.algaeStop()
+    );
+  }
+
+  public Command intakeCoral() {
+    return new ParallelCommandGroup(
+      robot.armIntake.coralIntake()
+    ).until(
+      () -> robot.armIntake.coralSensor.get()
+    ).andThen(
+      robot.armIntake.coralStop()
+    );
+  }
+
+  public Command ejectAlgae() {
+    return new ParallelCommandGroup(
+      robot.armIntake.algaeEject()
+    ).until(
+      () -> !robot.armIntake.algaeSensor.get() 
+    ).andThen(
+      robot.armIntake.algaeStop()
+    );
+  }
+
+  public Command ejectCoral() {
+    return new ParallelCommandGroup(
+      robot.armIntake.coralEject()
+    ).until(
+      () -> !robot.armIntake.coralSensor.get() 
+    ).andThen(
+      robot.armIntake.coralStop()
+    );
   }
   
 }

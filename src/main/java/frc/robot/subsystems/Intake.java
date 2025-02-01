@@ -1,6 +1,9 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkMax;
+
+import java.util.function.Supplier;
+
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
@@ -8,6 +11,8 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.epilogue.Logged;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.SensorUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
@@ -22,8 +27,13 @@ public class Intake extends SubsystemBase
     public SparkMax intake2;
     public SparkMax intake3; // MOTOR 3 is for coral intake
 
-    // public Double speed; (unused)
+    public DigitalInput algaeSensor;
+    public DigitalInput coralSensor;
 
+    //public Supplier<Boolean> hasAlgae;
+    //public Supplier<Boolean> hasCoral;
+
+    // public Double speed; (unused)
 
   // create ArmIntake
   public Intake() 
@@ -31,6 +41,9 @@ public class Intake extends SubsystemBase
     intake1 = new SparkMax(58, MotorType.kBrushless);
     intake2 = new SparkMax(59, MotorType.kBrushless);
     intake3 = new SparkMax(60, MotorType.kBrushless);
+
+    algaeSensor = new DigitalInput(9); // CHANGE CHANNELS LATER
+    coralSensor = new DigitalInput(10);
 
     // speed = 0.5; // Not used anywhere as of right now
 
@@ -57,6 +70,16 @@ public class Intake extends SubsystemBase
             this)
     );
   }
+
+  /*public Blean hasAlgae() 
+  {
+    return algaeSensor.get();
+  }
+
+  public Boolean hasCoral() 
+  {
+    return coralSensor.get();
+  }*/
 
 
 // Intake and outake commands MAY REQUIRE change:

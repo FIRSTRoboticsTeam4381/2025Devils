@@ -11,7 +11,6 @@ import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -101,8 +100,17 @@ public class RobotContainer
              true, driver.leftBumper()::getAsBoolean));
       
       //specialist.a().onTrue(GroundIntake.intake());
-      specialist.b().onTrue(armIntake.coralIntake());
-      specialist.x().onTrue(armIntake.algaeIntake());
+      if (armIntake.coralSensor.get()) {
+        specialist.a().onTrue(aCommands.intakeCoral());
+      } else {
+        specialist.a().onTrue(aCommands.ejectCoral());
+      }
+      
+      if (armIntake.algaeSensor.get()) {
+        specialist.b().onTrue(aCommands.intakeAlgae());
+      } else {
+        specialist.b().onTrue(aCommands.ejectAlgae());
+      }
 
       // Elevator preset position controls
       specialist.povUp().onTrue(aCommands.l4()); // How do we determine the distance value here?
@@ -113,7 +121,7 @@ public class RobotContainer
       //elevator joystick controls
       elevator.setDefaultCommand(elevator.joystickCtrl(specialist :: getLeftY));
 
-      //wrist joystick
+      //wrist triggers  
       wrist.setDefaultCommand(wrist.joystickCtrl(specialist :: getLeftTriggerAxis, specialist :: getRightTriggerAxis));
 
       //swing joystick controls
@@ -180,67 +188,6 @@ public class RobotContainer
   public static RobotContainer getRobot()
   {
     return robotReference;
-  }
-
-  /**
-   * Set rumble for the specialist controller
-   * @param rumbleside Which half of the controller to rumble, or both
-   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
-   * @return Instant command to set rumble strength
-   */
-  public Command vibrateSpecialist(RumbleType rumbleside, double rumblestrength )
-  {
-    return new InstantCommand(() -> specialist.setRumble(rumbleside, rumblestrength));
-  }
-
-  /**
-   * Set rumble for the driver controller
-   * @param rumbleside Which half of the controller to rumble, or both
-   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
-   * @return Instant command to set rumble strength
-   */
-  public Command vibrateDriver(RumbleType rumbleside, double rumblestrength )
-  {
-    return new InstantCommand(() -> driver.setRumble(rumbleside, rumblestrength));
-  }
-  
-
-  /**
-   * Set specialist controller to rumble for a certain amount of time.
-   * This isn't blocking- it schedules a separate command to end the rumbe later.
-   * @param rumbleside Which half of the controller to rumble, or both
-   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
-   * @param time How long to rumble for
-   * @return Command to schedule the rumble
-   */
-  public Command vibrateSpecialistForTime(RumbleType rumbleside, double rumblestrength, double time)
-  {
-    return new ScheduleCommand(
-      new SequentialCommandGroup(
-        vibrateSpecialist(rumbleside, rumblestrength),
-        new WaitCommand(time),
-        vibrateSpecialist(rumbleside, 0)
-      )
-    );
-  }
-
-  /**
-   * Set driver controller to rumble for a certain amount of time.
-   * This isn't blocking- it schedules a separate command to end the rumbe later.
-   * @param rumbleside Which half of the controller to rumble, or both
-   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
-   * @param time How long to rumble for
-   * @return Command to schedule the rumble
-   */
-  public Command vibrateDriverForTime(RumbleType rumbleside, double rumblestrength, double time)
-  {
-    return new ScheduleCommand(
-      new SequentialCommandGroup(
-        vibrateSpecialist(rumbleside, rumblestrength),
-        new WaitCommand(time),
-        vibrateSpecialist(rumbleside, 0)
-      )
-    );
   }
 
 }
