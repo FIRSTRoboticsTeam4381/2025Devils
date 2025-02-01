@@ -7,6 +7,7 @@ package frc.robot.commands;
 import java.util.function.Supplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.RobotContainer;
 
@@ -119,6 +120,14 @@ public class AdvancedCommands
     ).andThen(
       robot.armIntake.coralStop()
     );
+  }
+
+  public Command coralInOrOut() {
+    return new ConditionalCommand(ejectCoral(), intakeCoral(), robot.armIntake.coralSensor::get);
+  }
+
+  public Command algaeInOrOut() {
+    return new ConditionalCommand(ejectAlgae(), intakeAlgae(), robot.armIntake.algaeSensor::get);
   }
   
 }

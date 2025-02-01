@@ -100,17 +100,9 @@ public class RobotContainer
              true, driver.leftBumper()::getAsBoolean));
       
       //specialist.a().onTrue(GroundIntake.intake());
-      if (armIntake.coralSensor.get()) {
-        specialist.a().onTrue(aCommands.intakeCoral());
-      } else {
-        specialist.a().onTrue(aCommands.ejectCoral());
-      }
-      
-      if (armIntake.algaeSensor.get()) {
-        specialist.b().onTrue(aCommands.intakeAlgae());
-      } else {
-        specialist.b().onTrue(aCommands.ejectAlgae());
-      }
+
+      specialist.a().onTrue(aCommands.coralInOrOut());
+      specialist.b().onTrue(aCommands.algaeInOrOut());
 
       // Elevator preset position controls
       specialist.povUp().onTrue(aCommands.l4()); // How do we determine the distance value here?
