@@ -11,10 +11,12 @@ import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -135,6 +137,48 @@ public class RobotContainer {
   public static RobotContainer getRobot()
   {
     return robotReference;
+  }
+
+  /**
+   * Set rumble for the specialist controller
+   * @param rumbleside Which half of the controller to rumble, or both
+   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
+   * @return Instant command to set rumble strength
+   */
+  public Command vibrateSpecialist(RumbleType rumbleside, double rumblestrength )
+  {
+    return new InstantCommand(() -> specialist.setRumble(rumbleside, rumblestrength));
+  }
+
+  /**
+   * Set rumble for the driver controller
+   * @param rumbleside Which half of the controller to rumble, or both
+   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
+   * @return Instant command to set rumble strength
+   */
+  public Command vibrateDriver(RumbleType rumbleside, double rumblestrength )
+  {
+    return new InstantCommand(() -> driver.setRumble(rumbleside, rumblestrength));
+  }
+  
+
+  /**
+   * Set specialist controller to rumble for a certain amount of time.
+   * This isn't blocking- it schedules a separate command to end the rumbe later.
+   * @param rumbleside Which half of the controller to rumble, or both
+   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
+   * @param time How long to rumble for
+   * @return Command to schedule the rumble
+   */
+  public Command vibrateSpecialistForTime(RumbleType rubleside, double rumblestrength, double time)
+  {
+    return new ScheduleCommand(
+      new SequentialCommandGroup(
+        vibrateSpecialist(rubleside, rumblestrength),
+        new WaitCommand(time),
+        vibrateSpecialist(rubleside, 0)
+      )
+    );
   }
 
 }
