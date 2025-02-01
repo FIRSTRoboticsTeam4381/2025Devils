@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.990495972409801,
-        "y": 1.64945223567432
+        "x": 7.43771404109589,
+        "y": 0.5315282534246581
       },
       "isLocked": false,
       "linkedName": "Corner Start Red"
     },
     {
       "anchor": {
-        "x": 6.082218309859155,
-        "y": 3.699031690140844
+        "x": 6.746532534246576,
+        "y": 0.6517337328767121
       },
       "prevControl": {
-        "x": 6.748327464788733,
-        "y": 2.6219190140845057
+        "x": 7.107148972602741,
+        "y": 0.6667594178082186
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "G"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -45,7 +45,7 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": "Reef",
+  "folder": "simple quick ones",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0
