@@ -1,4 +1,4 @@
-package frc.robot;
+package frc.lib.logging;
 
 import com.revrobotics.spark.SparkBase;
 import com.revrobotics.spark.SparkBase.Faults;
@@ -6,6 +6,8 @@ import com.revrobotics.spark.SparkBase.Warnings;
 import edu.wpi.first.epilogue.CustomLoggerFor;
 import edu.wpi.first.epilogue.logging.ClassSpecificLogger;
 import edu.wpi.first.epilogue.logging.EpilogueBackend;
+import edu.wpi.first.wpilibj.Alert;
+import edu.wpi.first.wpilibj.Alert.AlertType;
 
 /**
  * Custom logging class for Spark Max/Flex devices to log faults
@@ -14,8 +16,22 @@ import edu.wpi.first.epilogue.logging.EpilogueBackend;
 @CustomLoggerFor(SparkBase.class)
 public class SparkFaultLogger extends ClassSpecificLogger<SparkBase> {
 
+    private Alert[] motorFaults;
+    private Alert[] motorWarnings;
+
   public SparkFaultLogger() {
     super(SparkBase.class);
+    
+
+    motorFaults = new Alert[64];
+    motorWarnings = new Alert[64];
+
+    // Create for all 64 possible CAN ids
+    for(int j=0; j < 64; j++)
+    {
+        motorFaults[j] = new Alert("null", AlertType.kError);
+        motorWarnings[j] = new Alert("null", AlertType.kWarning);
+    }
   }
 
   @Override
@@ -23,6 +39,8 @@ public class SparkFaultLogger extends ClassSpecificLogger<SparkBase> {
 
     Faults f = motor.getFaults();
     String s = "";
+
+    int id = motor.getDeviceId();
 
     if(f.can)
         s += "CAN, ";
@@ -42,6 +60,15 @@ public class SparkFaultLogger extends ClassSpecificLogger<SparkBase> {
         s += "other, ";
 
     backend.log("Faults", s);
+
+    if(s.length() > 0)
+    {
+        motorFaults[id].setText("Spark "+id+" faults: "+s);
+        motorFaults[id].set(true);
+    }
+    else
+        motorFaults[id].set(false);
+
 
     Warnings w = motor.getWarnings();
     s = "";
@@ -63,5 +90,13 @@ public class SparkFaultLogger extends ClassSpecificLogger<SparkBase> {
         s += "stall, ";
 
     backend.log("Warnings", s);
+
+    if(s.length() > 0)
+    {
+        motorWarnings[id].setText("Spark "+motor.getDeviceId()+" warnings: "+s);
+        motorWarnings[id].set(true);
+    }
+    else
+        motorWarnings[id].set(false);
   }
 }
