@@ -71,17 +71,6 @@ public class Intake extends SubsystemBase
     );
   }
 
-  /*public Blean hasAlgae() 
-  {
-    return algaeSensor.get();
-  }
-
-  public Boolean hasCoral() 
-  {
-    return coralSensor.get();
-  }*/
-
-
 // Intake and outake commands MAY REQUIRE change:
   // algae
   public Command algaeIntake() 

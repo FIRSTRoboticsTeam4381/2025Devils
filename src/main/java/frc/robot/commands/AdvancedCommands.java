@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import frc.robot.RobotContainer;
 
 /** Add your docs here. */
@@ -83,7 +84,7 @@ public class AdvancedCommands
   }
 
   public Command intakeAlgae() {
-    return new ParallelCommandGroup(
+    return new RepeatCommand(
       robot.armIntake.algaeIntake()
     ).until(
       () -> robot.armIntake.algaeSensor.get()
@@ -93,7 +94,7 @@ public class AdvancedCommands
   }
 
   public Command intakeCoral() {
-    return new ParallelCommandGroup(
+    return new RepeatCommand(
       robot.armIntake.coralIntake()
     ).until(
       () -> robot.armIntake.coralSensor.get()
@@ -103,7 +104,7 @@ public class AdvancedCommands
   }
 
   public Command ejectAlgae() {
-    return new ParallelCommandGroup(
+    return new RepeatCommand(
       robot.armIntake.algaeEject()
     ).until(
       () -> !robot.armIntake.algaeSensor.get() 
@@ -113,7 +114,7 @@ public class AdvancedCommands
   }
 
   public Command ejectCoral() {
-    return new ParallelCommandGroup(
+    return new RepeatCommand(
       robot.armIntake.coralEject()
     ).until(
       () -> !robot.armIntake.coralSensor.get() 
