@@ -4,28 +4,28 @@
     {
       "anchor": {
         "x": 7.798330479452055,
-        "y": 0.501476883561644
+        "y": 7.5334974315068495
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.990495972409801,
-        "y": 1.64945223567432
+        "x": 7.437714041095891,
+        "y": 7.518471746575342
       },
       "isLocked": false,
-      "linkedName": "Corner Start Red"
+      "linkedName": "Corner Start Blue"
     },
     {
       "anchor": {
-        "x": 6.082218309859155,
-        "y": 3.699031690140844
+        "x": 6.58125,
+        "y": 7.428317636986301
       },
       "prevControl": {
-        "x": 6.748327464788733,
-        "y": 2.6219190140845057
+        "x": 6.8269680467335805,
+        "y": 7.382245503223755
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "G"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -45,7 +45,7 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": "Reef",
+  "folder": "simple quick ones",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0
