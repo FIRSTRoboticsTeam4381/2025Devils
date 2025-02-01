@@ -213,13 +213,32 @@ public class RobotContainer
    * @param time How long to rumble for
    * @return Command to schedule the rumble
    */
-  public Command vibrateSpecialistForTime(RumbleType rubleside, double rumblestrength, double time)
+  public Command vibrateSpecialistForTime(RumbleType rumbleside, double rumblestrength, double time)
   {
     return new ScheduleCommand(
       new SequentialCommandGroup(
-        vibrateSpecialist(rubleside, rumblestrength),
+        vibrateSpecialist(rumbleside, rumblestrength),
         new WaitCommand(time),
-        vibrateSpecialist(rubleside, 0)
+        vibrateSpecialist(rumbleside, 0)
+      )
+    );
+  }
+
+  /**
+   * Set driver controller to rumble for a certain amount of time.
+   * This isn't blocking- it schedules a separate command to end the rumbe later.
+   * @param rumbleside Which half of the controller to rumble, or both
+   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
+   * @param time How long to rumble for
+   * @return Command to schedule the rumble
+   */
+  public Command vibrateDriverForTime(RumbleType rumbleside, double rumblestrength, double time)
+  {
+    return new ScheduleCommand(
+      new SequentialCommandGroup(
+        vibrateSpecialist(rumbleside, rumblestrength),
+        new WaitCommand(time),
+        vibrateSpecialist(rumbleside, 0)
       )
     );
   }
