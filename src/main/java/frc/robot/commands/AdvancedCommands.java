@@ -4,14 +4,20 @@
 
 package frc.robot.commands;
 
+import java.util.function.Supplier;
+
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import frc.robot.RobotContainer;
 
 /** Add your docs here. */
 public class AdvancedCommands 
 {
   RobotContainer robot;
+
+  //public Supplier<Boolean> algaeBoolean = robot.armIntake.algaeSensor::get;
 
   public AdvancedCommands(RobotContainer r)
   {
@@ -75,6 +81,54 @@ public class AdvancedCommands
       robot.extender.coralStation(),
       robot.wrist.coralStation()
     ));
+  }
+
+  public Command intakeAlgae() {
+    return new RepeatCommand(
+      robot.armIntake.algaeIntake()
+    ).until(
+      () -> robot.armIntake.algaeSensor.get()
+    ).andThen(
+      robot.armIntake.algaeStop()
+    );
+  }
+
+  public Command intakeCoral() {
+    return new RepeatCommand(
+      robot.armIntake.coralIntake()
+    ).until(
+      () -> robot.armIntake.coralSensor.get()
+    ).andThen(
+      robot.armIntake.coralStop()
+    );
+  }
+
+  public Command ejectAlgae() {
+    return new RepeatCommand(
+      robot.armIntake.algaeEject()
+    ).until(
+      () -> !robot.armIntake.algaeSensor.get() 
+    ).andThen(
+      robot.armIntake.algaeStop()
+    );
+  }
+
+  public Command ejectCoral() {
+    return new RepeatCommand(
+      robot.armIntake.coralEject()
+    ).until(
+      () -> !robot.armIntake.coralSensor.get() 
+    ).andThen(
+      robot.armIntake.coralStop()
+    );
+  }
+
+  public Command coralInOrOut() {
+    return new ConditionalCommand(ejectCoral(), intakeCoral(), robot.armIntake.coralSensor::get);
+  }
+
+  public Command algaeInOrOut() {
+    return new ConditionalCommand(ejectAlgae(), intakeAlgae(), robot.armIntake.algaeSensor::get);
   }
   
 }
