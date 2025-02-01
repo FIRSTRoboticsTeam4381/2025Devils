@@ -63,33 +63,33 @@ public class Intake extends SubsystemBase
   // algae
   public Command algaeIntake() 
   {
-    return new InstantCommand(() -> intake1.set(1)); 
+    return new InstantCommand(() -> intake1.set(1), this); 
   }
   public Command algaeEject() 
   {
-    return new InstantCommand(() -> intake1.set(-1));
+    return new InstantCommand(() -> intake1.set(-1), this);
   }
 
 
   // coral
   public Command coralIntake() 
   {
-    return new InstantCommand(() -> intake3.set(1)); 
+    return new InstantCommand(() -> intake3.set(1), this); 
   }
   public Command coralEject() 
   {
-    return new InstantCommand(() -> intake3.set(-1));
+    return new InstantCommand(() -> intake3.set(-1), this);
   }
 
 
   // stop
   public Command algaeStop() 
   {
-    return new InstantCommand(() -> intake1.set(0));
+    return new InstantCommand(() -> intake1.set(0), this);
   }
   public Command coralStop() 
   {
-    return new InstantCommand(() -> intake3.set(0));
+    return new InstantCommand(() -> intake3.set(0), this);
   }
 
 
