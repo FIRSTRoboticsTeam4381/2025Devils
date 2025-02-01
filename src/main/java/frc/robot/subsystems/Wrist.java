@@ -34,17 +34,11 @@ public class Wrist extends SubsystemBase
 
     public Supplier<Double> joystickValue;
 
-  public Wrist() 
-  {
-    wrist1 = new SparkFlex(56, MotorType.kBrushless);
+    public double value;
 
-<<<<<<< HEAD
-=======
-  public double value;
-
+  //create Wrist
   public Wrist() {
-    wristMotor1 = new SparkFlex(56, MotorType.kBrushless);
->>>>>>> origin/master
+    wrist1 = new SparkFlex(56, MotorType.kBrushless);
 
     SparkFlexConfig wrist1Config = new SparkFlexConfig();
       wrist1Config.smartCurrentLimit(30).idleMode(IdleMode.kCoast);
@@ -62,20 +56,13 @@ public class Wrist extends SubsystemBase
               return false;
             },
             this));
-<<<<<<< HEAD
-  }
-
-
-  public Command joystickCtrl(Supplier<Double> joystickValue)
-  {
-    return new RepeatCommand(
-        new InstantCommand(() -> wrist1.set(joystickValue.get()), this));
-=======
 
     value = 0;
   }
 
-  public Command joystickControl(Supplier<Double> downJoystickValue, Supplier<Double> upJoystickValue) {
+
+  public Command joystickCtrl(Supplier<Double> downJoystickValue, Supplier<Double> upJoystickValue) 
+  {
     if(downJoystickValue.get() > 0)
     {
       value = -(downJoystickValue.get());
@@ -86,8 +73,7 @@ public class Wrist extends SubsystemBase
     }
 
     return new RepeatCommand(
-        new InstantCommand(() -> wristMotor1.set(value), this));
->>>>>>> origin/master
+      new InstantCommand(() -> wrist1.set(value), this));
   }
 
 
