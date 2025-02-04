@@ -30,16 +30,16 @@ public final class Constants {
         public static final boolean invertGyro = true; // Always ensure Gyro is CCW+ CW-
 
         /* Drivetrain Constants */
-        public static final double trackWidth = Units.inchesToMeters(24.75); 
-        public static final double wheelBase = Units.inchesToMeters(18.75); 
-        public static final double wheelDiameter = Units.inchesToMeters(3.0 + 7.0/8.8);
+        public static final double trackWidth = Units.inchesToMeters(24.75); //
+        public static final double wheelBase = Units.inchesToMeters(18.75);  // Will need change
+        public static final double wheelDiameter = Units.inchesToMeters(4);
         public static final double wheelCircumference = wheelDiameter * Math.PI;
 
         public static final double openLoopRamp = 0.25;
         public static final double closedLoopRamp = 0.0;
 
-        public static final double driveGearRatio = (425.0 / 72.0); 
-        public static final double angleGearRatio = (150.0/7.0 / 1.0); 
+        public static final double driveGearRatio = (6.75);
+        public static final double angleGearRatio = (150.0/7.0); 
 
         public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKinematics(
             new Translation2d(wheelBase / 2.0, trackWidth / 2.0),
@@ -79,8 +79,8 @@ public final class Constants {
         /* Swerve Profiling Values */
         // TODO The robot only seems to be making it up to about 4.5 m/s, could be a conversion issue
         // in code or a result of robot weight/friction/etc decreasing theoretical free speed
-        public static final double maxSpeed = 6; //meters per second
-        public static final double maxAngularVelocity = 11.5;
+        public static final double maxSpeed = 5.36; //meters per second
+        public static final double maxAngularVelocity = 10; // Formally 11.5 (Unit is Omega Radians per sec)
 
         /* Motor Inverts */
         public static final boolean driveMotorInvert = true;
@@ -131,6 +131,7 @@ public final class Constants {
         }
     }
 
+    /*
     public static final class AutoConstants{
         public static final double kMaxSpeedMetersPerSecond = 3;
         public static final double kMaxAccelerationMetersPerSecondSquared = 3;
@@ -146,4 +147,5 @@ public final class Constants {
             new TrapezoidProfile.Constraints(
                 kMaxAngularSpeedRadiansPerSecond, kMaxAngularAccelerationRadiansPerSecondSquared);
     }
+    */
 }
