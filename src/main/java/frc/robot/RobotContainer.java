@@ -7,15 +7,14 @@ package frc.robot;
 import java.util.function.Supplier;
 
 import edu.wpi.first.epilogue.Logged;
-import edu.wpi.first.math.geometry.Transform3d;
-import edu.wpi.first.math.geometry.Rotation3d;
-import edu.wpi.first.math.geometry.Translation3d;
-import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -28,7 +27,6 @@ import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Extender;
 import frc.robot.subsystems.GroundIntake;
 import frc.robot.subsystems.Hang;
-import frc.robot.subsystems.PhotonCam;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.SwingArm;
 import frc.robot.subsystems.Wrist;
@@ -182,4 +180,108 @@ public class RobotContainer
     return robotReference;
   }
 
+  /**
+   * Set rumble for the specialist controller
+   * @param rumbleside Which half of the controller to rumble, or both
+   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
+   * @return Instant command to set rumble strength
+   */
+  public Command vibrateSpecialist(RumbleType rumbleside, double rumblestrength )
+  {
+    return new InstantCommand(() -> specialist.setRumble(rumbleside, rumblestrength));
+  }
+
+  /**
+   * Set rumble for the driver controller
+   * @param rumbleside Which half of the controller to rumble, or both
+   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
+   * @return Instant command to set rumble strength
+   */
+  public Command vibrateDriver(RumbleType rumbleside, double rumblestrength )
+  {
+    return new InstantCommand(() -> driver.setRumble(rumbleside, rumblestrength));
+  }
+
+  /**
+   * Rumble a controller while a command is running, stopping when the command finishes
+   * @param controller Controller to rumble
+   * @param rumbleside Which half of the controller to rumble, or both
+   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
+   * @param c Command to run while rumbling
+   * @return Instant command to set rumble strength
+   */
+  public Command vibrateWhile(CommandXboxController controller, RumbleType rumbleside, double rumblestrength, Command c)
+  {
+    return new ParallelRaceGroup(
+      c,
+      new FunctionalCommand(() -> controller.setRumble(rumbleside, rumblestrength),
+      () -> controller.setRumble(rumbleside, rumblestrength),
+      (interrupted) -> controller.setRumble(rumbleside, 0),
+      () -> {return false;})
+    );
+  }
+
+  /**
+   * Rumble specials controller while a command is running, stopping when the command finishes
+   * @param rumbleside Which half of the controller to rumble, or both
+   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
+   * @param c Command to run while rumbling
+   * @return Instant command to set rumble strength
+   */
+  public Command vibrateSpecialistWhile(RumbleType rumbleside, double rumblestrength, Command c)
+  {
+    return vibrateWhile(specialist, rumbleside, rumblestrength, c);
+  }
+
+  /**
+   * Rumble driver controller while a command is running, stopping when the command finishes
+   * @param rumbleside Which half of the controller to rumble, or both
+   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
+   * @param c Command to run while rumbling
+   * @return Instant command to set rumble strength
+   */
+  public Command vibrateDriverWhile(RumbleType rumbleside, double rumblestrength, Command c)
+  {
+    return vibrateWhile(driver, rumbleside, rumblestrength, c);
+  }
+
+  /**
+   * Set specialist controller to rumble for a certain amount of time.
+   * This isn't blocking- it schedules a separate command to end the rumbe later.
+   * @param rumbleside Which half of the controller to rumble, or both
+   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
+   * @param time How long to rumble for
+   * @return Command to schedule the rumble
+   */
+  public Command vibrateSpecialistForTime(RumbleType rumbleside, double rumblestrength, double time)
+  {
+    return vibrateForTime(specialist, rumbleside, rumblestrength, time);
+  }
+
+  /**
+   * Set driver controller to rumble for a certain amount of time.
+   * This isn't blocking- it schedules a separate command to end the rumbe later.
+   * @param rumbleside Which half of the controller to rumble, or both
+   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
+   * @param time How long to rumble for
+   * @return Command to schedule the rumble
+   */
+  public Command vibrateDriverForTime(RumbleType rumbleside, double rumblestrength, double time)
+  {
+    return vibrateForTime(driver, rumbleside, rumblestrength, time);
+  }
+
+  /**
+   * Set a controller to rumble for a certain amount of time.
+   * This isn't blocking- it schedules a separate command to end the rumbe later.
+   * @param controller controller to rumble
+   * @param rumbleside Which half of the controller to rumble, or both
+   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
+   * @param time How long to rumble for
+   * @return Command to schedule the rumble
+   */
+  public Command vibrateForTime(CommandXboxController controller,RumbleType rumbleside, double rumblestrength, double time)
+  {
+    return new ScheduleCommand(vibrateWhile(controller, rumbleside, rumblestrength, new WaitCommand(time)));
+  }
 }
