@@ -16,7 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -160,7 +162,49 @@ public class RobotContainer {
   {
     return new InstantCommand(() -> driver.setRumble(rumbleside, rumblestrength));
   }
-  
+
+  /**
+   * Rumble a controller while a command is running, stopping when the command finishes
+   * @param controller Controller to rumble
+   * @param rumbleside Which half of the controller to rumble, or both
+   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
+   * @param c Command to run while rumbling
+   * @return Instant command to set rumble strength
+   */
+  public Command vibrateWhile(CommandXboxController controller, RumbleType rumbleside, double rumblestrength, Command c)
+  {
+    return new ParallelRaceGroup(
+      c,
+      new FunctionalCommand(() -> controller.setRumble(rumbleside, rumblestrength),
+      () -> controller.setRumble(rumbleside, rumblestrength),
+      (interrupted) -> controller.setRumble(rumbleside, 0),
+      () -> {return false;})
+    );
+  }
+
+  /**
+   * Rumble specials controller while a command is running, stopping when the command finishes
+   * @param rumbleside Which half of the controller to rumble, or both
+   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
+   * @param c Command to run while rumbling
+   * @return Instant command to set rumble strength
+   */
+  public Command vibrateSpecialistWhile(RumbleType rumbleside, double rumblestrength, Command c)
+  {
+    return vibrateWhile(specialist, rumbleside, rumblestrength, c);
+  }
+
+  /**
+   * Rumble driver controller while a command is running, stopping when the command finishes
+   * @param rumbleside Which half of the controller to rumble, or both
+   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
+   * @param c Command to run while rumbling
+   * @return Instant command to set rumble strength
+   */
+  public Command vibrateDriverWhile(RumbleType rumbleside, double rumblestrength, Command c)
+  {
+    return vibrateWhile(driver, rumbleside, rumblestrength, c);
+  }
 
   /**
    * Set specialist controller to rumble for a certain amount of time.
@@ -172,13 +216,7 @@ public class RobotContainer {
    */
   public Command vibrateSpecialistForTime(RumbleType rumbleside, double rumblestrength, double time)
   {
-    return new ScheduleCommand(
-      new SequentialCommandGroup(
-        vibrateSpecialist(rumbleside, rumblestrength),
-        new WaitCommand(time),
-        vibrateSpecialist(rumbleside, 0)
-      )
-    );
+    return vibrateForTime(specialist, rumbleside, rumblestrength, time);
   }
 
   /**
@@ -191,13 +229,20 @@ public class RobotContainer {
    */
   public Command vibrateDriverForTime(RumbleType rumbleside, double rumblestrength, double time)
   {
-    return new ScheduleCommand(
-      new SequentialCommandGroup(
-        vibrateSpecialist(rumbleside, rumblestrength),
-        new WaitCommand(time),
-        vibrateSpecialist(rumbleside, 0)
-      )
-    );
+    return vibrateForTime(driver, rumbleside, rumblestrength, time);
   }
 
+  /**
+   * Set a controller to rumble for a certain amount of time.
+   * This isn't blocking- it schedules a separate command to end the rumbe later.
+   * @param controller controller to rumble
+   * @param rumbleside Which half of the controller to rumble, or both
+   * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
+   * @param time How long to rumble for
+   * @return Command to schedule the rumble
+   */
+  public Command vibrateForTime(CommandXboxController controller,RumbleType rumbleside, double rumblestrength, double time)
+  {
+    return new ScheduleCommand(vibrateWhile(controller, rumbleside, rumblestrength, new WaitCommand(time)));
+  }
 }
