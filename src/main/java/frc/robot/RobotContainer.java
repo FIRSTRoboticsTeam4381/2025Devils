@@ -6,6 +6,8 @@ package frc.robot;
 
 import java.util.function.Supplier;
 
+import com.pathplanner.lib.auto.NamedCommands;
+
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -81,6 +83,13 @@ public class RobotContainer
     SmartDashboard.putData(CommandScheduler.getInstance());
     autoChooser.onChange((listener) -> listener.showPreview());
     SmartDashboard.putNumber("Start Delay",0);
+    NamedCommands.registerCommand("Coral Intake/Outtake On", aCommands.coralInOrOut());
+    NamedCommands.registerCommand("Algae Intake/Outtake On", aCommands.algaeInOrOut());
+    NamedCommands.registerCommand("L1", aCommands.l1());
+    NamedCommands.registerCommand("L2", aCommands.l2());
+    NamedCommands.registerCommand("L3", aCommands.l3());
+    NamedCommands.registerCommand("L4", aCommands.l4());
+
 
     
     // Configure button bindings
