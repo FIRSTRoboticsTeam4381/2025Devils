@@ -49,7 +49,7 @@ public class Intake extends SubsystemBase
 
     // ARM INTAKE contains 3 total motors
     SparkMaxConfig intake1Config = new SparkMaxConfig();
-      intake1Config.smartCurrentLimit(30).idleMode(IdleMode.kCoast);
+      intake1Config.smartCurrentLimit(30).idleMode(IdleMode.kBrake);
         intake1.configure(intake1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     SparkMaxConfig intake2Config = new SparkMaxConfig();

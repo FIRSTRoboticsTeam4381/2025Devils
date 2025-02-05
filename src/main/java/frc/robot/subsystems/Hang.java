@@ -33,7 +33,7 @@ public class Hang extends SubsystemBase
     SparkMaxConfig hang1Config = new SparkMaxConfig();
       hang1Config
         .smartCurrentLimit(10)
-        .idleMode(IdleMode.kCoast);
+        .idleMode(IdleMode.kBrake);
 
     hang1.configure(hang1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }

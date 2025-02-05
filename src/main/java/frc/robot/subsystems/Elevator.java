@@ -32,7 +32,7 @@ public class Elevator extends SubsystemBase
     SparkFlexConfig elevator1Config = new SparkFlexConfig();
       elevator1Config
         .smartCurrentLimit(10)
-        .idleMode(IdleMode.kCoast);
+        .idleMode(IdleMode.kBrake);
 
     elevator1.configure(elevator1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
