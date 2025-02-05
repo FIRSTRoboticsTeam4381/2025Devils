@@ -71,6 +71,11 @@ public class Elevator extends SubsystemBase
     return elevatorTo(0).withName("Level 4");
   }
   
+
+  public Command coralStation()
+  {
+    return elevatorTo(0).withName("Coral Station");
+  }
   
   
 

@@ -74,12 +74,12 @@ public class AdvancedCommands
   public Command coralStation()
   {
     return new ParallelCommandGroup(
-      //robot.elevator.(),
+      robot.elevator.coralStation(),
       robot.swingArm.coralStation()
       
     ).andThen(new ParallelCommandGroup(
-      //robot.extender.(),
-      //robot.wrist.()
+      robot.extender.coralStation(),
+      robot.wrist.coralStation()
     ));
   }
 

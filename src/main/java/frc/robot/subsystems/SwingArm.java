@@ -112,7 +112,7 @@ public class SwingArm extends SubsystemBase
 
   public Command coralStation() 
   {
-    return goToAngle(0).withName("Corral Station");
+    return goToAngle(0).withName("Coral Station");
   }
 
   public Command swing(Supplier<Double> joystickValue) 

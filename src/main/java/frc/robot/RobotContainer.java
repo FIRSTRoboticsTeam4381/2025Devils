@@ -90,11 +90,11 @@ public class RobotContainer
   private void configureBindings() 
   {
     swerve.setDefaultCommand(new TeleopSwerve(swerve, 
-            driver::getLeftY,
-            driver::getLeftX,
-          //interpolateJoystick(driver::getLeftY,0.05),
-          //interpolateJoystick(driver::getLeftX,0.05), 
-          interpolateJoystick (driver::getRightX,0.05),
+            //driver::getLeftY,
+            //driver::getLeftX,
+          interpolateJoystick(driver::getLeftY,0.35),
+          interpolateJoystick(driver::getLeftX,0.35), 
+          interpolateJoystick (driver::getRightX,0.15),
              true, driver.leftBumper()::getAsBoolean));
       
       //specialist.a().onTrue(GroundIntake.intake());

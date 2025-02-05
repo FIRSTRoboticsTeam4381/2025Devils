@@ -102,9 +102,9 @@ public class Extender extends SubsystemBase
   }
 
 
-  public Command sourcePickup()
+  public Command coralStation()
   {
-    return extendTo(0).withName("Source Pickup");
+    return extendTo(0).withName("Coral Station");
   }
 
 
