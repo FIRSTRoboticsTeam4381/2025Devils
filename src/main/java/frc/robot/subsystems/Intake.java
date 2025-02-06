@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.revrobotics.spark.SparkLimitSwitch;
 import com.revrobotics.spark.SparkMax;
 
 import java.util.function.Supplier;
@@ -26,9 +27,12 @@ public class Intake extends SubsystemBase
     public SparkMax intake1; // MOTORS 1 and 2 are algae, 2 follow one inverted
     public SparkMax intake2;
     public SparkMax intake3; // MOTOR 3 is for coral intake
+    public double topSpeed = 0;
+    public double v = 0;
+    public final double ALGAE_SPIKE = 1500;
 
-    public DigitalInput algaeSensor;
-    public DigitalInput coralSensor;
+  
+    public SparkLimitSwitch coralSensor;
 
     //public Supplier<Boolean> hasAlgae;
     //public Supplier<Boolean> hasCoral;
@@ -41,9 +45,9 @@ public class Intake extends SubsystemBase
     intake1 = new SparkMax(58, MotorType.kBrushless);
     intake2 = new SparkMax(59, MotorType.kBrushless);
     intake3 = new SparkMax(60, MotorType.kBrushless);
-
-    algaeSensor = new DigitalInput(9); // CHANGE CHANNELS LATER
-    coralSensor = new DigitalInput(10);
+    
+     // CHANGE CHANNELS LATER
+    coralSensor = intake3.getForwardLimitSwitch();
 
     // speed = 0.5; // Not used anywhere as of right now
 
@@ -58,8 +62,10 @@ public class Intake extends SubsystemBase
         intake2.configure(intake2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     SparkMaxConfig motor3Config = new SparkMaxConfig();
-      motor3Config.apply(intake1Config); // Intakes just algae thus it is serpate from motor 1 and 20
+      motor3Config.apply(intake1Config)
+      .limitSwitch.forwardLimitSwitchEnabled(false); // Intakes just algae thus it is serpate from motor 1 and 20
         intake3.configure(motor3Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
     
 
     this.setDefaultCommand( // Stop motor I think
@@ -112,5 +118,8 @@ public class Intake extends SubsystemBase
   {
     //This method will be called once per scheduler run
       SmartDashboard.putData(this);
+      v = intake3.get();
+      if(v > topSpeed) 
+      topSpeed = v;
   }
 }
