@@ -38,7 +38,8 @@ public class Extender extends SubsystemBase
 
     extend1Config
       .smartCurrentLimit(30)
-      .idleMode(IdleMode.kBrake);
+      .idleMode(IdleMode.kBrake)
+      .limitSwitch.forwardLimitSwitchEnabled(true).reverseLimitSwitchEnabled(true);
     
     extend1.configure(extend1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
