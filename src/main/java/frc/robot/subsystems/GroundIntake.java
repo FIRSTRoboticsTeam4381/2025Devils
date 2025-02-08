@@ -29,8 +29,8 @@ public class GroundIntake extends SubsystemBase {
   // This file is depricated or somthing idrk
   public GroundIntake() 
   {
-    motor1 = new SparkMax(61, MotorType.kBrushless);
-    motor2 = new SparkMax(62, MotorType.kBrushless);
+    motor1 = new SparkMax(0, MotorType.kBrushless);
+    motor2 = new SparkMax(0, MotorType.kBrushless);
 
     SparkMaxConfig motor1Config = new SparkMaxConfig();
 
