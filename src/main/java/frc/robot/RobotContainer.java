@@ -75,13 +75,14 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
+    driver.back()
+      .onTrue(new InstantCommand(() -> swerve.zeroGyro()));
     swerve.setDefaultCommand(new TeleopSwerve(swerve, 
             driver::getLeftY,
             driver::getLeftX,
-          //interpolateJoystick(driver::getLeftY,0.05),
-          //interpolateJoystick(driver::getLeftX,0.05), 
-          interpolateJoystick (driver::getRightX,0.05),
-             true, driver.leftBumper()::getAsBoolean));
+            driver::getRightX,
+             true,
+            driver.leftBumper()::getAsBoolean));
   }
 
   public Command getAutonomousCommand() {
