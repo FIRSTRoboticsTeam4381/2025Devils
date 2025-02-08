@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import java.util.function.Supplier;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -100,6 +101,8 @@ public class AdvancedCommands
       () -> robot.armIntake.coralSensor.isPressed()
     ).andThen(
       robot.armIntake.coralStop()
+    ).andThen(
+      RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kRightRumble, 0.6, 1)
     );
   }
 
@@ -121,6 +124,8 @@ public class AdvancedCommands
       () -> !robot.armIntake.coralSensor.isPressed() 
     ).andThen(
       robot.armIntake.coralStop()
+    ).andThen(
+      RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kLeftRumble, 0.6, 1)
     );
   }
 

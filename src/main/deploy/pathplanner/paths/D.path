@@ -21,7 +21,7 @@
       },
       "prevControl": {
         "x": 4.466549295774647,
-        "y": 0.9920774647887305
+        "y": 0.9920774647887303
       },
       "nextControl": null,
       "isLocked": false,
@@ -45,7 +45,7 @@
     "rotation": 59.99999999999999
   },
   "reversed": false,
-  "folder": "Reef",
+  "folder": "Reef presets",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

@@ -3,8 +3,10 @@
   "robotLength": 0.9,
   "holonomicMode": true,
   "pathFolders": [
-    "simple quick ones",
-    "Reef"
+    "Coral to pickup",
+    "Pickup to coral",
+    "Reef presets",
+    "simple quick ones"
   ],
   "autoFolders": [
     "out the way"

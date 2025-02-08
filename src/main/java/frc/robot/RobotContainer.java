@@ -82,7 +82,7 @@ public class RobotContainer
     autoChooser.addOption("Blue Place One I", Autos.BlueSimpleI());
     autoChooser.addOption("Red Place one F", Autos.RedSimpleF());
     
-    autoChooser.addOption("Test", Autos.none());
+    autoChooser.addOption("None", Autos.none());
 
     
 
