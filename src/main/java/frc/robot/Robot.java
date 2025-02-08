@@ -74,10 +74,38 @@ public class Robot extends TimedRobot {
   public void disabledInit() {}
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+    // Check if joysticks aren't zeroed
+    // This should be ambiguous about what type of controller is plugged in
+    driverControllerUnzeroed.set(!isJoystickZeroed(0));
+    specialsControllerUnzeroed.set(!isJoystickZeroed(1));
+  }
+
+  /*
+   * Helper to check 
+   */
+  private boolean isJoystickZeroed(int controller)
+  {
+    // How many axes are on this controller?
+    int axes = DriverStation.getStickAxisCount(controller);
+    for(int j=0; j<axes; j++)
+    {
+      if(Math.abs(DriverStation.getStickAxis(controller, j)) > 0.15)
+      {
+        // If joystic isn't being touched, it was probably plugged in with a stick held
+        return false;
+      }
+    }
+
+    // Didn't find an axis out of position
+    return true;
+  }
 
   @Override
-  public void disabledExit() {}
+  public void disabledExit() {
+    driverControllerUnzeroed.set(false);
+    specialsControllerUnzeroed.set(false);
+  }
 
   @Override
   public void autonomousInit() {
@@ -133,7 +161,12 @@ public class Robot extends TimedRobot {
   private Alert canTx = new Alert("", AlertType.kError);
   private Alert canRx = new Alert("", AlertType.kError);
   private Alert canTxFull = new Alert("", AlertType.kError);
+  
+  private Alert driverControllerUnplugged = new Alert("Driver controller unplugged!", AlertType.kError);
+  private Alert specialsControllerUnplugged = new Alert("Specials controller unplugged!", AlertType.kError);
 
+  private Alert driverControllerUnzeroed = new Alert("Driver controller joysticks may not be zeroed! Try reconnecting it.", AlertType.kWarning);
+  private Alert specialsControllerUnzeroed = new Alert("Specials controller joysticks may not be zeroed! Try reconnecting it.", AlertType.kWarning);
 
   /*
    * Log data about the health of the RoboRIO and display alerts if there are problems.
@@ -243,6 +276,11 @@ public class Robot extends TimedRobot {
 
     // Is driver station connected?
     SmartDashboard.putBoolean("RIO/DS Connected", DriverStation.isDSAttached());
+
+
+    // Are controllers connected?
+    driverControllerUnplugged.set(!DriverStation.isJoystickConnected(0));
+    specialsControllerUnplugged.set(!DriverStation.isJoystickConnected(1));
   
   }
 }
