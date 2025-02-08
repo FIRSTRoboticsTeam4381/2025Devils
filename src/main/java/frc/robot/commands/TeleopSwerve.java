@@ -24,14 +24,19 @@ public class TeleopSwerve extends Command{
     private Supplier<Double> rotate;
     private Supplier<Boolean> slow;
 
-    static StructArrayPublisher<Translation2d> pointPub = NetworkTableInstance.getDefault()
-    .getStructArrayTopic("joystick", Translation2d.struct).publish();
+    //static StructArrayPublisher<Translation2d> pointPub = NetworkTableInstance.getDefault()
+    //  .getStructArrayTopic("joystick", Translation2d.struct).publish();
     
-    /*
-     * Driver Control command
-     * @param s_Swerve Swerve subsystem
-     * @param controller PS4 controller
-     * @param openLoop True
+    
+    /**
+     * Command for driver control of a swerve drive. 
+     * Can also be used in other ways by passing in different suppliers.
+     * @param s_Swerve Swerve drive object to control
+     * @param forward Supplier for forward/back motion (likely a joystick)
+     * @param leftright Supplier for left/right motion (likely a joystick)
+     * @param rotate Supplier for rotation control (likely a joystick)
+     * @param openLoop Whether to use open or closed loop math
+     * @param slow Supplier for whether to activate slow mode
      */
     public TeleopSwerve(Swerve s_Swerve, Supplier<Double> forward, Supplier<Double> leftright, Supplier<Double> rotate, boolean openLoop, Supplier<Boolean> slow){
         this.s_Swerve = s_Swerve;
@@ -51,13 +56,6 @@ public class TeleopSwerve extends Command{
         double xAxis = -leftright.get();
         double rAxis = -rotate.get();
 
-        
-
-        /* Deadbands */
-        //yAxis = (Math.abs(yAxis) < Constants.stickDeadband) ? 0 : yAxis;
-        //xAxis = (Math.abs(xAxis) < Constants.stickDeadband) ? 0 : xAxis;
-        //rAxis = (Math.abs(rAxis) < Constants.stickDeadband) ? 0 : rAxis;
-
         /* Slow Trigger */
         double slowdown = (slow.get() ? .25 : 1);
         yAxis *= slowdown;
@@ -66,22 +64,23 @@ public class TeleopSwerve extends Command{
 
         /* Calculates inputs for swerve subsystem */
         //translation = new Translation2d(yAxis, xAxis).times(Constants.Swerve.maxSpeed);
-        rotation = rAxis * Constants.Swerve.maxAngularVelocity;
+        rotation = RobotContainer.interpolateNow(rAxis, Constants.stickDeadband) * Constants.Swerve.maxAngularVelocity;
         //s_Swerve.drive(translation, rotation, true, openLoop);
 
 
         Translation2d x = new Translation2d(yAxis, xAxis);
 
-        Translation2d y = new Translation2d(RobotContainer.interpolateNow(x.getNorm(), 0.1), x.getAngle());
+        Translation2d y = new Translation2d(RobotContainer.interpolateNow(x.getNorm(), Constants.stickDeadband), x.getAngle());
 
-        x = x.times(RobotContainer.interpolateNow(x.getNorm(), 0.1));
-        
+        // Debugging info for analyzing joystick behavior with different interpolation functions
+        // Uncomment and use AdvantageScope points view to display
+        /*x = x.times(RobotContainer.interpolateNow(x.getNorm(), 0.1));
         pointPub.set(new Translation2d[] {
             new Translation2d(yAxis, xAxis),
             new Translation2d(0, y.getNorm()),
             new Translation2d(RobotContainer.interpolateNow(xAxis, 0.1),0),
             y
-        });
+        });*/
 
         translation = y.times(Constants.Swerve.maxSpeed);
         s_Swerve.drive(translation, rotation, true, openLoop);
