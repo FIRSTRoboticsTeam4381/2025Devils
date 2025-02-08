@@ -4,9 +4,10 @@
   "holonomicMode": true,
   "pathFolders": [
     "Coral to pickup",
+    "Get out the way",
+    "Place out of way",
     "Pickup to coral",
-    "Reef presets",
-    "simple quick ones"
+    "Reef presets"
   ],
   "autoFolders": [
     "out the way"
