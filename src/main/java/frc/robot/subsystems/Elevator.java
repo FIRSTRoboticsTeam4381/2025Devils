@@ -31,7 +31,7 @@ public class Elevator extends SubsystemBase
 
     SparkFlexConfig elevator1Config = new SparkFlexConfig();
       elevator1Config
-        .smartCurrentLimit(10)
+        .smartCurrentLimit(30)
         .idleMode(IdleMode.kBrake)
         .limitSwitch.forwardLimitSwitchEnabled(true).reverseLimitSwitchEnabled(true);
 
