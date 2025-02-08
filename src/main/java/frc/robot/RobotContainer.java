@@ -46,7 +46,7 @@ public class RobotContainer
 
   // Subsystems
   public final Swerve swerve = new Swerve();
-  public final GroundIntake groundIntake = new GroundIntake();
+  //public final GroundIntake groundIntake = new GroundIntake();
   public final Intake armIntake = new Intake();
   public final SwingArm swingArm = new SwingArm();
   public final Extender extender = new Extender();
