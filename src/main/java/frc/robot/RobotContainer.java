@@ -117,16 +117,16 @@ public class RobotContainer
       specialist.povDown().onTrue(aCommands.l1());
 
       //elevator joystick controls
-      elevator.setDefaultCommand(elevator.joystickCtrl(specialist :: getLeftY));
+      elevator.setDefaultCommand(elevator.joystickCtrl(interpolateJoystick(specialist:: getLeftY, Constants.stickDeadband)));
 
       //wrist triggers  
-      wrist.setDefaultCommand(wrist.joystickCtrl(specialist :: getLeftTriggerAxis, specialist :: getRightTriggerAxis));
+      wrist.setDefaultCommand(wrist.joystickCtrl(interpolateJoystick(specialist :: getLeftTriggerAxis, Constants.stickDeadband), interpolateJoystick(specialist :: getRightTriggerAxis, Constants.stickDeadband)));
 
       //swing joystick controls
-      swingArm.setDefaultCommand(swingArm.swing(specialist :: getRightX));
+      swingArm.setDefaultCommand(swingArm.swing(interpolateJoystick(specialist :: getRightX, Constants.stickDeadband)));
 
       //extend joystick
-      extender.setDefaultCommand(extender.extend(specialist :: getRightY));
+      extender.setDefaultCommand(extender.extend(interpolateJoystick(specialist :: getRightY, Constants.stickDeadband)));
       
     }
 
