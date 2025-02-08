@@ -75,7 +75,15 @@ public class RobotContainer
     // Set up autonomous picker
     // Add any autos you want to be able to select below
     autoChooser.setDefaultOption("None", Autos.none());
-    autoChooser.addOption("Test", Autos.testAuto());
+    autoChooser.addOption("Out of The Way Blue", Autos.OutTheWayBlue());
+    autoChooser.addOption("Out of The Way Red", Autos.OutTheWayRed());
+    autoChooser.addOption("Blue Coral A", Autos.BlueA());
+    autoChooser.addOption("Red Coral D", Autos.RedD());
+    autoChooser.addOption("Blue Place One I", Autos.BlueSimpleI());
+    autoChooser.addOption("Red Place one F", Autos.RedSimpleF());
+    
+    autoChooser.addOption("Test", Autos.none());
+
     
 
     // Add auto controls to the dashboard

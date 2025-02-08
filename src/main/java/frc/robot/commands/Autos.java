@@ -31,6 +31,30 @@ public final class Autos {
         return new PreviewAuto(Commands.none());
     }
 
+    public static PreviewAuto OutTheWayBlue() {
+        return new PreviewAuto("Out The Way Blue");
+    }
+
+    public static PreviewAuto OutTheWayRed() {
+        return new PreviewAuto("Out The Way Red");
+    }
+
+    public static PreviewAuto RedD() {
+        return new PreviewAuto("Red Coral D");
+    }
+    
+    public static PreviewAuto BlueA() {
+        return new PreviewAuto("Blue Coral A");
+    }
+
+    public static PreviewAuto BlueSimpleI() {
+        return new PreviewAuto("Blue Simple I");
+    }
+
+    public static PreviewAuto RedSimpleF() {
+        return new PreviewAuto("Red Simple F");
+    }
+
     // TODO add pathplanner autos here. Example:
     //public static PreviewAuto Front3Note(){
     //    return new PreviewAuto("Front3NoteAuto");
