@@ -91,8 +91,8 @@ public class RobotContainer
     SmartDashboard.putData(CommandScheduler.getInstance());
     autoChooser.onChange((listener) -> listener.showPreview());
     SmartDashboard.putNumber("Start Delay",0);
-    NamedCommands.registerCommand("Coral Intake/Outtake On", aCommands.coralInOrOut());
-    NamedCommands.registerCommand("Algae Intake/Outtake On", aCommands.algaeInOrOut());
+    NamedCommands.registerCommand("Coral Intake/Outtake On", armIntake.coralInOrOut());
+    NamedCommands.registerCommand("Algae Intake/Outtake On", armIntake.algaeInOrOut());
     NamedCommands.registerCommand("L1", aCommands.l1());
     NamedCommands.registerCommand("L2", aCommands.l2());
     NamedCommands.registerCommand("L3", aCommands.l3());
@@ -115,8 +115,8 @@ public class RobotContainer
              true,
             driver.leftBumper()::getAsBoolean));
 
-      specialist.a().onTrue(aCommands.coralInOrOut());
-      specialist.b().onTrue(aCommands.algaeInOrOut());
+      specialist.a().onTrue(armIntake.coralInOrOut());
+      specialist.b().onTrue(armIntake.algaeInOrOut());
 
       // Elevator preset position controls
       specialist.povUp().onTrue(aCommands.l4()); // How do we determine the distance value here?

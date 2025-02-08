@@ -13,13 +13,17 @@ import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.SensorUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RepeatCommand;
 //import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
 
 @Logged
 public class Intake extends SubsystemBase
@@ -27,8 +31,9 @@ public class Intake extends SubsystemBase
     public SparkMax intake1; // MOTORS 1 and 2 are algae, 2 follow one inverted
     public SparkMax intake2;
     public SparkMax intake3; // MOTOR 3 is for coral intake
-    public double topSpeed = 0;
+    public double topSpeed = 5000;
     public double v = 0;
+    public boolean hasAlgae = false;
     public final double ALGAE_SPIKE = 1500;
 
   
@@ -111,15 +116,73 @@ public class Intake extends SubsystemBase
   }
 
 
+  public Command intakeAlgae() {
+    return new RepeatCommand(
+      algaeIntake()
+    ).until(
+      //() -> intake3.get() < (topSpeed - ALGAE_SPIKE)
+      () -> intake3.getOutputCurrent() > 5
+    ).andThen(
+      algaeStop()
+    ).andThen(
+      () -> hasAlgae = true
+    );
+  }
 
+  public Command intakeCoral() {
+    return new RepeatCommand(
+      coralIntake()
+    ).until(
+      () -> coralSensor.isPressed()
+    ).andThen(
+      coralStop()
+    ).andThen(
+      RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kRightRumble, 0.6, 1)
+    );
+  }
+
+  public Command ejectAlgae() {
+    
+    return new RepeatCommand(
+      algaeEject()
+    ).until(
+      () -> intake3.getEncoder().getVelocity() > topSpeed
+    ).andThen(
+      algaeStop()
+    ).andThen(
+      () -> hasAlgae = false
+    );
+  }
+
+  public Command ejectCoral() {
+    return new RepeatCommand(
+      coralEject()
+    ).until(
+      () -> !coralSensor.isPressed() 
+    ).andThen(
+      coralStop()
+    ).andThen(
+      RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kLeftRumble, 0.6, 1)
+    );
+  }
+
+  public Command coralInOrOut() {
+    return new ConditionalCommand(ejectCoral(), intakeCoral(), coralSensor::isPressed);
+  }
+
+  public Command algaeInOrOut() {
+    return new ConditionalCommand(ejectAlgae(), intakeAlgae(), () -> hasAlgae);
+  }
   
   @Override
   public void periodic() 
   {
     //This method will be called once per scheduler run
       SmartDashboard.putData(this);
+      /* 
       v = intake3.get();
       if(v > topSpeed) 
       topSpeed = v;
+      */
   }
 }

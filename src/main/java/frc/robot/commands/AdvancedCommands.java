@@ -84,57 +84,6 @@ public class AdvancedCommands
     ));
   }
 
-  public Command intakeAlgae() {
-    return new RepeatCommand(
-      robot.armIntake.algaeIntake()
-    ).until(
-      () -> robot.armIntake.intake3.get() < (robot.armIntake.topSpeed - robot.armIntake.ALGAE_SPIKE)
-    ).andThen(
-      robot.armIntake.algaeStop()
-    );
-  }
-
-  public Command intakeCoral() {
-    return new RepeatCommand(
-      robot.armIntake.coralIntake()
-    ).until(
-      () -> robot.armIntake.coralSensor.isPressed()
-    ).andThen(
-      robot.armIntake.coralStop()
-    ).andThen(
-      RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kRightRumble, 0.6, 1)
-    );
-  }
-
-  public Command ejectAlgae() {
-    
-    return new RepeatCommand(
-      robot.armIntake.algaeEject()
-    ).until(
-      () -> !(robot.armIntake.intake3.get() < (robot.armIntake.topSpeed - robot.armIntake.ALGAE_SPIKE))
-    ).andThen(
-      robot.armIntake.algaeStop()
-    );
-  }
-
-  public Command ejectCoral() {
-    return new RepeatCommand(
-      robot.armIntake.coralEject()
-    ).until(
-      () -> !robot.armIntake.coralSensor.isPressed() 
-    ).andThen(
-      robot.armIntake.coralStop()
-    ).andThen(
-      RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kLeftRumble, 0.6, 1)
-    );
-  }
-
-  public Command coralInOrOut() {
-    return new ConditionalCommand(ejectCoral(), intakeCoral(), robot.armIntake.coralSensor::isPressed);
-  }
-
-  public Command algaeInOrOut() {
-    return new ConditionalCommand(ejectAlgae(), intakeAlgae(), null);// Is there a possible supplier that could be put here?
-  }
+  
   
 }
