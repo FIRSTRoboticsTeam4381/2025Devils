@@ -9,8 +9,10 @@ import java.util.function.Supplier;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -22,7 +24,7 @@ import frc.robot.commands.SparkPosition;
 
 public class Extender extends SubsystemBase 
 {
-    public SparkMax extend1;
+    public SparkFlex extend1;
 
     public static final double extendL4 = 0;
     public static final double extendL3 = 0;
@@ -32,9 +34,9 @@ public class Extender extends SubsystemBase
   // create Extender
   public Extender() 
   {
-    extend1 = new SparkMax(53, MotorType.kBrushless);
+    extend1 = new SparkFlex(53, MotorType.kBrushless);
 
-    SparkMaxConfig extend1Config = new SparkMaxConfig();
+    SparkFlexConfig extend1Config = new SparkFlexConfig();
 
     extend1Config
       .smartCurrentLimit(30)
