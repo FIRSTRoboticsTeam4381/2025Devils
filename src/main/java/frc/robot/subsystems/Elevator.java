@@ -22,20 +22,28 @@ import frc.robot.commands.SparkPosition;
 public class Elevator extends SubsystemBase
 {
     private SparkFlex elevator1;
-
+    private SparkFlex elevator2;
 
   // create Elevator
   public Elevator() 
   {
-    elevator1 = new SparkFlex(50, MotorType.kBrushless);
-
+    elevator1 = new SparkFlex(49, MotorType.kBrushless);
+    elevator2 = new SparkFlex(50, MotorType.kBrushless);
     SparkFlexConfig elevator1Config = new SparkFlexConfig();
       elevator1Config
         .smartCurrentLimit(30)
         .idleMode(IdleMode.kBrake)
         .limitSwitch.forwardLimitSwitchEnabled(true).reverseLimitSwitchEnabled(true);
+    
+    SparkFlexConfig elevator2Config = new SparkFlexConfig();
+      elevator2Config
+        .apply(elevator1Config)
+        .follow(elevator1,false)
+        .limitSwitch.forwardLimitSwitchEnabled(true).reverseLimitSwitchEnabled(true);
 
+    
     elevator1.configure(elevator1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    elevator2.configure(elevator2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
 
