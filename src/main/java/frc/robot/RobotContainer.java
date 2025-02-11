@@ -168,7 +168,7 @@ public class RobotContainer
 
   public static Supplier<Double> interpolateJoystick(Supplier<Double> in, double deadzone)
   {
-      return () -> in.get();
+      return () -> interpolateNow(in.get(), deadzone);
   }
 
   public static double interpolateNow(double in, double deadzone)
