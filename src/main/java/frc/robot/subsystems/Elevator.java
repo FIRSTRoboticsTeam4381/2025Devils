@@ -38,7 +38,7 @@ public class Elevator extends SubsystemBase
     SparkFlexConfig elevator2Config = new SparkFlexConfig();
       elevator2Config
         .apply(elevator1Config)
-        .follow(elevator1,false)
+        .follow(elevator1,true)
         .limitSwitch.forwardLimitSwitchEnabled(true).reverseLimitSwitchEnabled(true);
 
     
