@@ -63,17 +63,8 @@ public class Wrist extends SubsystemBase
 
   public Command joystickCtrl(Supplier<Double> downJoystickValue, Supplier<Double> upJoystickValue) 
   {
-    if(downJoystickValue.get() > 0)
-    {
-      value = -(downJoystickValue.get());
-    }
-    if(upJoystickValue.get() > 0)
-    {
-      value = upJoystickValue.get();
-    }
-
     return new RepeatCommand(
-      new InstantCommand(() -> wrist1.set(value), this));
+      new InstantCommand(() -> wrist1.set(upJoystickValue.get()-downJoystickValue.get()), this));
   }
 
 

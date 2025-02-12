@@ -75,7 +75,7 @@ public class Intake extends SubsystemBase
 
     this.setDefaultCommand( // Stop motor I think
         new FunctionalCommand(() -> {},
-            () -> intake1.set(0),
+            () -> {intake1.set(0); intake3.set(0);},
             (killed) -> {},
             () -> {return false;},
             this)
@@ -86,22 +86,22 @@ public class Intake extends SubsystemBase
   // algae
   public Command algaeIntake() 
   {
-    return new InstantCommand(() -> intake3.set(1), this); 
+    return new InstantCommand(() -> intake3.set(0.5), this); 
   }
   public Command algaeEject() 
   {
-    return new InstantCommand(() -> intake3.set(-1), this);
+    return new InstantCommand(() -> intake3.set(-0.5), this);
   }
 
 
   // coral
   public Command coralIntake() 
   {
-    return new InstantCommand(() -> intake1.set(1), this); 
+    return new InstantCommand(() -> intake1.set(-0.4), this); 
   }
   public Command coralEject() 
   {
-    return new InstantCommand(() -> intake1.set(-1), this);
+    return new InstantCommand(() -> intake1.set(0.4), this);
   }
 
 
