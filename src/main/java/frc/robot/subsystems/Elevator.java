@@ -31,7 +31,7 @@ public class Elevator extends SubsystemBase
     elevator2 = new SparkFlex(51, MotorType.kBrushless);
     SparkFlexConfig elevator1Config = new SparkFlexConfig();
       elevator1Config
-        .smartCurrentLimit(30)
+        .smartCurrentLimit(80)
         .idleMode(IdleMode.kBrake)
         .limitSwitch.forwardLimitSwitchEnabled(true).reverseLimitSwitchEnabled(true);
     
@@ -51,7 +51,7 @@ public class Elevator extends SubsystemBase
   public Command joystickCtrl(Supplier<Double> joystickValue) 
   {
     return new RepeatCommand(
-      new InstantCommand(() -> elevator1.set(joystickValue.get()), this));
+      new InstantCommand(() -> elevator1.set(-joystickValue.get()), this));
   }
 
 

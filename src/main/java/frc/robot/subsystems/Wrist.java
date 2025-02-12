@@ -41,7 +41,7 @@ public class Wrist extends SubsystemBase
     wrist1 = new SparkFlex(56, MotorType.kBrushless);
 
     SparkFlexConfig wrist1Config = new SparkFlexConfig();
-      wrist1Config.smartCurrentLimit(30).idleMode(IdleMode.kBrake);
+      wrist1Config.smartCurrentLimit(50).idleMode(IdleMode.kBrake);
 
     wrist1.configure(wrist1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 

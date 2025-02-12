@@ -29,7 +29,7 @@ import frc.robot.RobotContainer;
 public class Intake extends SubsystemBase
 {
     public SparkMax intake1; // MOTORS 1 and 2 are algae, 2 follow one inverted
-    public SparkMax intake2;
+    //public SparkMax intake2;
     public SparkMax intake3; // MOTOR 3 is for coral intake
     public double topSpeed = 5000;
     public double v = 0;
@@ -48,7 +48,7 @@ public class Intake extends SubsystemBase
   public Intake() 
   {
     intake1 = new SparkMax(58, MotorType.kBrushless);
-    intake2 = new SparkMax(59, MotorType.kBrushless);
+    //intake2 = new SparkMax(59, MotorType.kBrushless);
     intake3 = new SparkMax(60, MotorType.kBrushless);
     
      // CHANGE CHANNELS LATER
@@ -58,13 +58,13 @@ public class Intake extends SubsystemBase
 
     // ARM INTAKE contains 3 total motors
     SparkMaxConfig intake1Config = new SparkMaxConfig();
-      intake1Config.smartCurrentLimit(10).idleMode(IdleMode.kBrake);
+      intake1Config.smartCurrentLimit(40).idleMode(IdleMode.kBrake);
         intake1.configure(intake1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     SparkMaxConfig intake2Config = new SparkMaxConfig();
       intake2Config.apply(intake1Config);
       intake2Config.follow(intake1, true); // might need to change invert 
-        intake2.configure(intake2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        //intake2.configure(intake2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     SparkMaxConfig motor3Config = new SparkMaxConfig();
       motor3Config.apply(intake1Config)

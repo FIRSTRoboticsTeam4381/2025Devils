@@ -60,7 +60,7 @@ public class SwingArm extends SubsystemBase
     
 
     rotateConfig
-      .smartCurrentLimit(30)
+      .smartCurrentLimit(80)
       .idleMode(IdleMode.kBrake);
     rotateConfig.closedLoop
       .feedbackSensor(FeedbackSensor.kAbsoluteEncoder);
