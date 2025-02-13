@@ -21,8 +21,8 @@ public class NavXLogger extends ClassSpecificLogger<AHRS>
 
     private Alert disconnected = new Alert("NavX disconnected!", AlertType.kError);
     private Alert isCalibrating = new Alert("NavX calibrating, please wait...", AlertType.kError);
-    private Alert isMagCalibrating = new Alert("NavX magnometer calibrating, please wait...", AlertType.kError);
-    private Alert magError = new Alert("NavX EM interference problem!", AlertType.kWarning);
+    //private Alert isMagCalibrating = new Alert("NavX magnometer calibrating, please wait...", AlertType.kError);
+    //private Alert magError = new Alert("NavX EM interference problem!", AlertType.kWarning);
 
 
     public NavXLogger()
@@ -40,11 +40,11 @@ public class NavXLogger extends ClassSpecificLogger<AHRS>
         isCalibrating.set(navx.isCalibrating());
         backend.log("Calibrating", navx.isCalibrating());
 
-        isMagCalibrating.set(navx.isMagnetometerCalibrated());
-        backend.log("Magnometer Calibrated", navx.isMagnetometerCalibrated());
+        //isMagCalibrating.set(navx.isMagnetometerCalibrated());
+        //backend.log("Magnometer Calibrated", navx.isMagnetometerCalibrated());
 
-        magError.set(navx.isMagneticDisturbance());
-        backend.log("Magnetic Disturbance", navx.isMagneticDisturbance());
+        //magError.set(navx.isMagneticDisturbance());
+        //backend.log("Magnetic Disturbance", navx.isMagneticDisturbance());
 
         
         // Log other data
