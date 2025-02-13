@@ -16,7 +16,7 @@ import frc.robot.RobotContainer;
 /** Add your docs here. */
 public class AdvancedCommands 
 {
-  RobotContainer robot;
+    RobotContainer robot;
 
   //public Supplier<Boolean> algaeBoolean = robot.armIntake.algaeSensor::get;
 
@@ -34,7 +34,7 @@ public class AdvancedCommands
     ).andThen(new ParallelCommandGroup(
       robot.extender.l1(),
       robot.wrist.l1()
-    ));
+    )); 
     
   }
   public Command l2()
@@ -72,6 +72,8 @@ public class AdvancedCommands
       robot.wrist.l4()
     ));
   }
+
+
   public Command coralStation()
   {
     return new ParallelCommandGroup(

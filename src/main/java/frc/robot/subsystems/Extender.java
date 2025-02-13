@@ -44,6 +44,8 @@ public class Extender extends SubsystemBase
       .limitSwitch.forwardLimitSwitchEnabled(true).reverseLimitSwitchEnabled(true);
     
     extend1.configure(extend1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+    extend1.getEncoder().getPosition();
   }
 
 

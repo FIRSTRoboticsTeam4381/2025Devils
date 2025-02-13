@@ -44,6 +44,8 @@ public class Elevator extends SubsystemBase
     
     elevator1.configure(elevator1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     elevator2.configure(elevator2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+    elevator1.getEncoder().getPosition();
   }
 
 

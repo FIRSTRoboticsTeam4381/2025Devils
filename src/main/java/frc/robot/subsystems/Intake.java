@@ -80,7 +80,11 @@ public class Intake extends SubsystemBase
             () -> {return false;},
             this)
     );
+
+    intake1.getEncoder().getVelocity();
+    intake3.getEncoder().getVelocity();
   }
+
 
 // Intake and outake commands MAY REQUIRE change:
   // algae

@@ -78,6 +78,9 @@ public class SwingArm extends SubsystemBase
       this)
     );
     */
+
+    rotate.getEncoder().getVelocity();
+    angle.getPosition();
   }
 
   public double getAngle()

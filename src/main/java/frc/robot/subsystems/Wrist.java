@@ -58,6 +58,8 @@ public class Wrist extends SubsystemBase
             this));
 
     value = 0;
+
+    wrist1.getEncoder().getPosition();
   }
 
 
