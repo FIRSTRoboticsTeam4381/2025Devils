@@ -58,7 +58,7 @@ public class SparkPosition extends Command{
                 case kAnalogSensor:
                     return ((SparkMax) m).getAnalog()::getPosition;
                 case kNoSensor:
-                    return null;
+                    return ((SparkMax) m).getAnalog()::getPosition;
                 case kPrimaryEncoder:
                     return ((SparkMax) m).getEncoder()::getPosition;
                 default:
@@ -76,7 +76,8 @@ public class SparkPosition extends Command{
                 case kAnalogSensor:
                     return ((SparkFlex) m).getAnalog()::getPosition;
                 case kNoSensor:
-                    return null;
+                    // Default to built-in
+                    return ((SparkFlex) m).getEncoder()::getPosition;
                 case kPrimaryEncoder:
                     return ((SparkFlex) m).getEncoder()::getPosition;
                 default:
