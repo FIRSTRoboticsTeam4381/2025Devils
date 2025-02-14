@@ -31,7 +31,7 @@ public class Intake extends SubsystemBase
     public SparkMax intake1; // MOTORS 1 and 2 are algae, 2 follow one inverted
     //public SparkMax intake2;
     public SparkMax intake3; // MOTOR 3 is for coral intake
-    public double topSpeed = 5000;
+    public double topSpeed = 1100;
     public double v = 0;
     public boolean hasAlgae = false;
     public final double ALGAE_SPIKE = 1500;
@@ -93,11 +93,11 @@ public class Intake extends SubsystemBase
   // algae
   public Command algaeIntake() 
   {
-    return new InstantCommand(() -> intake3.set(0.5), this); 
+    return new InstantCommand(() -> intake3.set(-0.5), this); 
   }
   public Command algaeEject() 
   {
-    return new InstantCommand(() -> intake3.set(-0.5), this);
+    return new InstantCommand(() -> intake3.set(0.5), this);
   }
 
 
