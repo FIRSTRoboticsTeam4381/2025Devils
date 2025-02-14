@@ -113,8 +113,10 @@ public class RobotContainer
              true,
             driver.leftBumper()::getAsBoolean));
 
-      specialist.a().whileTrue(armIntake.coralInOrOut());
-      specialist.b().whileTrue(armIntake.algaeInOrOut());
+      specialist.a().onTrue((armIntake.coralInOrOut()));
+      specialist.b().onTrue((armIntake.algaeInOrOut()));
+      specialist.x().onTrue((armIntake.coralStop()));
+      specialist.y().onTrue((armIntake.algaeStop()));
 
       // Elevator preset position controls
       specialist.povUp().onTrue(aCommands.l4()); // How do we determine the distance value here?
