@@ -36,6 +36,9 @@ public class Intake extends SubsystemBase
     public boolean hasAlgae = false;
     public final double ALGAE_SPIKE = 1500;
 
+    private double[] currentTracker = new double[25];
+    private double averageCurrent;
+
   
     public SparkLimitSwitch coralSensor;
 
@@ -125,7 +128,7 @@ public class Intake extends SubsystemBase
       algaeIntake()
     ).until(
       //() -> intake3.get() < (topSpeed - ALGAE_SPIKE)
-      () -> intake3.getOutputCurrent() > 5
+      () -> averageCurrent > 30
     ).andThen(
       algaeStop()
     ).andThen(
@@ -183,10 +186,22 @@ public class Intake extends SubsystemBase
   {
     //This method will be called once per scheduler run
       SmartDashboard.putData(this);
+      SmartDashboard.putNumber("Average Current", averageCurrent);
+      SmartDashboard.putBoolean("Has Algae", hasAlgae);
       /* 
       v = intake3.get();
       if(v > topSpeed) 
       topSpeed = v;
       */
+
+      for(int i = currentTracker.length-1; i > 0; i--){
+        currentTracker[i] = currentTracker[i-1];
+      }
+      currentTracker[0]=intake3.getOutputCurrent();
+      double runningSum=0;
+      for(int i = 0; i < currentTracker.length; i++){
+        runningSum+=currentTracker[i];
+      }
+      averageCurrent = runningSum/25;
   }
 }
