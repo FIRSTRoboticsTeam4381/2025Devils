@@ -47,7 +47,7 @@ public class Wrist extends SubsystemBase
 
       wrist1Config.closedLoop
       .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
-      .p(5)
+      .p(1)
       .i(0)
       .d(0);
     wrist1.configure(wrist1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -86,19 +86,19 @@ public class Wrist extends SubsystemBase
   // Level commands
   public Command l1() 
   {
-    return wristPosition(0.7914).withName("Wrist Level 1"); // Will NEED to update positions (currently 0 as defualt)
+    return wristPosition(0.5001).withName("Wrist Level 1"); // Will NEED to update positions (currently 0 as defualt)
   }
   public Command l2() 
   {
-    return wristPosition(0.8461).withName("Wrist Level 2");
+    return wristPosition(0.6271).withName("Wrist Level 2");
   }
   public Command l3() 
   {
-    return wristPosition(0.1922).withName("Wrist Level 3");
+    return wristPosition(0.879).withName("Wrist Level 3");
   }
   public Command l4() 
   {
-    return wristPosition(0.1922).withName("Wrist Level 4");
+    return wristPosition(0.879).withName("Wrist Level 4");
   }
 
 
@@ -116,22 +116,24 @@ public class Wrist extends SubsystemBase
   // Pickup commands
   public Command groundPickupLeft() 
   {
-    return wristPosition(25.4721).withName("Wrist Ground Pickup Left"); // Will need to change #s
+    return wristPosition(0.6796).withName("Wrist Ground Pickup Left"); // Will need to change #s
   }
 
+  /* 
   public Command groundPickupRight() 
   {
-    return wristPosition(-48.1623).withName("Wrist Ground Pickup Right"); // Will need to change #s
+    return wristPosition(0.1709).withName("Wrist Ground Pickup Right"); // Will need to change #s
   }
+    */
 
   public Command coralStation() 
   {
-    return wristPosition(0.6215).withName("Wrist Coral Station");
+    return wristPosition(0.4029).withName("Wrist Coral Station");
   }
 
   public Command zero() 
   {
-    return wristPosition(0.647).withName("Ground Pickup Right");
+    return wristPosition(0.428).withName("Zero");
   }
   // WILL NEED TO PROGRAM TO MAKE THE WRIST PARALLEL WITH GROUND(?)UNTIL IT IS INTO THE FINAL POSITION TO SCORE
 

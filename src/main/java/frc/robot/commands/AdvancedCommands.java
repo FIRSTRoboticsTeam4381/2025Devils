@@ -118,7 +118,7 @@ public class AdvancedCommands
     ));
   }
 
-
+  /* 
   public Command groundPickupRight()
   { 
     return new ParallelCommandGroup(
@@ -130,6 +130,7 @@ public class AdvancedCommands
       robot.wrist.groundPickupRight()
     ));
   }
+    */
 
   public Command zeroEverything()
   { 
