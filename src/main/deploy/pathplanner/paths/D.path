@@ -8,24 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.828348085085859,
-        "y": 0.9124804046884047
+        "x": 6.806635273972603,
+        "y": 0.6667594178082186
       },
       "isLocked": false,
       "linkedName": "Corner Start Red"
     },
     {
       "anchor": {
-        "x": 3.9988556338028163,
-        "y": 2.4943661971830977
+        "x": 3.8766267123287674,
+        "y": 2.469841609589041
       },
       "prevControl": {
-        "x": 4.466549295774647,
-<<<<<<< Updated upstream
-        "y": 0.9920774647887307
-=======
-        "y": 0.9920774647887305
->>>>>>> Stashed changes
+        "x": 4.634728252874433,
+        "y": 1.566371375092539
       },
       "nextControl": null,
       "isLocked": false,
@@ -46,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 59.99999999999999
+    "rotation": -29.999999999999996
   },
   "reversed": false,
   "folder": "Reef presets",

@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.9988556338028163,
-        "y": 2.4943661971830977
+        "x": 3.8766267123287674,
+        "y": 2.469841609589041
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.3357020547945204,
-        "y": 2.09419948630137
+        "x": 3.2134731333204716,
+        "y": 2.0696748987073135
       },
       "isLocked": false,
       "linkedName": "D"
@@ -48,7 +48,7 @@
   "folder": "Coral to pickup",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 59.99999999999999
+    "rotation": -29.999999999999996
   },
   "useDefaultConstraints": true
 }
