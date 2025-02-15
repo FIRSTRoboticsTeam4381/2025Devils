@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
@@ -79,19 +80,19 @@ public class Wrist extends SubsystemBase
   // Level commands
   public Command l1() 
   {
-    return wristPosition(0).withName("Wrist Level 1"); // Will NEED to update positions (currently 0 as defualt)
+    return wristPosition(0.7914).withName("Wrist Level 1"); // Will NEED to update positions (currently 0 as defualt)
   }
   public Command l2() 
   {
-    return wristPosition(0).withName("Wrist Level 2");
+    return wristPosition(0.8461).withName("Wrist Level 2");
   }
   public Command l3() 
   {
-    return wristPosition(0).withName("Wrist Level 3");
+    return wristPosition(0.1922).withName("Wrist Level 3");
   }
   public Command l4() 
   {
-    return wristPosition(0).withName("Wrist Level 4");
+    return wristPosition(0.2245).withName("Wrist Level 4");
   }
 
 
@@ -113,7 +114,7 @@ public class Wrist extends SubsystemBase
   }
   public Command coralStation() 
   {
-    return wristPosition(0).withName("Wrist Coral Station");
+    return wristPosition(0.6215).withName("Wrist Coral Station");
   }
 
   // WILL NEED TO PROGRAM TO MAKE THE WRIST PARALLEL WITH GROUND(?)UNTIL IT IS INTO THE FINAL POSITION TO SCORE

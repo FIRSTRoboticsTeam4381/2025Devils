@@ -67,11 +67,11 @@ public class Elevator extends SubsystemBase
   // preset position commands:
   public Command l1() 
   {
-    return elevatorTo(0).withName("Level 1");
+    return elevatorTo(7.5).withName("Level 1");
   }
   public Command l2() 
   {
-    return elevatorTo(0).withName("Level 2");
+    return elevatorTo(31.72).withName("Level 2");
   }
   public Command l3() 
   {
@@ -79,13 +79,13 @@ public class Elevator extends SubsystemBase
   }
   public Command l4() 
   {
-    return elevatorTo(0).withName("Level 4");
+    return elevatorTo(33.14).withName("Level 4");
   }
   
 
   public Command coralStation()
   {
-    return elevatorTo(0).withName("Coral Station");
+    return elevatorTo(37.41).withName("Coral Station");
   }
   
   

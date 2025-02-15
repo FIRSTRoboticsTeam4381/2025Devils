@@ -95,27 +95,27 @@ public class SwingArm extends SubsystemBase
 
   public Command l1() 
   {
-    return goToAngle(0).withName("Level 1");
+    return goToAngle(0.4249).withName("Level 1");
   }
 
   public Command l2() 
   {
-    return goToAngle(0).withName("Level 2");
+    return goToAngle(0.4228).withName("Level 2");
   }
 
   public Command l3() 
   {
-    return goToAngle(0).withName("Level 3");
+    return goToAngle(0.1097).withName("Level 3");
   }
 
   public Command l4() 
   {
-    return goToAngle(0).withName("Level 4");
+    return goToAngle(0.0570).withName("Level 4");
   }
 
   public Command coralStation() 
   {
-    return goToAngle(0).withName("Coral Station");
+    return goToAngle(0.5653).withName("Coral Station");
   }
 
   public Command swing(Supplier<Double> joystickValue) 
