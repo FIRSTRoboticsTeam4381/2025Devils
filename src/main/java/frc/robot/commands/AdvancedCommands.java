@@ -86,6 +86,45 @@ public class AdvancedCommands
     ));
   }
 
+
+  public Command processor()
+  { 
+    return new ParallelCommandGroup(
+      robot.elevator.processor(),
+      robot.swingArm.processor()
+
+    ).andThen(new ParallelCommandGroup(
+      robot.extender.processor(),
+      robot.wrist.processorCommand()
+    ));
+  }
+
+
+  public Command groundPickupLeft()
+  { 
+    return new ParallelCommandGroup(
+      robot.elevator.groundPickupLeft(),
+      robot.swingArm.groundPickupLeft()
+
+    ).andThen(new ParallelCommandGroup(
+      robot.extender.groundPickupLeft(),
+      robot.wrist.groundPickupLeft()
+    ));
+  }
+
+
+  public Command groundPickupRight()
+  { 
+    return new ParallelCommandGroup(
+      robot.elevator.groundPickupRight(),
+      robot.swingArm.groundPickupRight()
+
+    ).andThen(new ParallelCommandGroup(
+      robot.extender.groundPickupRight(),
+      robot.wrist.groundPickupRight()
+    ));
+  }
+
   
   
 }

@@ -118,6 +118,20 @@ public class SwingArm extends SubsystemBase
     return goToAngle(0.5653).withName("Coral Station");
   }
 
+  public Command processor()
+  {
+    return goToAngle(0.5226).withName("Processor");
+  }
+
+  public Command groundPickupLeft() {
+    return goToAngle(-5.8951).withName("Ground Pickup Left Side");
+  }
+
+  public Command groundPickupRight() {
+    return goToAngle(8.7227).withName("Ground Pickup Right Side");
+  }
+
+
   public Command swing(Supplier<Double> joystickValue) 
   {
     return new RepeatCommand(

@@ -89,6 +89,17 @@ public class Elevator extends SubsystemBase
   }
   
   
+  public Command processor() {
+    return elevatorTo(-0.1076).withName("Processor");
+  }
+
+  public Command groundPickupLeft() {
+    return elevatorTo(-0.1077).withName("Ground Pickup Left");
+  }
+
+  public Command groundPickupRight() {
+    return elevatorTo(-0.1077).withName("Ground Pickup Right");
+  }
 
   @Override 
   public void periodic() 

@@ -101,10 +101,10 @@ public class Extender extends SubsystemBase
   }
 
 
-  public Command groundPickup()
+  /*public Command groundPickup()
   {
     return extendTo(0).withName("Ground Pickup");
-  }
+  }*/
 
 
   public Command coralStation()
@@ -115,11 +115,19 @@ public class Extender extends SubsystemBase
 
   public Command processor()
   {
-    return extendTo(0).withName("Processor");
+    return extendTo(14.0405).withName("Processor");
   }
-  
-  
 
+
+  public Command groundPickupLeft()
+ {
+    return extendTo(13.2475).withName("Ground Pickup Left");
+ }  
+
+ public Command groundPickupRight() 
+{
+  return extendTo(12.8804).withName("Ground Pickup Right");
+}
 
   @Override
   public void periodic() 

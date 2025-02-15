@@ -99,7 +99,7 @@ public class Wrist extends SubsystemBase
   // Scoring commands
   public Command processorCommand() 
   {
-    return wristPosition(0).withName("Processor Scoring");
+    return wristPosition(7.3589).withName("Processor Scoring");
   }
   public Command bargeCommand() 
   {
@@ -108,10 +108,16 @@ public class Wrist extends SubsystemBase
 
 
   // Pickup commands
-  public Command groundPickup() 
+  public Command groundPickupLeft() 
   {
-    return wristPosition(0).withName("Wrist Ground Pickup"); // Will need to change #s
+    return wristPosition(25.4721).withName("Wrist Ground Pickup Left"); // Will need to change #s
   }
+
+  public Command groundPickupRight() 
+  {
+    return wristPosition(-48.1623).withName("Wrist Ground Pickup Right"); // Will need to change #s
+  }
+
   public Command coralStation() 
   {
     return wristPosition(0.6215).withName("Wrist Coral Station");
