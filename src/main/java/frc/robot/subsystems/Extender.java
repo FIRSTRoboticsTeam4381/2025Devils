@@ -11,6 +11,7 @@ import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
@@ -41,8 +42,12 @@ public class Extender extends SubsystemBase
     extend1Config
       .smartCurrentLimit(30)
       .idleMode(IdleMode.kBrake)
+      .inverted(true)
       .limitSwitch.forwardLimitSwitchEnabled(true).reverseLimitSwitchEnabled(true);
-    
+    extend1Config.closedLoop
+      .p(2.7)
+      .i(0)
+      .d(0);
     extend1.configure(extend1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     extend1.getEncoder().getPosition();
@@ -87,11 +92,11 @@ public class Extender extends SubsystemBase
   }
   public Command l3()
   {
-    return extendTo(0).withName("Level 3");
+    return extendTo(23.57).withName("Level 3");
   }
   public Command l4()
   {
-    return extendTo(0).withName("Level 4");
+    return extendTo(23.57).withName("Level 4");
   }
 
 
@@ -128,6 +133,10 @@ public class Extender extends SubsystemBase
 {
   return extendTo(12.8804).withName("Ground Pickup Right");
 }
+  public Command zero() 
+  {
+    return extendTo(0).withName("Zero");
+  }
 
   @Override
   public void periodic() 

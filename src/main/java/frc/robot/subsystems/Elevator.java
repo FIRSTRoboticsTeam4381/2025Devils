@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.SparkFlex;
@@ -41,6 +42,10 @@ public class Elevator extends SubsystemBase
         .follow(elevator1,true)
         .limitSwitch.forwardLimitSwitchEnabled(true).reverseLimitSwitchEnabled(true);
 
+    elevator1Config.closedLoop
+      .p(0.07)
+      .i(0)
+      .d(0);
     
     elevator1.configure(elevator1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     elevator2.configure(elevator2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -99,6 +104,9 @@ public class Elevator extends SubsystemBase
 
   public Command groundPickupRight() {
     return elevatorTo(-0.1077).withName("Ground Pickup Right");
+  }
+  public Command zero() {
+    return elevatorTo(0).withName("Zeroing");
   }
 
   @Override 

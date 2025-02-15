@@ -58,7 +58,9 @@ public class AdvancedCommands
     ).andThen(new ParallelCommandGroup(
       robot.extender.l3(),
       robot.wrist.l3()
-    ));
+    ).andThen(new ParallelCommandGroup(
+      robot.armIntake.algaeInOrOut()
+    )));
     
   }
   public Command l4()
@@ -70,7 +72,9 @@ public class AdvancedCommands
     ).andThen(new ParallelCommandGroup(
       robot.extender.l4(),
       robot.wrist.l4()
-    ));
+    ).andThen(new ParallelCommandGroup(
+      robot.armIntake.algaeInOrOut()
+    )));
   }
 
 
@@ -83,7 +87,9 @@ public class AdvancedCommands
     ).andThen(new ParallelCommandGroup(
       robot.extender.coralStation(),
       robot.wrist.coralStation()
-    ));
+    ).andThen(new ParallelCommandGroup(
+      robot.armIntake.coralInOrOut()
+    )));
   }
 
 
@@ -125,6 +131,18 @@ public class AdvancedCommands
     ));
   }
 
+  public Command zeroEverything()
+  { 
+    return new ParallelCommandGroup(
+      robot.elevator.elevatorTo(42),
+      robot.extender.zero(),
+      robot.wrist.zero()
+
+    ).andThen(new ParallelCommandGroup(
+      robot.elevator.zero(),
+      robot.swingArm.zero()
+    ));
+  }
   
   
 }

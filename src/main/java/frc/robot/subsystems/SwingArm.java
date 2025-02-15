@@ -35,7 +35,7 @@ import frc.robot.commands.SparkPosition;
 public class SwingArm extends SubsystemBase 
 {
   /** Creates a new SwingArm. */
-  
+
   public SparkFlex rotate;
   
   public AbsoluteEncoder angle;
@@ -63,7 +63,10 @@ public class SwingArm extends SubsystemBase
       .smartCurrentLimit(80)
       .idleMode(IdleMode.kBrake);
     rotateConfig.closedLoop
-      .feedbackSensor(FeedbackSensor.kAbsoluteEncoder);
+      .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
+      .p(2.7)
+      .i(0)
+      .d(0);
       
 
     rotate.configure(rotateConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -90,7 +93,7 @@ public class SwingArm extends SubsystemBase
 
   public Command goToAngle(double angle)
   {
-    return new SparkPosition(rotate, angle, 1.0, this).withName("Rotating to " + angle);
+    return new SparkPosition(rotate, angle, .05, this).withName("Rotating to " + angle);
   }
 
   public Command l1() 
@@ -136,6 +139,11 @@ public class SwingArm extends SubsystemBase
   {
     return new RepeatCommand(
       new InstantCommand(() -> rotate.set(joystickValue.get()), this));
+  }
+
+  public Command zero() 
+  {
+    return goToAngle(0.476).withName("Ground Pickup Right");
   }
 
   

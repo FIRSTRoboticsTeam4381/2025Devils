@@ -124,6 +124,8 @@ public class RobotContainer
       specialist.povRight().onTrue(aCommands.l2());
       specialist.povDown().onTrue(aCommands.l1());
 
+      specialist.leftBumper().onTrue(aCommands.coralStation());
+
       //elevator joystick controls
       elevator.setDefaultCommand(elevator.joystickCtrl(interpolateJoystick(specialist:: getLeftY, Constants.stickDeadband)));
 

@@ -15,6 +15,7 @@ import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.epilogue.Logged;
@@ -44,6 +45,11 @@ public class Wrist extends SubsystemBase
     SparkFlexConfig wrist1Config = new SparkFlexConfig();
       wrist1Config.smartCurrentLimit(50).idleMode(IdleMode.kBrake);
 
+      wrist1Config.closedLoop
+      .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
+      .p(5)
+      .i(0)
+      .d(0);
     wrist1.configure(wrist1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
 
@@ -60,7 +66,7 @@ public class Wrist extends SubsystemBase
 
     value = 0;
 
-    wrist1.getEncoder().getPosition();
+    wrist1.getAbsoluteEncoder().getPosition();
   }
 
 
@@ -73,7 +79,7 @@ public class Wrist extends SubsystemBase
 
   public Command wristPosition(double position) 
   {
-    return new SparkPosition(wrist1, position, 1.0, this).withName("Wrist to" + position); // Will add positions later
+    return new SparkPosition(wrist1, position, 0.05, this).withName("Wrist to" + position); // Will add positions later
   }
 
 
@@ -92,7 +98,7 @@ public class Wrist extends SubsystemBase
   }
   public Command l4() 
   {
-    return wristPosition(0.2245).withName("Wrist Level 4");
+    return wristPosition(0.1922).withName("Wrist Level 4");
   }
 
 
@@ -123,6 +129,10 @@ public class Wrist extends SubsystemBase
     return wristPosition(0.6215).withName("Wrist Coral Station");
   }
 
+  public Command zero() 
+  {
+    return wristPosition(0.647).withName("Ground Pickup Right");
+  }
   // WILL NEED TO PROGRAM TO MAKE THE WRIST PARALLEL WITH GROUND(?)UNTIL IT IS INTO THE FINAL POSITION TO SCORE
 
 
