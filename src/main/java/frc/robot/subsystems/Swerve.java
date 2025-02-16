@@ -60,7 +60,6 @@ public class Swerve extends SubsystemBase{
 
     public Swerve(){
         gyro = new AHRS(NavXComType.kUSB1);
-        zeroGyro();
 
         SmartDashboard.putData(this);
 
@@ -128,6 +127,8 @@ public class Swerve extends SubsystemBase{
 
 
           setupSysIDTests();
+          
+          zeroGyro();
     }
 
     public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop){
@@ -241,6 +242,15 @@ public class Swerve extends SubsystemBase{
      */
     public void zeroGyro(){
         gyro.zeroYaw();
+        Optional<Alliance> a = DriverStation.getAlliance();
+        swerveOdometry.resetPose(
+            new Pose2d(
+            swerveOdometry.getEstimatedPosition().getTranslation(),
+            a.isPresent() && a.get() == Alliance.Red ?
+                new Rotation2d(Math.PI)
+                :
+                new Rotation2d(0)
+        ));
     }
 
     public Rotation2d getYaw(){
