@@ -32,7 +32,6 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.PhotonCam;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Extender;
-import frc.robot.subsystems.GroundIntake;
 import frc.robot.subsystems.Hang;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.SwingArm;
