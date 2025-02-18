@@ -4,14 +4,28 @@
 
 package frc.robot.commands;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+
+import org.json.simple.parser.ParseException;
+
+import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 import com.pathplanner.lib.path.PathPlannerPath;
+import com.pathplanner.lib.util.FileVersionException;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SelectCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotContainer;
 
 public final class Autos {
@@ -54,6 +68,79 @@ public final class Autos {
     public static PreviewAuto RedSimpleF() {
         return new PreviewAuto("Red Simple F");
     }
+
+    public static PreviewAuto reefPositionChooser() {
+        try {
+            return new PreviewAuto(new SequentialCommandGroup(
+                new PathPlannerAuto("Position Chooser"),
+                new ConditionalCommand(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()) , 
+                    new SequentialCommandGroup(
+                        new SelectCommand<String>(
+                            Map.ofEntries(
+                                Map.entry("A", AutoBuilder.followPath(PathPlannerPath.fromPathFile("A"))),
+                                Map.entry("B", AutoBuilder.followPath(PathPlannerPath.fromPathFile("B"))),
+                                Map.entry("C", AutoBuilder.followPath(PathPlannerPath.fromPathFile("C"))),
+                                Map.entry("D", AutoBuilder.followPath(PathPlannerPath.fromPathFile("D"))),
+                                Map.entry("E", AutoBuilder.followPath(PathPlannerPath.fromPathFile("E"))),
+                                Map.entry("F", AutoBuilder.followPath(PathPlannerPath.fromPathFile("F"))),
+                                Map.entry("G", AutoBuilder.followPath(PathPlannerPath.fromPathFile("G"))),
+                                Map.entry("H", AutoBuilder.followPath(PathPlannerPath.fromPathFile("H"))),
+                                Map.entry("I", AutoBuilder.followPath(PathPlannerPath.fromPathFile("I"))),
+                                Map.entry("J", AutoBuilder.followPath(PathPlannerPath.fromPathFile("J"))),
+                                Map.entry("K", AutoBuilder.followPath(PathPlannerPath.fromPathFile("K"))),
+                                Map.entry("L", AutoBuilder.followPath(PathPlannerPath.fromPathFile("L")))
+                            ), Autos::chosenPosition), RobotContainer.getRobot().aCommands.l4()
+                    ), positionTo::isEmpty).repeatedly()
+                ), "Position Chooser");
+        } catch (FileVersionException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return Autos.none();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return Autos.none();
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return Autos.none();
+        }
+    }
+
+    public static Queue<String> positionTo = new LinkedList<>();
+
+    public static String chosenPosition() {
+        return positionTo.remove();
+    }
+
+
+    // IS SUPPOSED TO BE LEVEL CHOOSER Work In progress
+    /*public static PreviewAuto reefLevelChooser() {
+        try {
+            return new PreviewAuto(new SequentialCommandGroup(
+                new PathPlannerAuto("Level Chooser"),
+                new ConditionalCommand(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()) , 
+                    new SequentialCommandGroup(    
+                    new SelectCommand<Integer>(
+                            Map.ofEntries(
+                                Map.entry(1, AutoBuilder.followPath()),
+                                Map.entry(2, AutoBuilder.followPath()),
+                                Map.entry(3, AutoBuilder.followPath()),
+                                Map.entry(4, AutoBuilder.followPath())
+                            ), Autos::chosenPosition)
+                    ), positionTo::isEmpty).repeatedly()
+                ), "Position Chooser");
+        } catch (FileVersionException e) {
+            e.printStackTrace();
+            return Commands.none();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Commands.none();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return Commands.none();
+        }
+    } */
 
     // TODO add pathplanner autos here. Example:
     //public static PreviewAuto Front3Note(){
