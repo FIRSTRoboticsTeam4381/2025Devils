@@ -46,7 +46,7 @@ public class Wrist extends SubsystemBase
       wrist1Config.smartCurrentLimit(50).idleMode(IdleMode.kBrake);
 
       wrist1Config.closedLoop
-      .feedbackSensor(FeedbackSensor.kAbsoluteEncoder) // TODO change to kPrimaryEncoder if the adjusted position works
+      .feedbackSensor(FeedbackSensor.kPrimaryEncoder) // TODO change to kPrimaryEncoder if the adjusted position works
       .p(1)
       .i(0)
       .d(0);
