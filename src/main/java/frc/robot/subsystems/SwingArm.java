@@ -33,6 +33,8 @@ public class SwingArm extends SubsystemBase
   
   public AbsoluteEncoder angle;
 
+  private Extender extender;
+
   // The positions change them when we get them
   public static final double rotateL4 = 0;
   public static final double rotateL3 = 0;
@@ -42,11 +44,13 @@ public class SwingArm extends SubsystemBase
   
 
   /** This is the ground intake **/
-  public SwingArm()
+  public SwingArm(Extender extender)
   {
     rotate = new SparkFlex(52, MotorType.kBrushless);
     
     angle = rotate.getAbsoluteEncoder();
+
+    this.extender=extender;
     
 
     SparkMaxConfig rotateConfig = new SparkMaxConfig();
@@ -139,8 +143,24 @@ public class SwingArm extends SubsystemBase
     return goToAngle(0.476).withName("Ground Pickup Right");
   }
 
-  
+  private double arbFeedforward(){
+    // [(Arm Weight) * (CG Length)] / [(Stall Torque) * (# of Motors) * (Gear Ratio)] * cos(theta)
 
+    double weight = 33.0; // (lbs)
+    double percentExtension = extender.getPosition() / extender.MAX_EXTENSION;
+    double cgLength = 11.5 + (18.5 - 11.5) * percentExtension; // (inches)
+    double stallTorque = 3.6; // (Newton meters)
+    int numMotors = 2;
+    double gearRatio = 100.0;
+    double angle = rotate.getAbsoluteEncoder().getPosition(); // TODO the absolute encoder will need to be configured 0-360 with 0 straight up
+
+    double inlbsTorque = weight*cgLength;
+    double nmTorque = inlbsTorque*0.112985;
+
+    return nmTorque / (stallTorque * numMotors * gearRatio) * Math.cos(angle);
+  }
+
+  
 
    @Override
   public void periodic() 
