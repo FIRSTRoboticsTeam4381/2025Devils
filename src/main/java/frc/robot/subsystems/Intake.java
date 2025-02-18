@@ -38,7 +38,8 @@ public class Intake extends SubsystemBase
     private double averageCurrent;
 
   
-    public SparkLimitSwitch coralSensor;
+    public SparkLimitSwitch coralSensor1;
+    public SparkLimitSwitch coralSensor2;
 
     //public Supplier<Boolean> hasAlgae;
     //public Supplier<Boolean> hasCoral;
@@ -53,13 +54,15 @@ public class Intake extends SubsystemBase
     intake3 = new SparkMax(60, MotorType.kBrushless);
     
      // CHANGE CHANNELS LATER
-    coralSensor = intake3.getForwardLimitSwitch();
+    coralSensor1 = intake1.getForwardLimitSwitch();
+    coralSensor2 = intake1.getReverseLimitSwitch();
 
     // speed = 0.5; // Not used anywhere as of right now
 
     // ARM INTAKE contains 3 total motors
     SparkMaxConfig intake1Config = new SparkMaxConfig();
-      intake1Config.smartCurrentLimit(40).idleMode(IdleMode.kBrake);
+      intake1Config.smartCurrentLimit(40).idleMode(IdleMode.kBrake)
+      .limitSwitch.forwardLimitSwitchEnabled(true).reverseLimitSwitchEnabled(true);
         intake1.configure(intake1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     SparkMaxConfig intake2Config = new SparkMaxConfig();
@@ -138,7 +141,7 @@ public class Intake extends SubsystemBase
     return new RepeatCommand(
       coralIntake()
     ).until(
-      () -> coralSensor.isPressed()
+      () -> coralSensor1.isPressed()
     ).andThen(
       coralStop()
     ).andThen(
@@ -163,7 +166,7 @@ public class Intake extends SubsystemBase
     return new RepeatCommand(
       coralEject()
     ).until(
-      () -> !coralSensor.isPressed() 
+      () -> !coralSensor1.isPressed() 
     ).andThen(
       coralStop()
     ).andThen(
@@ -172,7 +175,7 @@ public class Intake extends SubsystemBase
   }
 
   public Command coralInOrOut() {
-    return new ConditionalCommand(ejectCoral(), intakeCoral(), coralSensor::isPressed);
+    return new ConditionalCommand(ejectCoral(), intakeCoral(), coralSensor1::isPressed);
   }
 
   public Command algaeInOrOut() {
