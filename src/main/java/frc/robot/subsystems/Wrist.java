@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.spark.SparkFlex;
+import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
@@ -79,7 +80,11 @@ public class Wrist extends SubsystemBase
 
   public Command wristPosition(double position) 
   {
-    return new SparkPosition(wrist1, position, 0.05, this).withName("Wrist to" + position); // Will add positions later
+    return new SparkPosition(wrist1, position, 0.05, this).withName("Wrist to" + position); // Will add positions later // TODO arbitrary feedforward will need to be included
+  }
+  public void setPositionReference(double angle)
+  {
+    wrist1.getClosedLoopController().setReference(angle, ControlType.kPosition); // TODO arbitrary feedforward will need to be included
   }
 
 
@@ -141,18 +146,19 @@ public class Wrist extends SubsystemBase
     // [(Arm Weight) * (CG Length)] / [(Stall Torque) * (# of Motors) * (Gear Ratio)] * cos(theta)
 
     // TODO you can combine the math into one line, I just leave it split up initially to make troubleshooting easier
+    // TODO keep in mind direction may need to be flipped
 
     double weight = 15.0; // (lbs)
     double cgLength = 6.33; // (inches)
     double stallTorque = 3.6; // (Newton meters)
     int numMotors = 1;
     double gearRatio = 97.5;
-    double angle = wrist1.getAbsoluteEncoder().getPosition(); // TODO the absolute encoder will need to be configured 0-360 with 0 straight up
+    double angle = wrist1.getAbsoluteEncoder().getPosition() * (wrist1.configAccessor.absoluteEncoder.getPositionConversionFactor()==360.0 ? 1 : 360);
 
     double inlbsTorque = weight*cgLength;
     double nmTorque = inlbsTorque*0.112985;
 
-    return nmTorque / (stallTorque * numMotors * gearRatio) * Math.cos(angle);
+    return nmTorque / (stallTorque * numMotors * gearRatio) * Math.sin(angle); // This is sin because straight up is 180 degrees
   }
 
   /**
@@ -201,7 +207,8 @@ public class Wrist extends SubsystemBase
   public void periodic() 
   {
     // This method will be called once per scheduler run
-    
+
+    SmartDashboard.putNumber("wrist/Arbitrary Feedforward", arbFeedforward());
     SmartDashboard.putNumber("wrist/Absolute Encoder Degrees", wrist1.getAbsoluteEncoder().getPosition()*360.0);
     SmartDashboard.putNumber("wrist/Adjusted Primary Encoder Position", getAdjustedPosition());
     

@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
@@ -86,12 +87,16 @@ public class SwingArm extends SubsystemBase
 
   public double getAngle()
   {
-    return rotate1.get();
+    return rotate1.getAbsoluteEncoder().getPosition() * (rotate1.configAccessor.absoluteEncoder.getPositionConversionFactor()==360.0 ? 1 : 360.0);
   }
 
   public Command goToAngle(double angle)
   {
-    return new SparkPosition(rotate1, angle, .05, this).withName("Rotating to " + angle);
+    return new SparkPosition(rotate1, angle, .05, this).withName("Rotating to " + angle); // TODO arbitrary feedforward will need to be included
+  }
+  public void setPositionReference(double angle)
+  {
+    rotate1.getClosedLoopController().setReference(angle, ControlType.kPosition); // TODO arbitrary feedforward will need to be included
   }
 
   public Command l1() 
@@ -147,18 +152,21 @@ public class SwingArm extends SubsystemBase
   private double arbFeedforward(){
     // [(Arm Weight) * (CG Length)] / [(Stall Torque) * (# of Motors) * (Gear Ratio)] * cos(theta)
 
+    // TODO you can combine the math into one line, I just leave it split up initially to make troubleshooting easier
+    // TODO keep in mind direction may need to be flipped
+
     double weight = 33.0; // (lbs)
     double percentExtension = extender.getPosition() / extender.MAX_EXTENSION;
     double cgLength = 11.5 + (18.5 - 11.5) * percentExtension; // (inches)
     double stallTorque = 3.6; // (Newton meters)
     int numMotors = 2;
     double gearRatio = 100.0;
-    double angle = rotate1.getAbsoluteEncoder().getPosition(); // TODO the absolute encoder will need to be configured 0-360 with 0 straight up
+    double angle = rotate1.getAbsoluteEncoder().getPosition() * (rotate1.configAccessor.absoluteEncoder.getPositionConversionFactor()==360.0 ? 1 : 360.0);
 
     double inlbsTorque = weight*cgLength;
     double nmTorque = inlbsTorque*0.112985;
 
-    return nmTorque / (stallTorque * numMotors * gearRatio) * Math.cos(angle);
+    return nmTorque / (stallTorque * numMotors * gearRatio) * Math.sin(angle); // This is sin because straight up is 0 degrees
   }
 
   
@@ -167,6 +175,8 @@ public class SwingArm extends SubsystemBase
   public void periodic() 
   {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("arm/Arbitrary Feedforward", arbFeedforward());
+
       SmartDashboard.putData(this);
   }
 }
