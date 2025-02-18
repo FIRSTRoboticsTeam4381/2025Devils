@@ -35,7 +35,7 @@ public class SwerveModule {
 
     private RelativeEncoder distanceEncoder;
 
-    //private double lastAngle;
+    private double lastAngle;
     private double desiredAngle;
     private double lastSpeed;
 
