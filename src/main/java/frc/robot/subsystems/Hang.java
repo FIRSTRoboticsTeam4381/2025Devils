@@ -6,12 +6,11 @@ package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
+import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.AbsoluteEncoder;
-import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
-import com.revrobotics.spark.config.SparkMaxConfig;
-
+import com.revrobotics.spark.config.SparkFlexConfig;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -19,7 +18,7 @@ import frc.robot.commands.SparkPosition;
 
 public class Hang extends SubsystemBase 
 {
-  public SparkMax hang1;
+  public SparkFlex hang1;
 
   public AbsoluteEncoder position;
 
@@ -27,9 +26,9 @@ public class Hang extends SubsystemBase
   // create Hang
   public Hang() 
   {
-    hang1 = new SparkMax(61, MotorType.kBrushless);
+    hang1 = new SparkFlex(61, MotorType.kBrushless);
 
-    SparkMaxConfig hang1Config = new SparkMaxConfig();
+    SparkFlexConfig hang1Config = new SparkFlexConfig();
       hang1Config
         .smartCurrentLimit(10)
         .idleMode(IdleMode.kBrake);
