@@ -41,8 +41,8 @@ public class SwingArm extends SubsystemBase
   /** This is the ground intake **/
   public SwingArm(Extender extender)
   {
-    rotate1 = new SparkFlex(52, MotorType.kBrushless);
-    rotate2 = new SparkFlex(53, MotorType.kBrushless);
+    rotate1 = new SparkFlex(53, MotorType.kBrushless);
+    rotate2 = new SparkFlex(52, MotorType.kBrushless);
     
     angle = rotate1.getAbsoluteEncoder();
     this.extender=extender;
@@ -150,19 +150,19 @@ public class SwingArm extends SubsystemBase
     return goToAngle(0.476).withName("Ground Pickup Right");
   }
 
-  private double arbFeedforward(){
+  public double arbFeedforward(){
     // [(Arm Weight) * (CG Length)] / [(Stall Torque) * (# of Motors) * (Gear Ratio)] * cos(theta)
 
     // TODO you can combine the math into one line, I just leave it split up initially to make troubleshooting easier
     // TODO keep in mind direction may need to be flipped
 
     double weight = 33.0; // (lbs)
-    double percentExtension = extender.getPosition() / extender.MAX_EXTENSION;
+    double percentExtension = extender.getPosition() / extender.MAX_EXTENSION; // TODO
     double cgLength = 11.5 + (18.5 - 11.5) * percentExtension; // (inches)
     double stallTorque = 3.6; // (Newton meters)
     int numMotors = 2;
     double gearRatio = 100.0;
-    double angle = rotate1.getAbsoluteEncoder().getPosition() * (rotate1.configAccessor.absoluteEncoder.getPositionConversionFactor()==360.0 ? 1 : 360.0);
+    double angle = rotate1.getAbsoluteEncoder().getPosition() *360.0;
 
     double inlbsTorque = weight*cgLength;
     double nmTorque = inlbsTorque*0.112985;

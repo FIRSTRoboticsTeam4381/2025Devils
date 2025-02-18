@@ -43,10 +43,10 @@ public class Wrist extends SubsystemBase
     wrist1 = new SparkFlex(56, MotorType.kBrushless);
 
     SparkFlexConfig wrist1Config = new SparkFlexConfig();
-      wrist1Config.smartCurrentLimit(50).idleMode(IdleMode.kBrake);
+      wrist1Config.smartCurrentLimit(50).idleMode(IdleMode.kCoast);
 
       wrist1Config.closedLoop
-      .feedbackSensor(FeedbackSensor.kAbsoluteEncoder) // TODO change to kPrimaryEncoder if the adjusted position works
+      .feedbackSensor(FeedbackSensor.kPrimaryEncoder) // TODO change to kPrimaryEncoder if the adjusted position works
       .p(1)
       .i(0)
       .d(0);
@@ -91,19 +91,19 @@ public class Wrist extends SubsystemBase
   // Level commands
   public Command l1() 
   {
-    return wristPosition(0.5001).withName("Wrist Level 1"); // Will NEED to update positions (currently 0 as defualt)
+    return wristPosition(adjustPosition(0.5001)).withName("Wrist Level 1"); // Will NEED to update positions (currently 0 as defualt)
   }
   public Command l2() 
   {
-    return wristPosition(0.6271).withName("Wrist Level 2");
+    return wristPosition(adjustPosition(0.6271)).withName("Wrist Level 2");
   }
   public Command l3() 
   {
-    return wristPosition(0.879).withName("Wrist Level 3");
+    return wristPosition(adjustPosition(0.879)).withName("Wrist Level 3");
   }
   public Command l4() 
   {
-    return wristPosition(0.879).withName("Wrist Level 4");
+    return wristPosition(adjustPosition(0.879)).withName("Wrist Level 4");
   }
 
 
@@ -142,7 +142,7 @@ public class Wrist extends SubsystemBase
   }
   // WILL NEED TO PROGRAM TO MAKE THE WRIST PARALLEL WITH GROUND(?)UNTIL IT IS INTO THE FINAL POSITION TO SCORE
 
-  private double arbFeedforward(){
+  public double arbFeedforward(){
     // [(Arm Weight) * (CG Length)] / [(Stall Torque) * (# of Motors) * (Gear Ratio)] * cos(theta)
 
     // TODO you can combine the math into one line, I just leave it split up initially to make troubleshooting easier
@@ -153,7 +153,7 @@ public class Wrist extends SubsystemBase
     double stallTorque = 3.6; // (Newton meters)
     int numMotors = 1;
     double gearRatio = 97.5;
-    double angle = wrist1.getAbsoluteEncoder().getPosition() * (wrist1.configAccessor.absoluteEncoder.getPositionConversionFactor()==360.0 ? 1 : 360);
+    double angle = wrist1.getAbsoluteEncoder().getPosition() *360.0;
 
     double inlbsTorque = weight*cgLength;
     double nmTorque = inlbsTorque*0.112985;
@@ -176,7 +176,7 @@ public class Wrist extends SubsystemBase
 
     double wristRevolutions = wrist1.getEncoder().getPosition() / 97.5; // Motor revolves 97.5 times for every 1 mechanism revolution
     double wristDegrees = wristRevolutions * 360.0; // NOTE: This is wrist degrees MOVED, because the offset has not been applied yet
-    double offsetPosition = wristDegrees + initialPos; // TODO either configure the absolute encoder conversion factor to 360 or multiply initialPos by 360
+    double offsetPosition = wristDegrees + initialPos*360.0; // TODO either configure the absolute encoder conversion factor to 360 or multiply initialPos by 360
 
     return offsetPosition;
   }
@@ -195,7 +195,7 @@ public class Wrist extends SubsystemBase
     // TODO you can combine the math into one line, I just leave it split up initially to make troubleshooting easier
 
     position=position*360.0;
-    double offsetPosition = position-initialPos;
+    double offsetPosition = position-initialPos*360;
     double wristRevolutions = offsetPosition / 360.0;
     double motorRevolutions = wristRevolutions * 97.5;
     return motorRevolutions;
@@ -211,6 +211,7 @@ public class Wrist extends SubsystemBase
     SmartDashboard.putNumber("wrist/Arbitrary Feedforward", arbFeedforward());
     SmartDashboard.putNumber("wrist/Absolute Encoder Degrees", wrist1.getAbsoluteEncoder().getPosition()*360.0);
     SmartDashboard.putNumber("wrist/Adjusted Primary Encoder Position", getAdjustedPosition());
+    SmartDashboard.putNumber("wrist/Initial Position", initialPos);
     
     SmartDashboard.putData(this);
   }

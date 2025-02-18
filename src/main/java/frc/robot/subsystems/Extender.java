@@ -24,7 +24,7 @@ import frc.robot.commands.SparkPosition;
 @Logged
 public class Extender extends SubsystemBase 
 {
-    public final double MAX_EXTENSION = 0.0; // TODO
+    public final double MAX_EXTENSION = 27.66; // TODO
 
     public SparkFlex extend1;
 
