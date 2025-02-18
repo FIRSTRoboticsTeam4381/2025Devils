@@ -35,6 +35,8 @@ public class Wrist extends SubsystemBase
 
     public double value;
 
+    private double initialPos;
+
   //create Wrist
   public Wrist() {
     wrist1 = new SparkFlex(56, MotorType.kBrushless);
@@ -43,11 +45,13 @@ public class Wrist extends SubsystemBase
       wrist1Config.smartCurrentLimit(50).idleMode(IdleMode.kBrake);
 
       wrist1Config.closedLoop
-      .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
+      .feedbackSensor(FeedbackSensor.kAbsoluteEncoder) // TODO change to kPrimaryEncoder if the adjusted position works
       .p(1)
       .i(0)
       .d(0);
     wrist1.configure(wrist1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+    initialPos = wrist1.getAbsoluteEncoder().getPosition();
 
 
     this.setDefaultCommand( // Stop motor I think
@@ -65,7 +69,6 @@ public class Wrist extends SubsystemBase
 
     wrist1.getAbsoluteEncoder().getPosition();
   }
-
 
   public Command joystickCtrl(Supplier<Double> downJoystickValue, Supplier<Double> upJoystickValue) 
   {
@@ -137,6 +140,8 @@ public class Wrist extends SubsystemBase
   private double arbFeedforward(){
     // [(Arm Weight) * (CG Length)] / [(Stall Torque) * (# of Motors) * (Gear Ratio)] * cos(theta)
 
+    // TODO you can combine the math into one line, I just leave it split up initially to make troubleshooting easier
+
     double weight = 15.0; // (lbs)
     double cgLength = 6.33; // (inches)
     double stallTorque = 3.6; // (Newton meters)
@@ -150,6 +155,45 @@ public class Wrist extends SubsystemBase
     return nmTorque / (stallTorque * numMotors * gearRatio) * Math.cos(angle);
   }
 
+  /**
+   * Get the position of the wrist from the primary encoder, adjusted for the gear ratio and offset
+   * by the initial position of the wrist informed by the absolute encoder
+   * <p>
+   * In theory, if the wrist can do 1 full rotation in either direction this should return a value between -360 – 360 of whatever the vertical position is
+   * @return The adjusted position of the wrist in <STRONG> degrees </STRONG>
+   */
+  public double getAdjustedPosition(){
+    // TODO not sure if you will have to invert stuff for this to work (either inverting the motor or the abs encoder, we will have to test and see)
+    // Motor to wrist gear ratio: 97.5
+
+    // TODO you can combine the math into one line, I just leave it split up initially to make troubleshooting easier
+
+    double wristRevolutions = wrist1.getEncoder().getPosition() / 97.5; // Motor revolves 97.5 times for every 1 mechanism revolution
+    double wristDegrees = wristRevolutions * 360.0; // NOTE: This is wrist degrees MOVED, because the offset has not been applied yet
+    double offsetPosition = wristDegrees + initialPos; // TODO either configure the absolute encoder conversion factor to 360 or multiply initialPos by 360
+
+    return offsetPosition;
+  }
+
+  /**
+   * <STRONG> WARNING: Do not use until {@link #getAdjustedPosition()} is tested and validated!! </STRONG>
+   * <p>
+   * Provides the necessary conversion from the positions you have been using to the offset value needed for the wrist motor.
+   * Right now, the *360 is included, so if you switch over to using degrees you'll need to remove this.
+   * <p>
+   * Meant to integrate into existing code in the least invasive way possible
+   * @param position The absolute position to run the wrist to. Should be able to keep using your same numbers
+   * @return The adjusted position to feed directly into the wrist's PID control
+   */
+  public double adjustPosition(double position){
+    // TODO you can combine the math into one line, I just leave it split up initially to make troubleshooting easier
+
+    position=position*360.0;
+    double offsetPosition = position-initialPos;
+    double wristRevolutions = offsetPosition / 360.0;
+    double motorRevolutions = wristRevolutions * 97.5;
+    return motorRevolutions;
+  }
 
 
   
@@ -157,6 +201,10 @@ public class Wrist extends SubsystemBase
   public void periodic() 
   {
     // This method will be called once per scheduler run
-      SmartDashboard.putData(this);
+    
+    SmartDashboard.putNumber("wrist/Absolute Encoder Degrees", wrist1.getAbsoluteEncoder().getPosition()*360.0);
+    SmartDashboard.putNumber("wrist/Adjusted Primary Encoder Position", getAdjustedPosition());
+    
+    SmartDashboard.putData(this);
   }
 }
