@@ -22,6 +22,8 @@ import frc.robot.commands.SparkPosition;
 
 public class Extender extends SubsystemBase 
 {
+    public final double MAX_EXTENSION = 0.0; // TODO
+
     public SparkFlex extend1;
 
     public static final double extendL4 = 0;
@@ -140,5 +142,9 @@ public class Extender extends SubsystemBase
   {
     // This method will be called once per scheduler run
       SmartDashboard.putData(this);
+  }
+
+  public double getPosition(){
+    return extend1.getEncoder().getPosition();
   }
 }

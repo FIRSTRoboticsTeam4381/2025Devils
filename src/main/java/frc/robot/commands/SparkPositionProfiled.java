@@ -10,14 +10,13 @@ import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.SparkBase;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkClosedLoopController;
-import com.revrobotics.spark.SparkClosedLoopController.ArbFFUnits;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkMax;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 
-public class SparkPosition extends Command{
+public class SparkPositionProfiled extends Command{
     /** Creates a new SparkMaxPosition */
     //private CANSparkBase motor;
     private SparkClosedLoopController controller;
@@ -25,12 +24,8 @@ public class SparkPosition extends Command{
     private ClosedLoopSlot slotNumber;
     private double error;
     private Supplier<Double> feedback;
-    
-    // aFF
-    private ArbFFUnits aFFUnits;
-    private Supplier<Double> aFF;
 
-    public SparkPosition(SparkClosedLoopController c, double pos, ClosedLoopSlot slot, double err, Subsystem s, Supplier<Double> feedback){
+    public SparkPositionProfiled(SparkClosedLoopController c, double pos, ClosedLoopSlot slot, double err, Subsystem s, Supplier<Double> feedback){
         controller=c;
         position=pos;
         slotNumber=slot;
@@ -38,46 +33,17 @@ public class SparkPosition extends Command{
         this.feedback=feedback;
         addRequirements(s);
     }
-    public SparkPosition(SparkBase m, double pos, ClosedLoopSlot slot, double err, Subsystem s, Supplier<Double> feedback){
+    public SparkPositionProfiled(SparkBase m, double pos, ClosedLoopSlot slot, double err, Subsystem s, Supplier<Double> feedback){
         this(m.getClosedLoopController(), pos, slot, err, s, feedback);
         // Use addRequirements() here to declare system dependencies
     }
-    public SparkPosition(SparkBase m, double pos, ClosedLoopSlot slot, double err, Subsystem s){
+    public SparkPositionProfiled(SparkBase m, double pos, ClosedLoopSlot slot, double err, Subsystem s){
         this(m, pos, slot, err, s, getFeedbackSource(m));
     }
-    public SparkPosition(SparkBase m, double pos, double err, Subsystem s){
+    public SparkPositionProfiled(SparkBase m, double pos, double err, Subsystem s){
         this(m, pos, ClosedLoopSlot.kSlot0, err, s, getFeedbackSource(m));
     }
 
-
-    // Overloads with arbitrary feed forward
-    public SparkPosition(SparkClosedLoopController c, double pos, ClosedLoopSlot slot, double err, Supplier<Double> aFF, ArbFFUnits aFFUnits, Subsystem s, Supplier<Double> feedback){
-        controller=c;
-        position=pos;
-        slotNumber=slot;
-        error=err;
-        this.feedback=feedback;
-        addRequirements(s);
-
-        this.aFF = aFF;
-        this.aFFUnits = aFFUnits;
-    }
-    public SparkPosition(SparkBase m, double pos, ClosedLoopSlot slot, double err,Supplier<Double> aFF, ArbFFUnits aFFUnits, Subsystem s, Supplier<Double> feedback){
-        this(m.getClosedLoopController(), pos, slot, err, s, feedback);
-        // Use addRequirements() here to declare system dependencies
-        this.aFF = aFF;
-        this.aFFUnits = aFFUnits;
-    }
-    public SparkPosition(SparkBase m, double pos, ClosedLoopSlot slot, double err, Supplier<Double> aFF, ArbFFUnits aFFUnits, Subsystem s){
-        this(m, pos, slot, err, s, getFeedbackSource(m));
-        this.aFF = aFF;
-        this.aFFUnits = aFFUnits;
-    }
-    public SparkPosition(SparkBase m, double pos, double err, Supplier<Double> aFF, ArbFFUnits aFFUnits, Subsystem s){
-        this(m, pos, ClosedLoopSlot.kSlot0, err, s, getFeedbackSource(m));
-        this.aFF = aFF;
-        this.aFFUnits = aFFUnits;
-    }
 
 
     private static Supplier<Double> getFeedbackSource(SparkBase m)
@@ -129,20 +95,13 @@ public class SparkPosition extends Command{
     // Called when the command is initially scheduled
     @Override
     public void initialize(){
-    
+        controller.setReference(position, ControlType.kMAXMotionPositionControl, slotNumber);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute(){
-        if(aFF == null)
-        {
-            controller.setReference(position, ControlType.kPosition, slotNumber);
-        }
-        else
-        {
-            controller.setReference(position, ControlType.kPosition, slotNumber, aFF.get(), aFFUnits);
-        }
+
     }
 
     // Called once the command ends or is interrupted.

@@ -134,6 +134,22 @@ public class Wrist extends SubsystemBase
   }
   // WILL NEED TO PROGRAM TO MAKE THE WRIST PARALLEL WITH GROUND(?)UNTIL IT IS INTO THE FINAL POSITION TO SCORE
 
+  private double arbFeedforward(){
+    // [(Arm Weight) * (CG Length)] / [(Stall Torque) * (# of Motors) * (Gear Ratio)] * cos(theta)
+
+    double weight = 15.0; // (lbs)
+    double cgLength = 6.33; // (inches)
+    double stallTorque = 3.6; // (Newton meters)
+    int numMotors = 1;
+    double gearRatio = 97.5;
+    double angle = wrist1.getAbsoluteEncoder().getPosition(); // TODO the absolute encoder will need to be configured 0-360 with 0 straight up
+
+    double inlbsTorque = weight*cgLength;
+    double nmTorque = inlbsTorque*0.112985;
+
+    return nmTorque / (stallTorque * numMotors * gearRatio) * Math.cos(angle);
+  }
+
 
 
   
