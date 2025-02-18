@@ -51,12 +51,14 @@ public class SwingArm extends SubsystemBase
 
     rotateConfig1
       .smartCurrentLimit(80)
-      .idleMode(IdleMode.kBrake);
+      .idleMode(IdleMode.kBrake)
+      .absoluteEncoder.inverted(true);
     rotateConfig1.closedLoop
       .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
       .p(2.7)
       .i(0)
-      .d(0);
+      .d(0)
+      .maxOutput(0.3);
     rotateConfig2
       .apply(rotateConfig1)
       .follow(rotate1)
