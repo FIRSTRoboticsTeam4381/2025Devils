@@ -29,44 +29,43 @@ public class SwingArm extends SubsystemBase
 {
   /** Creates a new SwingArm. */
 
-  public SparkFlex rotate;
+  public SparkFlex rotate1;
+  public SparkFlex rotate2;
   
   public AbsoluteEncoder angle;
 
   private Extender extender;
 
-  // The positions change them when we get them
-  public static final double rotateL4 = 0;
-  public static final double rotateL3 = 0;
-  public static final double rotateL2 = 0;
-  public static final double rotateL1 = 0;
-  
-  
-
   /** This is the ground intake **/
   public SwingArm(Extender extender)
   {
-    rotate = new SparkFlex(52, MotorType.kBrushless);
+    rotate1 = new SparkFlex(52, MotorType.kBrushless);
+    rotate2 = new SparkFlex(53, MotorType.kBrushless);
     
-    angle = rotate.getAbsoluteEncoder();
-
+    angle = rotate1.getAbsoluteEncoder();
     this.extender=extender;
     
 
-    SparkMaxConfig rotateConfig = new SparkMaxConfig();
-    
+    SparkMaxConfig rotateConfig1 = new SparkMaxConfig();
+    SparkMaxConfig rotateConfig2 = new SparkMaxConfig();
 
-    rotateConfig
+    rotateConfig1
       .smartCurrentLimit(80)
       .idleMode(IdleMode.kBrake);
-    rotateConfig.closedLoop
+    rotateConfig1.closedLoop
       .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
       .p(2.7)
       .i(0)
       .d(0);
+    rotateConfig2
+      .apply(rotateConfig1)
+      .follow(rotate1)
+      .idleMode(IdleMode.kBrake);
+    
       
 
-    rotate.configure(rotateConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    rotate1.configure(rotateConfig1, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    rotate2.configure(rotateConfig2, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     
     /*
@@ -79,18 +78,18 @@ public class SwingArm extends SubsystemBase
     );
     */
 
-    rotate.getEncoder().getVelocity();
+    rotate1.getEncoder().getVelocity();
     angle.getPosition();
   }
 
   public double getAngle()
   {
-    return rotate.get();
+    return rotate1.get();
   }
 
   public Command goToAngle(double angle)
   {
-    return new SparkPosition(rotate, angle, .05, this).withName("Rotating to " + angle);
+    return new SparkPosition(rotate1, angle, .05, this).withName("Rotating to " + angle);
   }
 
   public Command l1() 
@@ -135,7 +134,7 @@ public class SwingArm extends SubsystemBase
   public Command swing(Supplier<Double> joystickValue) 
   {
     return new RepeatCommand(
-      new InstantCommand(() -> rotate.set(joystickValue.get()), this));
+      new InstantCommand(() -> rotate1.set(joystickValue.get()), this));
   }
 
   public Command zero() 
