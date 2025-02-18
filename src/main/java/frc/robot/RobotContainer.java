@@ -59,8 +59,10 @@ public class RobotContainer
   public final Hang hang = new Hang();
   public final AdvancedCommands aCommands;
   
+  // Boolean
+  public static Boolean manual = false;
 
-  
+  // Cameras
   public final PhotonCam camA = new PhotonCam("Camera A", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(-7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/-4-Math.PI)) );
   public final PhotonCam camB = new PhotonCam("Camera B", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/4-Math.PI)) );
   public final PhotonCam camC = new PhotonCam("Camera C", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/4-Math.PI)) );
@@ -117,30 +119,51 @@ public class RobotContainer
              true,
             driver.leftBumper()::getAsBoolean));
 
-      specialist.a().onTrue((armIntake.coralInOrOut()));
-      specialist.b().onTrue((armIntake.algaeInOrOut()));
       specialist.x().onTrue((armIntake.coralStop()));
       specialist.y().onTrue((armIntake.algaeStop()));
 
       // Elevator preset position controls
-      specialist.povUp().onTrue(aCommands.l4()); // How do we determine the distance value here?
-      specialist.povLeft().onTrue(aCommands.l3());
-      specialist.povRight().onTrue(aCommands.l2());
-      specialist.povDown().onTrue(aCommands.l1());
+      
+      specialist.povUp().and(specialist.leftBumper()).onTrue(aCommands.l4()); // How do we determine the distance value here?
+      specialist.povLeft().and(specialist.leftBumper()).onTrue(aCommands.l3());
+      specialist.povRight().and(specialist.leftBumper()).onTrue(aCommands.l2());
+      specialist.povDown().and(specialist.leftBumper()).onTrue(aCommands.l1());
+      specialist.a().and(specialist.leftBumper()).onTrue(null);
+      specialist.b().and(specialist.leftBumper()).onTrue(aCommands.groundPickupLeft());
 
-      specialist.leftBumper().onTrue(aCommands.coralStation());
-
+      specialist.povUp().and(specialist.rightBumper()).onTrue(null); // How do we determine the distance value here?
+      specialist.povLeft().and(specialist.rightBumper()).onTrue(null);
+      specialist.povRight().and(specialist.rightBumper()).onTrue(null);
+      specialist.povDown().and(specialist.rightBumper()).onTrue(null);
+      specialist.a().and(specialist.rightBumper()).onTrue(aCommands.coralStation());
+      specialist.b().and(specialist.rightBumper()).onTrue(null);
+      
+      /* 
+      specialist.rightStick().onTrue(
       //elevator joystick controls
-      elevator.setDefaultCommand(elevator.joystickCtrl(interpolateJoystick(specialist:: getLeftY, Constants.stickDeadband)));
+      elevator.setDefaultCommand(elevator.joystickCtrl(interpolateJoystick(specialist :: getLeftY, Constants.stickDeadband))),
 
       //wrist triggers  
-      wrist.setDefaultCommand(wrist.joystickCtrl(interpolateJoystick(specialist :: getLeftTriggerAxis, Constants.stickDeadband), interpolateJoystick(specialist :: getRightTriggerAxis, Constants.stickDeadband)));
+      wrist.setDefaultCommand(wrist.joystickCtrl(interpolateJoystick(specialist :: getLeftTriggerAxis, Constants.stickDeadband), interpolateJoystick(specialist :: getRightTriggerAxis, Constants.stickDeadband))),
 
       //swing joystick controls
-      swingArm.setDefaultCommand(swingArm.swing(interpolateJoystick(specialist :: getRightX, Constants.stickDeadband)));
+      swingArm.setDefaultCommand(swingArm.swing(interpolateJoystick(specialist :: getRightX, Constants.stickDeadband))),
 
       //extend joystick
-      extender.setDefaultCommand(extender.extend(interpolateJoystick(specialist :: getRightY, Constants.stickDeadband)));
+      extender.setDefaultCommand(extender.extend(interpolateJoystick(specialist :: getRightY, Constants.stickDeadband)))
+      ); */
+
+      //elevator joystick controls
+      elevator.setDefaultCommand(null);
+
+      //wrist triggers  
+      wrist.setDefaultCommand(null);
+
+      //swing joystick controls
+      swingArm.setDefaultCommand(null);
+
+      //extend joystick
+      extender.setDefaultCommand(null);
       
     }
 
