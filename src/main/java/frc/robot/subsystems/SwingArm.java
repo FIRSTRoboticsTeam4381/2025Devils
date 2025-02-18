@@ -151,7 +151,7 @@ public class SwingArm extends SubsystemBase
     double stallTorque = 3.6; // (Newton meters)
     int numMotors = 2;
     double gearRatio = 100.0;
-    double angle = rotate.getAbsoluteEncoder().getPosition(); // TODO the absolute encoder will need to be configured 0-360 with 0 straight up
+    double angle = rotate1.getAbsoluteEncoder().getPosition(); // TODO the absolute encoder will need to be configured 0-360 with 0 straight up
 
     double inlbsTorque = weight*cgLength;
     double nmTorque = inlbsTorque*0.112985;
