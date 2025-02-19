@@ -75,21 +75,22 @@ public final class Autos {
                 new PathPlannerAuto("Position Chooser"),
                 new ConditionalCommand(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()) , 
                     new SequentialCommandGroup(
-                        new SelectCommand<String>(
+                        new SelectCommand<Character>(
                             Map.ofEntries(
-                                Map.entry("A", AutoBuilder.followPath(PathPlannerPath.fromPathFile("A"))),
-                                Map.entry("B", AutoBuilder.followPath(PathPlannerPath.fromPathFile("B"))),
-                                Map.entry("C", AutoBuilder.followPath(PathPlannerPath.fromPathFile("C"))),
-                                Map.entry("D", AutoBuilder.followPath(PathPlannerPath.fromPathFile("D"))),
-                                Map.entry("E", AutoBuilder.followPath(PathPlannerPath.fromPathFile("E"))),
-                                Map.entry("F", AutoBuilder.followPath(PathPlannerPath.fromPathFile("F"))),
-                                Map.entry("G", AutoBuilder.followPath(PathPlannerPath.fromPathFile("G"))),
-                                Map.entry("H", AutoBuilder.followPath(PathPlannerPath.fromPathFile("H"))),
-                                Map.entry("I", AutoBuilder.followPath(PathPlannerPath.fromPathFile("I"))),
-                                Map.entry("J", AutoBuilder.followPath(PathPlannerPath.fromPathFile("J"))),
-                                Map.entry("K", AutoBuilder.followPath(PathPlannerPath.fromPathFile("K"))),
-                                Map.entry("L", AutoBuilder.followPath(PathPlannerPath.fromPathFile("L")))
-                            ), Autos::chosenPosition), RobotContainer.getRobot().aCommands.l4()
+                                Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("A"))),
+                                Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile("B"))),
+                                Map.entry('C', AutoBuilder.followPath(PathPlannerPath.fromPathFile("C"))),
+                                Map.entry('D', AutoBuilder.followPath(PathPlannerPath.fromPathFile("D"))),
+                                Map.entry('E', AutoBuilder.followPath(PathPlannerPath.fromPathFile("E"))),
+                                Map.entry('F', AutoBuilder.followPath(PathPlannerPath.fromPathFile("F"))),
+                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("G"))),
+                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("H"))),
+                                Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("I"))),
+                                Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("J"))),
+                                Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("K"))),
+                                Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("L")))
+                            ), Autos::chosenPosition), 
+                            RobotContainer.getRobot().aCommands.l4()
                     ), positionTo::isEmpty).repeatedly()
                 ), "Position Chooser");
         } catch (FileVersionException e) {
