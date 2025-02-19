@@ -129,14 +129,14 @@ public class SwerveModule {
 
         //double angle = (Math.abs(desiredState.speedMetersPerSecond) <= (Constants.Swerve.maxSpeed * 0.01)) ? lastAngle : desiredState.angle.getDegrees(); //Prevent rotating module if speed is less than 1%. Prevents jittering.
         double angle = desiredState.angle.getDegrees();
-        mAngleMotor.getClosedLoopController().setReference(angle+180, ControlType.kPosition);
+        mAngleMotor.getClosedLoopController().setReference(angle, ControlType.kPosition);
         desiredAngle = angle;
         lastAngle = angle;
     }
     
     
     public Rotation2d getAngle(){
-        return Rotation2d.fromDegrees(absoluteEncoder.getPosition()-180);
+        return Rotation2d.fromDegrees(absoluteEncoder.getPosition());
     }
 
     /**
