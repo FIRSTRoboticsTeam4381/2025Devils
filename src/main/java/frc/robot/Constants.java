@@ -82,7 +82,7 @@ public final class Constants {
         public static final double maxAngularVelocity = 10; // Formally 11.5 (Unit is Omega Radians per sec)
 
         /* Motor Inverts */
-        public static final boolean driveMotorInvert = false;
+        public static final boolean driveMotorInvert = true;
         public static final boolean angleMotorInvert = true;
 
         /* Angle Encoder Invert */
