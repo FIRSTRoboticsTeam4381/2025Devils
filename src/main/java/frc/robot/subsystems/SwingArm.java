@@ -122,7 +122,7 @@ public class SwingArm extends SubsystemBase
 
   public Command coralStation() 
   {
-    return goToAngle(0.5653).withName("Coral Station");
+    return goToAngle(0.57).withName("Coral Station");
   }
 
   public Command processor()

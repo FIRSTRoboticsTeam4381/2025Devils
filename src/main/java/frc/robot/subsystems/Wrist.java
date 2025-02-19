@@ -43,7 +43,7 @@ public class Wrist extends SubsystemBase
     wrist1 = new SparkFlex(56, MotorType.kBrushless);
 
     SparkFlexConfig wrist1Config = new SparkFlexConfig();
-      wrist1Config.smartCurrentLimit(50).idleMode(IdleMode.kCoast);
+      wrist1Config.smartCurrentLimit(50).idleMode(IdleMode.kBrake);
 
       wrist1Config.closedLoop
       .feedbackSensor(FeedbackSensor.kPrimaryEncoder) // TODO change to kPrimaryEncoder if the adjusted position works
@@ -80,7 +80,7 @@ public class Wrist extends SubsystemBase
 
   public Command wristPosition(double position) 
   {
-    return new SparkPosition(wrist1, position, 0.05, this).withName("Wrist to" + position); // Will add positions later // TODO arbitrary feedforward will need to be included
+    return new SparkPosition(wrist1, adjustPosition(position), 0.05, this).withName("Wrist to" + position); // Will add positions later // TODO arbitrary feedforward will need to be included
   }
   public void setPositionReference(double angle)
   {
@@ -91,19 +91,19 @@ public class Wrist extends SubsystemBase
   // Level commands
   public Command l1() 
   {
-    return wristPosition(adjustPosition(0.5001)).withName("Wrist Level 1"); // Will NEED to update positions (currently 0 as defualt)
+    return wristPosition(0.5001).withName("Wrist Level 1"); // Will NEED to update positions (currently 0 as defualt)
   }
   public Command l2() 
   {
-    return wristPosition(adjustPosition(0.6271)).withName("Wrist Level 2");
+    return wristPosition(0.6271).withName("Wrist Level 2");
   }
   public Command l3() 
   {
-    return wristPosition(adjustPosition(0.879)).withName("Wrist Level 3");
+    return wristPosition(0.95).withName("Wrist Level 3");
   }
   public Command l4() 
   {
-    return wristPosition(adjustPosition(0.879)).withName("Wrist Level 4");
+    return wristPosition(0.95).withName("Wrist Level 4");
   }
 
 
@@ -133,7 +133,7 @@ public class Wrist extends SubsystemBase
 
   public Command coralStation() 
   {
-    return wristPosition(0.4029).withName("Wrist Coral Station");
+    return wristPosition(0.5).withName("Wrist Coral Station");
   }
 
   public Command zero() 
