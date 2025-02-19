@@ -84,7 +84,7 @@ public class Wrist extends SubsystemBase
   }
   public void setPositionReference(double angle)
   {
-    wrist1.getClosedLoopController().setReference(angle, ControlType.kPosition); // TODO arbitrary feedforward will need to be included
+    wrist1.getClosedLoopController().setReference(adjustPosition(angle), ControlType.kPosition); // TODO arbitrary feedforward will need to be included
   }
 
 
