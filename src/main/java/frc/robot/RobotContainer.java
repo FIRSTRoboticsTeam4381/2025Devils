@@ -60,12 +60,26 @@ public class RobotContainer
   public final AdvancedCommands aCommands;
   
 
-  
-  public final PhotonCam camA = new PhotonCam("Camera_Left_Below", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(-7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/-4-Math.PI)) );
-  public final PhotonCam camB = new PhotonCam("Camera_Left_Upper", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/4-Math.PI)) );
-  public final PhotonCam camC = new PhotonCam("Camera_Right_Below", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/4-Math.PI)) );
-  public final PhotonCam camD = new PhotonCam("Camera_Right_Upper", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/4-Math.PI)) );
+  // camA, Left-Below (Forward), Translation(6.44733 in. LEFT, 8.26353 in. BACK, 10.62979 in. UP) - Rotation(60 deg. LEFT, 15 deg. UP, 0 deg.)
+  public final PhotonCam camA = new PhotonCam("Camera_Left_Below", 
+    new Transform3d(new Translation3d(Units.inchesToMeters(-8.26353), Units.inchesToMeters(6.44733), Units.inchesToMeters(10.62979)), 
+    new Rotation3d(0*Math.PI/180.0, -15*Math.PI/180.0, 60*Math.PI/180.0)));
 
+  // camB, Left-Upper (Backwards), Translation(6.36902 in. LEFT, 8.46948 in. BACK, 14.12979 in. UP) - Rotation(140 deg. LEFT, 15 deg. UP, 0 deg.)
+  public final PhotonCam camB = new PhotonCam("Camera_Left_Upper", 
+    new Transform3d(new Translation3d(Units.inchesToMeters(-8.46948), Units.inchesToMeters(6.36902), Units.inchesToMeters(14.12979)), 
+    new Rotation3d(0*Math.PI/180.0, -15*Math.PI/180.0, 140*Math.PI/180.0)));
+
+  // camC, Right-Below (Forwards), Translation(6.24207 in. RIGHT, 8.01891 in. BACK, 10.62979 in. UP) - Rotation(60 deg. RIGHT, 15 deg. UP, 0 deg.)
+  public final PhotonCam camC = new PhotonCam("Camera_Right_Below", 
+    new Transform3d(new Translation3d(Units.inchesToMeters(-8.01891), Units.inchesToMeters(-6.24207), Units.inchesToMeters(10.62979)), 
+    new Rotation3d(0*Math.PI/180.0, -15*Math.PI/180.0, -60*Math.PI/180.0)));
+
+  // camD, Right-Upper (Backwards), Translation(6.50299 in. RIGHT, 8.39213 in. BACK, 14.12979 in. UP) - Rotation(140 deg. RIGHT, 15 deg. UP, 0 deg.)
+  public final PhotonCam camD = new PhotonCam("Camera_Right_Upper", 
+    new Transform3d(new Translation3d(Units.inchesToMeters(-8.39213), Units.inchesToMeters(-6.50299), Units.inchesToMeters(14.12979)), 
+    new Rotation3d(0*Math.PI/180.0, -15*Math.PI/180.0, -140*Math.PI/180.0)));
+  
 
   // Constructor: set up the robot! 
   public RobotContainer() 
