@@ -5,10 +5,15 @@
   "pathFolders": [
     "Get out the way",
     "Master Linked Nodes",
+    "Coral Station to nodes",
+    "Nodes to Coral Station",
     "Place out of way",
     "Reef presets",
     "Reef to Station",
-    "Station to Reef"
+    "Reef to Top Nodes",
+    "Starting Pos to Nodes",
+    "Station to Reef",
+    "Top Nodes to Reef"
   ],
   "autoFolders": [
     "out the way"

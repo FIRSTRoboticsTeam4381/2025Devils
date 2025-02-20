@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 2.298929794520548,
-        "y": 6.406571061643835
+        "x": 3.3610915492957734,
+        "y": 6.505193661971831
       },
       "prevControl": {
-        "x": 1.8703017979452077,
-        "y": 7.752469499143833
+        "x": 2.9324635527204332,
+        "y": 7.851092099471829
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -90.0
   },
   "reversed": false,
   "folder": "Master Linked Nodes",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }
