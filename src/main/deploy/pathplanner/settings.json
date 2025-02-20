@@ -3,11 +3,12 @@
   "robotLength": 0.9,
   "holonomicMode": true,
   "pathFolders": [
-    "Reef to Station",
     "Get out the way",
-    "Station to Reef",
+    "Master Linked Nodes",
     "Place out of way",
-    "Reef presets"
+    "Reef presets",
+    "Reef to Station",
+    "Station to Reef"
   ],
   "autoFolders": [
     "out the way"
