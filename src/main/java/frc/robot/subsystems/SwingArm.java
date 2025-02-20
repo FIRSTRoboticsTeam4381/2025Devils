@@ -57,10 +57,10 @@ public class SwingArm extends SubsystemBase
       .absoluteEncoder.inverted(true);
     rotateConfig1.closedLoop
       .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
-      .p(2.7)
+      .p(1.7)
       .i(0)
       .d(0)
-      .maxOutput(0.3);
+      .outputRange(-1.0, 1.0);
     rotateConfig2
       .apply(rotateConfig1)
       .follow(rotate1)
@@ -112,7 +112,7 @@ public class SwingArm extends SubsystemBase
 
   public Command l3() 
   {
-    return goToAngle(0.1097).withName("Level 3");
+    return goToAngle(0.20).withName("Level 3");
   }
 
   public Command l4() 
@@ -122,7 +122,7 @@ public class SwingArm extends SubsystemBase
 
   public Command coralStation() 
   {
-    return goToAngle(0.57).withName("Coral Station");
+    return goToAngle(0.59).withName("Coral Station");
   }
 
   public Command processor()

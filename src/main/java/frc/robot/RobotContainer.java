@@ -108,7 +108,7 @@ public class RobotContainer
 
   private void configureBindings() 
   {
-    driver.back()
+    driver.start()
       .onTrue(new InstantCommand(() -> swerve.zeroGyro()));
     swerve.setDefaultCommand(new TeleopSwerve(swerve, 
             driver::getLeftY,
@@ -141,6 +141,8 @@ public class RobotContainer
 
       //extend joystick
       extender.setDefaultCommand(extender.extend(interpolateJoystick(specialist :: getRightY, Constants.stickDeadband)));
+
+      specialist.back().or(driver.back()).onTrue(new InstantCommand(()->CommandScheduler.getInstance().cancelAll()));
       
     }
 

@@ -47,9 +47,10 @@ public class Wrist extends SubsystemBase
 
       wrist1Config.closedLoop
       .feedbackSensor(FeedbackSensor.kPrimaryEncoder) // TODO change to kPrimaryEncoder if the adjusted position works
-      .p(1)
+      .p(0.35)
       .i(0)
-      .d(0);
+      .d(0)
+      .outputRange(-0.35, 0.35);
     wrist1.configure(wrist1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     initialPos = wrist1.getAbsoluteEncoder().getPosition();
@@ -99,7 +100,7 @@ public class Wrist extends SubsystemBase
   }
   public Command l3() 
   {
-    return wristPosition(0.95).withName("Wrist Level 3");
+    return wristPosition(0.75).withName("Wrist Level 3");
   }
   public Command l4() 
   {
@@ -138,7 +139,7 @@ public class Wrist extends SubsystemBase
 
   public Command zero() 
   {
-    return wristPosition(0.428).withName("Zero");
+    return wristPosition(0.5).withName("Zero");
   }
   // WILL NEED TO PROGRAM TO MAKE THE WRIST PARALLEL WITH GROUND(?)UNTIL IT IS INTO THE FINAL POSITION TO SCORE
 

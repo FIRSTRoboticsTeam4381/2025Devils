@@ -54,95 +54,102 @@ public class AdvancedCommands
   
   public Command l1()
   {
-    return new ParallelCommandGroup(
-      robot.elevator.l1(),
-      robot.swingArm.l1()
-      
-    ).andThen(new ParallelCommandGroup(
-      robot.extender.l1(),
-      robot.wrist.l1()
-    )); 
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.l1(),
+        robot.swingArm.l1()
+        
+      ).andThen(new ParallelCommandGroup(
+        robot.extender.l1(),
+        robot.wrist.l1()
+    ))); 
     
   }
   public Command l2()
   {
-    return new ParallelCommandGroup(
-      robot.elevator.l2(),
-      robot.swingArm.l2()
-      
-    ).andThen(new ParallelCommandGroup(
-      robot.extender.l2(),
-      robot.wrist.l2()
-    ));
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.l2(),
+        robot.swingArm.l2()
+        
+      ).andThen(new ParallelCommandGroup(
+        robot.extender.l2(),
+        robot.wrist.l2()
+    )));
     
   }
   public Command l3()
   {
-    return new ParallelCommandGroup(
-      robot.elevator.l3(),
-      robot.swingArm.l3()
-      
-    ).andThen(new ParallelCommandGroup(
-      robot.extender.l3(),
-      robot.wrist.l3()
-    ).andThen(new ParallelCommandGroup(
-      robot.armIntake.algaeInOrOut()
-    )));
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.l3(),
+        robot.swingArm.l3()
+        
+      ).andThen(new ParallelCommandGroup(
+        //robot.extender.l3(),
+        robot.wrist.l3()
+      ).andThen(new ParallelCommandGroup(
+        robot.armIntake.algaeInOrOut()
+    ))));
     
   }
   public Command l4()
   {
-    return new ParallelCommandGroup(
-      robot.elevator.l4(),
-      robot.swingArm.l4()
-      
-    ).andThen(new ParallelCommandGroup(
-      robot.extender.l4(),
-      robot.wrist.l4()
-    ).andThen(new ParallelCommandGroup(
-      robot.armIntake.algaeInOrOut()
-    )));
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.l4(),
+        robot.swingArm.l4()
+        
+      ).andThen(new ParallelCommandGroup(
+        robot.extender.l4(),
+        robot.wrist.l4()
+      ).andThen(new ParallelCommandGroup(
+        robot.armIntake.algaeInOrOut()
+    ))));
   }
 
 
   public Command coralStation()
   {
-    return new ParallelCommandGroup(
-      robot.elevator.coralStation(),
-      robot.swingArm.coralStation()
-      
-    ).andThen(new ParallelCommandGroup(
-      robot.extender.coralStation(),
-      robot.wrist.coralStation()
-    ).andThen(new ParallelCommandGroup(
-      robot.armIntake.coralInOrOut()
-    )));
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.coralStation(),
+        robot.swingArm.coralStation()
+        
+      ).andThen(new ParallelCommandGroup(
+        robot.extender.coralStation(),
+        robot.wrist.coralStation()
+      ).andThen(new ParallelCommandGroup(
+        robot.armIntake.coralInOrOut()
+    ))));
   }
 
 
   public Command processor()
-  { 
-    return new ParallelCommandGroup(
-      robot.elevator.processor(),
-      robot.swingArm.processor()
+  {
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.processor(),
+        robot.swingArm.processor()
 
-    ).andThen(new ParallelCommandGroup(
-      robot.extender.processor(),
-      robot.wrist.processorCommand()
-    ));
+      ).andThen(new ParallelCommandGroup(
+        robot.extender.processor(),
+        robot.wrist.processorCommand()
+    )));
   }
 
 
   public Command groundPickupLeft()
   { 
-    return new ParallelCommandGroup(
-      robot.elevator.groundPickupLeft(),
-      robot.swingArm.groundPickupLeft()
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.groundPickupLeft(),
+        robot.swingArm.groundPickupLeft()
 
-    ).andThen(new ParallelCommandGroup(
-      robot.extender.groundPickupLeft(),
-      robot.wrist.groundPickupLeft()
-    ));
+      ).andThen(new ParallelCommandGroup(
+        robot.extender.groundPickupLeft(),
+        robot.wrist.groundPickupLeft()
+    )));
   }
 
   /* 
