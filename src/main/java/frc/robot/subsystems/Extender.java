@@ -93,11 +93,11 @@ public class Extender extends SubsystemBase
   }
   public Command l3()
   {
-    return extendTo(23.57).withName("Level 3");
+    return extendTo(88.3875).withName("Level 3");
   }
   public Command l4()
   {
-    return extendTo(23.57).withName("Level 4");
+    return extendTo(88.3875).withName("Level 4");
   }
 
 
@@ -121,18 +121,18 @@ public class Extender extends SubsystemBase
 
   public Command processor()
   {
-    return extendTo(14.0405).withName("Processor");
+    return extendTo(52.651875).withName("Processor");
   }
 
 
   public Command groundPickupLeft()
  {
-    return extendTo(13.2475).withName("Ground Pickup Left");
+    return extendTo(49.678125).withName("Ground Pickup Left");
  }  
 
  public Command groundPickupRight() 
 {
-  return extendTo(12.8804).withName("Ground Pickup Right");
+  return extendTo(48.3015).withName("Ground Pickup Right");
 }
   public Command zero() 
   {
