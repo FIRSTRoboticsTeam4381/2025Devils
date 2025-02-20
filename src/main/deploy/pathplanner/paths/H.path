@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 6.053873239436619,
-        "y": 4.322623239436619
+        "x": 6.040325342465753,
+        "y": 4.152718321917808
       },
       "prevControl": {
-        "x": 6.847535211267606,
-        "y": 5.484771126760563
+        "x": 6.833987314296739,
+        "y": 5.314866209241752
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 90.0
   },
   "reversed": false,
   "folder": "Reef presets",

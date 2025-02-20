@@ -45,7 +45,7 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": "Pickup to coral",
+  "folder": "Station to Reef",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -128.15722658736908

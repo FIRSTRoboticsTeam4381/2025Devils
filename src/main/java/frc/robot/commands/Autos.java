@@ -108,9 +108,9 @@ public final class Autos {
         }
     }
 
-    public static Queue<String> positionTo = new LinkedList<>();
+    public static Queue<Character> positionTo = new LinkedList<>();
 
-    public static String chosenPosition() {
+    public static Character chosenPosition() {
         return positionTo.remove();
     }
 
