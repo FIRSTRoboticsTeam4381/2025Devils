@@ -31,7 +31,7 @@ public class Extender extends SubsystemBase
     public static final double extendL4 = 0;
     public static final double extendL3 = 0;
     public static final double extendL2 = 0;
-    public static final double extendL1 = 0;
+    public static final double extendl1R = 0;
 
   // create Extender
   public Extender() 
@@ -83,22 +83,40 @@ public class Extender extends SubsystemBase
 
 
   // preset reef position commands:
-  public Command l1()
+  public Command l1L()
   {
-    return extendTo(0).withName("Level 1");
+    return extendTo(0).withName("Level 1 Left");
   }
-  public Command l2()
+  public Command l2L()
   {
-    return extendTo(0).withName("Level 2");
+    return extendTo(0).withName("Level 2 Left");
   }
-  public Command l3()
+  public Command l3L()
   {
-    return extendTo(88.3875).withName("Level 3");
+    return extendTo(88.3875).withName("Level 3 Left");
   }
-  public Command l4()
+  public Command l4L()
   {
-    return extendTo(88.3875).withName("Level 4");
+    return extendTo(88.3875).withName("Level 4 Left");
   }
+
+  public Command l1R()
+  {
+    return extendTo(0).withName("Level 1 Right");
+  }
+  public Command l2R()
+  {
+    return extendTo(0).withName("Level 2 Right");
+  }
+  public Command l3R()
+  {
+    return extendTo(0).withName("Level 3 Right");
+  }
+  public Command l4R()
+  {
+    return extendTo(0).withName("Level 4 Right");
+  }
+  
 
 
   public Command barge() 

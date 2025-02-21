@@ -109,10 +109,10 @@ public class RobotContainer
     SmartDashboard.putNumber("Start Delay",0);
     NamedCommands.registerCommand("Coral Intake/Outtake On", armIntake.coralInOrOut());
     NamedCommands.registerCommand("Algae Intake/Outtake On", armIntake.algaeInOrOut());
-    NamedCommands.registerCommand("L1", aCommands.l1());
-    NamedCommands.registerCommand("L2", aCommands.l2());
-    NamedCommands.registerCommand("L3", aCommands.l3());
-    NamedCommands.registerCommand("L4", aCommands.l4());
+    NamedCommands.registerCommand("L1L", aCommands.l1L());
+    NamedCommands.registerCommand("L2L", aCommands.l2L());
+    NamedCommands.registerCommand("L3L", aCommands.l3L());
+    NamedCommands.registerCommand("L4L", aCommands.l4L());
 
 
     
@@ -137,11 +137,23 @@ public class RobotContainer
       specialist.y().onTrue((armIntake.algaeStop()));
 
       // Elevator preset position controls
-      specialist.povUp().onTrue(aCommands.l4()); // How do we determine the distance value here?
-      specialist.povLeft().onTrue(aCommands.l3());
-      specialist.povRight().onTrue(aCommands.l2());
-      specialist.povDown().onTrue(aCommands.l1());
+      specialist.povUp().onTrue(aCommands.l4L()); // How do we determine the distance value here?
+      specialist.povLeft().onTrue(aCommands.l3L());
+      specialist.povRight().onTrue(aCommands.l2L());
+      specialist.povDown().onTrue(aCommands.l1L());
 
+      /* 
+      specialist.povUp().and(specialist.leftBumper()).onTrue(aCommands.l4L());
+      specialist.povLeft().and(specialist.leftBumper()).onTrue(aCommands.l3L());
+      specialist.povRight().and(specialist.leftBumper()).onTrue(aCommands.l2L());
+      specialist.povDown().and(specialist.leftBumper()).onTrue(aCommands.l1L());
+
+      specialist.povUp().and(specialist.rightBumper()).onTrue(aCommands.l4R());
+      specialist.povLeft().and(specialist.rightBumper()).onTrue(aCommands.l3R());
+      specialist.povRight().and(specialist.rightBumper()).onTrue(aCommands.l2R());
+      specialist.povDown().and(specialist.rigbtBumper()).onTrue(aCommands.l1R());
+      */
+      
       specialist.leftBumper().onTrue(aCommands.coralStation());
 
       //elevator joystick controls

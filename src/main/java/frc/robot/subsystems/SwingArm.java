@@ -100,25 +100,46 @@ public class SwingArm extends SubsystemBase
     rotate1.getClosedLoopController().setReference(angle, ControlType.kPosition); // TODO arbitrary feedforward will need to be included
   }
 
-  public Command l1() 
+  public Command l1L() 
   {
-    return goToAngle(0.4249).withName("Level 1");
+    return goToAngle(0.4249).withName("Level 1 Left");
   }
 
-  public Command l2() 
+  public Command l2L() 
   {
-    return goToAngle(0.4228).withName("Level 2");
+    return goToAngle(0.4228).withName("Level 2 Left");
   }
 
-  public Command l3() 
+  public Command l3L() 
   {
-    return goToAngle(0.20).withName("Level 3");
+    return goToAngle(0.20).withName("Level 3 Left");
   }
 
-  public Command l4() 
+  public Command l4L() 
   {
-    return goToAngle(0.0570).withName("Level 4");
+    return goToAngle(0.0570).withName("Level 4 Left");
   }
+
+  public Command l1R() 
+  {
+    return goToAngle(0.0).withName("Level 1 Right");
+  }
+
+  public Command l2R() 
+  {
+    return goToAngle(0.0).withName("Level 2 Right");
+  }
+
+  public Command l3R() 
+  {
+    return goToAngle(0.0).withName("Level 3 Right");
+  }
+
+  public Command l4R() 
+  {
+    return goToAngle(0.0).withName("Level 4 Right");
+  }
+
 
   public Command coralStation() 
   {

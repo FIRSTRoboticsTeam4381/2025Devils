@@ -52,61 +52,115 @@ public class AdvancedCommands
     );
   }
   
-  public Command l1()
+  public Command l1L()
   {
     return combinedPositionCommand(
       new ParallelCommandGroup(
-        robot.elevator.l1(),
-        robot.swingArm.l1()
+        robot.elevator.l1L(),
+        robot.swingArm.l1L()
         
       ).andThen(new ParallelCommandGroup(
-        robot.extender.l1(),
-        robot.wrist.l1()
+        robot.extender.l1L(),
+        robot.wrist.l1L()
     ))); 
     
   }
-  public Command l2()
+  public Command l2L()
   {
     return combinedPositionCommand(
       new ParallelCommandGroup(
-        robot.elevator.l2(),
-        robot.swingArm.l2()
+        robot.elevator.l2L(),
+        robot.swingArm.l2L()
         
       ).andThen(new ParallelCommandGroup(
-        robot.extender.l2(),
-        robot.wrist.l2()
+        robot.extender.l2L(),
+        robot.wrist.l2L()
     )));
     
   }
-  public Command l3()
+  public Command l3L()
   {
     return combinedPositionCommand(
       new ParallelCommandGroup(
-        robot.elevator.l3(),
-        robot.swingArm.l3()
+        robot.elevator.l3L(),
+        robot.swingArm.l3L()
         
       ).andThen(new ParallelCommandGroup(
         //robot.extender.l3(),
-        robot.wrist.l3()
+        robot.wrist.l3L()
       ).andThen(new ParallelCommandGroup(
         robot.armIntake.algaeInOrOut()
     ))));
     
   }
-  public Command l4()
+  public Command l4L()
   {
     return combinedPositionCommand(
       new ParallelCommandGroup(
-        robot.elevator.l4(),
-        robot.swingArm.l4()
+        robot.elevator.l4L(),
+        robot.swingArm.l4L()
         
       ).andThen(new ParallelCommandGroup(
-        robot.extender.l4(),
-        robot.wrist.l4()
+        robot.extender.l4L(),
+        robot.wrist.l4L()
       ).andThen(new ParallelCommandGroup(
         robot.armIntake.algaeInOrOut()
     ))));
   }
+
+
+  public Command l1R()
+  {
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.l1R(),
+        robot.swingArm.l1R()
+        
+      ).andThen(new ParallelCommandGroup(
+        robot.extender.l1R(),
+        robot.wrist.l1R()
+    ))); 
+    
+  }
+  public Command l2R()
+  {
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.l2R(),
+        robot.swingArm.l2R()
+        
+      ).andThen(new ParallelCommandGroup(
+        robot.extender.l2R(),
+        robot.wrist.l2R()
+    )));
+    
+  }
+  public Command l3R()
+  {
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.l3R(),
+        robot.swingArm.l3R()
+        
+      ).andThen(new ParallelCommandGroup(
+        //robot.extender.l3R(),
+        robot.wrist.l3R()
+      )));
+    
+  }
+  public Command l4R()
+  {
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.l4R(),
+        robot.swingArm.l4R()
+        
+      ).andThen(new ParallelCommandGroup(
+        robot.extender.l4R(),
+        robot.wrist.l4R()
+      )));
+  }
+
 
 
   public Command coralStation()
