@@ -26,10 +26,13 @@ import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SelectCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public final class Autos {
   
+
+    public static Character prevChosenAuto;
   // TODO register commands in subsystem constructores using NamedCommands.registerCommand()
 
     // Test autonomous mode
@@ -75,7 +78,7 @@ public final class Autos {
                 new PathPlannerAuto("Position Chooser"),
                 new ConditionalCommand(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()) , 
                     new SequentialCommandGroup(
-                        new SelectCommand<Character>(
+                        new SelectCommand<Character>( // How do I keep the chosen letter in a variable to use in a futre condtional command?
                             Map.ofEntries(
                                 Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("A"))),
                                 Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile("B"))),
@@ -89,8 +92,32 @@ public final class Autos {
                                 Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("J"))),
                                 Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("K"))),
                                 Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("L")))
-                            ), Autos::chosenPosition), 
-                            RobotContainer.getRobot().aCommands.l4()
+                            ), Autos::chosenPosition
+                        ),
+                        RobotContainer.getRobot().aCommands.l4(), // Place Pos
+                        RobotContainer.getRobot().armIntake.coralEject(), // Eject Coral
+                        new ConditionalCommand(
+                            null, 
+                            null, 
+                            null),// GO TO STATION
+                        RobotContainer.getRobot().aCommands.coralStation(),
+                        RobotContainer.getRobot().armIntake.coralIntake(),
+                        new SelectCommand<Character>(
+                            Map.ofEntries( // WILL BE A PATH THAT GOES FROM STATION TO REEF
+                                Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to A"))), // BLUE STATION 
+                                Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to B"))), // RED STATION ______
+                                Map.entry('C', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to C"))),
+                                Map.entry('D', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to D"))),
+                                Map.entry('E', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to E"))),
+                                Map.entry('F', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to F"))),
+                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to G"))), // RED STAION ___________
+                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to H"))), // BLUE STATION _________
+                                Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to I"))),
+                                Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to J"))),
+                                Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to K"))),
+                                Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to L"))) // BLUE STATION __________
+                            ), Autos::chosenPosition
+                        ) 
                     ), positionTo::isEmpty).repeatedly()
                 ), "Position Chooser");
         } catch (FileVersionException e) {
@@ -111,6 +138,7 @@ public final class Autos {
     public static Queue<Character> positionTo = new LinkedList<>();
 
     public static Character chosenPosition() {
+        prevChosenAuto = chosenPosition();
         return positionTo.remove();
     }
 
