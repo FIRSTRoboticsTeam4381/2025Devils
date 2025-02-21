@@ -78,7 +78,7 @@ public final class Autos {
                 new PathPlannerAuto("Position Chooser"),
                 new ConditionalCommand(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()) , 
                     new SequentialCommandGroup(
-                        new SelectCommand<Character>( // How do I keep the chosen letter in a variable to use in a futre condtional command?
+                        new SelectCommand<Character>(
                             Map.ofEntries(
                                 Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("A"))),
                                 Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile("B"))),
@@ -96,10 +96,7 @@ public final class Autos {
                         ),
                         RobotContainer.getRobot().aCommands.l4(), // Place Pos
                         RobotContainer.getRobot().armIntake.coralEject(), // Eject Coral
-                        new ConditionalCommand(
-                            null, 
-                            null, 
-                            null),// GO TO STATION
+                        AutoBuilder.followPath(PathPlannerPath.fromPathFile(""))
                         RobotContainer.getRobot().aCommands.coralStation(),
                         RobotContainer.getRobot().armIntake.coralIntake(),
                         new SelectCommand<Character>(
@@ -136,6 +133,14 @@ public final class Autos {
     }
 
     public static Queue<Character> positionTo = new LinkedList<>();
+
+    public String station() {
+        if(prevChosenAuto == 'A' || prevChosenAuto == 'H'|| prevChosenAuto == 'I'|| prevChosenAuto == 'J'|| prevChosenAuto == 'K'|| prevChosenAuto == 'L'|| prevChosenAuto == 'B'|| prevChosenAuto == 'B') {
+            return station
+        } else {
+
+        }
+    }
 
     public static Character chosenPosition() {
         prevChosenAuto = chosenPosition();
