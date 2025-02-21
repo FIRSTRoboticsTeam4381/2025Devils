@@ -155,6 +155,7 @@ public class RobotContainer
       */
       
       specialist.leftBumper().onTrue(aCommands.coralStation());
+      specialist.start().onTrue(aCommands.zeroEverything());
 
       //elevator joystick controls
       elevator.setDefaultCommand(elevator.joystickCtrl(interpolateJoystick(specialist:: getLeftY, Constants.stickDeadband)));
