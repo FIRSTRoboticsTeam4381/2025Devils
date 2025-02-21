@@ -33,6 +33,8 @@ public final class Autos {
   
 
     public static Character prevChosenAuto;
+    public static String station;
+    public static String startPos;
   // TODO register commands in subsystem constructores using NamedCommands.registerCommand()
 
     // Test autonomous mode
@@ -78,6 +80,14 @@ public final class Autos {
                 new PathPlannerAuto("Position Chooser"),
                 new ConditionalCommand(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()) , 
                     new SequentialCommandGroup(
+                        //Start
+
+                        /*new SelectCommand<String>(
+                            Map.entry("Blue Corner Start Position", startPos = "Blue Corner"),
+                            Map.entry("Red Corner Start Position", startPos = "Red Corner")),
+                        new ConditionalCommand(null, null, )*/ // not work fo sho
+
+                        // Need smth for start position **PRIORITY**
                         new SelectCommand<Character>(
                             Map.ofEntries(
                                 Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("A"))),
@@ -96,7 +106,7 @@ public final class Autos {
                         ),
                         RobotContainer.getRobot().aCommands.l4(), // Place Pos
                         RobotContainer.getRobot().armIntake.coralEject(), // Eject Coral
-                        AutoBuilder.followPath(PathPlannerPath.fromPathFile(""))
+                        AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " station from " + prevChosenAuto)), // highly doubt this will work but it worth a try // change
                         RobotContainer.getRobot().aCommands.coralStation(),
                         RobotContainer.getRobot().armIntake.coralIntake(),
                         new SelectCommand<Character>(
@@ -114,7 +124,10 @@ public final class Autos {
                                 Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to K"))),
                                 Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to L"))) // BLUE STATION __________
                             ), Autos::chosenPosition
-                        ) 
+                        ),
+                        RobotContainer.getRobot().aCommands.l4(),
+                        RobotContainer.getRobot().armIntake.coralEject()
+                        //Finished
                     ), positionTo::isEmpty).repeatedly()
                 ), "Position Chooser");
         } catch (FileVersionException e) {
@@ -134,16 +147,13 @@ public final class Autos {
 
     public static Queue<Character> positionTo = new LinkedList<>();
 
-    public String station() {
-        if(prevChosenAuto == 'A' || prevChosenAuto == 'H'|| prevChosenAuto == 'I'|| prevChosenAuto == 'J'|| prevChosenAuto == 'K'|| prevChosenAuto == 'L'|| prevChosenAuto == 'B'|| prevChosenAuto == 'B') {
-            return station
-        } else {
-
-        }
-    }
-
     public static Character chosenPosition() {
         prevChosenAuto = chosenPosition();
+        if(prevChosenAuto == 'A' || prevChosenAuto == 'H'|| prevChosenAuto == 'I'|| prevChosenAuto == 'J'|| prevChosenAuto == 'K'|| prevChosenAuto == 'L') {
+            station = "blue";
+        } else {
+            station = "red";
+        }
         return positionTo.remove();
     }
 
