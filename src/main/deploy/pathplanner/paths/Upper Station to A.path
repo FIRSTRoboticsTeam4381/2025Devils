@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.5326198630136987,
-        "y": 1.0574272260273971
+        "x": 1.67827868852459,
+        "y": 6.944006147540984
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.5326198630136987,
-        "y": 1.0574272260273974
+        "x": 2.67827868852459,
+        "y": 6.944006147540984
       },
       "isLocked": false,
-      "linkedName": "Pickup"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.387764084507041,
-        "y": 2.7778169014084493
+        "x": 3.0,
+        "y": 4.2
       },
       "prevControl": {
-        "x": 4.523239436619717,
-        "y": 2.1683978873239425
+        "x": 2.0,
+        "y": 4.2
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "F"
+      "linkedName": "A"
     }
   ],
   "rotationTargets": [],
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 119.99999999999999
+    "rotation": 0.0
   },
   "reversed": false,
   "folder": "Station to Reef",

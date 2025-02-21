@@ -57,7 +57,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "pickup to a"
+            "pathName": "Lower Station to A"
           }
         },
         {
@@ -67,7 +67,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "l4"
+                  "name": "l3"
                 }
               },
               {

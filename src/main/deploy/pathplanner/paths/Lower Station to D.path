@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.5326198630136987,
-        "y": 1.0574272260273971
+        "x": 1.4385245901639343,
+        "y": 0.9022028688524597
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.5326198630136987,
-        "y": 1.057427226027397
+        "x": 2.4385245901639343,
+        "y": 0.9022028688524595
       },
       "isLocked": false,
-      "linkedName": "Pickup"
+      "linkedName": "Blue Station"
     },
     {
       "anchor": {
-        "x": 3.0,
-        "y": 4.2
+        "x": 3.8766267123287674,
+        "y": 2.469841609589041
       },
       "prevControl": {
-        "x": 2.0,
-        "y": 4.2
+        "x": 2.8766267123287674,
+        "y": 2.469841609589041
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "A"
+      "linkedName": "D"
     }
   ],
   "rotationTargets": [],
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -29.999999999999996
   },
   "reversed": false,
   "folder": "Station to Reef",
