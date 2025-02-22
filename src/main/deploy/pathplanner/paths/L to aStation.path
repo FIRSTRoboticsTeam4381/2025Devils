@@ -48,7 +48,7 @@
   "folder": "Reef to Station",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -59.99999999999999
+    "rotation": -150.0
   },
   "useDefaultConstraints": true
 }

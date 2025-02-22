@@ -36,7 +36,7 @@
         "y": 5.555633802816901
       },
       "prevControl": {
-        "x": 2.700750000000001,
+        "x": 2.7007500000000015,
         "y": 7.2425
       },
       "nextControl": null,
@@ -58,13 +58,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -119.99999999999999
+    "rotation": 150.0
   },
   "reversed": false,
   "folder": "Station to Reef",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -36.56120744290933
+    "rotation": -36.0
   },
   "useDefaultConstraints": true
 }

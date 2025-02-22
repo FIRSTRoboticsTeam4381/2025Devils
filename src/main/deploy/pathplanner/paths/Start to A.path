@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.751235409029556,
-        "y": 7.065803769535868
+        "x": 4.715551582151615,
+        "y": 7.5334974315068495
       },
       "isLocked": false,
       "linkedName": "Corner Start Anti"
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -90.0
   },
   "reversed": false,
   "folder": "Start to Reef",
