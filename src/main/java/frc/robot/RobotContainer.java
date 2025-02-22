@@ -169,6 +169,9 @@ public class RobotContainer
       //extend joystick
       extender.setDefaultCommand(extender.extend(interpolateJoystick(specialist :: getRightY, Constants.stickDeadband)));
 
+      //hang triggers  
+      hang.setDefaultCommand(hang.joystickCtrl(interpolateJoystick(driver :: getLeftTriggerAxis, Constants.stickDeadband), interpolateJoystick(driver :: getRightTriggerAxis, Constants.stickDeadband)));
+
       specialist.back().or(driver.back()).onTrue(new InstantCommand(()->CommandScheduler.getInstance().cancelAll()));
       
     }
