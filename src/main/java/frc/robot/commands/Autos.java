@@ -58,10 +58,10 @@ public final class Autos {
         return new PreviewAuto("Out The Way Red");
     }
 
-    public static PreviewAuto reefPositionChooser() {
+    public static PreviewAuto reefPositionChooser(String autoName) {
         try {
             return new PreviewAuto(new SequentialCommandGroup(
-                new PathPlannerAuto("Position Chooser"),
+                new PathPlannerAuto(autoName),
                 new ConditionalCommand(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()) , 
                     new SequentialCommandGroup(
                         //Start
@@ -119,7 +119,7 @@ public final class Autos {
                         RobotContainer.getRobot().armIntake.coralEject()
                         //Finished
                     ), positionTo::isEmpty).repeatedly()
-                )
+                ), autoName
             );
         } catch (FileVersionException e) {
             // TODO Auto-generated catch block
@@ -136,6 +136,18 @@ public final class Autos {
         }
     }
 
+    public static PreviewAuto antiSide() {
+        return reefPositionChooser("aStart");
+    }
+
+    public static PreviewAuto proSide() {
+        return reefPositionChooser("pStart");
+    }
+
+    public static PreviewAuto middle() {
+        return reefPositionChooser("middleStart");
+    }
+
     public static Queue<Character> positionTo = new LinkedList<>();
 
     public static Character chosenPosition() {
@@ -149,12 +161,12 @@ public final class Autos {
         return positionTo.remove();
     }
 
-    public static Queue<String> startPos = new LinkedList<>();
+    /*public static Queue<String> startPos = new LinkedList<>();
 
     public static String chosenStartingPos() {
         startingPos = chosenStartingPos();
         return startPos.remove();
-    }
+    }*/  
 
 
     // IS SUPPOSED TO BE LEVEL CHOOSER Work In progress
