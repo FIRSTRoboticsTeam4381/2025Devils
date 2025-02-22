@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "D"
+            "pathName": "Start to D"
           }
         },
         {
@@ -32,7 +32,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "D to pickup"
+            "pathName": "D to pStation"
           }
         },
         {
@@ -57,7 +57,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Pickup to D"
+            "pathName": "pStation to D"
           }
         },
         {

@@ -3,11 +3,11 @@
   "robotLength": 0.9,
   "holonomicMode": true,
   "pathFolders": [
-    "Coral to pickup",
     "Get out the way",
-    "Place out of way",
-    "Pickup to coral",
-    "Reef presets"
+    "Place - out of the way",
+    "Start to Reef",
+    "Reef to Station",
+    "Station to Reef"
   ],
   "autoFolders": [
     "out the way"
