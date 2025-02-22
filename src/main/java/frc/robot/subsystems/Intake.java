@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RepeatCommand;
 //import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RobotContainer;
 
 @Logged
@@ -62,7 +63,7 @@ public class Intake extends SubsystemBase
     // ARM INTAKE contains 3 total motors
     SparkMaxConfig intake1Config = new SparkMaxConfig();
       intake1Config.smartCurrentLimit(40).idleMode(IdleMode.kBrake)
-      .limitSwitch.forwardLimitSwitchEnabled(true).reverseLimitSwitchEnabled(true);
+      .limitSwitch.forwardLimitSwitchEnabled(false).reverseLimitSwitchEnabled(false);
         intake1.configure(intake1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     SparkMaxConfig intake2Config = new SparkMaxConfig();
@@ -164,9 +165,11 @@ public class Intake extends SubsystemBase
 
   public Command ejectCoral() {
     return new RepeatCommand(
-      coralEject()
+      coralIntake()
     ).until(
       () -> !coralSensor1.isPressed() 
+    ).andThen(
+      new WaitCommand(0.5)
     ).andThen(
       coralStop()
     ).andThen(

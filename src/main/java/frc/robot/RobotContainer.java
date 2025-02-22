@@ -60,12 +60,26 @@ public class RobotContainer
   public final AdvancedCommands aCommands;
   
 
-  
-  public final PhotonCam camA = new PhotonCam("Camera_Left_Below", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(-7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/-4-Math.PI)) );
-  public final PhotonCam camB = new PhotonCam("Camera_Left_Upper", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/4-Math.PI)) );
-  public final PhotonCam camC = new PhotonCam("Camera_Right_Below", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/4-Math.PI)) );
-  public final PhotonCam camD = new PhotonCam("Camera_Right_Upper", new Transform3d(new Translation3d(Units.inchesToMeters(-10.375), Units.inchesToMeters(7.3125),  Units.inchesToMeters(8.5)), new Rotation3d(0,Math.PI/-6,Math.PI/4-Math.PI)) );
+  // camA, Left-Below (Forward), Translation(6.44733 in. LEFT, 8.26353 in. BACK, 10.62979 in. UP) - Rotation(60 deg. LEFT, 15 deg. UP, 0 deg.)
+  public final PhotonCam camA = new PhotonCam("Camera_Left_Below", 
+    new Transform3d(new Translation3d(Units.inchesToMeters(-8.26353), Units.inchesToMeters(6.44733), Units.inchesToMeters(10.62979)), 
+    new Rotation3d(0*Math.PI/180.0, -15*Math.PI/180.0, 60*Math.PI/180.0)));
 
+  // camB, Left-Upper (Backwards), Translation(6.36902 in. LEFT, 8.46948 in. BACK, 14.12979 in. UP) - Rotation(140 deg. LEFT, 15 deg. UP, 0 deg.)
+  public final PhotonCam camB = new PhotonCam("Camera_Left_Upper", 
+    new Transform3d(new Translation3d(Units.inchesToMeters(-8.46948), Units.inchesToMeters(6.36902), Units.inchesToMeters(14.12979)), 
+    new Rotation3d(0*Math.PI/180.0, -15*Math.PI/180.0, 140*Math.PI/180.0)));
+
+  // camC, Right-Below (Forwards), Translation(6.24207 in. RIGHT, 8.01891 in. BACK, 10.62979 in. UP) - Rotation(60 deg. RIGHT, 15 deg. UP, 0 deg.)
+  public final PhotonCam camC = new PhotonCam("Camera_Right_Below", 
+    new Transform3d(new Translation3d(Units.inchesToMeters(-8.01891), Units.inchesToMeters(-6.24207), Units.inchesToMeters(10.62979)), 
+    new Rotation3d(0*Math.PI/180.0, -15*Math.PI/180.0, -60*Math.PI/180.0)));
+
+  // camD, Right-Upper (Backwards), Translation(6.50299 in. RIGHT, 8.39213 in. BACK, 14.12979 in. UP) - Rotation(140 deg. RIGHT, 15 deg. UP, 0 deg.)
+  public final PhotonCam camD = new PhotonCam("Camera_Right_Upper", 
+    new Transform3d(new Translation3d(Units.inchesToMeters(-8.39213), Units.inchesToMeters(-6.50299), Units.inchesToMeters(14.12979)), 
+    new Rotation3d(0*Math.PI/180.0, -15*Math.PI/180.0, -140*Math.PI/180.0)));
+  
 
   // Constructor: set up the robot! 
   public RobotContainer() 
@@ -95,10 +109,10 @@ public class RobotContainer
     SmartDashboard.putNumber("Start Delay",0);
     NamedCommands.registerCommand("Coral Intake/Outtake On", armIntake.coralInOrOut());
     NamedCommands.registerCommand("Algae Intake/Outtake On", armIntake.algaeInOrOut());
-    NamedCommands.registerCommand("L1", aCommands.l1());
-    NamedCommands.registerCommand("L2", aCommands.l2());
-    NamedCommands.registerCommand("L3", aCommands.l3());
-    NamedCommands.registerCommand("L4", aCommands.l4());
+    NamedCommands.registerCommand("L1L", aCommands.l1L());
+    NamedCommands.registerCommand("L2L", aCommands.l2L());
+    NamedCommands.registerCommand("L3L", aCommands.l3L());
+    NamedCommands.registerCommand("L4L", aCommands.l4L());
 
 
     
@@ -108,7 +122,7 @@ public class RobotContainer
 
   private void configureBindings() 
   {
-    driver.back()
+    driver.start()
       .onTrue(new InstantCommand(() -> swerve.zeroGyro()));
     swerve.setDefaultCommand(new TeleopSwerve(swerve, 
             driver::getLeftY,
@@ -123,12 +137,25 @@ public class RobotContainer
       specialist.y().onTrue((armIntake.algaeStop()));
 
       // Elevator preset position controls
-      specialist.povUp().onTrue(aCommands.l4()); // How do we determine the distance value here?
-      specialist.povLeft().onTrue(aCommands.l3());
-      specialist.povRight().onTrue(aCommands.l2());
-      specialist.povDown().onTrue(aCommands.l1());
+      specialist.povUp().onTrue(aCommands.l4L()); // How do we determine the distance value here?
+      specialist.povLeft().onTrue(aCommands.l3L());
+      specialist.povRight().onTrue(aCommands.l2L());
+      specialist.povDown().onTrue(aCommands.l1L());
 
+      /* 
+      specialist.povUp().and(specialist.leftBumper()).onTrue(aCommands.l4L());
+      specialist.povLeft().and(specialist.leftBumper()).onTrue(aCommands.l3L());
+      specialist.povRight().and(specialist.leftBumper()).onTrue(aCommands.l2L());
+      specialist.povDown().and(specialist.leftBumper()).onTrue(aCommands.l1L());
+
+      specialist.povUp().and(specialist.rightBumper()).onTrue(aCommands.l4R());
+      specialist.povLeft().and(specialist.rightBumper()).onTrue(aCommands.l3R());
+      specialist.povRight().and(specialist.rightBumper()).onTrue(aCommands.l2R());
+      specialist.povDown().and(specialist.rigbtBumper()).onTrue(aCommands.l1R());
+      */
+      
       specialist.leftBumper().onTrue(aCommands.coralStation());
+      specialist.start().onTrue(aCommands.zeroEverything());
 
       //elevator joystick controls
       elevator.setDefaultCommand(elevator.joystickCtrl(interpolateJoystick(specialist:: getLeftY, Constants.stickDeadband)));
@@ -141,6 +168,11 @@ public class RobotContainer
 
       //extend joystick
       extender.setDefaultCommand(extender.extend(interpolateJoystick(specialist :: getRightY, Constants.stickDeadband)));
+
+      //hang triggers  
+      hang.setDefaultCommand(hang.joystickCtrl(interpolateJoystick(driver :: getLeftTriggerAxis, Constants.stickDeadband), interpolateJoystick(driver :: getRightTriggerAxis, Constants.stickDeadband)));
+
+      specialist.back().or(driver.back()).onTrue(new InstantCommand(()->CommandScheduler.getInstance().cancelAll()));
       
     }
 

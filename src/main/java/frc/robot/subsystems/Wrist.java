@@ -47,9 +47,10 @@ public class Wrist extends SubsystemBase
 
       wrist1Config.closedLoop
       .feedbackSensor(FeedbackSensor.kPrimaryEncoder) // TODO change to kPrimaryEncoder if the adjusted position works
-      .p(1)
+      .p(0.35)
       .i(0)
-      .d(0);
+      .d(0)
+      .outputRange(-0.35, 0.35);
     wrist1.configure(wrist1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     initialPos = wrist1.getAbsoluteEncoder().getPosition();
@@ -84,26 +85,43 @@ public class Wrist extends SubsystemBase
   }
   public void setPositionReference(double angle)
   {
-    wrist1.getClosedLoopController().setReference(angle, ControlType.kPosition); // TODO arbitrary feedforward will need to be included
+    wrist1.getClosedLoopController().setReference(adjustPosition(angle), ControlType.kPosition); // TODO arbitrary feedforward will need to be included
   }
 
 
   // Level commands
-  public Command l1() 
+  public Command l1L() 
   {
-    return wristPosition(0.5001).withName("Wrist Level 1"); // Will NEED to update positions (currently 0 as defualt)
+    return wristPosition(0.5001).withName("Level 1 Left"); // Will NEED to update positions (currently 0 as defualt)
   }
-  public Command l2() 
+  public Command l2L() 
   {
-    return wristPosition(0.6271).withName("Wrist Level 2");
+    return wristPosition(0.6271).withName("Level 2 Left");
   }
-  public Command l3() 
+  public Command l3L() 
   {
-    return wristPosition(0.95).withName("Wrist Level 3");
+    return wristPosition(0.75).withName("Level 3 Left");
   }
-  public Command l4() 
+  public Command l4L() 
   {
-    return wristPosition(0.95).withName("Wrist Level 4");
+    return wristPosition(0.95).withName("Level 4 Left");
+  }
+
+  public Command l1R() 
+  {
+    return wristPosition(0.0).withName("Level 1 Right"); // Will NEED to update positions (currently 0 as defualt)
+  }
+  public Command l2R() 
+  {
+    return wristPosition(0.0).withName("Level 2 Right");
+  }
+  public Command l3R() 
+  {
+    return wristPosition(0.0).withName("Level 3 Right");
+  }
+  public Command l4R() 
+  {
+    return wristPosition(0.0).withName("Level 4 Right");
   }
 
 
@@ -138,7 +156,7 @@ public class Wrist extends SubsystemBase
 
   public Command zero() 
   {
-    return wristPosition(0.428).withName("Zero");
+    return wristPosition(0.5).withName("Zero");
   }
   // WILL NEED TO PROGRAM TO MAKE THE WRIST PARALLEL WITH GROUND(?)UNTIL IT IS INTO THE FINAL POSITION TO SCORE
 

@@ -8,6 +8,9 @@ import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+
+import java.util.function.Supplier;
+
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
@@ -15,6 +18,8 @@ import com.revrobotics.spark.config.SparkFlexConfig;
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.SparkPosition;
 
@@ -33,10 +38,16 @@ public class Hang extends SubsystemBase
 
     SparkFlexConfig hang1Config = new SparkFlexConfig();
       hang1Config
-        .smartCurrentLimit(10)
+        .smartCurrentLimit(60)
         .idleMode(IdleMode.kBrake);
 
     hang1.configure(hang1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+  }
+
+  public Command joystickCtrl(Supplier<Double> downJoystickValue, Supplier<Double> upJoystickValue)   
+  {
+    return new RepeatCommand(
+      new InstantCommand(() -> hang1.set(upJoystickValue.get()-downJoystickValue.get()), this));
   }
 
 
