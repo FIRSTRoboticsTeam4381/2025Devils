@@ -96,10 +96,6 @@ public class RobotContainer
     autoChooser.setDefaultOption("None", Autos.none());
     autoChooser.addOption("Out The Way Blue", Autos.OutTheWayBlue());
     autoChooser.addOption("Out The Way Red", Autos.OutTheWayRed());
-    autoChooser.addOption("Blue Coral A", Autos.BlueA());
-    autoChooser.addOption("Red Coral D", Autos.RedD());
-    autoChooser.addOption("Blue Simple I", Autos.BlueSimpleI());
-    autoChooser.addOption("Red Simple F", Autos.RedSimpleF());
 
     
 
