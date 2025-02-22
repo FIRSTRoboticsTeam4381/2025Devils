@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.820425549874591,
-        "y": 7.108321375168822
+        "x": 7.018841042832337,
+        "y": 6.782353065309667
       },
       "isLocked": false,
-      "linkedName": "Corner Start Anti"
+      "linkedName": "aStart"
     },
     {
       "anchor": {
-        "x": 3.970510563380281,
-        "y": 5.527288732394365
+        "x": 5.586179577464788,
+        "y": 5.215492957746478
       },
       "prevControl": {
-        "x": 5.51531690140845,
-        "y": 6.207570422535212
+        "x": 6.422359154929577,
+        "y": 6.0375
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "K"
+      "linkedName": "I"
     }
   ],
   "rotationTargets": [],
@@ -42,10 +42,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -150.0
+    "rotation": 150.0
   },
   "reversed": false,
-  "folder": "Start to Reef",
+  "folder": "aStart to Reef (aSide)",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

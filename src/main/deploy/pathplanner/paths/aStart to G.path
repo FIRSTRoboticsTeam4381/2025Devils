@@ -4,28 +4,28 @@
     {
       "anchor": {
         "x": 7.798330479452055,
-        "y": 0.501476883561644
+        "y": 7.5334974315068495
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.806635273972603,
-        "y": 0.6667594178082186
+        "x": 8.046929695391649,
+        "y": 7.559925254614695
       },
       "isLocked": false,
-      "linkedName": "Corner Start Pro"
+      "linkedName": "aStart"
     },
     {
       "anchor": {
-        "x": 3.8766267123287674,
-        "y": 2.469841609589041
+        "x": 6.082218309859155,
+        "y": 3.699031690140844
       },
       "prevControl": {
-        "x": 4.634728252874433,
-        "y": 1.566371375092539
+        "x": 5.912752689139361,
+        "y": 3.5152345100915983
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "D"
+      "linkedName": "G"
     }
   ],
   "rotationTargets": [],
@@ -42,10 +42,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -29.999999999999996
+    "rotation": 90.0
   },
   "reversed": false,
-  "folder": "Start to Reef",
+  "folder": "aStart to Reef (aSide)",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

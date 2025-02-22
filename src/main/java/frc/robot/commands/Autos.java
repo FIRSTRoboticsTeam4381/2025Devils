@@ -58,22 +58,6 @@ public final class Autos {
         return new PreviewAuto("Out The Way Red");
     }
 
-    public static PreviewAuto RedD() {
-        return new PreviewAuto("Red Coral D");
-    }
-    
-    public static PreviewAuto BlueA() {
-        return new PreviewAuto("Blue Coral A");
-    }
-
-    public static PreviewAuto BlueSimpleI() {
-        return new PreviewAuto("Blue Simple I");
-    }
-
-    public static PreviewAuto RedSimpleF() {
-        return new PreviewAuto("Red Simple F");
-    }
-
     public static PreviewAuto reefPositionChooser() {
         try {
             return new PreviewAuto(new SequentialCommandGroup(
