@@ -96,9 +96,11 @@ public class RobotContainer
     autoChooser.setDefaultOption("None", Autos.none());
     autoChooser.addOption("Out The Way Blue", Autos.OutTheWayBlue());
     autoChooser.addOption("Out The Way Red", Autos.OutTheWayRed());
-
+    autoChooser.addOption("Processor Side Start", Autos.proSide());
+    autoChooser.addOption("Anti Processor Side Start", Autos.antiSide());
+    autoChooser.addOption("Middle Start", Autos.middle());
     
-
+    
     // Add auto controls to the dashboard
     SmartDashboard.putData("Choose Auto:", autoChooser);
     SmartDashboard.putData(CommandScheduler.getInstance());
