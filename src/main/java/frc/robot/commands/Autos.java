@@ -4,25 +4,37 @@
 
 package frc.robot.commands;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+
+import org.json.simple.parser.ParseException;
+
+import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 import com.pathplanner.lib.path.PathPlannerPath;
+import com.pathplanner.lib.util.FileVersionException;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SelectCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public final class Autos {
   
-<<<<<<< Updated upstream
-=======
 
     public static Character prevChosenAuto;
     public static String station;
     public static String startingPos;
->>>>>>> Stashed changes
   // TODO register commands in subsystem constructores using NamedCommands.registerCommand()
 
     // Test autonomous mode
@@ -62,8 +74,6 @@ public final class Autos {
         return new PreviewAuto("Red Simple F");
     }
 
-<<<<<<< Updated upstream
-=======
     public static PreviewAuto reefPositionChooser() {
         try {
             return new PreviewAuto(new SequentialCommandGroup(
@@ -81,8 +91,8 @@ public final class Autos {
                         new SelectCommand<String>(
                             Map.ofEntries(
                                 Map.entry("Left", startingPos = "Left"),
-                                Map.entry("Middle", startingPos = "Middle"),
-                                Map.entry("Right", startingPos = "Right")
+                                Map.entry("Middle", ),
+                                Map.entry("Right", AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to A")))
                             ), Autos::chosenStartingPos
                         ),
                         new ConditionalCommand(
@@ -101,7 +111,7 @@ public final class Autos {
                                     Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to K"))),
                                     Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to L")))
                                 ), Autos::chosenPosition
-                            ), null, startPos == "Left"),
+                            ), null, startinPos == "Left"),
                         new ConditionalCommand(null, null, null),
                         new ConditionalCommand(null, null, null),
                         RobotContainer.getRobot().aCommands.l4(), // Place Pos
@@ -161,6 +171,7 @@ public final class Autos {
     public static Queue<String> startPos = new LinkedList<>();
 
     public static String chosenStartingPos() {
+        startingPos = chosenStartingPos();
         return startPos.remove();
     }
 
@@ -193,7 +204,6 @@ public final class Autos {
         }
     } */
 
->>>>>>> Stashed changes
     // TODO add pathplanner autos here. Example:
     //public static PreviewAuto Front3Note(){
     //    return new PreviewAuto("Front3NoteAuto");

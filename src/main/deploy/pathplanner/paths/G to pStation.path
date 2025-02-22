@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.798330479452055,
-        "y": 0.501476883561644
+        "x": 6.082218309859155,
+        "y": 3.699031690140844
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.43771404109589,
-        "y": 0.5315282534246581
+        "x": 6.5325,
+        "y": 2.2504999999999997
       },
       "isLocked": false,
-      "linkedName": "Corner Start Pro"
+      "linkedName": "G"
     },
     {
       "anchor": {
-        "x": 6.746532534246576,
-        "y": 0.6517337328767121
+        "x": 1.4385245901639343,
+        "y": 0.9022028688524597
       },
       "prevControl": {
-        "x": 7.107148972602741,
-        "y": 0.6667594178082186
+        "x": 3.1767418032786883,
+        "y": 1.453637295081967
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "proSide Station"
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -36.0
   },
   "reversed": false,
-  "folder": "Get out the way",
+  "folder": "Reef to Station",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 90.0
   },
   "useDefaultConstraints": true
 }

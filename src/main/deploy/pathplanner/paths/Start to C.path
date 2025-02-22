@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.43771404109589,
-        "y": 0.5315282534246581
+        "x": 5.360654423114026,
+        "y": 1.1250684328574194
       },
       "isLocked": false,
       "linkedName": "Corner Start Pro"
     },
     {
       "anchor": {
-        "x": 6.746532534246576,
-        "y": 0.6517337328767121
+        "x": 3.389436619718309,
+        "y": 2.8486795774647873
       },
       "prevControl": {
-        "x": 7.107148972602741,
-        "y": 0.6667594178082186
+        "x": 4.268133802816901,
+        "y": 0.8928697183098575
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "C"
     }
   ],
   "rotationTargets": [],
@@ -42,10 +42,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -29.999999999999996
   },
   "reversed": false,
-  "folder": "Get out the way",
+  "folder": "Start to Reef",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0
