@@ -88,32 +88,28 @@ public final class Autos {
                         new ConditionalCommand(null, null, )*/ // not work fo sho
 
                         // Need smth for start position **PRIORITY**
-                        new SelectCommand<String>(
+                        /*new SelectCommand<String>(
                             Map.ofEntries(
                                 Map.entry("Left", startingPos = "Left"),
                                 Map.entry("Middle", startingPos = "Middle"),
                                 Map.entry("Right", AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to A")))
                             ), Autos::chosenStartingPos
-                        ),
-                        new ConditionalCommand(
-                            new SelectCommand<Character>(
-                                Map.ofEntries(
-                                    Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to A"))),
-                                    Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to B"))),
-                                    Map.entry('C', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to C"))),
-                                    Map.entry('D', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to D"))),
-                                    Map.entry('E', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to E"))),
-                                    Map.entry('F', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to F"))),
-                                    Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to G"))),
-                                    Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to H"))),
-                                    Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to I"))),
-                                    Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to J"))),
-                                    Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to K"))),
-                                    Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to L")))
-                                ), Autos::chosenPosition
-                            ), null, startinPos == "Left"),
-                        new ConditionalCommand(null, null, null),
-                        new ConditionalCommand(null, null, null),
+                        ),*/
+                        new SelectCommand<Character>(
+                            Map.ofEntries(
+                                Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to A"))),
+                                Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to B"))),
+                                Map.entry('C', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to C"))),
+                                Map.entry('D', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to D"))),
+                                Map.entry('E', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to E"))),
+                                Map.entry('F', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to F"))),
+                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to G"))),
+                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to H"))),
+                                Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to I"))),
+                                Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to J"))),
+                                Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to K"))),
+                                Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to L")))
+                            ), Autos::chosenPosition),
                         RobotContainer.getRobot().aCommands.l4L(), // Place Pos
                         RobotContainer.getRobot().armIntake.coralEject(), // Eject Coral
                         AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenAuto + " to " + station)), // highly doubt this will work but it worth a try // change
@@ -135,11 +131,12 @@ public final class Autos {
                                 Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to L"))) // BLUE STATION __________
                             ), Autos::chosenPosition
                         ),
-                        RobotContainer.getRobot().aCommands.l4(),
+                        RobotContainer.getRobot().aCommands.l4L(),
                         RobotContainer.getRobot().armIntake.coralEject()
                         //Finished
                     ), positionTo::isEmpty).repeatedly()
-                ), "Position Chooser");
+                )
+            );
         } catch (FileVersionException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
