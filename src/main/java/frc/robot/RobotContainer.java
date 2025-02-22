@@ -7,6 +7,7 @@ package frc.robot;
 import java.util.function.Supplier;
 
 import com.pathplanner.lib.auto.NamedCommands;
+import com.revrobotics.spark.SparkMaxAlternateEncoder;
 
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.math.geometry.Transform3d;
@@ -79,7 +80,7 @@ public class RobotContainer
   public final PhotonCam camD = new PhotonCam("Camera_Right_Upper", 
     new Transform3d(new Translation3d(Units.inchesToMeters(-8.39213), Units.inchesToMeters(-6.50299), Units.inchesToMeters(14.12979)), 
     new Rotation3d(0*Math.PI/180.0, -15*Math.PI/180.0, -140*Math.PI/180.0)));
-  
+
 
   // Constructor: set up the robot! 
   public RobotContainer() 
@@ -153,7 +154,7 @@ public class RobotContainer
       specialist.povRight().and(specialist.rightBumper()).onTrue(aCommands.l2R());
       specialist.povDown().and(specialist.rigbtBumper()).onTrue(aCommands.l1R());
       */
-      
+
       specialist.leftBumper().onTrue(aCommands.coralStation());
       specialist.start().onTrue(aCommands.zeroEverything());
 

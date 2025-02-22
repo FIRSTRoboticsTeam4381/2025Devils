@@ -91,7 +91,7 @@ public final class Autos {
                         new SelectCommand<String>(
                             Map.ofEntries(
                                 Map.entry("Left", startingPos = "Left"),
-                                Map.entry("Middle", ),
+                                Map.entry("Middle", startingPos = "Middle"),
                                 Map.entry("Right", AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to A")))
                             ), Autos::chosenStartingPos
                         ),
@@ -114,7 +114,7 @@ public final class Autos {
                             ), null, startinPos == "Left"),
                         new ConditionalCommand(null, null, null),
                         new ConditionalCommand(null, null, null),
-                        RobotContainer.getRobot().aCommands.l4(), // Place Pos
+                        RobotContainer.getRobot().aCommands.l4L(), // Place Pos
                         RobotContainer.getRobot().armIntake.coralEject(), // Eject Coral
                         AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenAuto + " to " + station)), // highly doubt this will work but it worth a try // change
                         RobotContainer.getRobot().aCommands.coralStation(),
