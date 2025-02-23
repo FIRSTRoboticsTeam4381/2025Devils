@@ -43,17 +43,21 @@ public class Wrist extends SubsystemBase
     wrist1 = new SparkFlex(56, MotorType.kBrushless);
 
     SparkFlexConfig wrist1Config = new SparkFlexConfig();
-      wrist1Config.smartCurrentLimit(50).idleMode(IdleMode.kBrake);
+      wrist1Config
+      .smartCurrentLimit(50)
+      .idleMode(IdleMode.kBrake)
+      .absoluteEncoder.positionConversionFactor(1.5625).inverted(true);
 
       wrist1Config.closedLoop
-      .feedbackSensor(FeedbackSensor.kPrimaryEncoder) // TODO change to kPrimaryEncoder if the adjusted position works
-      .p(0.35)
+      .feedbackSensor(FeedbackSensor.kAbsoluteEncoder) // TODO change to kPrimaryEncoder if the adjusted position works
+      .p(1.5)
       .i(0)
       .d(0)
-      .outputRange(-0.35, 0.35);
+      .outputRange(-1, 1);
     wrist1.configure(wrist1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     initialPos = wrist1.getAbsoluteEncoder().getPosition();
+    initialPos = wrist1.getEncoder().getPosition();
 
 
     this.setDefaultCommand( // Stop motor I think
@@ -81,30 +85,30 @@ public class Wrist extends SubsystemBase
 
   public Command wristPosition(double position) 
   {
-    return new SparkPosition(wrist1, adjustPosition(position), 0.05, this).withName("Wrist to" + position); // Will add positions later // TODO arbitrary feedforward will need to be included
+    return new SparkPosition(wrist1, position, 0.05, this).withName("Wrist to" + position); // Will add positions later // TODO arbitrary feedforward will need to be included
   }
   public void setPositionReference(double angle)
   {
-    wrist1.getClosedLoopController().setReference(adjustPosition(angle), ControlType.kPosition); // TODO arbitrary feedforward will need to be included
+    wrist1.getClosedLoopController().setReference(angle, ControlType.kPosition); // TODO arbitrary feedforward will need to be included
   }
 
 
   // Level commands
   public Command l1L() 
   {
-    return wristPosition(0.5001).withName("Level 1 Left"); // Will NEED to update positions (currently 0 as defualt)
+    return wristPosition(0.7).withName("Level 1 Left"); // Will NEED to update positions (currently 0 as defualt)
   }
   public Command l2L() 
   {
-    return wristPosition(0.6271).withName("Level 2 Left");
+    return wristPosition(0.64).withName("Level 2 Left");
   }
   public Command l3L() 
   {
-    return wristPosition(0.75).withName("Level 3 Left");
+    return wristPosition(0.516).withName("Level 3 Left");
   }
   public Command l4L() 
   {
-    return wristPosition(0.95).withName("Level 4 Left");
+    return wristPosition(0.153).withName("Level 4 Left");
   }
 
   public Command l1R() 
@@ -151,12 +155,12 @@ public class Wrist extends SubsystemBase
 
   public Command coralStation() 
   {
-    return wristPosition(0.5).withName("Wrist Coral Station");
+    return wristPosition(0.802).withName("Wrist Coral Station");
   }
 
   public Command zero() 
   {
-    return wristPosition(0.5).withName("Zero");
+    return wristPosition(0.78125).withName("Zero");
   }
   // WILL NEED TO PROGRAM TO MAKE THE WRIST PARALLEL WITH GROUND(?)UNTIL IT IS INTO THE FINAL POSITION TO SCORE
 

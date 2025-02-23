@@ -55,8 +55,9 @@ public class Intake extends SubsystemBase
     intake3 = new SparkMax(60, MotorType.kBrushless);
     
      // CHANGE CHANNELS LATER
-    coralSensor1 = intake1.getForwardLimitSwitch();
-    coralSensor2 = intake1.getReverseLimitSwitch();
+    coralSensor1 = intake1.getReverseLimitSwitch();
+    coralSensor2 = intake1.getForwardLimitSwitch();
+    
 
     // speed = 0.5; // Not used anywhere as of right now
 
@@ -169,7 +170,7 @@ public class Intake extends SubsystemBase
     ).until(
       () -> !coralSensor1.isPressed() 
     ).andThen(
-      new WaitCommand(0.5)
+      new WaitCommand(0.75)
     ).andThen(
       coralStop()
     ).andThen(

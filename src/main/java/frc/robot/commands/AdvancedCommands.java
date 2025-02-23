@@ -88,9 +88,7 @@ public class AdvancedCommands
       ).andThen(new ParallelCommandGroup(
         //robot.extender.l3(),
         robot.wrist.l3L()
-      ).andThen(new ParallelCommandGroup(
-        robot.armIntake.algaeInOrOut()
-    ))));
+      )));
     
   }
   public Command l4L()
@@ -103,9 +101,7 @@ public class AdvancedCommands
       ).andThen(new ParallelCommandGroup(
         robot.extender.l4L(),
         robot.wrist.l4L()
-      ).andThen(new ParallelCommandGroup(
-        robot.armIntake.algaeInOrOut()
-    ))));
+      )));
   }
 
 

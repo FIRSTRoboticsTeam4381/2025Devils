@@ -85,7 +85,7 @@ public class Extender extends SubsystemBase
   // preset reef position commands:
   public Command l1L()
   {
-    return extendTo(0).withName("Level 1 Left");
+    return extendTo(37.01).withName("Level 1 Left");
   }
   public Command l2L()
   {
@@ -93,11 +93,11 @@ public class Extender extends SubsystemBase
   }
   public Command l3L()
   {
-    return extendTo(88.3875).withName("Level 3 Left");
+    return extendTo(0).withName("Level 3 Left");
   }
   public Command l4L()
   {
-    return extendTo(88.3875).withName("Level 4 Left");
+    return extendTo(80).withName("Level 4 Left");
   }
 
   public Command l1R()
