@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -52,7 +53,7 @@ public class RobotContainer
   // Subsystems
   public final Swerve swerve = new Swerve();
   //public final GroundIntake groundIntake = new GroundIntake();
-  public final Intake armIntake = new Intake();
+  public final Intake intake = new Intake();
   public final Extender extender = new Extender();
   public final SwingArm swingArm = new SwingArm(extender);
   public final Wrist wrist = new Wrist();
@@ -106,12 +107,17 @@ public class RobotContainer
     SmartDashboard.putData(CommandScheduler.getInstance());
     autoChooser.onChange((listener) -> listener.showPreview());
     SmartDashboard.putNumber("Start Delay",0);
-    NamedCommands.registerCommand("Coral Intake/Outtake On", armIntake.coralInOrOut());
-    NamedCommands.registerCommand("Algae Intake/Outtake On", armIntake.algaeInOrOut());
+    NamedCommands.registerCommand("Coral Intake/Outtake On Left", intake.coralInOrOutL());
+    NamedCommands.registerCommand("Coral Intake/Outtake On Right", intake.coralInOrOutR());
+    NamedCommands.registerCommand("Algae Intake/Outtake On ", intake.algaeInOrOut());
     NamedCommands.registerCommand("L1L", aCommands.l1L());
     NamedCommands.registerCommand("L2L", aCommands.l2L());
     NamedCommands.registerCommand("L3L", aCommands.l3L());
     NamedCommands.registerCommand("L4L", aCommands.l4L());
+    NamedCommands.registerCommand("L1R", aCommands.l1R());
+    NamedCommands.registerCommand("L2R", aCommands.l2R());
+    NamedCommands.registerCommand("L3R", aCommands.l3R());
+    NamedCommands.registerCommand("L4R", aCommands.l4R());
 
 
     
@@ -128,51 +134,56 @@ public class RobotContainer
             driver::getLeftX,
             driver::getRightX,
              true,
-            driver.leftBumper()::getAsBoolean));
+            driver.a()::getAsBoolean));
 
-      specialist.a().onTrue((armIntake.coralInOrOut()));
-      specialist.b().onTrue((armIntake.algaeInOrOut()));
-      specialist.x().onTrue((armIntake.coralStop()));
-      specialist.y().onTrue((armIntake.algaeStop()));
-
-      // Elevator preset position controls
-      specialist.povUp().onTrue(aCommands.l4L()); // How do we determine the distance value here?
-      specialist.povLeft().onTrue(aCommands.l3L());
-      specialist.povRight().onTrue(aCommands.l2L());
-      specialist.povDown().onTrue(aCommands.l1L());
-
-      /* 
+      //specialist.a().and(specialist.leftBumper()).onTrue(aCommands.groundPickupLeft());
+      //specialist.b().and(specialist.leftBumper()).onTrue(aCommands.coralStationL());
+      //specialist.x().and(specialist.leftBumper()).onTrue(aCommands.processorL());
+      //specialist.a().and(specialist.rightBumper()).onTrue(aCommands.groundPickupRight());
+      specialist.b().and(specialist.rightBumper()).onTrue(aCommands.coralStationR());
+      //specialist.x().and(specialist.rightBumper()).onTrue(aCommands.processorR());
+      specialist.y().toggleOnTrue(intake.algaeInOrOut());
+      
       specialist.povUp().and(specialist.leftBumper()).onTrue(aCommands.l4L());
       specialist.povLeft().and(specialist.leftBumper()).onTrue(aCommands.l3L());
       specialist.povRight().and(specialist.leftBumper()).onTrue(aCommands.l2L());
       specialist.povDown().and(specialist.leftBumper()).onTrue(aCommands.l1L());
-
+      /* 
       specialist.povUp().and(specialist.rightBumper()).onTrue(aCommands.l4R());
       specialist.povLeft().and(specialist.rightBumper()).onTrue(aCommands.l3R());
       specialist.povRight().and(specialist.rightBumper()).onTrue(aCommands.l2R());
       specialist.povDown().and(specialist.rigbtBumper()).onTrue(aCommands.l1R());
       */
 
-      specialist.leftBumper().onTrue(aCommands.coralStation());
-      specialist.start().onTrue(aCommands.zeroEverything());
+      
+      specialist.leftStick().or(specialist.rightStick()).onTrue(aCommands.zeroEverything());
 
       //elevator joystick controls
-      elevator.setDefaultCommand(elevator.joystickCtrl(interpolateJoystick(specialist:: getLeftY, Constants.stickDeadband)));
+      elevator.setDefaultCommand(elevator.nothing());
 
       //wrist triggers  
-      wrist.setDefaultCommand(wrist.joystickCtrl(interpolateJoystick(specialist :: getLeftTriggerAxis, Constants.stickDeadband), interpolateJoystick(specialist :: getRightTriggerAxis, Constants.stickDeadband)));
+      wrist.setDefaultCommand(wrist.nothing());
 
       //swing joystick controls
-      swingArm.setDefaultCommand(swingArm.swing(interpolateJoystick(specialist :: getRightX, Constants.stickDeadband)));
+      swingArm.setDefaultCommand(swingArm.nothing());
 
       //extend joystick
-      extender.setDefaultCommand(extender.extend(interpolateJoystick(specialist :: getRightY, Constants.stickDeadband)));
+      extender.setDefaultCommand(extender.nothing());
 
       //hang triggers  
       hang.setDefaultCommand(hang.joystickCtrl(interpolateJoystick(driver :: getLeftTriggerAxis, Constants.stickDeadband), interpolateJoystick(driver :: getRightTriggerAxis, Constants.stickDeadband)));
-
-      specialist.back().or(driver.back()).onTrue(new InstantCommand(()->CommandScheduler.getInstance().cancelAll()));
       
+      specialist.back().or(driver.back()).onTrue(new InstantCommand(()->CommandScheduler.getInstance().cancelAll()));
+
+      specialist.start().toggleOnTrue(new ParallelCommandGroup(
+        elevator.joystickCtrl(interpolateJoystick(specialist:: getLeftY, Constants.stickDeadband)),
+        wrist.joystickCtrl(interpolateJoystick(specialist :: getLeftTriggerAxis, Constants.stickDeadband), interpolateJoystick(specialist :: getRightTriggerAxis, Constants.stickDeadband)),
+        swingArm.swing(interpolateJoystick(specialist :: getRightX, Constants.stickDeadband)),
+        extender.extend(interpolateJoystick(specialist :: getRightY, Constants.stickDeadband))
+        ));
+
+      driver.leftBumper().onTrue(intake.coralInOrOutL());
+      driver.rightBumper().onTrue(intake.coralInOrOutR());
     }
 
   public Command getAutonomousCommand() 
@@ -190,7 +201,7 @@ public class RobotContainer
    * @param deadzone Joystick deadzone
    * @return Transformed output
    */
-  /*public static Supplier<Double> interpolateJoystick(Supplier<Double> in, double deadzone)
+  public static Supplier<Double> interpolateJoystick(Supplier<Double> in, double deadzone)
   {
       return () -> interpolateNow(in.get(), deadzone);
   }
@@ -203,8 +214,8 @@ public class RobotContainer
           return Math.pow((in - deadzone)*(1.0/(1.0-deadzone)), 3);
       else 
           return -Math.pow((-in - deadzone)*(1.0/(1.0-deadzone)), 3);
-  }*/
-
+  }
+  /* 
   public static Supplier<Double> interpolateJoystick(Supplier<Double> in, double deadzone)
   {
       return () -> interpolateNow(in.get(), deadzone);
@@ -216,7 +227,7 @@ public class RobotContainer
       return 0.0;
     else
       return in;
-  }
+  }*/
 
     
   // Static reference to the robot class

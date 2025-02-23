@@ -73,6 +73,11 @@ public class Extender extends SubsystemBase
     return new RepeatCommand(
       new InstantCommand(() -> extend1.set(joystickValue.get()), this));
   }
+  public Command nothing() 
+  {
+    return new RepeatCommand(
+      new InstantCommand(() -> extend1.set(0), this));
+  }
 
 
   // GO TO command
@@ -117,7 +122,23 @@ public class Extender extends SubsystemBase
     return extendTo(0).withName("Level 4 Right");
   }
   
+  public Command coralStationL()
+  {
+    return extendTo(0).withName("Coral Station Left");
+  }
+  public Command coralStationR()
+  {
+    return extendTo(0).withName("Coral Station Right");
+  }
 
+  public Command processorL()
+  {
+    return extendTo(0).withName("Processor Left");
+  }
+  public Command processorR()
+  {
+    return extendTo(0).withName("Processor Right");
+  }
 
   public Command barge() 
   {
@@ -125,32 +146,14 @@ public class Extender extends SubsystemBase
   }
 
 
-  /*public Command groundPickup()
-  {
-    return extendTo(0).withName("Ground Pickup");
-  }*/
-
-
-  public Command coralStation()
-  {
-    return extendTo(0).withName("Coral Station");
-  }
-
-
-  public Command processor()
-  {
-    return extendTo(52.651875).withName("Processor");
-  }
-
-
   public Command groundPickupLeft()
  {
-    return extendTo(49.678125).withName("Ground Pickup Left");
+    return extendTo(75.53).withName("Ground Pickup Left");
  }  
 
  public Command groundPickupRight() 
 {
-  return extendTo(48.3015).withName("Ground Pickup Right");
+  return extendTo(54.87).withName("Ground Pickup Right");
 }
   public Command zero() 
   {

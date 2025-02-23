@@ -95,10 +95,10 @@ public final class Autos {
                                 Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to L")))
                             ), Autos::chosenPosition),
                         RobotContainer.getRobot().aCommands.l4L(), // Place Pos
-                        RobotContainer.getRobot().armIntake.coralEject(), // Eject Coral
+                        RobotContainer.getRobot().intake.coralEjectL(), // Eject Coral
                         AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenAuto + " to " + station)), // highly doubt this will work but it worth a try // change
-                        RobotContainer.getRobot().aCommands.coralStation(),
-                        RobotContainer.getRobot().armIntake.coralIntake(),
+                        RobotContainer.getRobot().aCommands.coralStationR(),
+                        RobotContainer.getRobot().intake.coralIntakeL(),
                         new SelectCommand<Character>(
                             Map.ofEntries( // WILL BE A PATH THAT GOES FROM STATION TO REEF
                                 Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to A"))), // BLUE STATION 
@@ -116,7 +116,7 @@ public final class Autos {
                             ), Autos::chosenPosition
                         ),
                         RobotContainer.getRobot().aCommands.l4L(),
-                        RobotContainer.getRobot().armIntake.coralEject()
+                        RobotContainer.getRobot().intake.coralEjectL()
                         //Finished
                     ), positionTo::isEmpty).repeatedly()
                 ), autoName

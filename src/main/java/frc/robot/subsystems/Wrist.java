@@ -50,7 +50,7 @@ public class Wrist extends SubsystemBase
 
       wrist1Config.closedLoop
       .feedbackSensor(FeedbackSensor.kAbsoluteEncoder) // TODO change to kPrimaryEncoder if the adjusted position works
-      .p(1.5)
+      .p(3)
       .i(0)
       .d(0)
       .outputRange(-1, 1);
@@ -81,6 +81,12 @@ public class Wrist extends SubsystemBase
     return new RepeatCommand(
       new InstantCommand(() -> wrist1.set(upJoystickValue.get()-downJoystickValue.get()), this));
   }
+  public Command nothing() 
+  {
+    return new RepeatCommand(
+      new InstantCommand(() -> wrist1.set(0), this));
+  }
+
 
 
   public Command wristPosition(double position) 
@@ -129,34 +135,42 @@ public class Wrist extends SubsystemBase
   }
 
 
-  // Scoring commands
-  public Command processorCommand() 
+  public Command coralStationL() 
   {
-    return wristPosition(7.3589).withName("Processor Scoring");
+    return wristPosition(0).withName("Wrist Coral Station Left");
   }
+  public Command coralStationR() 
+  {
+    return wristPosition(0.802).withName("Wrist Coral Station Right");
+  }
+  
+  public Command processorL() 
+  {
+    return wristPosition(0).withName("Processor Scoring Left");
+  }
+  public Command processorR() 
+  {
+    return wristPosition(0).withName("Processor Scoring Right");
+  }
+
   public Command bargeCommand() 
   {
     return wristPosition(0).withName("Barge Scoring");
   }
 
 
-  // Pickup commands
+  
   public Command groundPickupLeft() 
   {
-    return wristPosition(0.6796).withName("Wrist Ground Pickup Left"); // Will need to change #s
+    return wristPosition(0.551).withName("Wrist Ground Pickup Left"); // Will need to change #s
   }
 
-  /* 
+  
   public Command groundPickupRight() 
   {
-    return wristPosition(0.1709).withName("Wrist Ground Pickup Right"); // Will need to change #s
+    return wristPosition(1.38).withName("Wrist Ground Pickup Right"); // Will need to change #s
   }
-    */
-
-  public Command coralStation() 
-  {
-    return wristPosition(0.802).withName("Wrist Coral Station");
-  }
+  
 
   public Command zero() 
   {

@@ -59,7 +59,11 @@ public class Elevator extends SubsystemBase
     return new RepeatCommand(
       new InstantCommand(() -> elevator1.set(-joystickValue.get()), this));
   }
-
+  public Command nothing() 
+  {
+    return new RepeatCommand(
+      new InstantCommand(() -> elevator1.set(0), this));
+  }
 
   // GO TO  command
   public Command elevatorTo(double distance) 
@@ -104,22 +108,29 @@ public class Elevator extends SubsystemBase
   }
   
 
-  public Command coralStation()
+  public Command coralStationL()
   {
-    return elevatorTo(25.3).withName("Coral Station");
+    return elevatorTo(0).withName("Coral Station Left");
+  }
+  public Command coralStationR()
+  {
+    return elevatorTo(25.3).withName("Coral Station Right");
   }
   
   
-  public Command processor() {
-    return elevatorTo(-0.1076).withName("Processor");
+  public Command processorL() {
+    return elevatorTo(0).withName("Processor");
+  }
+  public Command processorR() {
+    return elevatorTo(0).withName("Processor");
   }
 
   public Command groundPickupLeft() {
-    return elevatorTo(-0.1077).withName("Ground Pickup Left");
+    return elevatorTo(0).withName("Ground Pickup Left");
   }
 
   public Command groundPickupRight() {
-    return elevatorTo(-0.1077).withName("Ground Pickup Right");
+    return elevatorTo(0).withName("Ground Pickup Right");
   }
   public Command zero() {
     return elevatorTo(0).withName("Zeroing");

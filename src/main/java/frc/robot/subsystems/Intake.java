@@ -73,8 +73,7 @@ public class Intake extends SubsystemBase
         //intake2.configure(intake2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     SparkMaxConfig motor3Config = new SparkMaxConfig();
-      motor3Config.apply(intake1Config)
-      .limitSwitch.forwardLimitSwitchEnabled(false); // Intakes just algae thus it is serpate from motor 1 and 20
+      intake1Config.smartCurrentLimit(40).idleMode(IdleMode.kBrake);// Intakes just algae thus it is serpate from motor 1 and 20
         intake3.configure(motor3Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     
@@ -105,13 +104,22 @@ public class Intake extends SubsystemBase
 
 
   // coral
-  public Command coralIntake() 
+  public Command coralIntakeR() 
   {
     return new InstantCommand(() -> intake1.set(-0.4), this); 
   }
-  public Command coralEject() 
+  public Command coralEjectR() 
   {
     return new InstantCommand(() -> intake1.set(0.4), this);
+  }
+
+  public Command coralIntakeL() 
+  {
+    return new InstantCommand(() -> intake1.set(0.4), this); 
+  }
+  public Command coralEjectL() 
+  {
+    return new InstantCommand(() -> intake1.set(-0.4), this);
   }
 
 
@@ -139,9 +147,20 @@ public class Intake extends SubsystemBase
     );
   }
 
-  public Command intakeCoral() {
+  public Command intakeCoralL() {
     return new RepeatCommand(
-      coralIntake()
+      coralIntakeL()
+    ).until(
+      () -> coralSensor1.isPressed()
+    ).andThen(
+      coralStop()
+    ).andThen(
+      RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kRightRumble, 0.6, 1)
+    );
+  }
+  public Command intakeCoralR() {
+    return new RepeatCommand(
+      coralIntakeR()
     ).until(
       () -> coralSensor1.isPressed()
     ).andThen(
@@ -162,11 +181,12 @@ public class Intake extends SubsystemBase
     ).andThen(
       () -> hasAlgae = false
     );
+
   }
 
-  public Command ejectCoral() {
+  public Command ejectCoralL() {
     return new RepeatCommand(
-      coralIntake()
+      coralEjectL()
     ).until(
       () -> !coralSensor1.isPressed() 
     ).andThen(
@@ -178,12 +198,29 @@ public class Intake extends SubsystemBase
     );
   }
 
-  public Command coralInOrOut() {
-    return new ConditionalCommand(ejectCoral(), intakeCoral(), coralSensor1::isPressed);
+  public Command ejectCoralR() {
+    return new RepeatCommand(
+      coralEjectR()
+    ).until(
+      () -> !coralSensor1.isPressed() 
+    ).andThen(
+      new WaitCommand(0.75)
+    ).andThen(
+      coralStop()
+    ).andThen(
+      RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kLeftRumble, 0.6, 1)
+    );
+  }
+
+  public Command coralInOrOutL() {
+    return new ConditionalCommand(ejectCoralL(), intakeCoralL(), coralSensor1::isPressed);
+  }
+  public Command coralInOrOutR() {
+    return new ConditionalCommand(ejectCoralR(), intakeCoralR(), coralSensor1::isPressed);
   }
 
   public Command algaeInOrOut() {
-    return new ConditionalCommand(ejectAlgae(), intakeAlgae(), () -> hasAlgae);
+    return new ConditionalCommand(ejectAlgae(), intakeAlgae(), () -> {return hasAlgae;}).withName("Algae In or Out");
   }
   
   @Override

@@ -57,10 +57,10 @@ public class SwingArm extends SubsystemBase
       .absoluteEncoder.inverted(true);
     rotateConfig1.closedLoop
       .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
-      .p(1.7)
+      .p(2.5)
       .i(0)
       .d(0)
-      .outputRange(-1.0, 1.0);
+      .outputRange(-.3, .3);
     rotateConfig2
       .apply(rotateConfig1)
       .follow(rotate1)
@@ -93,7 +93,7 @@ public class SwingArm extends SubsystemBase
 
   public Command goToAngle(double angle)
   {
-    return new SparkPosition(rotate1, angle, .05, this).withName("Rotating to " + angle); // TODO arbitrary feedforward will need to be included
+    return new SparkPosition(rotate1, angle, .025, this).withName("Rotating to " + angle); // TODO arbitrary feedforward will need to be included
   }
   public void setPositionReference(double angle)
   {
@@ -141,22 +141,30 @@ public class SwingArm extends SubsystemBase
   }
 
 
-  public Command coralStation() 
+  public Command coralStationL() 
   {
-    return goToAngle(0.612).withName("Coral Station");
+    return goToAngle(0).withName("Coral Station Left");
+  }
+  public Command coralStationR() 
+  {
+    return goToAngle(0.612).withName("Coral Station Right");
   }
 
-  public Command processor()
+  public Command processorL()
   {
-    return goToAngle(0.5226).withName("Processor");
+    return goToAngle(0).withName("Processor Left");
+  }
+  public Command processorR()
+  {
+    return goToAngle(0).withName("Processor Right");
   }
 
   public Command groundPickupLeft() {
-    return goToAngle(-5.8951).withName("Ground Pickup Left Side");
+    return goToAngle(0.428).withName("Ground Pickup Left Side");
   }
 
   public Command groundPickupRight() {
-    return goToAngle(8.7227).withName("Ground Pickup Right Side");
+    return goToAngle(0.652).withName("Ground Pickup Right Side");
   }
 
 
@@ -165,10 +173,15 @@ public class SwingArm extends SubsystemBase
     return new RepeatCommand(
       new InstantCommand(() -> rotate1.set(joystickValue.get()), this));
   }
+  public Command nothing() 
+  {
+    return new RepeatCommand(
+      new InstantCommand(() -> rotate1.set(0), this));
+  }
 
   public Command zero() 
   {
-    return goToAngle(0.476).withName("Ground Pickup Right");
+    return goToAngle(0.5).withName("Zero");
   }
 
   public double arbFeedforward(){
