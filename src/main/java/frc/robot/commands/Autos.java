@@ -57,6 +57,10 @@ public final class Autos {
     public static PreviewAuto OutTheWayRed() {
         return new PreviewAuto("Out The Way Red");
     }
+    
+    public static PreviewAuto ProSideBasic() {
+        return new PreviewAuto("Proside Basic");
+    }
 
     public static PreviewAuto reefPositionChooser(String autoName) {
         try {

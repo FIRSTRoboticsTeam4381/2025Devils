@@ -93,7 +93,7 @@ public class SwingArm extends SubsystemBase
 
   public Command goToAngle(double angle)
   {
-    return new SparkPosition(rotate1, angle, .025, this).withName("Rotating to " + angle); // TODO arbitrary feedforward will need to be included
+    return new SparkPosition(rotate1, angle, .05, this).withName("Rotating to " + angle); // TODO arbitrary feedforward will need to be included
   }
   public void setPositionReference(double angle)
   {

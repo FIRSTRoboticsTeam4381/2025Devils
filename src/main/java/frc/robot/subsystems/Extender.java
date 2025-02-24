@@ -41,7 +41,7 @@ public class Extender extends SubsystemBase
     SparkFlexConfig extend1Config = new SparkFlexConfig();
 
     extend1Config
-      .smartCurrentLimit(30)
+      .smartCurrentLimit(40)
       .idleMode(IdleMode.kBrake)
       .inverted(true)
       .limitSwitch.forwardLimitSwitchEnabled(true).reverseLimitSwitchEnabled(true);

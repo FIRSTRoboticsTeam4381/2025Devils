@@ -97,6 +97,7 @@ public class RobotContainer
     autoChooser.setDefaultOption("None", Autos.none());
     autoChooser.addOption("Out The Way Blue", Autos.OutTheWayBlue());
     autoChooser.addOption("Out The Way Red", Autos.OutTheWayRed());
+    autoChooser.addOption("Proside Basic", Autos.ProSideBasic());
     autoChooser.addOption("Processor Side Start", Autos.proSide());
     autoChooser.addOption("Anti Processor Side Start", Autos.antiSide());
     autoChooser.addOption("Middle Start", Autos.middle());
@@ -107,9 +108,11 @@ public class RobotContainer
     SmartDashboard.putData(CommandScheduler.getInstance());
     autoChooser.onChange((listener) -> listener.showPreview());
     SmartDashboard.putNumber("Start Delay",0);
-    NamedCommands.registerCommand("Coral Intake/Outtake On Left", intake.coralInOrOutL());
-    NamedCommands.registerCommand("Coral Intake/Outtake On Right", intake.coralInOrOutR());
-    NamedCommands.registerCommand("Algae Intake/Outtake On ", intake.algaeInOrOut());
+    NamedCommands.registerCommand("Coral Left", intake.coralInOrOutL());
+    NamedCommands.registerCommand("Coral Right", intake.coralInOrOutR());
+    NamedCommands.registerCommand("Algae Intake/Outtake On", intake.algaeInOrOut());
+    NamedCommands.registerCommand("Coral Station Left", aCommands.coralStationL());
+    NamedCommands.registerCommand("Coral Station Right", aCommands.coralStationR());
     NamedCommands.registerCommand("L1L", aCommands.l1L());
     NamedCommands.registerCommand("L2L", aCommands.l2L());
     NamedCommands.registerCommand("L3L", aCommands.l3L());
@@ -118,6 +121,7 @@ public class RobotContainer
     NamedCommands.registerCommand("L2R", aCommands.l2R());
     NamedCommands.registerCommand("L3R", aCommands.l3R());
     NamedCommands.registerCommand("L4R", aCommands.l4R());
+    NamedCommands.registerCommand("Zero", aCommands.zeroEverything());
 
 
     
@@ -190,8 +194,8 @@ public class RobotContainer
   {
     double startDelay=SmartDashboard.getNumber("Start Delay", 0);
     return new SequentialCommandGroup( 
-    new WaitCommand(startDelay), 
-    new ScheduleCommand(autoChooser.getSelected().auto)); 
+      new WaitCommand(startDelay), 
+      new ScheduleCommand(autoChooser.getSelected().auto)); 
   }
 
 
