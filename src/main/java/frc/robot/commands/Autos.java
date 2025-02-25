@@ -66,6 +66,9 @@ public final class Autos {
     public static PreviewAuto ProSideBasic() {
         return new PreviewAuto("Proside Basic");
     }
+    public static PreviewAuto AntiSideBasic() {
+        return new PreviewAuto("Antiside Basic");
+    }
 
     public static PreviewAuto reefASideSelector(String autoName) {
         try {

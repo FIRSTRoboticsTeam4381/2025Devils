@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "pStart to F"
+            "pathName": "aStart to I"
           }
         },
         {
@@ -19,31 +19,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "F to pStation"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Coral Left"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "pStation to E"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Coral Left"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "E to pStation"
+            "pathName": "I to aStation"
           }
         },
         {
@@ -55,13 +31,49 @@
         {
           "type": "path",
           "data": {
-            "pathName": "pStation to D"
+            "pathName": "aStation to J"
           }
         },
         {
           "type": "named",
           "data": {
             "name": "Coral Left"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "J to aStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral Station Right"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "aStation to K"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral Left"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "K to aStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral Station Right"
           }
         }
       ]

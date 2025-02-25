@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 4.948415492957746,
-        "y": 2.7636443661971817
+        "x": 4.878995901639344,
+        "y": 2.736321721311475
       },
       "prevControl": {
-        "x": 5.480771271464405,
-        "y": 2.1100783209531153
+        "x": 5.411351680146002,
+        "y": 2.082755676067409
       },
       "nextControl": null,
       "isLocked": false,
@@ -35,7 +35,7 @@
       "minWaypointRelativePos": 0.55,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 1.0,
+        "maxVelocity": 0.5,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -45,7 +45,19 @@
     }
   ],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "L4L",
+      "waypointRelativePos": 0.5023632680621248,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "L4L"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,

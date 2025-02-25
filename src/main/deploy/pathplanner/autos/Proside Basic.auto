@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "aStart to I"
+            "pathName": "pStart to F"
           }
         },
         {
@@ -19,7 +19,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "I to aStation"
+            "pathName": "F to pStation"
           }
         },
         {
@@ -31,7 +31,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "aStation to J"
+            "pathName": "pStation to E"
           }
         },
         {
@@ -43,7 +43,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "J to aStation"
+            "pathName": "E to pStation"
           }
         },
         {
@@ -55,7 +55,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "aStation to K"
+            "pathName": "pStation to D"
           }
         },
         {
@@ -67,7 +67,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "K to aStation"
+            "pathName": "D to pStation"
           }
         },
         {

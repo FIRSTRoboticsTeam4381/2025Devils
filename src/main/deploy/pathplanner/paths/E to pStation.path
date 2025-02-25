@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.948415492957746,
-        "y": 2.7636443661971817
+        "x": 4.878995901639344,
+        "y": 2.736321721311475
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.309670110828909,
-        "y": 2.0563863715077346
+        "x": 3.2402505195105067,
+        "y": 2.029063726622028
       },
       "isLocked": false,
       "linkedName": "E"
@@ -47,10 +47,26 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Coral Station Right",
-      "waypointRelativePos": 0.5,
+      "name": "Zero",
+      "waypointRelativePos": 0.1836596893990558,
       "endWaypointRelativePos": null,
-      "command": null
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Zero"
+        }
+      }
+    },
+    {
+      "name": "Coral Station Right",
+      "waypointRelativePos": 0.8453747467927013,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Coral Station Right"
+        }
+      }
     }
   ],
   "globalConstraints": {
