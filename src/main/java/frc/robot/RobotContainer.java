@@ -190,8 +190,8 @@ public class RobotContainer
         extender.extend(interpolateJoystick(specialist :: getRightY, Constants.stickDeadband))
         ));
 
-      driver.leftBumper().onTrue(intake.coralInOrOutL());
-      driver.rightBumper().onTrue(intake.coralInOrOutR());
+      driver.leftBumper().toggleOnTrue(intake.coralInOrOutL());
+      driver.rightBumper().toggleOnTrue(intake.coralInOrOutR());
     }
 
   public Command getAutonomousCommand() 

@@ -63,8 +63,20 @@ public class AdvancedCommands
       ).andThen(new ParallelCommandGroup(
         robot.extender.l1L()
     ))); 
-    
   }
+  public Command l1R()
+  {
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.l1R(),
+        robot.swingArm.l1R(),
+        robot.wrist.l1R()
+        
+      ).andThen(new ParallelCommandGroup(
+        robot.extender.l1R()
+    ))); 
+  }
+
   public Command l2L()
   {
     return combinedPositionCommand(
@@ -74,8 +86,18 @@ public class AdvancedCommands
         robot.extender.l2L(),
         robot.wrist.l2L()
       ));
-    
   }
+  public Command l2R()
+  {
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.l2R(),
+        robot.swingArm.l2R(),
+        robot.extender.l2R(),
+        robot.wrist.l2R()
+    ));
+  }
+
   public Command l3L()
   {
     return combinedPositionCommand(
@@ -85,9 +107,19 @@ public class AdvancedCommands
         robot.wrist.l3L(),
         robot.extender.l3L()
         
-      ));
-    
+      )); 
   }
+  public Command l3R()
+  {
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.l3R(),
+        robot.swingArm.l3R(),
+        robot.extender.l3R(),
+        robot.wrist.l3R()
+      ));
+  }
+
   public Command l4L()
   {
     return combinedPositionCommand(
@@ -101,57 +133,15 @@ public class AdvancedCommands
         
       )));
   }
-
-
-  public Command l1R()
-  {
-    return combinedPositionCommand(
-      new ParallelCommandGroup(
-        robot.elevator.l1R(),
-        robot.swingArm.l1R()
-        
-      ).andThen(new ParallelCommandGroup(
-        robot.extender.l1R(),
-        robot.wrist.l1R()
-    ))); 
-    
-  }
-  public Command l2R()
-  {
-    return combinedPositionCommand(
-      new ParallelCommandGroup(
-        robot.elevator.l2R(),
-        robot.swingArm.l2R()
-        
-      ).andThen(new ParallelCommandGroup(
-        robot.extender.l2R(),
-        robot.wrist.l2R()
-    )));
-    
-  }
-  public Command l3R()
-  {
-    return combinedPositionCommand(
-      new ParallelCommandGroup(
-        robot.elevator.l3R(),
-        robot.swingArm.l3R()
-        
-      ).andThen(new ParallelCommandGroup(
-        //robot.extender.l3R(),
-        robot.wrist.l3R()
-      )));
-    
-  }
   public Command l4R()
   {
     return combinedPositionCommand(
       new ParallelCommandGroup(
-        robot.elevator.l4R(),
+        robot.wrist.l4R(),
         robot.swingArm.l4R()
-        
       ).andThen(new ParallelCommandGroup(
         robot.extender.l4R(),
-        robot.wrist.l4R()
+        robot.elevator.l4R()
       )));
   }
 

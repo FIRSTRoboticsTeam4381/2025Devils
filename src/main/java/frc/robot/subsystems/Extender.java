@@ -107,24 +107,24 @@ public class Extender extends SubsystemBase
 
   public Command l1R()
   {
-    return extendTo(0).withName("Level 1 Right");
+    return l1L().withName("Level 1 Right");
   }
   public Command l2R()
   {
-    return extendTo(0).withName("Level 2 Right");
+    return l2L().withName("Level 2 Right");
   }
   public Command l3R()
   {
-    return extendTo(0).withName("Level 3 Right");
+    return l3L().withName("Level 3 Right");
   }
   public Command l4R()
   {
-    return extendTo(0).withName("Level 4 Right");
+    return l4L().withName("Level 4 Right");
   }
   
   public Command coralStationL()
   {
-    return extendTo(0).withName("Coral Station Left");
+    return coralStationR().withName("Coral Station Left");
   }
   public Command coralStationR()
   {

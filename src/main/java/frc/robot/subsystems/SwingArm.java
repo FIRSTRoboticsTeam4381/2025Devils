@@ -122,28 +122,28 @@ public class SwingArm extends SubsystemBase
 
   public Command l1R() 
   {
-    return goToAngle(0.0).withName("Level 1 Right");
+    return goToAngle(0.6).withName("Level 1 Right");
   }
 
   public Command l2R() 
   {
-    return goToAngle(0.0).withName("Level 2 Right");
+    return goToAngle(0.5772).withName("Level 2 Right");
   }
 
   public Command l3R() 
   {
-    return goToAngle(0.0).withName("Level 3 Right");
+    return goToAngle(0.76).withName("Level 3 Right");
   }
 
   public Command l4R() 
   {
-    return goToAngle(0.0).withName("Level 4 Right");
+    return goToAngle(0.943).withName("Level 4 Right");
   }
 
 
   public Command coralStationL() 
   {
-    return goToAngle(0).withName("Coral Station Left");
+    return goToAngle(0.388).withName("Coral Station Left");
   }
   public Command coralStationR() 
   {
