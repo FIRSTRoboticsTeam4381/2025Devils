@@ -63,6 +63,10 @@ public final class Autos {
         return new PreviewAuto("Out The Way Red");
     }
 
+    public static PreviewAuto ProSideBasic() {
+        return new PreviewAuto("Proside Basic");
+    }
+
     public static PreviewAuto reefASideSelector(String autoName) {
         try {
             return new PreviewAuto(new SequentialCommandGroup(
@@ -285,35 +289,6 @@ public final class Autos {
             return Commands.none();
         }}, Set.of(RobotContainer.getRobot().swerve));
     }
-
-
-    // IS SUPPOSED TO BE LEVEL CHOOSER Work In progress
-    /*public static PreviewAuto reefLevelChooser() {
-        try {
-            return new PreviewAuto(new SequentialCommandGroup(
-                new PathPlannerAuto("Level Chooser"),
-                new ConditionalCommand(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()) , 
-                    new SequentialCommandGroup(    
-                    new SelectCommand<Integer>(
-                            Map.ofEntries(
-                                Map.entry(1, AutoBuilder.followPath()),
-                                Map.entry(2, AutoBuilder.followPath()),
-                                Map.entry(3, AutoBuilder.followPath()),
-                                Map.entry(4, AutoBuilder.followPath())
-                            ), Autos::chosenPosition)
-                    ), positionTo::isEmpty).repeatedly()
-                ), "Position Chooser");
-        } catch (FileVersionException e) {
-            e.printStackTrace();
-            return Commands.none();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return Commands.none();
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return Commands.none();
-        }
-    } */
 
     // TODO add pathplanner autos here. Example:
     //public static PreviewAuto Front3Note(){
