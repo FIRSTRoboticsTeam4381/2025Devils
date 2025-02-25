@@ -57,11 +57,11 @@ public class AdvancedCommands
     return combinedPositionCommand(
       new ParallelCommandGroup(
         robot.elevator.l1L(),
-        robot.swingArm.l1L()
+        robot.swingArm.l1L(),
+        robot.wrist.l1L()
         
       ).andThen(new ParallelCommandGroup(
-        robot.extender.l1L(),
-        robot.wrist.l1L()
+        robot.extender.l1L()
     ))); 
     
   }
@@ -70,12 +70,10 @@ public class AdvancedCommands
     return combinedPositionCommand(
       new ParallelCommandGroup(
         robot.elevator.l2L(),
-        robot.swingArm.l2L()
-        
-      ).andThen(new ParallelCommandGroup(
+        robot.swingArm.l2L(),
         robot.extender.l2L(),
         robot.wrist.l2L()
-    )));
+      ));
     
   }
   public Command l3L()
@@ -83,24 +81,24 @@ public class AdvancedCommands
     return combinedPositionCommand(
       new ParallelCommandGroup(
         robot.elevator.l3L(),
-        robot.swingArm.l3L()
+        robot.swingArm.l3L(),
+        robot.wrist.l3L(),
+        robot.extender.l3L()
         
-      ).andThen(new ParallelCommandGroup(
-        //robot.extender.l3(),
-        robot.wrist.l3L()
-      )));
+      ));
     
   }
   public Command l4L()
   {
     return combinedPositionCommand(
       new ParallelCommandGroup(
-        robot.elevator.l4L(),
+        robot.wrist.l4L(),
         robot.swingArm.l4L()
         
       ).andThen(new ParallelCommandGroup(
         robot.extender.l4L(),
-        robot.wrist.l4L()
+        robot.elevator.l4L()
+        
       )));
   }
 
@@ -251,11 +249,13 @@ public class AdvancedCommands
 
   public Command zeroEverything()
   { 
-    return new ParallelCommandGroup(
+    return new ParallelCommandGroup
+    (
+      robot.elevator.elevatorTo(10)
+    ).andThen(new ParallelCommandGroup(
       robot.extender.zero(),
       robot.wrist.zero()
-
-    ).andThen(new ParallelCommandGroup(
+    )).andThen(new ParallelCommandGroup(
       robot.elevator.zero(),
       robot.swingArm.zero()
     ));

@@ -55,12 +55,12 @@ public class TeleopSwerve extends Command{
         double rAxis = -rotate.get();
 
         /* Slow Trigger */
-        double slowdown = 0.7*(slow.get() ? .75 : 1);
+        double slowdown = 0.75*(slow.get() ? .75 : 1);
         yAxis *= slowdown;
         xAxis *= slowdown;
         rAxis *= slowdown;
 
-        /* Calculates inputs for swerve subsystem */
+        /* Calculates inputs for swerve subsystem */ 
         //translation = new Translation2d(yAxis, xAxis).times(Constants.Swerve.maxSpeed);
         rotation = RobotContainer.interpolateNow(rAxis, Constants.stickDeadband) * Constants.Swerve.maxAngularVelocity;
         //s_Swerve.drive(translation, rotation, true, openLoop);

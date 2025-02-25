@@ -50,7 +50,7 @@ public class Wrist extends SubsystemBase
 
       wrist1Config.closedLoop
       .feedbackSensor(FeedbackSensor.kAbsoluteEncoder) // TODO change to kPrimaryEncoder if the adjusted position works
-      .p(3)
+      .p(5)
       .i(0)
       .d(0)
       .outputRange(-1, 1);
