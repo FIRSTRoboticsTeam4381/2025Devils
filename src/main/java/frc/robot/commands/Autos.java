@@ -85,21 +85,21 @@ public final class Autos {
                                 Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStart to K"))),
                                 Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStart to L")))
                             ), Autos::chosenPosition),
-                        RobotContainer.getRobot().aCommands.l4L(), // Place Pos
-                        RobotContainer.getRobot().intake.coralEjectL(), // Eject Coral
+                        RobotContainer.getRobot().aCommands.l4L(),
+                        RobotContainer.getRobot().intake.coralEjectL(),
                         AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to " + station)), // highly doubt this will work but it worth a try // change
                         RobotContainer.getRobot().aCommands.coralStationL(), // LEFT RIGHTS SUBJECT TO CHANGE
                         RobotContainer.getRobot().intake.coralIntakeL(),
                         new SelectCommand<Character>(
-                            Map.ofEntries( // WILL BE A PATH THAT GOES FROM STATION TO REEF
-                                Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to A"))), // BLUE STATION 
+                            Map.ofEntries(
+                                Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to A"))),
                                 Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to B"))),
-                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to G"))), // RED STAION ___________
-                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to H"))), // BLUE STATION _________
+                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to G"))),
+                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to H"))),
                                 Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to I"))),
                                 Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to J"))),
                                 Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to K"))),
-                                Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to L"))) // BLUE STATION __________
+                                Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to L")))
                             ), Autos::chosenPosition
                         ),
                         RobotContainer.getRobot().aCommands.l4L(),
@@ -141,21 +141,21 @@ public final class Autos {
                                 Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStart to G"))),
                                 Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStart to H")))
                             ), Autos::chosenPosition),
-                        RobotContainer.getRobot().aCommands.l4L(), // Place Pos
-                        RobotContainer.getRobot().intake.coralEjectL(), // Eject Coral // LEFT RIGHT SUBJECT TO CHANGE
+                        RobotContainer.getRobot().aCommands.l4L(),
+                        RobotContainer.getRobot().intake.coralEjectL(), // LEFT RIGHT SUBJECT TO CHANGE
                         AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to pStation")), // highly doubt this will work but it worth a try // change
                         RobotContainer.getRobot().aCommands.coralStationL(),
                         RobotContainer.getRobot().intake.coralIntakeL(),
                         new SelectCommand<Character>(
-                            Map.ofEntries( // WILL BE A PATH THAT GOES FROM STATION TO REEF 
-                                Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to A"))), // BLUE STATION 
-                                Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to B"))), // RED STATION ______
+                            Map.ofEntries(
+                                Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to A"))),
+                                Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to B"))),
                                 Map.entry('C', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to C"))),
                                 Map.entry('D', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to D"))),
                                 Map.entry('E', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to E"))),
                                 Map.entry('F', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to F"))),
-                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to G"))), // RED STAION ___________
-                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to H"))) // BLUE STATION _________
+                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to G"))),
+                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to H")))
                             ), Autos::chosenPosition
                         ),
                         RobotContainer.getRobot().aCommands.l4L(),
@@ -195,8 +195,8 @@ public final class Autos {
                                 Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to I"))),
                                 Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to J")))
                             ), Autos::chosenPosition),
-                        RobotContainer.getRobot().aCommands.l4L(), // Place Pos
-                        RobotContainer.getRobot().intake.coralEjectL(), // Eject Coral
+                        RobotContainer.getRobot().aCommands.l4L(),
+                        RobotContainer.getRobot().intake.coralEjectL(),
                         new DeferredCommand(() -> {try {
                             return AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to " + station));
                         } catch (FileVersionException | IOException | ParseException e) {
@@ -207,19 +207,19 @@ public final class Autos {
                         RobotContainer.getRobot().aCommands.coralStationR(),
                         RobotContainer.getRobot().intake.coralIntakeL(),
                         new SelectCommand<Character>(
-                            Map.ofEntries( // WILL BE A PATH THAT GOES FROM STATION TO REEF
-                                Map.entry('A', deferChooserPath(station, "to A")), // BLUE STATION  /// CONTINUE THIS NEXT
-                                Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to B"))), // RED STATION ______
+                            Map.ofEntries(
+                                Map.entry('A', deferChooserPath(station, "to A")), //Testing Defer Command
+                                Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to B"))),
                                 Map.entry('C', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to C"))),
                                 Map.entry('D', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to D"))),
                                 Map.entry('E', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to E"))),
                                 Map.entry('F', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to F"))),
-                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to G"))), // RED STAION ___________
-                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to H"))), // BLUE STATION _________
+                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to G"))),
+                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to H"))),
                                 Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to I"))),
                                 Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to J"))),
                                 Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to K"))),
-                                Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to L"))) // BLUE STATION __________
+                                Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to L")))
                             ), Autos::chosenPosition
                         ),
                         RobotContainer.getRobot().aCommands.l4L(),
@@ -252,7 +252,7 @@ public final class Autos {
     }
 
     public static PreviewAuto middle() {
-        return reefMSelector("middleStart");
+        return reefMSelector("mStart");
     }
 
     public static Queue<Character> positionsTo = new LinkedList<>();
