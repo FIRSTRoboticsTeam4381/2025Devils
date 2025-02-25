@@ -89,18 +89,6 @@ public class RobotContainer
     robotReference = this;
 
     aCommands = new AdvancedCommands(robotReference);
-
-
-
-    // Set up autonomous picker
-    // Add any autos you want to be able to select below
-    autoChooser.setDefaultOption("None", Autos.none());
-    autoChooser.addOption("Out The Way Blue", Autos.OutTheWayBlue());
-    autoChooser.addOption("Out The Way Red", Autos.OutTheWayRed());
-    autoChooser.addOption("Proside Basic", Autos.ProSideBasic());
-    autoChooser.addOption("Processor Side Start", Autos.proSide());
-    autoChooser.addOption("Anti Processor Side Start", Autos.antiSide());
-    autoChooser.addOption("Middle Start", Autos.middle());
     
     
     // Add auto controls to the dashboard
@@ -122,6 +110,19 @@ public class RobotContainer
     NamedCommands.registerCommand("L3R", aCommands.l3R());
     NamedCommands.registerCommand("L4R", aCommands.l4R());
     NamedCommands.registerCommand("Zero", aCommands.zeroEverything());
+
+
+
+    // Set up autonomous picker
+    // Add any autos you want to be able to select below
+    // NOTE: This needs to be executed AFTER all NamedCommands have been registered!
+    autoChooser.setDefaultOption("None", Autos.none());
+    autoChooser.addOption("Out The Way Blue", Autos.OutTheWayBlue());
+    autoChooser.addOption("Out The Way Red", Autos.OutTheWayRed());
+    autoChooser.addOption("Proside Basic", Autos.ProSideBasic());
+    autoChooser.addOption("Processor Side Start", Autos.proSide());
+    autoChooser.addOption("Anti Processor Side Start", Autos.antiSide());
+    autoChooser.addOption("Middle Start", Autos.middle());
 
 
     
