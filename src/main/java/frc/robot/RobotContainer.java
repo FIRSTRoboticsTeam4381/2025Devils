@@ -49,6 +49,7 @@ public class RobotContainer
 
   //Auto Chooser
   SendableChooser<Autos.PreviewAuto> autoChooser = new SendableChooser<>();
+  SendableChooser<Autos.PreviewAuto> autoBuilderChooser = new SendableChooser<>();
 
   // Subsystems
   public final Swerve swerve = new Swerve();
@@ -89,10 +90,12 @@ public class RobotContainer
     robotReference = this;
 
     aCommands = new AdvancedCommands(robotReference);
-    
-    
+
+
     // Add auto controls to the dashboard
     SmartDashboard.putData("Choose Auto:", autoChooser);
+    //SmartDashboard.putData("Choose Reef Position:", autoBuilderChooser); // nevermind
+    SmartDashboard.putString("Choose Reef Branch", ""); // When changed also change the key in Autos.java
     SmartDashboard.putData(CommandScheduler.getInstance());
     autoChooser.onChange((listener) -> listener.showPreview());
     SmartDashboard.putNumber("Start Delay",0);
@@ -120,10 +123,10 @@ public class RobotContainer
     autoChooser.addOption("Out The Way Blue", Autos.OutTheWayBlue());
     autoChooser.addOption("Out The Way Red", Autos.OutTheWayRed());
     autoChooser.addOption("Proside Basic", Autos.ProSideBasic());
-    autoChooser.addOption("Processor Side Start", Autos.proSide());
-    autoChooser.addOption("Anti Processor Side Start", Autos.antiSide());
-    autoChooser.addOption("Middle Start", Autos.middle());
-
+    autoChooser.addOption("Out of The Way Red", Autos.OutTheWayRed());
+    autoChooser.addOption("ReefChooser: Processor Side Start", Autos.proSide());
+    autoChooser.addOption("ReefChooser: Anti Processor Side Start", Autos.antiSide());
+    autoChooser.addOption("ReefChooser: Middle Start", Autos.middle());
 
     
     // Configure button bindings
@@ -193,7 +196,9 @@ public class RobotContainer
 
   public Command getAutonomousCommand() 
   {
+    Autos.pickPosition();
     double startDelay=SmartDashboard.getNumber("Start Delay", 0);
+
     return new SequentialCommandGroup( 
       new WaitCommand(startDelay), 
       new ScheduleCommand(autoChooser.getSelected().auto)); 

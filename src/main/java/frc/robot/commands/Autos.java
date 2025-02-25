@@ -5,10 +5,12 @@
 package frc.robot.commands;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 
 import org.json.simple.parser.ParseException;
 
@@ -17,24 +19,27 @@ import com.pathplanner.lib.commands.PathPlannerAuto;
 import com.pathplanner.lib.path.PathPlannerPath;
 import com.pathplanner.lib.util.FileVersionException;
 
+import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
+import edu.wpi.first.wpilibj2.command.DeferredCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SelectCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
+@Logged
 public final class Autos {
   
 
-    public static Character prevChosenAuto;
+    public static Character prevChosenBranch;
     public static String station;
-    public static String startingPos;
   // TODO register commands in subsystem constructores using NamedCommands.registerCommand()
 
     // Test autonomous mode
@@ -57,72 +62,166 @@ public final class Autos {
     public static PreviewAuto OutTheWayRed() {
         return new PreviewAuto("Out The Way Red");
     }
-    
-    public static PreviewAuto ProSideBasic() {
-        return new PreviewAuto("Proside Basic");
-    }
 
-    public static PreviewAuto reefPositionChooser(String autoName) {
+    public static PreviewAuto reefASideSelector(String autoName) {
         try {
             return new PreviewAuto(new SequentialCommandGroup(
                 new PathPlannerAuto(autoName),
                 new ConditionalCommand(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()) , 
                     new SequentialCommandGroup(
                         //Start
-
-                        /*new SelectCommand<String>(
-                            Map.entry("Blue Corner Start Position", startPos = "Blue Corner"),
-                            Map.entry("Red Corner Start Position", startPos = "Red Corner")),
-                        new ConditionalCommand(null, null, )*/ // not work fo sho
-
-                        // Need smth for start position **PRIORITY**
-                        /*new SelectCommand<String>(
-                            Map.ofEntries(
-                                Map.entry("Left", startingPos = "Left"),
-                                Map.entry("Middle", startingPos = "Middle"),
-                                Map.entry("Right", AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to A")))
-                            ), Autos::chosenStartingPos
-                        ),*/
                         new SelectCommand<Character>(
                             Map.ofEntries(
-                                Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to A"))),
-                                Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to B"))),
-                                Map.entry('C', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to C"))),
-                                Map.entry('D', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to D"))),
-                                Map.entry('E', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to E"))),
-                                Map.entry('F', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to F"))),
-                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to G"))),
-                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to H"))),
-                                Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to I"))),
-                                Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to J"))),
-                                Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to K"))),
-                                Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Start to L")))
+                                Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStart to A"))),
+                                Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStart to B"))),
+                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStart to G"))),
+                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStart to H"))),
+                                Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStart to I"))),
+                                Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStart to J"))),
+                                Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStart to K"))),
+                                Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStart to L")))
                             ), Autos::chosenPosition),
                         RobotContainer.getRobot().aCommands.l4L(), // Place Pos
                         RobotContainer.getRobot().intake.coralEjectL(), // Eject Coral
-                        AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenAuto + " to " + station)), // highly doubt this will work but it worth a try // change
-                        RobotContainer.getRobot().aCommands.coralStationR(),
+                        AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to " + station)), // highly doubt this will work but it worth a try // change
+                        RobotContainer.getRobot().aCommands.coralStationL(), // LEFT RIGHTS SUBJECT TO CHANGE
                         RobotContainer.getRobot().intake.coralIntakeL(),
                         new SelectCommand<Character>(
                             Map.ofEntries( // WILL BE A PATH THAT GOES FROM STATION TO REEF
-                                Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to A"))), // BLUE STATION 
-                                Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to B"))), // RED STATION ______
-                                Map.entry('C', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to C"))),
-                                Map.entry('D', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to D"))),
-                                Map.entry('E', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to E"))),
-                                Map.entry('F', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to F"))),
-                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to G"))), // RED STAION ___________
-                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to H"))), // BLUE STATION _________
-                                Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to I"))),
-                                Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to J"))),
-                                Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to K"))),
-                                Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("Station to L"))) // BLUE STATION __________
+                                Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to A"))), // BLUE STATION 
+                                Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to B"))),
+                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to G"))), // RED STAION ___________
+                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to H"))), // BLUE STATION _________
+                                Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to I"))),
+                                Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to J"))),
+                                Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to K"))),
+                                Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to L"))) // BLUE STATION __________
                             ), Autos::chosenPosition
                         ),
                         RobotContainer.getRobot().aCommands.l4L(),
                         RobotContainer.getRobot().intake.coralEjectL()
                         //Finished
-                    ), positionTo::isEmpty).repeatedly()
+                    ), positionsTo::isEmpty).repeatedly()
+                ), autoName
+            );
+        } catch (FileVersionException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return Autos.none();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return Autos.none();
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return Autos.none();
+        }
+    }
+
+    public static PreviewAuto reefPSideSelector(String autoName) {
+        try {
+            return new PreviewAuto(new SequentialCommandGroup(
+                new PathPlannerAuto(autoName),
+                new ConditionalCommand(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()) , 
+                    new SequentialCommandGroup(
+                        //Start
+                        new SelectCommand<Character>(
+                            Map.ofEntries(
+                                Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStart to A"))),
+                                Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStart to B"))),
+                                Map.entry('C', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStart to C"))),
+                                Map.entry('D', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStart to D"))),
+                                Map.entry('E', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStart to E"))),
+                                Map.entry('F', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStart to F"))),
+                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStart to G"))),
+                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStart to H")))
+                            ), Autos::chosenPosition),
+                        RobotContainer.getRobot().aCommands.l4L(), // Place Pos
+                        RobotContainer.getRobot().intake.coralEjectL(), // Eject Coral // LEFT RIGHT SUBJECT TO CHANGE
+                        AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to pStation")), // highly doubt this will work but it worth a try // change
+                        RobotContainer.getRobot().aCommands.coralStationL(),
+                        RobotContainer.getRobot().intake.coralIntakeL(),
+                        new SelectCommand<Character>(
+                            Map.ofEntries( // WILL BE A PATH THAT GOES FROM STATION TO REEF 
+                                Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to A"))), // BLUE STATION 
+                                Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to B"))), // RED STATION ______
+                                Map.entry('C', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to C"))),
+                                Map.entry('D', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to D"))),
+                                Map.entry('E', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to E"))),
+                                Map.entry('F', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to F"))),
+                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to G"))), // RED STAION ___________
+                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to H"))) // BLUE STATION _________
+                            ), Autos::chosenPosition
+                        ),
+                        RobotContainer.getRobot().aCommands.l4L(),
+                        RobotContainer.getRobot().intake.coralEject()
+                        //Finished
+                    ), positionsTo::isEmpty).repeatedly()
+                ), autoName
+            );
+        } catch (FileVersionException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return Autos.none();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return Autos.none();
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return Autos.none();
+        }
+    }
+
+    public static PreviewAuto reefMSelector(String autoName) {
+        try {
+            return new PreviewAuto(new SequentialCommandGroup(
+                new PathPlannerAuto(autoName),
+                new ConditionalCommand(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()) , 
+                    new SequentialCommandGroup(
+                        //Start
+                        new SelectCommand<Character>(
+                            Map.ofEntries(
+                                Map.entry('E', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to E"))),
+                                Map.entry('F', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to F"))),
+                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to G"))),
+                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to H"))),
+                                Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to I"))),
+                                Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to J")))
+                            ), Autos::chosenPosition),
+                        RobotContainer.getRobot().aCommands.l4L(), // Place Pos
+                        RobotContainer.getRobot().intake.coralEjectL(), // Eject Coral
+                        new DeferredCommand(() -> {try {
+                            return AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to " + station));
+                        } catch (FileVersionException | IOException | ParseException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                            return Commands.none();
+                        }}, Set.of(RobotContainer.getRobot().swerve)), // highly doubt this will work but it worth a try // change
+                        RobotContainer.getRobot().aCommands.coralStationR(),
+                        RobotContainer.getRobot().intake.coralIntakeL(),
+                        new SelectCommand<Character>(
+                            Map.ofEntries( // WILL BE A PATH THAT GOES FROM STATION TO REEF
+                                Map.entry('A', deferChooserPath(station, "to A")), // BLUE STATION  /// CONTINUE THIS NEXT
+                                Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to B"))), // RED STATION ______
+                                Map.entry('C', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to C"))),
+                                Map.entry('D', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to D"))),
+                                Map.entry('E', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to E"))),
+                                Map.entry('F', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to F"))),
+                                Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to G"))), // RED STAION ___________
+                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to H"))), // BLUE STATION _________
+                                Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to I"))),
+                                Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to J"))),
+                                Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to K"))),
+                                Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " to L"))) // BLUE STATION __________
+                            ), Autos::chosenPosition
+                        ),
+                        RobotContainer.getRobot().aCommands.l4L(),
+                        RobotContainer.getRobot().intake.coralEjectL()
+                        //Finished
+                    ), positionsTo::isEmpty).repeatedly()
                 ), autoName
             );
         } catch (FileVersionException e) {
@@ -141,36 +240,51 @@ public final class Autos {
     }
 
     public static PreviewAuto antiSide() {
-        return reefPositionChooser("aStart");
+        return reefASideSelector("aStart");
     }
 
     public static PreviewAuto proSide() {
-        return reefPositionChooser("pStart");
+        return reefPSideSelector("pStart");
     }
 
     public static PreviewAuto middle() {
-        return reefPositionChooser("middleStart");
+        return reefMSelector("middleStart");
     }
 
-    public static Queue<Character> positionTo = new LinkedList<>();
+    public static Queue<Character> positionsTo = new LinkedList<>();
 
     public static Character chosenPosition() {
-        prevChosenAuto = chosenPosition();
-        if(prevChosenAuto == 'A' || prevChosenAuto == 'H'|| prevChosenAuto == 'I'
-        || prevChosenAuto == 'J'|| prevChosenAuto == 'K'|| prevChosenAuto == 'L') {
+        prevChosenBranch = positionsTo.remove();
+        if(prevChosenBranch == 'A' || prevChosenBranch == 'H'|| prevChosenBranch == 'I'
+        || prevChosenBranch == 'J'|| prevChosenBranch == 'K'|| prevChosenBranch == 'L') {
             station = "aStation";
         } else {
             station = "pStation";
         }
-        return positionTo.remove();
+        return prevChosenBranch;
     }
 
-    /*public static Queue<String> startPos = new LinkedList<>();
+    public static void pickPosition() { // this may not be working?
+        String chosenBranch = SmartDashboard.getString("Choose Reef Branch", "");
+        positionsTo.clear();
 
-    public static String chosenStartingPos() {
-        startingPos = chosenStartingPos();
-        return startPos.remove();
-    }*/  
+        for(String n : chosenBranch.split(",")) {
+            try {
+                positionsTo.add(n.charAt(0));
+            }catch(Exception e) {}
+        }
+    }
+
+
+    public static DeferredCommand deferChooserPath(String station, String toWhere) {
+        return new DeferredCommand(() -> {try {
+            return AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " " + toWhere));
+        } catch (FileVersionException | IOException | ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return Commands.none();
+        }}, Set.of(RobotContainer.getRobot().swerve));
+    }
 
 
     // IS SUPPOSED TO BE LEVEL CHOOSER Work In progress
