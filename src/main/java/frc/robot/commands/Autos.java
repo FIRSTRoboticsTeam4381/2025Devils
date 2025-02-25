@@ -155,7 +155,7 @@ public final class Autos {
                             ), Autos::chosenPosition
                         ),
                         RobotContainer.getRobot().aCommands.l4L(),
-                        RobotContainer.getRobot().intake.coralEject()
+                        RobotContainer.getRobot().intake.coralEjectL() // L R subject to change
                         //Finished
                     ), positionsTo::isEmpty).repeatedly()
                 ), autoName

@@ -122,7 +122,7 @@ public class RobotContainer
     autoChooser.setDefaultOption("None", Autos.none());
     autoChooser.addOption("Out The Way Blue", Autos.OutTheWayBlue());
     autoChooser.addOption("Out The Way Red", Autos.OutTheWayRed());
-    autoChooser.addOption("Proside Basic", Autos.ProSideBasic());
+    //autoChooser.addOption("Proside Basic", Autos.ProSideBasic()); // add this auto??
     autoChooser.addOption("Out of The Way Red", Autos.OutTheWayRed());
     autoChooser.addOption("ReefChooser: Processor Side Start", Autos.proSide());
     autoChooser.addOption("ReefChooser: Anti Processor Side Start", Autos.antiSide());
@@ -198,6 +198,7 @@ public class RobotContainer
   {
     Autos.pickPosition();
     double startDelay=SmartDashboard.getNumber("Start Delay", 0);
+
 
     return new SequentialCommandGroup( 
       new WaitCommand(startDelay), 
