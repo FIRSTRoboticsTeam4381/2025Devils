@@ -28,7 +28,7 @@
   "driveMotorType": "vortex",
   "driveCurrentLimit": 60.0,
   "wheelCOF": 1.0,
-  "flModuleX": 0.314325,
+  "flModuleX": 0.314,
   "flModuleY": 0.264,
   "frModuleX": 0.314325,
   "frModuleY": -0.264,
@@ -38,5 +38,7 @@
   "brModuleY": -0.264,
   "bumperOffsetX": 0.0,
   "bumperOffsetY": 0.0,
-  "robotFeatures": []
+  "robotFeatures": [
+    "{\"name\":\"Rectangle\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.114,\"y\":0.0},\"size\":{\"width\":0.4,\"length\":0.2},\"borderRadius\":0.05,\"strokeWidth\":0.02,\"filled\":false}}"
+  ]
 }

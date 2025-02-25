@@ -73,7 +73,7 @@ public class Intake extends SubsystemBase
         //intake2.configure(intake2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     SparkMaxConfig motor3Config = new SparkMaxConfig();
-      intake1Config.smartCurrentLimit(40).idleMode(IdleMode.kBrake);// Intakes just algae thus it is serpate from motor 1 and 20
+      intake1Config.smartCurrentLimit(15).idleMode(IdleMode.kBrake);// Intakes just algae thus it is serpate from motor 1 and 20
         intake3.configure(motor3Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     
@@ -95,11 +95,11 @@ public class Intake extends SubsystemBase
   // algae
   public Command algaeIntake() 
   {
-    return new InstantCommand(() -> intake3.set(-0.5), this); 
+    return new InstantCommand(() -> intake3.set(-1), this); 
   }
   public Command algaeEject() 
   {
-    return new InstantCommand(() -> intake3.set(0.5), this);
+    return new InstantCommand(() -> intake3.set(1), this);
   }
 
 

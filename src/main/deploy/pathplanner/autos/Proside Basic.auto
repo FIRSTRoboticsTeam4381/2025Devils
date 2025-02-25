@@ -25,7 +25,7 @@
         {
           "type": "named",
           "data": {
-            "name": "Coral Left"
+            "name": "Coral Station Right"
           }
         },
         {
@@ -62,6 +62,18 @@
           "type": "named",
           "data": {
             "name": "Coral Left"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "K to aStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral Station Right"
           }
         }
       ]

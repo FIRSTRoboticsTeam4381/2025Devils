@@ -149,8 +149,7 @@ public class AdvancedCommands
 
   public Command coralStationR()
   {
-    return combinedPositionCommand(
-      new ParallelCommandGroup(
+    return new ParallelCommandGroup(
         robot.elevator.coralStationR(),
         robot.swingArm.coralStationR()
         
@@ -162,13 +161,12 @@ public class AdvancedCommands
       ).andThen(
         robot.aCommands.zeroEverything()
       )
-      )));
+      ));
   }
 
   public Command coralStationL()
   {
-    return combinedPositionCommand(
-      new ParallelCommandGroup(
+      return new ParallelCommandGroup(
         robot.elevator.coralStationL(),
         robot.swingArm.coralStationL()
         
@@ -180,7 +178,7 @@ public class AdvancedCommands
       ).andThen(
         robot.aCommands.zeroEverything()
       )
-      )));
+      ));
   }
 
 

@@ -144,7 +144,7 @@ public class RobotContainer
             driver.a()::getAsBoolean));
 
       //specialist.a().and(specialist.leftBumper()).onTrue(aCommands.groundPickupLeft());
-      //specialist.b().and(specialist.leftBumper()).onTrue(aCommands.coralStationL());
+      specialist.b().and(specialist.leftBumper()).onTrue(aCommands.coralStationL());
       //specialist.x().and(specialist.leftBumper()).onTrue(aCommands.processorL());
       //specialist.a().and(specialist.rightBumper()).onTrue(aCommands.groundPickupRight());
       specialist.b().and(specialist.rightBumper()).onTrue(aCommands.coralStationR());
