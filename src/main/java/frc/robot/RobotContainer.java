@@ -121,7 +121,7 @@ public class RobotContainer
     // NOTE: This needs to be executed AFTER all NamedCommands have been registered!
     autoChooser.setDefaultOption("None", Autos.none());
     autoChooser.addOption("Proside Basic", Autos.ProSideBasic());
-    autoChooser.addOption("Proside Basic", Autos.AntiSideBasic());
+    autoChooser.addOption("Antiside Basic", Autos.AntiSideBasic());
     autoChooser.addOption("Out The Way Blue", Autos.OutTheWayBlue());
     autoChooser.addOption("Out The Way Red", Autos.OutTheWayRed());
     autoChooser.addOption("ReefChooser: Processor Side Start", Autos.proSide());
