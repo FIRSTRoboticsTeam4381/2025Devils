@@ -5,9 +5,9 @@
     "data": {
       "commands": [
         {
-          "type": "path",
+          "type": "wait",
           "data": {
-            "pathName": "aStart to A"
+            "waitTime": 0.1
           }
         }
       ]
