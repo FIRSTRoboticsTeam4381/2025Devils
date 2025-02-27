@@ -95,11 +95,11 @@ public class Intake extends SubsystemBase
   // algae
   public Command algaeIntake() 
   {
-    return new InstantCommand(() -> intake3.set(-1), this); 
+    return new InstantCommand(() -> intake3.set(0.6), this); 
   }
   public Command algaeEject() 
   {
-    return new InstantCommand(() -> intake3.set(1), this);
+    return new InstantCommand(() -> intake3.set(-0.6), this);
   }
 
 

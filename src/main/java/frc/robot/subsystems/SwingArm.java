@@ -161,7 +161,7 @@ public class SwingArm extends SubsystemBase
   }
 
   public Command groundPickupLeft() {
-    return goToAngle(0.428).withName("Ground Pickup Left Side");
+    return goToAngle(0.475).withName("Ground Pickup Left Side");
   }
 
   public Command groundPickupRight() {
