@@ -1,0 +1,67 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "pStart pos"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "pStart to D"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral Left"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "D to pStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral Station Right"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "pStation to C"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral Left"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "C to pStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral Station Right"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}

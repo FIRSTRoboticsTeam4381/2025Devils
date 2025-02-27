@@ -3,12 +3,13 @@
   "robotLength": 0.925,
   "holonomicMode": true,
   "pathFolders": [
+    "Extra Base Auto Paths ",
     "Get out the way",
-    "Extra Base Auto Paths",
     "Place - out of the way",
     "Reef to Station",
     "Station to Reef",
     "aStart to Reef (aSide)",
+    "alpha Nave Nodes (should be in dif branch))",
     "mStart to Reef",
     "pStart to Reef (pSide)"
   ],

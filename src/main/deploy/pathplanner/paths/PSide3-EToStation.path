@@ -9,7 +9,7 @@
       "prevControl": null,
       "nextControl": {
         "x": 2.9969262295081984,
-        "y": 1.2378586065573731
+        "y": 1.2378586065573733
       },
       "isLocked": false,
       "linkedName": "E"
@@ -77,7 +77,7 @@
     "rotation": -36.0
   },
   "reversed": false,
-  "folder": "Extra Base Auto Paths",
+  "folder": "Extra Base Auto Paths ",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 29.999999999999996
