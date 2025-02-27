@@ -8,30 +8,42 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.8565870732775718,
-        "y": 0.9672339081674186
+        "x": 2.6037295081967216,
+        "y": 2.0829918032786874
       },
       "isLocked": false,
       "linkedName": "proSide Station"
     },
     {
       "anchor": {
-        "x": 3.344569672131148,
-        "y": 4.269549180327869
+        "x": 3.474036885245902,
+        "y": 3.9171106557377042
       },
       "prevControl": {
-        "x": 2.938069672131148,
-        "y": 3.4705491803278683
+        "x": 2.4742622950819677,
+        "y": 3.8164139344262282
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "A"
+      "linkedName": "B"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "L2L",
+      "waypointRelativePos": 0.47335526315789545,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "L2L"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -45,7 +57,7 @@
     "rotation": -90.0
   },
   "reversed": false,
-  "folder": "Station to Reef",
+  "folder": "Extra Base Auto Paths",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -36.0

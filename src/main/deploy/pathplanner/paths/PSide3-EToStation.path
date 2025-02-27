@@ -3,39 +3,39 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.026883561643835,
-        "y": 5.399850171232877
+        "x": 4.883790983606558,
+        "y": 2.694364754098359
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.507872998263554,
-        "y": 6.120561438838511
+        "x": 2.9969262295081984,
+        "y": 1.2378586065573731
       },
       "isLocked": false,
-      "linkedName": "K"
+      "linkedName": "E"
     },
     {
       "anchor": {
-        "x": 1.2371311475409836,
-        "y": 7.10344262295082
+        "x": 1.3306352459016395,
+        "y": 0.8027049180327868
       },
       "prevControl": {
-        "x": 2.3331270491803284,
-        "y": 6.588370901639345
+        "x": 2.546188524590164,
+        "y": 1.3205737704918021
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "antiSide Station"
+      "linkedName": "proSide Station"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.0,
-      "maxWaypointRelativePos": 0.4105334233625939,
+      "minWaypointRelativePos": 0,
+      "maxWaypointRelativePos": 0.48519736842105116,
       "constraints": {
-        "maxVelocity": 0.5,
+        "maxVelocity": 1.0,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -48,7 +48,7 @@
   "eventMarkers": [
     {
       "name": "Zero",
-      "waypointRelativePos": 0.19176232275489924,
+      "waypointRelativePos": 0.16677631578947427,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -59,14 +59,9 @@
     },
     {
       "name": "Coral Station Right",
-      "waypointRelativePos": 0.72923700202566,
+      "waypointRelativePos": 0.5365131578947369,
       "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Coral Station Right"
-        }
-      }
+      "command": null
     }
   ],
   "globalConstraints": {
@@ -79,13 +74,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -143.32565033042684
+    "rotation": -36.0
   },
   "reversed": false,
-  "folder": "Reef to Station",
+  "folder": "Extra Base Auto Paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -150.0
+    "rotation": 29.999999999999996
   },
   "useDefaultConstraints": true
 }

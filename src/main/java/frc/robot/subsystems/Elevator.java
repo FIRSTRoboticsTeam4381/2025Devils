@@ -87,7 +87,7 @@ public class Elevator extends SubsystemBase
   }
   public Command l4L() 
   {
-    return elevatorTo(37.5).withName("Level 4 Left");
+    return elevatorTo(38.5).withName("Level 4 Left");
   }
 
   public Command l1R() 
@@ -110,11 +110,11 @@ public class Elevator extends SubsystemBase
 
   public Command coralStationL()
   {
-    return coralStationR().withName("Coral Station Left");
+    return elevatorTo(23).withName("Coral Station Left");
   }
   public Command coralStationR()
   {
-    return elevatorTo(30).withName("Coral Station Right");
+    return elevatorTo(24).withName("Coral Station Right");
   }
   
   

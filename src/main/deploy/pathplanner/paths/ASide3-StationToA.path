@@ -3,35 +3,47 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.3306352459016395,
-        "y": 0.8027049180327868
+        "x": 1.2371311475409836,
+        "y": 7.10344262295082
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.8565870732775718,
-        "y": 0.9672339081674186
+        "x": 3.135983606557377,
+        "y": 4.981618852459017
       },
       "isLocked": false,
-      "linkedName": "proSide Station"
+      "linkedName": "antiSide Station"
     },
     {
       "anchor": {
         "x": 3.344569672131148,
-        "y": 4.269549180327869
+        "y": 4.492520491803278
       },
       "prevControl": {
-        "x": 2.938069672131148,
-        "y": 3.4705491803278683
+        "x": 2.373565573770492,
+        "y": 4.693913934426228
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "A"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "L2L",
+      "waypointRelativePos": 0.2773026315789488,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "L2L"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -45,10 +57,10 @@
     "rotation": -90.0
   },
   "reversed": false,
-  "folder": "Station to Reef",
+  "folder": "Extra Base Auto Paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -36.0
+    "rotation": -143.32565033042684
   },
   "useDefaultConstraints": true
 }

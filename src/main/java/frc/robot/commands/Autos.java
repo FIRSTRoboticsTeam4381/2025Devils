@@ -63,6 +63,14 @@ public final class Autos {
         return new PreviewAuto("Out The Way Red");
     }
 
+    public static PreviewAuto ProSideTrippple() {
+        return new PreviewAuto("ProSideTrippple");
+    }
+
+    public static PreviewAuto AntiSideTrippple() {
+        return new PreviewAuto("AntiSideTrippple");
+    }
+
     public static PreviewAuto ProSideBasic() {
         return new PreviewAuto("Proside Basic");
     }

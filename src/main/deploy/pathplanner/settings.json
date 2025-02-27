@@ -4,11 +4,12 @@
   "holonomicMode": true,
   "pathFolders": [
     "Get out the way",
-    "mStart to Reef",
+    "Extra Base Auto Paths",
     "Place - out of the way",
     "Reef to Station",
     "Station to Reef",
     "aStart to Reef (aSide)",
+    "mStart to Reef",
     "pStart to Reef (pSide)"
   ],
   "autoFolders": [

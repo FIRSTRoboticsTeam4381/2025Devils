@@ -60,7 +60,7 @@ public class SwingArm extends SubsystemBase
       .p(2.5)
       .i(0)
       .d(0)
-      .outputRange(-.35, .35);
+    .outputRange(-.375, .375);
     rotateConfig2
       .apply(rotateConfig1)
       .follow(rotate1)
@@ -80,6 +80,7 @@ public class SwingArm extends SubsystemBase
       () -> {return false;}, 
       this)
     );
+  
     */
 
     rotate1.getEncoder().getVelocity();
@@ -147,7 +148,7 @@ public class SwingArm extends SubsystemBase
   }
   public Command coralStationR() 
   {
-    return goToAngle(0.612).withName("Coral Station Right");
+    return goToAngle(0.64).withName("Coral Station Right");
   }
 
   public Command processorL()

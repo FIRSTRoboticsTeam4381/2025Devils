@@ -106,20 +106,20 @@ public class Intake extends SubsystemBase
   // coral
   public Command coralIntakeR() 
   {
-    return new InstantCommand(() -> intake1.set(-0.4), this); 
+    return new InstantCommand(() -> intake1.set(-0.5), this); 
   }
   public Command coralEjectR() 
   {
-    return new InstantCommand(() -> intake1.set(0.4), this);
+    return new InstantCommand(() -> intake1.set(0.5), this);
   }
 
   public Command coralIntakeL() 
   {
-    return new InstantCommand(() -> intake1.set(0.4), this); 
+    return new InstantCommand(() -> intake1.set(0.5), this); 
   }
   public Command coralEjectL() 
   {
-    return new InstantCommand(() -> intake1.set(-0.4), this);
+    return new InstantCommand(() -> intake1.set(-0.5), this);
   }
 
 
@@ -151,7 +151,7 @@ public class Intake extends SubsystemBase
     return new RepeatCommand(
       coralIntakeL()
     ).until(
-      () -> coralSensor1.isPressed()
+      () -> coralSensor2.isPressed()
     ).andThen(
       coralStop()
     ).andThen(
@@ -188,7 +188,7 @@ public class Intake extends SubsystemBase
     return new RepeatCommand(
       coralEjectL()
     ).until(
-      () -> !coralSensor1.isPressed() 
+      () -> !coralSensor2.isPressed() 
     ).andThen(
       new WaitCommand(0.75)
     ).andThen(
@@ -213,7 +213,7 @@ public class Intake extends SubsystemBase
   }
 
   public Command coralInOrOutL() {
-    return new ConditionalCommand(ejectCoralL(), intakeCoralL(), coralSensor1::isPressed);
+    return new ConditionalCommand(ejectCoralL(), intakeCoralL(), coralSensor2::isPressed);
   }
   public Command coralInOrOutR() {
     return new ConditionalCommand(ejectCoralR(), intakeCoralR(), coralSensor1::isPressed);
