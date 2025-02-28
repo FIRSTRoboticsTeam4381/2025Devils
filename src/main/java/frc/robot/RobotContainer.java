@@ -194,6 +194,7 @@ public class RobotContainer
 
       driver.leftBumper().toggleOnTrue(intake.coralInOrOutL());
       driver.rightBumper().toggleOnTrue(intake.coralInOrOutR());
+      driver.a().onTrue(swerve.highSpeedCommand());
     }
 
   public Command getAutonomousCommand() 
