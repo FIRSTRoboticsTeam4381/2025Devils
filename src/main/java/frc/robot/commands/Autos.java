@@ -77,6 +77,9 @@ public final class Autos {
     public static PreviewAuto AntiSideBasic() {
         return new PreviewAuto("Antiside Basic");
     }
+    public static PreviewAuto AntiSideJKL(){
+        return new PreviewAuto("AntiSideJKL");
+    }
 
     public static PreviewAuto reefASideSelector(String autoName) {
         try {

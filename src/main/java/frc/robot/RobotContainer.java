@@ -122,6 +122,7 @@ public class RobotContainer
     autoChooser.setDefaultOption("None", Autos.none());
     autoChooser.addOption("ProSideTrippple", Autos.ProSideTrippple());
     autoChooser.addOption("AntiSideTrippple", Autos.AntiSideTrippple());
+    autoChooser.addOption("AntiSideJKL", Autos.AntiSideJKL());
     autoChooser.addOption("Proside Basic", Autos.ProSideBasic());
     autoChooser.addOption("Antiside Basic", Autos.AntiSideBasic());
     autoChooser.addOption("Out The Way Blue", Autos.OutTheWayBlue());

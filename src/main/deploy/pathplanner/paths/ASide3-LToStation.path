@@ -3,39 +3,39 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.1148565573770493,
-        "y": 1.0100922131147536
+        "x": 3.7161885245901636,
+        "y": 5.361629098360655
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.114856557377049,
-        "y": 1.0100922131147536
+        "x": 2.975348360655738,
+        "y": 6.5496106557377045
       },
       "isLocked": false,
-      "linkedName": "proSide Station"
+      "linkedName": "L"
     },
     {
       "anchor": {
-        "x": 3.812090163934426,
-        "y": 2.904149590163935
+        "x": 1.1628073770491802,
+        "y": 7.159784836065573
       },
       "prevControl": {
-        "x": 2.812090163934426,
-        "y": 2.904149590163935
+        "x": 2.0307172131147544,
+        "y": 6.633524590163935
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "D"
+      "linkedName": "antiSide Station"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.6,
-      "maxWaypointRelativePos": 1.0,
+      "minWaypointRelativePos": 0,
+      "maxWaypointRelativePos": 0.48519736842105116,
       "constraints": {
-        "maxVelocity": 0.5,
+        "maxVelocity": 1.0,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -47,8 +47,19 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "L4L",
-      "waypointRelativePos": 0.5,
+      "name": "Zero",
+      "waypointRelativePos": 0.16677631578947427,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Zero"
+        }
+      }
+    },
+    {
+      "name": "Coral Station Right",
+      "waypointRelativePos": 0.5365131578947369,
       "endWaypointRelativePos": null,
       "command": null
     }
@@ -63,13 +74,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -29.999999999999996
+    "rotation": -143.32565033042684
   },
   "reversed": false,
-  "folder": "Station to Reef",
+  "folder": "Extra Base Auto Paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -36.0
+    "rotation": -150.0
   },
   "useDefaultConstraints": true
 }

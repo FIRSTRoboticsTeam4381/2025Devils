@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.557274590163935,
-        "y": 6.6563012295081965
+        "x": 6.413422131147541,
+        "y": 6.752202868852459
       },
       "isLocked": false,
       "linkedName": "aStart"
     },
     {
       "anchor": {
-        "x": 5.128340163934427,
-        "y": 5.1614344262295075
+        "x": 5.058811475409836,
+        "y": 5.217776639344262
       },
       "prevControl": {
-        "x": 5.979467213114755,
-        "y": 5.868709016393441
+        "x": 5.658196721311476,
+        "y": 6.140829918032787
       },
       "nextControl": null,
       "isLocked": false,
@@ -35,7 +35,7 @@
       "minWaypointRelativePos": 0.6312499999999989,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 0.5,
+        "maxVelocity": 0.75,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -48,7 +48,7 @@
   "eventMarkers": [
     {
       "name": "L4L",
-      "waypointRelativePos": 0.4957236842105285,
+      "waypointRelativePos": 0.0729237002025705,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
