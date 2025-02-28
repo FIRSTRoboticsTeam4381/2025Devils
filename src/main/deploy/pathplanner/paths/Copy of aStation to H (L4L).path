@@ -3,39 +3,39 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.67,
-        "y": 0.52
+        "x": 1.2371311475409836,
+        "y": 7.10344262295082
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.588150684931506,
-        "y": 3.855702054794521
+        "x": 3.5031270491803284,
+        "y": 7.027120901639345
       },
       "isLocked": false,
-      "linkedName": "pStart"
+      "linkedName": "antiSide Station"
     },
     {
       "anchor": {
-        "x": 5.38247950819672,
-        "y": 5.025973360655737
+        "x": 5.85,
+        "y": 4.152718321917808
       },
       "prevControl": {
-        "x": 6.999735852234446,
-        "y": 4.362995803390972
+        "x": 6.2010000000000005,
+        "y": 6.374750000000001
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "I"
+      "linkedName": "H"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.5,
+      "minWaypointRelativePos": 0.6161026837806332,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 1.0,
+        "maxVelocity": 3.0,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -48,9 +48,14 @@
   "eventMarkers": [
     {
       "name": "L4L",
-      "waypointRelativePos": 0.5,
+      "waypointRelativePos": 0.6021003500583378,
       "endWaypointRelativePos": null,
-      "command": null
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "L4L"
+        }
+      }
     }
   ],
   "globalConstraints": {
@@ -63,13 +68,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 150.0
+    "rotation": 90.0
   },
   "reversed": false,
-  "folder": "pStart to Reef (pSide)",
+  "folder": "Paths ONLY so were okay for Week-1",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -143.32565033042684
   },
   "useDefaultConstraints": true
 }

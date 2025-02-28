@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.3306352459016395,
-        "y": 0.8027049180327868
+        "x": 5.9475,
+        "y": 6.374750000000001
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.484360655737705,
-        "y": 1.439252049180327
+        "x": 4.5725,
+        "y": 6.6979999999999995
       },
       "isLocked": false,
-      "linkedName": "proSide Station"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.85,
-        "y": 4.152718321917808
+        "x": 3.16875,
+        "y": 6.374750000000001
       },
       "prevControl": {
-        "x": 6.439674657534246,
-        "y": 2.3089999999999997
+        "x": 4.6019999999999985,
+        "y": 6.7565
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "H"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 90.0
+    "rotation": -59.99999999999999
   },
   "reversed": false,
-  "folder": "Station to Reef",
+  "folder": "alpha Nave Nodes (should be in dif branch)",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -36.0
+    "rotation": -119.99999999999999
   },
   "useDefaultConstraints": true
 }

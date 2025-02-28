@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.350860655737706,
-        "y": 0.47903688524590166
+        "x": 7.67,
+        "y": 0.52
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.9482991803278695,
-        "y": 1.5938934426229505
+        "x": 6.267438524590164,
+        "y": 1.6348565573770488
       },
       "isLocked": false,
       "linkedName": "pStart"
@@ -71,7 +71,7 @@
     "rotation": 29.999999999999996
   },
   "reversed": false,
-  "folder": "Extra Base Auto Paths",
+  "folder": "Extra Base Auto Paths ",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

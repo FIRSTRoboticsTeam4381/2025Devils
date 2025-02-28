@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ASide3-StartToJ"
+            "pathName": "PSide3-StartToE"
           }
         },
         {
@@ -19,7 +19,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ASide3-JToStation"
+            "pathName": "PSide3-EToStation"
           }
         },
         {
@@ -31,7 +31,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ASide3-StationToA"
+            "pathName": "PSide3-StationToB"
           }
         },
         {
@@ -43,7 +43,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ASide3-AToStation"
+            "pathName": "PSide3-BToStation"
           }
         },
         {
@@ -55,7 +55,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ASide3-StationToB"
+            "pathName": "PSide3-StationToA"
           }
         },
         {
@@ -67,13 +67,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ASide3-BToStation"
+            "pathName": "PSide-AToStation"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "Week-1",
   "choreoAuto": false
 }

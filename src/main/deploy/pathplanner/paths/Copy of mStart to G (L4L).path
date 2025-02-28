@@ -3,36 +3,36 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.67,
-        "y": 0.52
+        "x": 7.57,
+        "y": 3.9
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.588150684931506,
-        "y": 3.855702054794521
+        "x": 6.517942927521143,
+        "y": 3.431149293668207
       },
       "isLocked": false,
-      "linkedName": "pStart"
+      "linkedName": "mStart"
     },
     {
       "anchor": {
-        "x": 5.38247950819672,
-        "y": 5.025973360655737
+        "x": 5.85,
+        "y": 3.699031690140844
       },
       "prevControl": {
-        "x": 6.999735852234446,
-        "y": 4.362995803390972
+        "x": 7.003371830283831,
+        "y": 4.024280102390009
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "I"
+      "linkedName": "G"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.5,
+      "minWaypointRelativePos": 0,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 1.0,
@@ -48,9 +48,14 @@
   "eventMarkers": [
     {
       "name": "L4L",
-      "waypointRelativePos": 0.5,
+      "waypointRelativePos": 0.19603267211202202,
       "endWaypointRelativePos": null,
-      "command": null
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "L4L"
+        }
+      }
     }
   ],
   "globalConstraints": {
@@ -63,10 +68,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 150.0
+    "rotation": 90.0
   },
   "reversed": false,
-  "folder": "pStart to Reef (pSide)",
+  "folder": "Paths ONLY so were okay for Week-1",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

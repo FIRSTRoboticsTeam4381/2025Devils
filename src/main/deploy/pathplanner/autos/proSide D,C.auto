@@ -7,7 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "PSide3-StartToE"
+            "pathName": "pStart pos"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Copy of pStart to D (L3L)"
           }
         },
         {
@@ -19,7 +25,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "PSide3-EToStation"
+            "pathName": "D to pStation"
           }
         },
         {
@@ -31,7 +37,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "PSide3-StationToB"
+            "pathName": "Copy of pStation to C  (L3L)"
           }
         },
         {
@@ -43,37 +49,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "PSide3-BToStation"
+            "pathName": "Copy of C to pStation"
           }
         },
         {
           "type": "named",
           "data": {
             "name": "Coral Station Right"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "PSide3-StationToA"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Coral Left"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "PSide-AToStation"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "Week-1",
   "choreoAuto": false
 }

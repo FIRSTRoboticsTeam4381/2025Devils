@@ -104,14 +104,17 @@ public class RobotContainer
     NamedCommands.registerCommand("Algae Intake/Outtake On", intake.algaeInOrOut());
     NamedCommands.registerCommand("Coral Station Left", aCommands.coralStationL());
     NamedCommands.registerCommand("Coral Station Right", aCommands.coralStationR());
+    //Left
     NamedCommands.registerCommand("L1L", aCommands.l1L());
     NamedCommands.registerCommand("L2L", aCommands.l2L());
     NamedCommands.registerCommand("L3L", aCommands.l3L());
     NamedCommands.registerCommand("L4L", aCommands.l4L());
+    //Right
     NamedCommands.registerCommand("L1R", aCommands.l1R());
     NamedCommands.registerCommand("L2R", aCommands.l2R());
     NamedCommands.registerCommand("L3R", aCommands.l3R());
     NamedCommands.registerCommand("L4R", aCommands.l4R());
+
     NamedCommands.registerCommand("Zero", aCommands.zeroEverything());
 
 
@@ -120,10 +123,12 @@ public class RobotContainer
     // Add any autos you want to be able to select below
     // NOTE: This needs to be executed AFTER all NamedCommands have been registered!
     autoChooser.setDefaultOption("None", Autos.none());
-    autoChooser.addOption("ProSideTrippple", Autos.ProSideTrippple());
-    autoChooser.addOption("AntiSideTrippple", Autos.AntiSideTrippple());
-    autoChooser.addOption("Proside Basic", Autos.ProSideBasic());
-    autoChooser.addOption("Antiside Basic", Autos.AntiSideBasic());
+    autoChooser.addOption("proSide E,B,A (trippple)", Autos.ProSideTrippple());
+    autoChooser.addOption("antiSide J,A,B (trippple)", Autos.AntiSideTrippple());
+    autoChooser.addOption("proSide D,C", Autos.ProSide_D_C());
+    autoChooser.addOption("middleSide G,H", Autos.MiddleSide_G_H());
+    autoChooser.addOption("proSide Basic (30s)", Autos.ProSideBasic());
+    autoChooser.addOption("antiSide Basic (31s)", Autos.AntiSideBasic());
     autoChooser.addOption("Out The Way Blue", Autos.OutTheWayBlue());
     autoChooser.addOption("Out The Way Red", Autos.OutTheWayRed());
     autoChooser.addOption("ReefChooser: Processor Side Start", Autos.proSide());

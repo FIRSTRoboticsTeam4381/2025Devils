@@ -1,0 +1,79 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ASide3-StartToJ"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral Left"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ASide3-JToStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral Station Right"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ASide3-StationToA"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral Left"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ASide3-AToStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral Station Right"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ASide3-StationToB"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral Left"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ASide3-BToStation"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "Week-1",
+  "choreoAuto": false
+}
