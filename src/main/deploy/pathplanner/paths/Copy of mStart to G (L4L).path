@@ -8,31 +8,31 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.383217213114757,
-        "y": 4.954918032786887
+        "x": 6.517942927521143,
+        "y": 3.431149293668207
       },
       "isLocked": false,
       "linkedName": "mStart"
     },
     {
       "anchor": {
-        "x": 5.128340163934427,
-        "y": 5.1614344262295075
+        "x": 5.85,
+        "y": 3.699031690140844
       },
       "prevControl": {
-        "x": 5.92965337104595,
-        "y": 4.9794174266912945
+        "x": 7.003371830283831,
+        "y": 4.024280102390009
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "J"
+      "linkedName": "G"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.5,
+      "minWaypointRelativePos": 0,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 1.0,
@@ -47,13 +47,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "L3L",
-      "waypointRelativePos": 0,
+      "name": "L4L",
+      "waypointRelativePos": 0.19603267211202202,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "L3L"
+          "name": "L4L"
         }
       }
     }
@@ -68,10 +68,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 150.0
+    "rotation": 90.0
   },
   "reversed": false,
-  "folder": "mStart to Reef",
+  "folder": "Paths ONLY so were okay for Week-1",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

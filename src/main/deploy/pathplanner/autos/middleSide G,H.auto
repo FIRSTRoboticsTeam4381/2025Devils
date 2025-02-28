@@ -13,7 +13,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "mStart to G"
+            "pathName": "Copy of mStart to G (L4L)"
           }
         },
         {
@@ -25,7 +25,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "G to aStation"
+            "pathName": "Copy of G to aStation"
           }
         },
         {
@@ -37,7 +37,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "aStation to H"
+            "pathName": "Copy of aStation to H (L4L)"
           }
         },
         {
@@ -49,7 +49,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "H to aStation"
+            "pathName": "Copy of H to aStation"
           }
         },
         {
@@ -62,6 +62,6 @@
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "Week-1",
   "choreoAuto": false
 }

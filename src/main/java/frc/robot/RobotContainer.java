@@ -104,14 +104,17 @@ public class RobotContainer
     NamedCommands.registerCommand("Algae Intake/Outtake On", intake.algaeInOrOut());
     NamedCommands.registerCommand("Coral Station Left", aCommands.coralStationL());
     NamedCommands.registerCommand("Coral Station Right", aCommands.coralStationR());
+    //Left
     NamedCommands.registerCommand("L1L", aCommands.l1L());
     NamedCommands.registerCommand("L2L", aCommands.l2L());
     NamedCommands.registerCommand("L3L", aCommands.l3L());
     NamedCommands.registerCommand("L4L", aCommands.l4L());
+    //Right
     NamedCommands.registerCommand("L1R", aCommands.l1R());
     NamedCommands.registerCommand("L2R", aCommands.l2R());
     NamedCommands.registerCommand("L3R", aCommands.l3R());
     NamedCommands.registerCommand("L4R", aCommands.l4R());
+    
     NamedCommands.registerCommand("Zero", aCommands.zeroEverything());
 
 

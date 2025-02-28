@@ -45,7 +45,7 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": "mStart to Reef",
+  "folder": "Start pos(s) for Chooser",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

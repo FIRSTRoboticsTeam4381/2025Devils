@@ -5,16 +5,19 @@
   "pathFolders": [
     "Extra Base Auto Paths ",
     "Get out the way",
+    "Paths ONLY so were okay for Week-1",
     "Place - out of the way",
     "Reef to Station",
+    "Start pos(s) for Chooser",
     "Station to Reef",
     "aStart to Reef (aSide)",
-    "alpha Nave Nodes (should be in dif branch))",
+    "alpha Nave Nodes (should be in dif branch)",
     "mStart to Reef",
     "pStart to Reef (pSide)"
   ],
   "autoFolders": [
     "Chooser Autos",
+    "Week-1",
     "out the way"
   ],
   "defaultMaxVel": 3.0,
