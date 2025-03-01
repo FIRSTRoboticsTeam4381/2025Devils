@@ -55,7 +55,7 @@ public class TeleopSwerve extends Command{
         double rAxis = -rotate.get();
 
         /* Slow Trigger */
-        double slowdown = s_Swerve.highSpeed?1.0:0.75/**(slow.get() ? .75 : 1)*/;
+        double slowdown = s_Swerve.highSpeed?1.0:0.75 * (slow.get() ? .75 : 1);
         yAxis *= slowdown;
         xAxis *= slowdown;
         rAxis *= slowdown;
@@ -82,7 +82,5 @@ public class TeleopSwerve extends Command{
 
         translation = y.times(Constants.Swerve.maxSpeed);
         s_Swerve.drive(translation, rotation, true, openLoop);
-
-
     }
 }
