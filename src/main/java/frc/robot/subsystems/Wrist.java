@@ -119,19 +119,19 @@ public class Wrist extends SubsystemBase
 
   public Command l1R() 
   {
-    return wristPosition(0.8625).withName("Level 1 Right"); // Will NEED to update positions (currently 0 as defualt)
+    return wristPosition(0.8).withName("Level 1 Right"); // Will NEED to update positions (currently 0 as defualt)
   }
   public Command l2R() 
   {
-    return wristPosition(0.9233).withName("Level 2 Right");
+    return wristPosition(0.9).withName("Level 2 Right");
   }
   public Command l3R() 
   {
-    return wristPosition(1.0473).withName("Level 3 Right");
+    return wristPosition(1.07).withName("Level 3 Right");
   }
   public Command l4R() 
   {
-    return wristPosition(1.4103).withName("Level 4 Right");
+    return wristPosition(1.38).withName("Level 4 Right");
   }
 
 

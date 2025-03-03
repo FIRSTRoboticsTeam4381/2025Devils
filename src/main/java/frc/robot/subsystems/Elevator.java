@@ -92,19 +92,19 @@ public class Elevator extends SubsystemBase
 
   public Command l1R() 
   {
-    return l1L().withName("Level 1 Right");
+    return elevatorTo(0).withName("Level 1 Right");
   }
   public Command l2R() 
   {
-    return l2L().withName("Level 2 Right");
+    return elevatorTo(19.83).withName("Level 2 Right");
   }
   public Command l3R() 
   {
-    return l3L().withName("Level 3 Right");
+    return elevatorTo(8.17).withName("Level 3 Right");
   }
   public Command l4R() 
   {
-    return l4L().withName("Level 4 Right");
+    return elevatorTo(34.9).withName("Level 4 Right");
   }
   
 

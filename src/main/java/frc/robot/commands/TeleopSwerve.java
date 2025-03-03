@@ -21,6 +21,7 @@ public class TeleopSwerve extends Command{
     private Supplier<Double> leftright;
     private Supplier<Double> rotate;
     private Supplier<Boolean> slow;
+    private Supplier<Boolean> fast;
 
     //static StructArrayPublisher<Translation2d> pointPub = NetworkTableInstance.getDefault()
     //  .getStructArrayTopic("joystick", Translation2d.struct).publish();
@@ -36,7 +37,7 @@ public class TeleopSwerve extends Command{
      * @param openLoop Whether to use open or closed loop math
      * @param slow Supplier for whether to activate slow mode
      */
-    public TeleopSwerve(Swerve s_Swerve, Supplier<Double> forward, Supplier<Double> leftright, Supplier<Double> rotate, boolean openLoop, Supplier<Boolean> slow){
+    public TeleopSwerve(Swerve s_Swerve, Supplier<Double> forward, Supplier<Double> leftright, Supplier<Double> rotate, boolean openLoop, Supplier<Boolean> slow, Supplier<Boolean> fast){
         this.s_Swerve = s_Swerve;
         addRequirements(s_Swerve);
 
@@ -45,6 +46,7 @@ public class TeleopSwerve extends Command{
         this.rotate = rotate;
         this.openLoop = openLoop;
         this.slow = slow;
+        this.fast = fast;
 
     }
 
@@ -55,7 +57,7 @@ public class TeleopSwerve extends Command{
         double rAxis = -rotate.get();
 
         /* Slow Trigger */
-        double slowdown = s_Swerve.highSpeed?1.0:0.75 * (slow.get() ? .75 : 1);
+        double slowdown = s_Swerve.highSpeed?1.0:0.75 * (slow.get() ? .75 : 1) * (fast.get() ? 1.25 : 1);
         yAxis *= slowdown;
         xAxis *= slowdown;
         rAxis *= slowdown;

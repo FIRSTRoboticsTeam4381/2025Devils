@@ -35,6 +35,7 @@ import frc.robot.subsystems.PhotonCam;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Extender;
 import frc.robot.subsystems.Hang;
+import frc.robot.subsystems.HangCam;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.SwingArm;
 import frc.robot.subsystems.Wrist;
@@ -83,6 +84,7 @@ public class RobotContainer
     new Transform3d(new Translation3d(Units.inchesToMeters(-8.39213), Units.inchesToMeters(-6.50299), Units.inchesToMeters(14.12979)), 
     new Rotation3d(0*Math.PI/180.0, -15*Math.PI/180.0, -150*Math.PI/180.0)));
 
+  public HangCam hangCam = new HangCam("HangCamera");
 
   // Constructor: set up the robot! 
   public RobotContainer() 
@@ -149,7 +151,8 @@ public class RobotContainer
             driver::getLeftX,
             driver::getRightX,
              true,
-            driver.a()::getAsBoolean));
+            driver.a()::getAsBoolean,
+            driver.b()::getAsBoolean));
 
       specialist.a().and(specialist.leftBumper()).onTrue(aCommands.groundPickupLeft());
       specialist.b().and(specialist.leftBumper()).onTrue(aCommands.coralStationL());
@@ -163,12 +166,12 @@ public class RobotContainer
       specialist.povLeft().and(specialist.leftBumper()).onTrue(aCommands.l3L());
       specialist.povRight().and(specialist.leftBumper()).onTrue(aCommands.l2L());
       specialist.povDown().and(specialist.leftBumper()).onTrue(aCommands.l1L());
-      /* 
+      
       specialist.povUp().and(specialist.rightBumper()).onTrue(aCommands.l4R());
       specialist.povLeft().and(specialist.rightBumper()).onTrue(aCommands.l3R());
       specialist.povRight().and(specialist.rightBumper()).onTrue(aCommands.l2R());
-      specialist.povDown().and(specialist.rigbtBumper()).onTrue(aCommands.l1R());
-      */
+      specialist.povDown().and(specialist.rightBumper()).onTrue(aCommands.l1R());
+      
 
       
       specialist.leftStick().or(specialist.rightStick()).onTrue(aCommands.zeroEverything());
