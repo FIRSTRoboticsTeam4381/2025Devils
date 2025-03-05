@@ -3,34 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.4385245901639343,
-        "y": 0.9022028688524597
+        "x": 1.3306352459016395,
+        "y": 0.8027049180327868
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.5685000000000002,
-        "y": 2.6892499999999995
+        "x": 3.666267123287671,
+        "y": 3.1760488013698636
       },
       "isLocked": false,
       "linkedName": "proSide Station"
     },
     {
       "anchor": {
-<<<<<<< Updated upstream
-        "x": 3.666267123287671,
-        "y": 5.159439212328767
+        "x": 3.790512295081968,
+        "y": 5.190204918032787
       },
       "prevControl": {
-        "x": 1.702140362724292,
-        "y": 4.53977371937102
-=======
-        "x": 3.5483606557377048,
-        "y": 4.978022540983606
-      },
-      "prevControl": {
-        "x": 1.5842338951743256,
-        "y": 4.358357048025859
->>>>>>> Stashed changes
+        "x": 1.517594178082192,
+        "y": 4.738720034246575
       },
       "nextControl": null,
       "isLocked": false,
@@ -38,7 +29,21 @@
     }
   ],
   "rotationTargets": [],
-  "constraintZones": [],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 1.0,
+      "maxWaypointRelativePos": 0.6050156739811913,
+      "constraints": {
+        "maxVelocity": 0.5,
+        "maxAcceleration": 3.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {

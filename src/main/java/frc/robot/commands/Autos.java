@@ -40,6 +40,7 @@ public final class Autos {
 
     public static Character prevChosenBranch;
     public static String station;
+    public static String prevStation;
   // TODO register commands in subsystem constructores using NamedCommands.registerCommand()
 
     // Test autonomous mode
@@ -111,6 +112,7 @@ public final class Autos {
                             ), Autos::chosenPosition),
                         RobotContainer.getRobot().aCommands.l4L(),
                         RobotContainer.getRobot().intake.coralEjectL(),
+                        RobotContainer.getRobot().intake.coralStop(),
                         new DeferredCommand(() -> {try {
                             return AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to " + station));
                         } catch (FileVersionException | IOException | ParseException e) {
@@ -120,6 +122,7 @@ public final class Autos {
                         }}, Set.of(RobotContainer.getRobot().swerve)), // highly doubt this will work but it worth a try // change
                         RobotContainer.getRobot().aCommands.coralStationL(), // LEFT RIGHTS SUBJECT TO CHANGE
                         RobotContainer.getRobot().intake.coralIntakeL(),
+                        RobotContainer.getRobot().intake.coralStop(),
                         new SelectCommand<Character>(
                             Map.ofEntries(
                                 Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to A"))),
@@ -133,7 +136,8 @@ public final class Autos {
                             ), Autos::chosenPosition
                         ),
                         RobotContainer.getRobot().aCommands.l4L(),
-                        RobotContainer.getRobot().intake.coralEjectL()
+                        RobotContainer.getRobot().intake.coralEjectL(),
+                        RobotContainer.getRobot().intake.coralStop()
                         //Finished
                     ), positionsTo::isEmpty).repeatedly()
                 ), autoName
@@ -173,6 +177,7 @@ public final class Autos {
                             ), Autos::chosenPosition),
                         RobotContainer.getRobot().aCommands.l4L(),
                         RobotContainer.getRobot().intake.coralEjectL(), // LEFT RIGHT SUBJECT TO CHANGE
+                        RobotContainer.getRobot().intake.coralStop(),
                         new DeferredCommand(() -> {try {
                             return AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to " + station));
                         } catch (FileVersionException | IOException | ParseException e) {
@@ -182,6 +187,7 @@ public final class Autos {
                         }}, Set.of(RobotContainer.getRobot().swerve)), // highly doubt this will work but it worth a try // change
                         RobotContainer.getRobot().aCommands.coralStationL(),
                         RobotContainer.getRobot().intake.coralIntakeL(),
+                        RobotContainer.getRobot().intake.coralStop(),
                         new SelectCommand<Character>(
                             Map.ofEntries(
                                 Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to A"))),
@@ -195,7 +201,8 @@ public final class Autos {
                             ), Autos::chosenPosition
                         ),
                         RobotContainer.getRobot().aCommands.l4L(),
-                        RobotContainer.getRobot().intake.coralEjectL() // L R subject to change
+                        RobotContainer.getRobot().intake.coralEjectL(), // L R subject to change
+                        RobotContainer.getRobot().intake.coralStop()
                         //Finished
                     ), positionsTo::isEmpty).repeatedly()
                 ), autoName
@@ -231,35 +238,39 @@ public final class Autos {
                                 Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to I"))),
                                 Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to J")))
                             ), Autos::chosenPosition),
-                        RobotContainer.getRobot().aCommands.l4L(),
-                        RobotContainer.getRobot().intake.coralEjectL(),
+                        new InstantCommand(() -> RobotContainer.getRobot().aCommands.l4L()),
+                        new InstantCommand(() -> RobotContainer.getRobot().intake.coralStop()),
+                        new InstantCommand(() -> RobotContainer.getRobot().intake.coralEjectL()),
                         new DeferredCommand(() -> {try {
+                            prevStation = station;
                             return AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to " + station));
                         } catch (FileVersionException | IOException | ParseException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                             return Commands.none();
                         }}, Set.of(RobotContainer.getRobot().swerve)), // highly doubt this will work but it worth a try // change
-                        RobotContainer.getRobot().aCommands.coralStationR(),
+                        /*RobotContainer.getRobot().aCommands.coralStationR(),
                         RobotContainer.getRobot().intake.coralIntakeL(),
+                        RobotContainer.getRobot().intake.coralStop(),*/
                         new SelectCommand<Character>(
                             Map.ofEntries(
-                                Map.entry('A', deferChooserPath(station, "to A")), //Testing Defer Command
-                                Map.entry('B', deferChooserPath(station, "to B")),
-                                Map.entry('C', deferChooserPath(station, "to C")),
-                                Map.entry('D', deferChooserPath(station, "to D")),
-                                Map.entry('E', deferChooserPath(station, "to E")),
-                                Map.entry('F', deferChooserPath(station, "to F")),
-                                Map.entry('G', deferChooserPath(station, "to G")),
-                                Map.entry('H', deferChooserPath(station, "to H")),
-                                Map.entry('I', deferChooserPath(station, "to I")),
-                                Map.entry('J', deferChooserPath(station, "to J")),
-                                Map.entry('K', deferChooserPath(station, "to K")),
-                                Map.entry('L', deferChooserPath(station, "to L"))
+                                Map.entry('A', deferChooserPath(prevStation, "to A")), //Testing Defer Command
+                                Map.entry('B', deferChooserPath(prevStation, "to B")),
+                                Map.entry('C', deferChooserPath(prevStation, "to C")),
+                                Map.entry('D', deferChooserPath(prevStation, "to D")),
+                                Map.entry('E', deferChooserPath(prevStation, "to E")),
+                                Map.entry('F', deferChooserPath(prevStation, "to F")),
+                                Map.entry('G', deferChooserPath(prevStation, "to G")),
+                                Map.entry('H', deferChooserPath(prevStation, "to H")),
+                                Map.entry('I', deferChooserPath(prevStation, "to I")),
+                                Map.entry('J', deferChooserPath(prevStation, "to J")),
+                                Map.entry('K', deferChooserPath(prevStation, "to K")),
+                                Map.entry('L', deferChooserPath(prevStation, "to L"))
                             ), Autos::chosenPosition
                         ),
                         RobotContainer.getRobot().aCommands.l4L(),
-                        RobotContainer.getRobot().intake.coralEjectL()
+                        RobotContainer.getRobot().intake.coralEjectL(),
+                        RobotContainer.getRobot().intake.coralStop()
                         //Finished
                     ), positionsTo::isEmpty).repeatedly()
                 ), autoName
@@ -304,7 +315,7 @@ public final class Autos {
         return prevChosenBranch;
     }
 
-    public static void pickPosition() { // this may not be working?
+    public static void pickPosition() {
         String chosenBranch = SmartDashboard.getString("Choose Reef Branch", "");
         positionsTo.clear();
 
@@ -316,9 +327,9 @@ public final class Autos {
     }
 
 
-    public static DeferredCommand deferChooserPath(String station, String toWhere) {
+    public static DeferredCommand deferChooserPath(String previousStation, String toWhere) {
         return new DeferredCommand(() -> {try {
-            return AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " " + toWhere));
+            return AutoBuilder.followPath(PathPlannerPath.fromPathFile(previousStation + " " + toWhere));
         } catch (FileVersionException | IOException | ParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
