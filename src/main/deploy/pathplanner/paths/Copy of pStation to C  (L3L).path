@@ -74,7 +74,7 @@
   "folder": "D - Paths ONLY so were okay for Week-1",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -36.0
+    "rotation": 140.0
   },
   "useDefaultConstraints": true
 }

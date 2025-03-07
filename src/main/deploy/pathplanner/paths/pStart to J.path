@@ -63,10 +63,15 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "L4L",
+      "name": "Level",
       "waypointRelativePos": 1.0,
       "endWaypointRelativePos": null,
-      "command": null
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Level"
+        }
+      }
     }
   ],
   "globalConstraints": {

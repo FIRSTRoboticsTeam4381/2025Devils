@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.071960616438356,
-        "y": 1.4330693493150681
+        "x": 3.3001890441006707,
+        "y": 2.0890022512121926
       },
       "isLocked": false,
       "linkedName": "E"
@@ -20,8 +20,8 @@
         "y": 0.8027049180327868
       },
       "prevControl": {
-        "x": 2.9300085616438354,
-        "y": 1.222709760273973
+        "x": 2.8678921053348803,
+        "y": 1.6467866181365618
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,7 +33,7 @@
     {
       "name": "Constraints Zone",
       "minWaypointRelativePos": 0,
-      "maxWaypointRelativePos": 0.2,
+      "maxWaypointRelativePos": 0.4,
       "constraints": {
         "maxVelocity": 0.5,
         "maxAcceleration": 3.0,
@@ -58,13 +58,13 @@
       }
     },
     {
-      "name": "Coral Station Right",
+      "name": "Coral Station Left",
       "waypointRelativePos": 0.8453747467927013,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Coral Station Right"
+          "name": "Coral Station Left"
         }
       }
     }
@@ -79,7 +79,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -36.0
+    "rotation": 140.0
   },
   "reversed": false,
   "folder": "Reef to Station",

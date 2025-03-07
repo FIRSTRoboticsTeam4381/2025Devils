@@ -48,7 +48,7 @@
   "eventMarkers": [
     {
       "name": "Zero",
-      "waypointRelativePos": 0.1890614449696151,
+      "waypointRelativePos": 0.2,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -58,13 +58,13 @@
       }
     },
     {
-      "name": "Coral Station Right",
-      "waypointRelativePos": 0.7805536799459808,
+      "name": "Coral Station Left",
+      "waypointRelativePos": 0.75,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Coral Station Right"
+          "name": "Coral Station Left"
         }
       }
     }
@@ -79,7 +79,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -143.32565033042684
+    "rotation": 35.0
   },
   "reversed": false,
   "folder": "Reef to Station",

@@ -58,7 +58,7 @@
       }
     },
     {
-      "name": "Coral Station Right",
+      "name": "",
       "waypointRelativePos": 0.5365131578947369,
       "endWaypointRelativePos": null,
       "command": null
@@ -74,7 +74,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -143.32565033042684
+    "rotation": 35.0
   },
   "reversed": false,
   "folder": "D - Extra Base Auto Paths ",

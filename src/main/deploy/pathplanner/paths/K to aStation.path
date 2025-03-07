@@ -58,13 +58,13 @@
       }
     },
     {
-      "name": "Coral Station Right",
+      "name": "Coral Station Left",
       "waypointRelativePos": 0.72923700202566,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Coral Station Right"
+          "name": "Coral Station Left"
         }
       }
     }
@@ -79,7 +79,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -143.32565033042684
+    "rotation": 35.0
   },
   "reversed": false,
   "folder": "Reef to Station",
