@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.function.Supplier;
 
 import org.json.simple.parser.ParseException;
 
@@ -238,11 +239,8 @@ public final class Autos {
                                 Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to I"))),
                                 Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to J")))
                             ), Autos::chosenPosition),
-                        new InstantCommand(() -> RobotContainer.getRobot().aCommands.l4L()),
-                        new InstantCommand(() -> RobotContainer.getRobot().intake.coralStop()),
-                        new InstantCommand(() -> RobotContainer.getRobot().intake.coralEjectL()),
+                        new InstantCommand(() -> RobotContainer.getRobot().intake.ejectCoralL()),
                         new DeferredCommand(() -> {try {
-                            System.err.println(station);
                             return AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to " + station));
                         } catch (FileVersionException | IOException | ParseException e) {
                             // TODO Auto-generated catch block
@@ -254,21 +252,22 @@ public final class Autos {
                         RobotContainer.getRobot().intake.coralStop(),*/
                         new SelectCommand<Character>(
                             Map.ofEntries(
-                                Map.entry('A', deferChooserPath(station, "to A")), //Testing Defer Command
-                                Map.entry('B', deferChooserPath(station, "to B")),
-                                Map.entry('C', deferChooserPath(station, "to C")),
-                                Map.entry('D', deferChooserPath(station, "to D")),
-                                Map.entry('E', deferChooserPath(station, "to E")),
-                                Map.entry('F', deferChooserPath(station, "to F")),
-                                Map.entry('G', deferChooserPath(station, "to G")),
-                                Map.entry('H', deferChooserPath(station, "to H")),
-                                Map.entry('I', deferChooserPath(station, "to I")),
-                                Map.entry('J', deferChooserPath(station, "to J")),
-                                Map.entry('K', deferChooserPath(station, "to K")),
-                                Map.entry('L', deferChooserPath(station, "to L"))
+                                Map.entry('A', deferChooserPath(() -> station, "to A")), //Testing Defer Command
+                                Map.entry('B', deferChooserPath(() -> station, "to B")),
+                                Map.entry('C', deferChooserPath(() -> station, "to C")),
+                                Map.entry('D', deferChooserPath(() -> station, "to D")),
+                                Map.entry('E', deferChooserPath(() -> station, "to E")),
+                                Map.entry('F', deferChooserPath(() -> station, "to F")),
+                                Map.entry('G', deferChooserPath(() -> station, "to G")),
+                                Map.entry('H', deferChooserPath(() -> station, "to H")),
+                                Map.entry('I', deferChooserPath(() -> station, "to I")),
+                                Map.entry('J', deferChooserPath(() -> station, "to J")),
+                                Map.entry('K', deferChooserPath(() -> station, "to K")),
+                                Map.entry('L', deferChooserPath(() -> station, "to L"))
                             ), Autos::chosenPosition
                         ),
-                        RobotContainer.getRobot().aCommands.l4L(),
+                        new InstantCommand(() -> System.out.println(station)),
+                        new InstantCommand(() -> RobotContainer.getRobot().aCommands.l4L()),
                         RobotContainer.getRobot().intake.coralEjectL(),
                         RobotContainer.getRobot().intake.coralStop()
                         //Finished
@@ -329,11 +328,10 @@ public final class Autos {
     }
 
 
-    public static DeferredCommand deferChooserPath(String station, String toWhere) {
+    public static DeferredCommand deferChooserPath(Supplier<String> station, String toWhere) {
         return new DeferredCommand(() -> {try {
-            System.out.println(station);
-            System.out.println("Inside of the Defer Command in the map 2 the station is: " + station);
-            return AutoBuilder.followPath(PathPlannerPath.fromPathFile(station + " " + toWhere));
+            System.out.println("Inside of the Defer Command in the map 2 the station is: " + station.get());
+            return AutoBuilder.followPath(PathPlannerPath.fromPathFile(station.get() + " " + toWhere));
         } catch (FileVersionException | IOException | ParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

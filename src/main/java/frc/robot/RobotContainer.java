@@ -98,6 +98,8 @@ public class RobotContainer
     SmartDashboard.putData("Choose Auto:", autoChooser);
     //SmartDashboard.putData("Choose Reef Position:", autoBuilderChooser); // nevermind
     SmartDashboard.putString("Choose Reef Branch", ""); // When changed also change the key in Autos.java
+
+    SmartDashboard.putString("Choose Level:", "");
     SmartDashboard.putData(CommandScheduler.getInstance());
     autoChooser.onChange((listener) -> listener.showPreview());
     SmartDashboard.putNumber("Start Delay",0);
@@ -116,6 +118,8 @@ public class RobotContainer
     NamedCommands.registerCommand("L2R", aCommands.l2R());
     NamedCommands.registerCommand("L3R", aCommands.l3R());
     NamedCommands.registerCommand("L4R", aCommands.l4R());
+
+    NamedCommands.registerCommand("Level", null);
 
     NamedCommands.registerCommand("Zero", aCommands.zeroEverything());
 
