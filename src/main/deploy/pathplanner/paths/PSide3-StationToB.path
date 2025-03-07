@@ -60,7 +60,7 @@
   "folder": "D - Extra Base Auto Paths ",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 140.0
+    "rotation": -36.0
   },
   "useDefaultConstraints": true
 }

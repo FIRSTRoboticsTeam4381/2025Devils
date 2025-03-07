@@ -113,7 +113,7 @@ public final class Autos {
                             ), Autos::chosenPosition),
                             new InstantCommand(() -> RobotContainer.getRobot().intake.ejectCoralL()),
                         new DeferredCommand(() -> {try {
-                            return AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to " + station));
+                            return AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to aStation"));
                         } catch (FileVersionException | IOException | ParseException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
@@ -124,6 +124,10 @@ public final class Autos {
                             Map.ofEntries(
                                 Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to A"))),
                                 Map.entry('B', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to B"))),
+                                Map.entry('C', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to C"))),
+                                Map.entry('D', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to D"))),
+                                Map.entry('E', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to E"))),
+                                Map.entry('F', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to F"))),
                                 Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to G"))),
                                 Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to H"))),
                                 Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to I"))),
@@ -172,7 +176,7 @@ public final class Autos {
                             ), Autos::chosenPosition),
                             new InstantCommand(() -> RobotContainer.getRobot().intake.ejectCoralL()),
                         new DeferredCommand(() -> {try {
-                            return AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to " + station));
+                            return AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to pStation"));
                         } catch (FileVersionException | IOException | ParseException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
@@ -188,7 +192,11 @@ public final class Autos {
                                 Map.entry('E', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to E"))),
                                 Map.entry('F', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to F"))),
                                 Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to G"))),
-                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to H")))
+                                Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to H"))),
+                                Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to I"))),
+                                Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to J"))),
+                                Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to K"))),
+                                Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to L")))
                             ), Autos::chosenPosition
                         ),
                         new InstantCommand(() -> RobotContainer.getRobot().intake.ejectCoralL())
@@ -229,6 +237,7 @@ public final class Autos {
                             ), Autos::chosenPosition),
                         new InstantCommand(() -> RobotContainer.getRobot().intake.ejectCoralL()),
                         new DeferredCommand(() -> {try {
+                            prevStation = station;
                             return AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to " + station));
                         } catch (FileVersionException | IOException | ParseException e) {
                             // TODO Auto-generated catch block
@@ -238,18 +247,18 @@ public final class Autos {
                         new InstantCommand(() -> RobotContainer.getRobot().intake.intakeCoralL()),
                         new SelectCommand<Character>(
                             Map.ofEntries(
-                                Map.entry('A', deferChooserPath(() -> station, "to A")), //Testing Defer Command
-                                Map.entry('B', deferChooserPath(() -> station, "to B")),
-                                Map.entry('C', deferChooserPath(() -> station, "to C")),
-                                Map.entry('D', deferChooserPath(() -> station, "to D")),
-                                Map.entry('E', deferChooserPath(() -> station, "to E")),
-                                Map.entry('F', deferChooserPath(() -> station, "to F")),
-                                Map.entry('G', deferChooserPath(() -> station, "to G")),
-                                Map.entry('H', deferChooserPath(() -> station, "to H")),
-                                Map.entry('I', deferChooserPath(() -> station, "to I")),
-                                Map.entry('J', deferChooserPath(() -> station, "to J")),
-                                Map.entry('K', deferChooserPath(() -> station, "to K")),
-                                Map.entry('L', deferChooserPath(() -> station, "to L"))
+                                Map.entry('A', deferChooserPath(() -> prevStation, "to A")), //Testing Defer Command
+                                Map.entry('B', deferChooserPath(() -> prevStation, "to B")),
+                                Map.entry('C', deferChooserPath(() -> prevStation, "to C")),
+                                Map.entry('D', deferChooserPath(() -> prevStation, "to D")),
+                                Map.entry('E', deferChooserPath(() -> prevStation, "to E")),
+                                Map.entry('F', deferChooserPath(() -> prevStation, "to F")),
+                                Map.entry('G', deferChooserPath(() -> prevStation, "to G")),
+                                Map.entry('H', deferChooserPath(() -> prevStation, "to H")),
+                                Map.entry('I', deferChooserPath(() -> prevStation, "to I")),
+                                Map.entry('J', deferChooserPath(() -> prevStation, "to J")),
+                                Map.entry('K', deferChooserPath(() -> prevStation, "to K")),
+                                Map.entry('L', deferChooserPath(() -> prevStation, "to L"))
                             ), Autos::chosenPosition
                         ),
                         new InstantCommand(() -> System.out.println(station)),
@@ -288,7 +297,7 @@ public final class Autos {
     public static Queue<Character> positionsTo = new LinkedList<>();
 
     public static Character chosenPosition() {
-        prevChosenBranch = positionsTo.peek();
+        prevChosenBranch = positionsTo.remove();
         if(prevChosenBranch == 'A' || prevChosenBranch == 'H'|| prevChosenBranch == 'I'
         || prevChosenBranch == 'J'|| prevChosenBranch == 'K'|| prevChosenBranch == 'L') {
             station = "aStation";
@@ -297,7 +306,7 @@ public final class Autos {
             station = "pStation";
             System.out.println("ran IF statement: " + station);
         }
-        return positionsTo.remove();
+        return prevChosenBranch;
     }
 
     public static void pickPosition() {
