@@ -4,9 +4,18 @@
 
 package frc.robot.commands;
 
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SelectCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotContainer;
 
@@ -52,6 +61,41 @@ public class AdvancedCommands
     );
   }
   
+  public static Queue<String> levelsTo = new LinkedList<>(); 
+
+  public static String removeLevel() {
+    return levelsTo.remove();
+  }
+
+  public static void pickLevel() {
+    String chosenLevel = SmartDashboard.getString("Level", "L4L");
+    levelsTo.clear();
+
+    for(String n : chosenLevel.split(",")) {
+      try {
+          levelsTo.add(n);
+      }catch(Exception e){}
+    }
+  }
+
+  /*public Command level()
+  {
+    new SequentialCommandGroup(
+      new ConditionalCommand(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()), 
+        new SequentialCommandGroup(
+          new SelectCommand<Character>(
+            Map.ofEntries(
+                Map.entry("L4", l4L()),
+                Map.entry("L3", l3L()),
+                Map.entry("L2", l2L()),
+                Map.entry("L1", l1L())
+            ), AdvancedCommands::removeLevel
+          )
+        )    
+      )
+    );
+  }*/
+
   public Command l1L()
   {
     return combinedPositionCommand(

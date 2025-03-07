@@ -119,7 +119,7 @@ public class RobotContainer
     NamedCommands.registerCommand("L3R", aCommands.l3R());
     NamedCommands.registerCommand("L4R", aCommands.l4R());
 
-    NamedCommands.registerCommand("Level", null);
+    NamedCommands.registerCommand("Level", aCommands.l4L()); // change to the chooser thing once fixed
 
     NamedCommands.registerCommand("Zero", aCommands.zeroEverything());
 
