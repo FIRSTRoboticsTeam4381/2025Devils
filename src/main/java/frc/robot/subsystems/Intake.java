@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RepeatCommand;
 //import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -28,8 +29,6 @@ import frc.robot.RobotContainer;
 public class Intake extends SubsystemBase
 {
     public SparkMax intake1; // MOTORS 1 and 2 are algae, 2 follow one inverted
-    //public SparkMax intake2;
-    public SparkMax intake3; // MOTOR 3 is for coral intake
     public double topSpeed = 4000;
     public double v = 0;
     public boolean hasAlgae = false;
@@ -51,8 +50,7 @@ public class Intake extends SubsystemBase
   public Intake() 
   {
     intake1 = new SparkMax(58, MotorType.kBrushless);
-    //intake2 = new SparkMax(59, MotorType.kBrushless);
-    intake3 = new SparkMax(60, MotorType.kBrushless);
+  
     
      // CHANGE CHANNELS LATER
     coralSensor1 = intake1.getReverseLimitSwitch();
@@ -63,7 +61,7 @@ public class Intake extends SubsystemBase
 
     // ARM INTAKE contains 3 total motors
     SparkMaxConfig intake1Config = new SparkMaxConfig();
-      intake1Config.smartCurrentLimit(40).idleMode(IdleMode.kBrake)
+      intake1Config.smartCurrentLimit(40).idleMode(IdleMode.kBrake).inverted(true)
       .limitSwitch.forwardLimitSwitchEnabled(false).reverseLimitSwitchEnabled(false);
         intake1.configure(intake1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
@@ -72,22 +70,18 @@ public class Intake extends SubsystemBase
       intake2Config.follow(intake1, true); // might need to change invert 
         //intake2.configure(intake2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
-    SparkMaxConfig motor3Config = new SparkMaxConfig();
-      intake1Config.smartCurrentLimit(15).idleMode(IdleMode.kBrake);// Intakes just algae thus it is serpate from motor 1 and 20
-        intake3.configure(motor3Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-
     
 
     this.setDefaultCommand( // Stop motor I think
         new FunctionalCommand(() -> {},
-            () -> {intake1.set(0); intake3.set(0);},
+            () -> {intake1.set(0);},
             (killed) -> {},
             () -> {return false;},
             this)
     );
 
     intake1.getEncoder().getVelocity();
-    intake3.getEncoder().getVelocity();
+    
   }
 
 
@@ -95,77 +89,76 @@ public class Intake extends SubsystemBase
   // algae
   public Command algaeIntake() 
   {
-    return new InstantCommand(() -> intake3.set(0.6), this); 
+    return new InstantCommand(() -> intake1.set(0.6), this); 
   }
   public Command algaeEject() 
   {
-    return new InstantCommand(() -> intake3.set(-0.6), this);
+    return new InstantCommand(() -> intake1.set(-0.6), this);
   }
 
 
   // coral
-  public Command coralIntakeR() 
+  public Command coralIntake()
   {
-    return new InstantCommand(() -> intake1.set(-0.3), this); 
+    return new InstantCommand(() -> intake1.set(-0.5), this); 
   }
-  public Command coralEjectR() 
+  public Command coralEject() 
   {
-    return new InstantCommand(() -> intake1.set(0.3), this);
+    return new InstantCommand(() -> intake1.set(-0.5), this);
   }
 
-  public Command coralIntakeL() 
-  {
-    return new InstantCommand(() -> intake1.set(0.3), this); 
-  }
-  public Command coralEjectL() 
-  {
-    return new InstantCommand(() -> intake1.set(-0.3), this);
-  }
+  
 
 
   // stop
   public Command algaeStop() 
   {
-    return new InstantCommand(() -> intake3.set(0), this);
+    return new InstantCommand(() -> intake1.set(0), this);
   }
   public Command coralStop() 
   {
     return new InstantCommand(() -> intake1.set(0), this);
   }
 
+  public Command algaeHold() 
+  {
+    return new InstantCommand(() -> intake1.set(0.3), this);
+  }
+  public Command algaeTrue() 
+  {
+    return new InstantCommand(() -> hasAlgae = true);
+  }
+  public Command algaeFalse() 
+  {
+    return new InstantCommand(() -> hasAlgae = false);
+  }
 
   public Command intakeAlgae() {
     return new RepeatCommand(
       algaeIntake()
     ).until(
       //() -> intake3.get() < (topSpeed - ALGAE_SPIKE)
-      () -> averageCurrent > 30
+      () -> averageCurrent > 25
     ).andThen(
-      algaeStop()
+      algaeTrue()
     ).andThen(
-      () -> hasAlgae = true
+      new RepeatCommand(
+      algaeHold()
+    )
     );
   }
 
-  public Command intakeCoralL() {
+  public Command intakeCoral() {
     return new RepeatCommand(
-      coralIntakeL()
-    ).until(
-      () -> coralSensor2.isPressed()
-    ).andThen(
-      coralStop()
-    ).andThen(
-      RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kRightRumble, 0.6, 1)
-    );
-  }
-  public Command intakeCoralR() {
-    return new RepeatCommand(
-      coralIntakeR()
+      coralIntake()
     ).until(
       () -> coralSensor1.isPressed()
     ).andThen(
+      new WaitCommand(.5)
+    ).andThen(
       coralStop()
     ).andThen(
+      
       RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kRightRumble, 0.6, 1)
     );
   }
@@ -175,32 +168,18 @@ public class Intake extends SubsystemBase
     return new RepeatCommand(
       algaeEject()
     ).until(
-      () -> Math.abs(intake3.getEncoder().getVelocity()) > topSpeed
+      () -> Math.abs(intake1.getEncoder().getVelocity()) > topSpeed
     ).andThen(
       algaeStop()
     ).andThen(
-      () -> hasAlgae = false
+      algaeFalse()
     );
 
   }
 
-  public Command ejectCoralL() {
+  public Command ejectCoral() {
     return new RepeatCommand(
-      coralEjectL()
-    ).until(
-      () -> !coralSensor2.isPressed() 
-    ).andThen(
-      new WaitCommand(0.75)
-    ).andThen(
-      coralStop()
-    ).andThen(
-      RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kLeftRumble, 0.6, 1)
-    );
-  }
-
-  public Command ejectCoralR() {
-    return new RepeatCommand(
-      coralEjectR()
+      coralEject()
     ).until(
       () -> !coralSensor1.isPressed() 
     ).andThen(
@@ -212,12 +191,10 @@ public class Intake extends SubsystemBase
     );
   }
 
-  public Command coralInOrOutL() {
-    return new ConditionalCommand(ejectCoralL(), intakeCoralL(), coralSensor2::isPressed);
+  public Command coralInOrOut() {
+    return new ConditionalCommand(ejectCoral(), intakeCoral(), coralSensor2::isPressed);
   }
-  public Command coralInOrOutR() {
-    return new ConditionalCommand(ejectCoralR(), intakeCoralR(), coralSensor1::isPressed);
-  }
+  
 
   public Command algaeInOrOut() {
     return new ConditionalCommand(ejectAlgae(), intakeAlgae(), () -> {return hasAlgae;}).withName("Algae In or Out");
@@ -239,7 +216,7 @@ public class Intake extends SubsystemBase
       for(int i = currentTracker.length-1; i > 0; i--){
         currentTracker[i] = currentTracker[i-1];
       }
-      currentTracker[0]=intake3.getOutputCurrent();
+      currentTracker[0]=intake1.getOutputCurrent();
       double runningSum=0;
       for(int i = 0; i < currentTracker.length; i++){
         runningSum+=currentTracker[i];

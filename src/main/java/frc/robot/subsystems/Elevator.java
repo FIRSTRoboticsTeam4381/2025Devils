@@ -42,9 +42,10 @@ public class Elevator extends SubsystemBase
         .limitSwitch.forwardLimitSwitchEnabled(true).reverseLimitSwitchEnabled(true);
 
     elevator1Config.closedLoop
-      .p(0.07)
+      .p(0.09)
       .i(0)
-      .d(0);
+      .d(0)
+      .outputRange(-.5, 1);
     
     elevator1.configure(elevator1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     elevator2.configure(elevator2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -73,65 +74,46 @@ public class Elevator extends SubsystemBase
 
 
   // preset position commands:
-  public Command l1L() 
+  public Command l1() 
   {
-    return elevatorTo(0).withName("Level 1 Left");
+    return elevatorTo(0).withName("Level 1");
   }
-  public Command l2L() 
+  public Command l2() 
   {
-    return elevatorTo(30).withName("Level 2 Left");
+    return elevatorTo(0).withName("Level 2");
   }
-  public Command l3L() 
+  public Command l3() 
   {
-    return elevatorTo(14.5).withName("Level 3 Left");
+    return elevatorTo(19.4).withName("Level 3");
   }
-  public Command l4L() 
+  public Command l4() 
   {
-    return elevatorTo(38.5).withName("Level 4 Left");
+    return elevatorTo(51.5).withName("Level 4");
   }
 
-  public Command l1R() 
-  {
-    return elevatorTo(0).withName("Level 1 Right");
-  }
-  public Command l2R() 
-  {
-    return elevatorTo(19.83).withName("Level 2 Right");
-  }
-  public Command l3R() 
-  {
-    return elevatorTo(8.17).withName("Level 3 Right");
-  }
-  public Command l4R() 
-  {
-    return elevatorTo(34.9).withName("Level 4 Right");
-  }
   
 
-  public Command coralStationL()
+  
+  public Command coralStation()
   {
-    return elevatorTo(23).withName("Coral Station Left");
-  }
-  public Command coralStationR()
-  {
-    return elevatorTo(24).withName("Coral Station Right");
+    return elevatorTo(0).withName("Coral Station");
   }
   
   
-  public Command processorL() {
-    return elevatorTo(0).withName("Processor");
-  }
-  public Command processorR() {
+  
+  public Command processor() {
     return elevatorTo(0).withName("Processor");
   }
 
-  public Command groundPickupLeft() {
-    return elevatorTo(0).withName("Ground Pickup Left");
+  public Command groundPickup() {
+    return elevatorTo(0).withName("Ground Pickup");
   }
 
-  public Command groundPickupRight() {
-    return elevatorTo(0).withName("Ground Pickup Right");
+  public Command barge() {
+    return elevatorTo(51.5).withName("Ground Pickup");
   }
+
+  
   public Command zero() {
     return elevatorTo(0).withName("Zeroing");
   }

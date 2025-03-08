@@ -43,10 +43,10 @@ public class Extender extends SubsystemBase
     extend1Config
       .smartCurrentLimit(40)
       .idleMode(IdleMode.kBrake)
-      .inverted(true)
+      .inverted(false)
       .limitSwitch.forwardLimitSwitchEnabled(true).reverseLimitSwitchEnabled(true);
     extend1Config.closedLoop
-      .p(2.7)
+      .p(10)
       .i(0)
       .d(0);
     extend1.configure(extend1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -71,7 +71,7 @@ public class Extender extends SubsystemBase
   public Command extend(Supplier<Double> joystickValue)
   {
     return new RepeatCommand(
-      new InstantCommand(() -> extend1.set(joystickValue.get()), this));
+      new InstantCommand(() -> extend1.set(-joystickValue.get()), this));
   }
   public Command nothing() 
   {
@@ -88,73 +88,47 @@ public class Extender extends SubsystemBase
 
 
   // preset reef position commands:
-  public Command l1L()
+  public Command l1()
   {
-    return extendTo(37.01).withName("Level 1 Left");
+    return extendTo(0).withName("Level 1");
   }
-  public Command l2L()
+  public Command l2()
   {
-    return extendTo(0).withName("Level 2 Left");
+    return extendTo(0).withName("Level 2");
   }
-  public Command l3L()
+  public Command l3()
   {
-    return extendTo(0).withName("Level 3 Left");
+    return extendTo(0).withName("Level 3");
   }
-  public Command l4L()
+  public Command l4()
   {
-    return extendTo(80).withName("Level 4 Left");
+    return extendTo(0).withName("Level 4");
   }
 
-  public Command l1R()
-  {
-    return extendTo(40).withName("Level 1 Right");
-  }
-  public Command l2R()
-  {
-    return extendTo(0).withName("Level 2 Right");
-  }
-  public Command l3R()
-  {
-    return extendTo(0).withName("Level 3 Right");
-  }
-  public Command l4R()
-  {
-    return extendTo(87.2).withName("Level 4 Right");
-  }
   
-  public Command coralStationL()
+  
+  public Command coralStation()
   {
-    return coralStationR().withName("Coral Station Left");
-  }
-  public Command coralStationR()
-  {
-    return extendTo(0).withName("Coral Station Right");
+    return extendTo(0).withName("Coral Station");
   }
 
-  public Command processorL()
+  
+  public Command processor()
   {
-    return extendTo(0).withName("Processor Left");
-  }
-  public Command processorR()
-  {
-    return extendTo(0).withName("Processor Right");
+    return extendTo(0).withName("Processor");
   }
 
   public Command barge() 
   {
-    return extendTo(0).withName("Barge");
+    return extendTo(90.6).withName("Barge");
   }
 
 
-  public Command groundPickupLeft()
+  public Command groundPickup()
  {
-    return extendTo(90).withName("Ground Pickup Left");
+    return extendTo(0).withName("Ground Pickup");
  }  
 
- public Command groundPickupRight() 
-{
-  return extendTo(54.87).withName("Ground Pickup Right");
-}
   public Command zero() 
   {
     return extendTo(0).withName("Zero");

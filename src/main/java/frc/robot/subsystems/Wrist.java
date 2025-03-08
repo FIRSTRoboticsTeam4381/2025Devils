@@ -50,9 +50,9 @@ public class Wrist extends SubsystemBase
 
       wrist1Config.closedLoop
       .feedbackSensor(FeedbackSensor.kAbsoluteEncoder) // TODO change to kPrimaryEncoder if the adjusted position works
-      .p(5)
+      .p(40)
       .i(0)
-      .d(0)
+      .d(1)
       .outputRange(-1, 1);
     wrist1.configure(wrist1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
@@ -100,58 +100,35 @@ public class Wrist extends SubsystemBase
 
 
   // Level commands
-  public Command l1L() 
+  public Command l1() 
   {
-    return wristPosition(0.7).withName("Level 1 Left"); // Will NEED to update positions (currently 0 as defualt)
+    return wristPosition(0.75).withName("Level 1"); // Will NEED to update positions (currently 0 as defualt)
   }
-  public Command l2L() 
+  public Command l2() 
   {
-    return wristPosition(0.64).withName("Level 2 Left");
+    return wristPosition(0.689).withName("Level 2");
   }
-  public Command l3L() 
+  public Command l3() 
   {
-    return wristPosition(0.516).withName("Level 3 Left");
+    return wristPosition(0.689).withName("Level 3");
   }
-  public Command l4L() 
+  public Command l4() 
   {
-    return wristPosition(0.15).withName("Level 4 Left");
-  }
-
-  public Command l1R() 
-  {
-    return wristPosition(0.8).withName("Level 1 Right"); // Will NEED to update positions (currently 0 as defualt)
-  }
-  public Command l2R() 
-  {
-    return wristPosition(0.9).withName("Level 2 Right");
-  }
-  public Command l3R() 
-  {
-    return wristPosition(1.07).withName("Level 3 Right");
-  }
-  public Command l4R() 
-  {
-    return wristPosition(1.38).withName("Level 4 Right");
+    return wristPosition(0.69).withName("Level 4");
   }
 
 
-  public Command coralStationL() 
+
+  public Command coralStation() 
   {
-    return wristPosition(0.7613).withName("Wrist Coral Station Left");
-  }
-  public Command coralStationR() 
-  {
-    return wristPosition(0.802).withName("Wrist Coral Station Right");
+    return wristPosition(0.558).withName("Wrist Coral Station");
   }
   
-  public Command processorL() 
+  public Command processor() 
   {
-    return wristPosition(0).withName("Processor Scoring Left");
+    return wristPosition(1.06).withName("Processor Scoring");
   }
-  public Command processorR() 
-  {
-    return wristPosition(0).withName("Processor Scoring Right");
-  }
+  
 
   public Command bargeCommand() 
   {
@@ -160,15 +137,13 @@ public class Wrist extends SubsystemBase
 
 
   
-  public Command groundPickupLeft() 
+  public Command groundPickup() 
   {
-    return wristPosition(0.551).withName("Wrist Ground Pickup Left"); // Will need to change #s
+    return wristPosition(0.551).withName("Wrist Ground Pickup"); // Will need to change #s
   }
-
-  
-  public Command groundPickupRight() 
+  public Command barge() 
   {
-    return wristPosition(1.38).withName("Wrist Ground Pickup Right"); // Will need to change #s
+    return wristPosition(0.67).withName("Barge"); // Will need to change #s
   }
   
 

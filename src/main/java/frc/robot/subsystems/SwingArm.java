@@ -41,8 +41,8 @@ public class SwingArm extends SubsystemBase
   /** This is the ground intake **/
   public SwingArm(Extender extender)
   {
-    rotate1 = new SparkFlex(53, MotorType.kBrushless);
-    rotate2 = new SparkFlex(52, MotorType.kBrushless);
+    rotate1 = new SparkFlex(52, MotorType.kBrushless);
+    rotate2 = new SparkFlex(53, MotorType.kBrushless);
     
     angle = rotate1.getAbsoluteEncoder();
     this.extender=extender;
@@ -54,13 +54,14 @@ public class SwingArm extends SubsystemBase
     rotateConfig1
       .smartCurrentLimit(80)
       .idleMode(IdleMode.kBrake)
+      .inverted(false)
       .absoluteEncoder.inverted(true);
     rotateConfig1.closedLoop
       .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
       .p(2.5)
       .i(0)
       .d(0)
-    .outputRange(-.375, .375);
+    .outputRange(-.8, .8);
     rotateConfig2
       .apply(rotateConfig1)
       .follow(rotate1)
@@ -94,85 +95,58 @@ public class SwingArm extends SubsystemBase
 
   public Command goToAngle(double angle)
   {
-    return new SparkPosition(rotate1, angle, .05, this).withName("Rotating to " + angle); // TODO arbitrary feedforward will need to be included
+    return new SparkPosition(rotate1, angle, .02, this).withName("Rotating to " + angle); // TODO arbitrary feedforward will need to be included
   }
   public void setPositionReference(double angle)
   {
     rotate1.getClosedLoopController().setReference(angle, ControlType.kPosition); // TODO arbitrary feedforward will need to be included
   }
 
-  public Command l1L() 
+  public Command l1() 
   {
-    return goToAngle(0.4).withName("Level 1 Left");
+    return goToAngle(0.59).withName("Level 1");
   }
 
-  public Command l2L() 
+  public Command l2() 
   {
-    return goToAngle(0.4228).withName("Level 2 Left");
+    return goToAngle(0.535).withName("Level 2");
   }
 
-  public Command l3L() 
+  public Command l3() 
   {
-    return goToAngle(0.24).withName("Level 3 Left");
+    return goToAngle(0.535).withName("Level 3");
   }
 
-  public Command l4L() 
+  public Command l4() 
   {
-    return goToAngle(0.0570).withName("Level 4 Left");
-  }
-
-  public Command l1R() 
-  {
-    return goToAngle(0.6).withName("Level 1 Right");
-  }
-
-  public Command l2R() 
-  {
-    return goToAngle(0.64).withName("Level 2 Right");
-  }
-
-  public Command l3R() 
-  {
-    return goToAngle(0.77).withName("Level 3 Right");
-  }
-
-  public Command l4R() 
-  {
-    return goToAngle(0.95).withName("Level 4 Right");
+    return goToAngle(0.530).withName("Level 4");
   }
 
 
-  public Command coralStationL() 
+  public Command coralStation() 
   {
-    return goToAngle(0.388).withName("Coral Station Left");
-  }
-  public Command coralStationR() 
-  {
-    return goToAngle(0.64).withName("Coral Station Right");
+    return goToAngle(0.352).withName("Coral Station");
   }
 
-  public Command processorL()
+  public Command processor()
   {
-    return goToAngle(0).withName("Processor Left");
-  }
-  public Command processorR()
-  {
-    return goToAngle(0).withName("Processor Right");
+    return goToAngle(0.299).withName("Processor");
   }
 
-  public Command groundPickupLeft() {
-    return goToAngle(0.475).withName("Ground Pickup Left Side");
+  public Command groundPickup() {
+    return goToAngle(0.475).withName("Ground Pickup");
   }
 
-  public Command groundPickupRight() {
-    return goToAngle(0.652).withName("Ground Pickup Right Side");
+  public Command barge() {
+    return goToAngle(.5).withName("Barge");
   }
+
 
 
   public Command swing(Supplier<Double> joystickValue) 
   {
     return new RepeatCommand(
-      new InstantCommand(() -> rotate1.set(joystickValue.get()), this));
+      new InstantCommand(() -> rotate1.set(-joystickValue.get()), this));
   }
   public Command nothing() 
   {

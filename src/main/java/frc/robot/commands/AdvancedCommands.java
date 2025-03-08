@@ -63,185 +63,99 @@ public class AdvancedCommands
   
 
 
-  public Command l1L()
+  public Command l1()
   {
     return combinedPositionCommand(
       new ParallelCommandGroup(
-        robot.elevator.l1L(),
-        robot.swingArm.l1L(),
-        robot.wrist.l1L()
-        
-      ).andThen(new ParallelCommandGroup(
-        robot.extender.l1L()
-    ))); 
-  }
-  public Command l1R()
-  {
-    return combinedPositionCommand(
-      new ParallelCommandGroup(
-        robot.elevator.l1R(),
-        robot.swingArm.l1R(),
-        robot.wrist.l1R()
-        
-      ).andThen(new ParallelCommandGroup(
-        robot.extender.l1R()
-    ))); 
+        robot.elevator.l1(),
+        robot.extender.l1(),
+        robot.swingArm.l1(),
+        robot.wrist.l1()
+      )); 
   }
 
-  public Command l2L()
+  public Command l2()
   {
     return combinedPositionCommand(
       new ParallelCommandGroup(
-        robot.elevator.l2L(),
-        robot.swingArm.l2L(),
-        robot.extender.l2L(),
-        robot.wrist.l2L()
+        robot.elevator.l2(),
+        robot.extender.l2(),
+        robot.swingArm.l2(),
+        robot.wrist.l2()
       ));
   }
-  public Command l2R()
+ 
+  public Command l3()
   {
     return combinedPositionCommand(
       new ParallelCommandGroup(
-        robot.elevator.l2R(),
-        robot.swingArm.l2R(),
-        robot.extender.l2R(),
-        robot.wrist.l2R()
+        robot.elevator.l3(),
+        robot.extender.l3()
+      ).andThen(new ParallelCommandGroup(
+        robot.wrist.l3(),
+        robot.swingArm.l3()
+      )));
+  }
+  
+
+  public Command l4()
+  {
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.l4(),
+        robot.extender.l4()
+      ).andThen(new ParallelCommandGroup(
+        robot.wrist.l4(),
+        robot.swingArm.l4()
+      )));
+  }
+
+
+
+  public Command coralStation()
+  {
+    return new ParallelCommandGroup(
+        robot.swingArm.coralStation(),
+        robot.wrist.coralStation()
+      ).andThen(new ParallelCommandGroup(
+        robot.intake.coralInOrOut()
+      ).andThen(
+        robot.aCommands.zeroEverything()
+      )
+      );
+  }
+
+
+  public Command processor()
+  {
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.processor(),
+        robot.extender.processor(),
+        robot.swingArm.processor(),
+        robot.wrist.processor()
     ));
   }
 
-  public Command l3L()
-  {
-    return combinedPositionCommand(
-      new ParallelCommandGroup(
-        robot.elevator.l3L(),
-        robot.swingArm.l3L(),
-        robot.wrist.l3L(),
-        robot.extender.l3L()
-        
-      )); 
-  }
-  public Command l3R()
-  {
-    return combinedPositionCommand(
-      new ParallelCommandGroup(
-        robot.elevator.l3R(),
-        robot.swingArm.l3R(),
-        robot.extender.l3R(),
-        robot.wrist.l3R()
-      ));
-  }
 
-  public Command l4L()
-  {
-    return combinedPositionCommand(
-      new ParallelCommandGroup(
-        robot.wrist.l4L(),
-        robot.swingArm.l4L()
-        
-      ).andThen(new ParallelCommandGroup(
-        robot.extender.l4L(),
-        robot.elevator.l4L()
-        
-      )));
-  }
-  public Command l4R()
-  {
-    return combinedPositionCommand(
-      new ParallelCommandGroup(
-        robot.wrist.l4R(),
-        robot.swingArm.l4R()
-      ).andThen(new ParallelCommandGroup(
-        robot.extender.l4R(),
-        robot.elevator.l4R()
-      )));
-  }
-
-
-
-  public Command coralStationR()
-  {
-    return new ParallelCommandGroup(
-        robot.elevator.coralStationR(),
-        robot.swingArm.coralStationR()
-        
-      ).andThen(new ParallelCommandGroup(
-        robot.extender.coralStationR(),
-        robot.wrist.coralStationR()
-      ).andThen(new ParallelCommandGroup(
-        robot.intake.coralInOrOutR()
-      ).andThen(
-        robot.aCommands.zeroEverything()
-      )
-      ));
-  }
-
-  public Command coralStationL()
-  {
-      return new ParallelCommandGroup(
-        robot.elevator.coralStationL(),
-        robot.swingArm.coralStationL()
-        
-      ).andThen(new ParallelCommandGroup(
-        robot.extender.coralStationL(),
-        robot.wrist.coralStationL()
-      ).andThen(new ParallelCommandGroup(
-        robot.intake.coralInOrOutL()
-      ).andThen(
-        robot.aCommands.zeroEverything()
-      )
-      ));
-  }
-
-
-  public Command processorL()
-  {
-    return combinedPositionCommand(
-      new ParallelCommandGroup(
-        robot.elevator.processorL(),
-        robot.swingArm.processorL()
-
-      ).andThen(new ParallelCommandGroup(
-        robot.extender.processorL(),
-        robot.wrist.processorL()
-    )));
-  }
-  public Command processorR()
-  {
-    return combinedPositionCommand(
-      new ParallelCommandGroup(
-        robot.elevator.processorR(),
-        robot.swingArm.processorR()
-
-      ).andThen(new ParallelCommandGroup(
-        robot.extender.processorR(),
-        robot.wrist.processorR()
-    )));
-  }
-
-
-  public Command groundPickupLeft()
+  public Command groundPickup()
   { 
     return combinedPositionCommand(
       new ParallelCommandGroup(
-        robot.elevator.groundPickupLeft(),
-        robot.swingArm.groundPickupLeft()
-
-      ).andThen(new ParallelCommandGroup(
-        robot.extender.groundPickupLeft(),
-        robot.wrist.groundPickupLeft()
-    )));
+        robot.elevator.groundPickup(),
+        robot.extender.groundPickup(),
+        robot.swingArm.groundPickup(),
+        robot.wrist.groundPickup()
+    ));
   }
-
-  
-  public Command groundPickupRight()
+  public Command barge()
   { 
-    return new ParallelCommandGroup(
-      robot.elevator.groundPickupRight(),
-      robot.swingArm.groundPickupRight()
-
-    ).andThen(new ParallelCommandGroup(
-      robot.extender.groundPickupRight(),
-      robot.wrist.groundPickupRight()
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.barge(),
+        robot.extender.barge(),
+        robot.swingArm.barge(),
+        robot.wrist.barge()
     ));
   }
     
@@ -250,13 +164,12 @@ public class AdvancedCommands
   { 
     return new ParallelCommandGroup
     (
-      robot.elevator.elevatorTo(10)
     ).andThen(new ParallelCommandGroup(
-      robot.extender.zero(),
-      robot.wrist.zero()
-    )).andThen(new ParallelCommandGroup(
-      robot.elevator.zero(),
+      robot.wrist.zero(),
       robot.swingArm.zero()
+    )).andThen(new ParallelCommandGroup(
+      robot.extender.zero(),
+      robot.elevator.zero()
     ));
   }
   

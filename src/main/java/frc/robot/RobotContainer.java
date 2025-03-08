@@ -104,21 +104,15 @@ public class RobotContainer
     SmartDashboard.putData(CommandScheduler.getInstance());
     autoChooser.onChange((listener) -> listener.showPreview());
     SmartDashboard.putNumber("Start Delay",0);
-    NamedCommands.registerCommand("Coral Left", intake.coralInOrOutL());
-    NamedCommands.registerCommand("Coral Right", intake.coralInOrOutR());
+    NamedCommands.registerCommand("Coral", intake.coralInOrOut());
     NamedCommands.registerCommand("Algae Intake/Outtake On", intake.algaeInOrOut());
-    NamedCommands.registerCommand("Coral Station Left", aCommands.coralStationL());
-    NamedCommands.registerCommand("Coral Station Right", aCommands.coralStationR());
-    //Left
-    NamedCommands.registerCommand("L1L", aCommands.l1L());
-    NamedCommands.registerCommand("L2L", aCommands.l2L());
-    NamedCommands.registerCommand("L3L", aCommands.l3L());
-    NamedCommands.registerCommand("L4L", aCommands.l4L());
-    //Right
-    NamedCommands.registerCommand("L1R", aCommands.l1R());
-    NamedCommands.registerCommand("L2R", aCommands.l2R());
-    NamedCommands.registerCommand("L3R", aCommands.l3R());
-    NamedCommands.registerCommand("L4R", aCommands.l4R());
+    NamedCommands.registerCommand("Coral Station", aCommands.coralStation());
+    
+    NamedCommands.registerCommand("L1", aCommands.l1());
+    NamedCommands.registerCommand("L2", aCommands.l2());
+    NamedCommands.registerCommand("L3", aCommands.l3());
+    NamedCommands.registerCommand("L4", aCommands.l4());
+    
 
     NamedCommands.registerCommand("Level", Autos.sLevel); // Auto Chooser Level // Currently L4L because level is not fully functioning
 
@@ -159,24 +153,16 @@ public class RobotContainer
             driver.y()::getAsBoolean,
             driver.b()::getAsBoolean));
 
-      specialist.a().and(specialist.leftBumper()).onTrue(aCommands.groundPickupLeft());
-      specialist.b().and(specialist.leftBumper()).onTrue(aCommands.coralStationL());
-      //specialist.x().and(specialist.leftBumper()).onTrue(aCommands.processorL());
-      specialist.a().and(specialist.rightBumper()).onTrue(aCommands.groundPickupRight());
-      specialist.b().and(specialist.rightBumper()).onTrue(aCommands.coralStationR());
-      //specialist.x().and(specialist.rightBumper()).onTrue(aCommands.processorR());
+      specialist.a().onTrue(aCommands.groundPickup());
+      specialist.b().onTrue(aCommands.coralStation());
       specialist.y().toggleOnTrue(intake.algaeInOrOut());
+      specialist.leftBumper().onTrue(aCommands.barge());
+      specialist.rightBumper().onTrue(aCommands.processor());
       
-      specialist.povUp().and(specialist.leftBumper()).onTrue(aCommands.l4L());
-      specialist.povLeft().and(specialist.leftBumper()).onTrue(aCommands.l3L());
-      specialist.povRight().and(specialist.leftBumper()).onTrue(aCommands.l2L());
-      specialist.povDown().and(specialist.leftBumper()).onTrue(aCommands.l1L());
-      
-      specialist.povUp().and(specialist.rightBumper()).onTrue(aCommands.l4R());
-      specialist.povLeft().and(specialist.rightBumper()).onTrue(aCommands.l3R());
-      specialist.povRight().and(specialist.rightBumper()).onTrue(aCommands.l2R());
-      specialist.povDown().and(specialist.rightBumper()).onTrue(aCommands.l1R());
-      
+      specialist.povUp().onTrue(aCommands.l4());
+      specialist.povLeft().onTrue(aCommands.l3());
+      specialist.povRight().onTrue(aCommands.l2());
+      specialist.povDown().onTrue(aCommands.l1());
 
       
       specialist.leftStick().or(specialist.rightStick()).onTrue(aCommands.zeroEverything());
@@ -205,8 +191,7 @@ public class RobotContainer
         extender.extend(interpolateJoystick(specialist :: getRightY, Constants.stickDeadband))
         ));
 
-      driver.leftBumper().toggleOnTrue(intake.coralInOrOutL());
-      driver.rightBumper().toggleOnTrue(intake.coralInOrOutR());
+      driver.rightBumper().toggleOnTrue(intake.coralInOrOut());
       driver.y().onTrue(swerve.highSpeedCommand());
 
       driver.a().whileTrue(new AutoAlign(swerve));
