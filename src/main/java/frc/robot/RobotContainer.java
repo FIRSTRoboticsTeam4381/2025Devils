@@ -28,6 +28,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.AdvancedCommands;
+import frc.robot.commands.AutoAlign;
 import frc.robot.commands.Autos;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.subsystems.Intake;
@@ -155,7 +156,7 @@ public class RobotContainer
             driver::getLeftX,
             driver::getRightX,
              true,
-            driver.a()::getAsBoolean,
+            driver.y()::getAsBoolean,
             driver.b()::getAsBoolean));
 
       specialist.a().and(specialist.leftBumper()).onTrue(aCommands.groundPickupLeft());
@@ -207,6 +208,8 @@ public class RobotContainer
       driver.leftBumper().toggleOnTrue(intake.coralInOrOutL());
       driver.rightBumper().toggleOnTrue(intake.coralInOrOutR());
       driver.y().onTrue(swerve.highSpeedCommand());
+
+      driver.a().whileTrue(new AutoAlign(swerve));
     }
 
   public Command getAutonomousCommand() 
