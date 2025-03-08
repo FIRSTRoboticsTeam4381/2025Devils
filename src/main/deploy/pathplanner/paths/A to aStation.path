@@ -20,8 +20,8 @@
         "y": 6.930819672131147
       },
       "prevControl": {
-        "x": 2.0451024590163938,
-        "y": 6.2714959016393435
+        "x": 2.0453603071541506,
+        "y": 6.2712283233831805
       },
       "nextControl": null,
       "isLocked": false,
@@ -79,7 +79,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 35.0
+    "rotation": -145.0
   },
   "reversed": false,
   "folder": "Reef to Station",
