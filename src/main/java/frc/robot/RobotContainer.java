@@ -120,7 +120,7 @@ public class RobotContainer
     NamedCommands.registerCommand("L3R", aCommands.l3R());
     NamedCommands.registerCommand("L4R", aCommands.l4R());
 
-    NamedCommands.registerCommand("Level", aCommands.l4L()); // Auto Chooser Level // Currently L4L because level is not fully functioning
+    NamedCommands.registerCommand("Level", Autos.sLevel); // Auto Chooser Level // Currently L4L because level is not fully functioning
 
     NamedCommands.registerCommand("Zero", aCommands.zeroEverything());
 

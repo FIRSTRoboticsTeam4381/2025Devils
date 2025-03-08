@@ -37,11 +37,13 @@ import frc.robot.RobotContainer;
 
 @Logged
 public final class Autos {
-  
 
     public static Character prevChosenBranch;
     public static String station;
     public static String prevStation;
+
+    public static Command sLevel; // scoring Level /:
+
   // TODO register commands in subsystem constructores using NamedCommands.registerCommand()
 
     // Test autonomous mode
@@ -235,7 +237,6 @@ public final class Autos {
                                 Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to I"))),
                                 Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to J")))
                             ), Autos::chosenPosition),
-                        new InstantCommand(() -> System.out.println(AdvancedCommands.sLevel)),
                         new InstantCommand(() -> RobotContainer.getRobot().intake.ejectCoralL()),
                         new DeferredCommand(() -> {try {
                             prevStation = station;
@@ -331,6 +332,33 @@ public final class Autos {
             e.printStackTrace();
             return Commands.none();
         }}, Set.of(RobotContainer.getRobot().swerve));
+    }
+
+    public static Queue<String> levelsTo = new LinkedList<>(); 
+
+    public static String removeLevel() {
+      return levelsTo.remove();
+    }
+  
+    public static void pickLevel() {
+      String chosenLevel = SmartDashboard.getString("Choose Level:", "");
+      levelsTo.clear();
+  
+      for(String n : chosenLevel.split(",")) {
+        try {
+            levelsTo.add(n);
+        }catch(Exception e){}
+      }
+    }
+  
+    public Command Level() {
+      sLevel = new SelectCommand<String>(Map.ofEntries(
+        Map.entry("4", RobotContainer.getRobot().aCommands.l4L()),
+        Map.entry("3", RobotContainer.getRobot().aCommands.l3L()),
+        Map.entry("2", RobotContainer.getRobot().aCommands.l2L()),
+        Map.entry("1", RobotContainer.getRobot().aCommands.l1L())
+      ), Autos::removeLevel);
+      return sLevel;
     }
 
     // TODO add pathplanner autos here. Example:
