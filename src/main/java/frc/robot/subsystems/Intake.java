@@ -53,8 +53,8 @@ public class Intake extends SubsystemBase
   
     
      // CHANGE CHANNELS LATER
-    coralSensor1 = intake1.getReverseLimitSwitch();
-    coralSensor2 = intake1.getForwardLimitSwitch();
+    coralSensor1 = intake1.getForwardLimitSwitch();
+   
     
 
     // speed = 0.5; // Not used anywhere as of right now
@@ -112,7 +112,7 @@ public class Intake extends SubsystemBase
 
   // stop
   public Command algaeStop() 
-  {
+  { 
     return new InstantCommand(() -> intake1.set(0), this);
   }
   public Command coralStop() 

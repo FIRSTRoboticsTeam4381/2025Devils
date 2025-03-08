@@ -113,15 +113,16 @@ public final class Autos {
                                 Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStart to K"))),
                                 Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStart to L")))
                             ), Autos::chosenPosition),
-                            new InstantCommand(() -> RobotContainer.getRobot().intake.ejectCoral()),
+                            RobotContainer.getRobot().intake.ejectCoral(),
                         new DeferredCommand(() -> {try {
                             return AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to aStation"));
                         } catch (FileVersionException | IOException | ParseException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                             return Commands.none();
-                        }}, Set.of(RobotContainer.getRobot().swerve)), // highly doubt this will work but it worth a try // change
-                        new InstantCommand(() -> RobotContainer.getRobot().intake.intakeCoral()),
+                        }}, Set.of(RobotContainer.getRobot().swerve)),
+                        RobotContainer.getRobot().aCommands.coralStation(),
+                        RobotContainer.getRobot().intake.intakeCoral(),
                         new SelectCommand<Character>(
                             Map.ofEntries(
                                 Map.entry('A', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to A"))),
@@ -138,7 +139,8 @@ public final class Autos {
                                 Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to L")))
                             ), Autos::chosenPosition
                         ),
-                        new InstantCommand(() -> RobotContainer.getRobot().intake.ejectCoral())
+                        RobotContainer.getRobot().intake.ejectCoral(),
+                        RobotContainer.getRobot().aCommands.zeroEverything()
                         //Finished
                     ), positionsTo::isEmpty).repeatedly()
                 ), autoName
