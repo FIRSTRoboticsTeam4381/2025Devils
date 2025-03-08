@@ -58,13 +58,13 @@
       }
     },
     {
-      "name": "Coral Station Left",
+      "name": "Coral Station",
       "waypointRelativePos": 0.72923700202566,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Coral Station Left"
+          "name": "Coral Sation"
         }
       }
     }
