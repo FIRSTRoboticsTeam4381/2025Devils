@@ -235,6 +235,7 @@ public final class Autos {
                                 Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to I"))),
                                 Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to J")))
                             ), Autos::chosenPosition),
+                        new InstantCommand(() -> System.out.println(AdvancedCommands.sLevel)),
                         new InstantCommand(() -> RobotContainer.getRobot().intake.ejectCoralL()),
                         new DeferredCommand(() -> {try {
                             prevStation = station;

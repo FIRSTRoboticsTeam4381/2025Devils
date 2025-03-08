@@ -50,7 +50,7 @@ public class RobotContainer
 
   //Auto Chooser
   SendableChooser<Autos.PreviewAuto> autoChooser = new SendableChooser<>();
-  SendableChooser<Autos.PreviewAuto> autoBuilderChooser = new SendableChooser<>();
+  SendableChooser<Autos.PreviewAuto> autoBuilderChooser = new SendableChooser<>(); // Dont believe we use this
 
   // Subsystems
   public final Swerve swerve = new Swerve();
@@ -119,7 +119,7 @@ public class RobotContainer
     NamedCommands.registerCommand("L3R", aCommands.l3R());
     NamedCommands.registerCommand("L4R", aCommands.l4R());
 
-    NamedCommands.registerCommand("Level", aCommands.l4L()); // change to the chooser thing once fixed
+    NamedCommands.registerCommand("Level", aCommands.l4L()); // Auto Chooser Level // Currently L4L because level is not fully functioning
 
     NamedCommands.registerCommand("Zero", aCommands.zeroEverything());
 

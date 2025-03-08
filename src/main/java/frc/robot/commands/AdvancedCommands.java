@@ -24,6 +24,8 @@ public class AdvancedCommands
 {
     RobotContainer robot;
 
+    public static Command sLevel; // scoring Level /:
+
   //public Supplier<Boolean> algaeBoolean = robot.armIntake.algaeSensor::get;
 
   public AdvancedCommands(RobotContainer r)
@@ -68,7 +70,7 @@ public class AdvancedCommands
   }
 
   public static void pickLevel() {
-    String chosenLevel = SmartDashboard.getString("Level", "L4L");
+    String chosenLevel = SmartDashboard.getString("Choose Level:", "");
     levelsTo.clear();
 
     for(String n : chosenLevel.split(",")) {
@@ -78,23 +80,15 @@ public class AdvancedCommands
     }
   }
 
-  /*public Command level()
-  {
-    new SequentialCommandGroup(
-      new ConditionalCommand(new InstantCommand(() -> CommandScheduler.getInstance().cancelAll()), 
-        new SequentialCommandGroup(
-          new SelectCommand<Character>(
-            Map.ofEntries(
-                Map.entry("L4", l4L()),
-                Map.entry("L3", l3L()),
-                Map.entry("L2", l2L()),
-                Map.entry("L1", l1L())
-            ), AdvancedCommands::removeLevel
-          )
-        )    
-      )
-    );
-  }*/
+  public Command Level() {
+    sLevel = new SelectCommand<String>(Map.ofEntries(
+      Map.entry("L4", l4L()),
+      Map.entry("L3", l3L()),
+      Map.entry("L2", l2L()),
+      Map.entry("L1", l1L())
+    ), AdvancedCommands::removeLevel);
+    return sLevel;
+  }
 
   public Command l1L()
   {
