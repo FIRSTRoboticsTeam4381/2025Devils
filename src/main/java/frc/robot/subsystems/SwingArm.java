@@ -127,7 +127,7 @@ public class SwingArm extends SubsystemBase
 
   public Command coralStation() 
   {
-    return goToAngle(0.352).withName("Coral Station");
+    return goToAngle(0.36).withName("Coral Station");
   }
 
   public Command processor()
@@ -144,7 +144,7 @@ public class SwingArm extends SubsystemBase
   }
 
   public Command algaeHold() {
-    return goToAngle(.4).withName("Algae Hold");
+    return goToAngle(.45).withName("Algae Hold");
   }
 
   public Command swing(Supplier<Double> joystickValue) 
