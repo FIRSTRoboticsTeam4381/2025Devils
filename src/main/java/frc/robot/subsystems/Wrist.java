@@ -50,9 +50,9 @@ public class Wrist extends SubsystemBase
 
       wrist1Config.closedLoop
       .feedbackSensor(FeedbackSensor.kAbsoluteEncoder) // TODO change to kPrimaryEncoder if the adjusted position works
-      .p(40)
+      .p(20)
       .i(0)
-      .d(1)
+      .d(2)
       .outputRange(-1, 1);
     wrist1.configure(wrist1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
@@ -126,7 +126,11 @@ public class Wrist extends SubsystemBase
   
   public Command processor() 
   {
-    return wristPosition(1.06).withName("Processor Scoring");
+    return wristPosition(0.926).withName("Processor Scoring");
+  }
+  public Command upsideDown() 
+  {
+    return wristPosition(1.27).withName("Upside Down");
   }
 
   public Command bargeCommand() 
@@ -141,7 +145,7 @@ public class Wrist extends SubsystemBase
   
   public Command groundPickup() 
   {
-    return wristPosition(0.850).withName("Wrist Ground Pickup"); // Will need to change #s
+    return wristPosition(1.26).withName("Wrist Ground Pickup"); // Will need to change #s
   }
   public Command barge() 
   {

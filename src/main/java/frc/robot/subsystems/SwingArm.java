@@ -132,11 +132,11 @@ public class SwingArm extends SubsystemBase
 
   public Command processor()
   {
-    return goToAngle(0.299).withName("Processor");
+    return goToAngle(0.125).withName("Processor");
   }
 
   public Command groundPickup() {
-    return goToAngle(0.730).withName("Ground Pickup");
+    return goToAngle(0.255).withName("Ground Pickup");
   }
 
   public Command barge() {

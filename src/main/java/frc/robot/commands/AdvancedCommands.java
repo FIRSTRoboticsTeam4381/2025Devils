@@ -115,7 +115,8 @@ public class AdvancedCommands
 
   public Command coralStation()
   {
-    return new ParallelCommandGroup(
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
         robot.swingArm.coralStation(),
         robot.wrist.coralStation(),
         robot.elevator.coralStation(),
@@ -125,31 +126,38 @@ public class AdvancedCommands
       ).andThen(
         robot.aCommands.zeroEverything()
       )
-      );
-  }
-
-
-  public Command processor()
-  {
-    return new SequentialCommandGroup(
-      new ParallelRaceGroup(
-        robot.intake.holdAlgae(),
-        new ParallelCommandGroup(
-        robot.elevator.processor(),
-        robot.extender.processor(),
-        robot.swingArm.processor(),
-        robot.wrist.zero()
-        )
-      ),
-      new ParallelCommandGroup
-      (
-        robot.wrist.processor(),
-        robot.intake.holdAlgae()
       )
     );
   }
 
 
+  public Command processor()
+  {
+    return combinedPositionCommand(
+      new SequentialCommandGroup(
+        robot.wrist.upsideDown(),
+        new ParallelRaceGroup(
+          robot.intake.holdAlgae(),
+          new ParallelCommandGroup(
+          robot.elevator.up(),
+          robot.extender.processor(),
+          robot.swingArm.processor()
+          )
+        ),
+        new ParallelRaceGroup(
+          robot.intake.holdAlgae(),
+          new ParallelCommandGroup(
+          robot.wrist.processor()
+        )),
+        new ParallelCommandGroup(
+          robot.intake.holdAlgae(),
+          robot.elevator.processor()
+        )
+      )
+    );
+  }
+
+  /* 
   public Command groundPickup()
   { 
     return combinedPositionCommand(
@@ -159,6 +167,22 @@ public class AdvancedCommands
         robot.swingArm.groundPickup(),
         robot.wrist.groundPickup()
     ));
+  }
+    */
+  public Command groundPickup()
+  { 
+    return combinedPositionCommand(
+      new SequentialCommandGroup(
+      new ParallelCommandGroup(
+        robot.elevator.groundPickup(),
+        robot.extender.groundPickup(),
+        robot.wrist.groundPickup()
+      ),
+      new ParallelCommandGroup(
+        robot.swingArm.groundPickup()
+       )
+      )
+    );
   }
   public Command barge()
   { 

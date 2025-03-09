@@ -3,24 +3,24 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.6442622950819668,
-        "y": 3.0480020491803272
+        "x": 3.536372950819672,
+        "y": 3.024026639344262
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.0688524590163935,
-        "y": 2.3647028688524587
+        "x": 2.9609631147540987,
+        "y": 2.3407274590163936
       },
       "isLocked": false,
       "linkedName": "CNode"
     },
     {
       "anchor": {
-        "x": 1.2107581967213117,
+        "x": 1.282684426229508,
         "y": 1.0820184426229513
       },
       "prevControl": {
-        "x": 2.1098360655737705,
+        "x": 2.181762295081967,
         "y": 1.3097848360655735
       },
       "nextControl": null,
@@ -35,7 +35,7 @@
       "minWaypointRelativePos": 0,
       "maxWaypointRelativePos": 0.3586810228802168,
       "constraints": {
-        "maxVelocity": 1.0,
+        "maxVelocity": 0.75,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -59,7 +59,7 @@
     },
     {
       "name": "Coral Station",
-      "waypointRelativePos": 0.6763122476446931,
+      "waypointRelativePos": 0.3344549125168236,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

@@ -102,15 +102,18 @@ public class Elevator extends SubsystemBase
   
   
   public Command processor() {
-    return elevatorTo(0).withName("Processor");
+    return elevatorTo(37).withName("Processor");
+  }
+  public Command up() {
+    return elevatorTo(50).withName("Processor");
   }
 
   public Command groundPickup() {
-    return elevatorTo(0).withName("Ground Pickup");
+    return elevatorTo(11).withName("Ground Pickup");
   }
 
   public Command barge() {
-    return elevatorTo(51.5).withName("Ground Pickup");
+    return elevatorTo(51.5).withName("Barge");
   }
   public Command algaeHold() {
     return elevatorTo(0).withName("Algae Hold");
