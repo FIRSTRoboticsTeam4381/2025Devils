@@ -54,7 +54,7 @@ public class Intake extends SubsystemBase
     
      // CHANGE CHANNELS LATER
     coralSensor1 = intake1.getForwardLimitSwitch();
-   
+    coralSensor2 = intake1.getReverseLimitSwitch();
     
 
     // speed = 0.5; // Not used anywhere as of right now
@@ -100,11 +100,11 @@ public class Intake extends SubsystemBase
   // coral
   public Command coralIntake()
   {
-    return new InstantCommand(() -> intake1.set(-0.5), this); 
+    return new InstantCommand(() -> intake1.set(-0.4), this); 
   }
   public Command coralEject() 
   {
-    return new InstantCommand(() -> intake1.set(-0.5), this);
+    return new InstantCommand(() -> intake1.set(-0.4), this);
   }
 
   
@@ -154,7 +154,7 @@ public class Intake extends SubsystemBase
     ).until(
       () -> coralSensor1.isPressed()
     ).andThen(
-      new WaitCommand(.5)
+      new WaitCommand(0)
     ).andThen(
       coralStop()
     ).andThen(
@@ -192,7 +192,7 @@ public class Intake extends SubsystemBase
   }
 
   public Command coralInOrOut() {
-    return new ConditionalCommand(ejectCoral(), intakeCoral(), coralSensor2::isPressed);
+    return new ConditionalCommand(ejectCoral(), intakeCoral(), coralSensor1::isPressed);
   }
   
 
