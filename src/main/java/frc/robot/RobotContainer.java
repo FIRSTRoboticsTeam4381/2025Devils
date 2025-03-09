@@ -76,7 +76,7 @@ public class RobotContainer {
 
   private void configureBindings() {
     driver.back()
-      .onTrue(new InstantCommand(() -> swerve.zeroGyro()));
+      .onTrue(new InstantCommand(() -> swerve.zeroYaw()).ignoringDisable(true));
     swerve.setDefaultCommand(new TeleopSwerve(swerve, 
             driver::getLeftY,
             driver::getLeftX,
