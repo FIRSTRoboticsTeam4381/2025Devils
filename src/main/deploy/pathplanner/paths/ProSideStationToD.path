@@ -3,36 +3,36 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.3306352459016395,
-        "y": 7.003944672131147
+        "x": 1.2107581967213117,
+        "y": 1.0820184426229513
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.0470302847954986,
-        "y": 6.590098624842996
+        "x": 2.2107581967213115,
+        "y": 1.0820184426229513
       },
       "isLocked": false,
-      "linkedName": "antiSide Station"
+      "linkedName": "proSideStation"
     },
     {
       "anchor": {
-        "x": 3.790512295081968,
-        "y": 5.190204918032787
+        "x": 3.9079918032786884,
+        "y": 2.916137295081967
       },
       "prevControl": {
-        "x": 3.44879791750506,
-        "y": 5.367222859427095
+        "x": 3.2846311475409835,
+        "y": 1.8851946721311472
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "L"
+      "linkedName": "DNode"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.5,
+      "minWaypointRelativePos": 0.6251682368775198,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 1.0,
@@ -47,13 +47,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Level",
-      "waypointRelativePos": 0.5,
+      "name": "L4",
+      "waypointRelativePos": 0.641318977119781,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Level"
+          "name": "L4"
         }
       }
     }
@@ -68,13 +68,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -150.0
+    "rotation": -29.999999999999996
   },
   "reversed": false,
-  "folder": "Station to Reef",
+  "folder": "Week 3",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -145.0
+    "rotation": -35.0
   },
   "useDefaultConstraints": true
 }

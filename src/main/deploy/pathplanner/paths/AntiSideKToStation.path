@@ -3,37 +3,37 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.3306352459016395,
-        "y": 7.003944672131147
+        "x": 4.099795081967213,
+        "y": 5.325665983606557
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.0470302847954986,
-        "y": 6.590098624842996
+        "x": 3.080840163934427,
+        "y": 6.056915983606556
       },
       "isLocked": false,
-      "linkedName": "antiSide Station"
+      "linkedName": "KNode"
     },
     {
       "anchor": {
-        "x": 3.790512295081968,
-        "y": 5.190204918032787
+        "x": 1.2946721311475409,
+        "y": 7.027920081967213
       },
       "prevControl": {
-        "x": 3.44879791750506,
-        "y": 5.367222859427095
+        "x": 2.3136270491803277,
+        "y": 6.440522540983607
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "L"
+      "linkedName": "antiSideStation"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.5,
-      "maxWaypointRelativePos": 1.0,
+      "minWaypointRelativePos": 0,
+      "maxWaypointRelativePos": 0.3559892328398383,
       "constraints": {
         "maxVelocity": 1.0,
         "maxAcceleration": 3.0,
@@ -47,13 +47,24 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Level",
-      "waypointRelativePos": 0.5,
+      "name": "Zero",
+      "waypointRelativePos": 0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Level"
+          "name": "Zero"
+        }
+      }
+    },
+    {
+      "name": "Coral Station",
+      "waypointRelativePos": 0.369448183041726,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Coral Station"
         }
       }
     }
@@ -68,13 +79,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -150.0
+    "rotation": -145.0
   },
   "reversed": false,
-  "folder": "Station to Reef",
+  "folder": "Week 3",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -145.0
+    "rotation": -148.4957332807957
   },
   "useDefaultConstraints": true
 }

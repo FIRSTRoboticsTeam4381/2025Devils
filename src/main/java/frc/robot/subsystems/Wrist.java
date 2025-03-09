@@ -114,7 +114,7 @@ public class Wrist extends SubsystemBase
   }
   public Command l4() 
   {
-    return wristPosition(0.69).withName("Level 4");
+    return wristPosition(0.67).withName("Level 4");
   }
 
 
@@ -128,22 +128,24 @@ public class Wrist extends SubsystemBase
   {
     return wristPosition(1.06).withName("Processor Scoring");
   }
-  
 
   public Command bargeCommand() 
   {
     return wristPosition(0).withName("Barge Scoring");
+  }
+  public Command algaeHold() {
+    return wristPosition(1.034).withName("Algae Hold");
   }
 
 
   
   public Command groundPickup() 
   {
-    return wristPosition(0.551).withName("Wrist Ground Pickup"); // Will need to change #s
+    return wristPosition(0.850).withName("Wrist Ground Pickup"); // Will need to change #s
   }
   public Command barge() 
   {
-    return wristPosition(0.67).withName("Barge"); // Will need to change #s
+    return wristPosition(0.9).withName("Barge"); // Will need to change #s
   }
   
 

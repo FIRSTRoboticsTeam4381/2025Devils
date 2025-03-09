@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 7.1,
-        "y": 0.55
+        "x": 7.192622950819672,
+        "y": 0.5066086065573756
       },
       "prevControl": {
-        "x": 7.260696902421635,
-        "y": 0.35848888922025574
+        "x": 7.353319853241307,
+        "y": 0.3150974957776312
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 0.0
   },
   "reversed": false,
   "folder": "Start pos(s) for Chooser",

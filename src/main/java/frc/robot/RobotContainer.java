@@ -105,7 +105,8 @@ public class RobotContainer
     autoChooser.onChange((listener) -> listener.showPreview());
     SmartDashboard.putNumber("Start Delay",0);
     NamedCommands.registerCommand("Coral", intake.coralInOrOut());
-    NamedCommands.registerCommand("Algae Intake/Outtake On", intake.algaeInOrOut());
+    
+    NamedCommands.registerCommand("Algae Intake/Outtake On", aCommands.algaeInOrOut());
     NamedCommands.registerCommand("Coral Station", aCommands.coralStation());
     
     NamedCommands.registerCommand("L1", aCommands.l1());
@@ -124,14 +125,14 @@ public class RobotContainer
     // Add any autos you want to be able to select below
     // NOTE: This needs to be executed AFTER all NamedCommands have been registered!
     autoChooser.setDefaultOption("None", Autos.none());
-    autoChooser.addOption("proSide E,B,A (trippple)", Autos.ProSideTrippple());
-    autoChooser.addOption("antiSide J,A,B (trippple)", Autos.AntiSideTrippple());
-    autoChooser.addOption("proSide D,C", Autos.ProSide_D_C());
-    autoChooser.addOption("middleSide G,H", Autos.MiddleSide_G_H());
-    autoChooser.addOption("proSide Basic (30s)", Autos.ProSideBasic());
-    autoChooser.addOption("antiSide Basic (31s)", Autos.AntiSideBasic());
-    autoChooser.addOption("Out The Way Blue", Autos.OutTheWayBlue());
-    autoChooser.addOption("Out The Way Red", Autos.OutTheWayRed());
+    autoChooser.addOption("ProSideTrippleL4", Autos.ProSideTrippleL4());
+    autoChooser.addOption("AntiSideTrippleL4", Autos.AntiSideTrippleL4());
+    //autoChooser.addOption("proSide D,C", Autos.ProSide_D_C());
+    //autoChooser.addOption("middleSide G,H", Autos.MiddleSide_G_H());
+    //autoChooser.addOption("proSide Basic (30s)", Autos.ProSideBasic());
+    //autoChooser.addOption("antiSide Basic (31s)", Autos.AntiSideBasic());
+    //autoChooser.addOption("Out The Way Blue", Autos.OutTheWayBlue());
+    //autoChooser.addOption("Out The Way Red", Autos.OutTheWayRed());
     autoChooser.addOption("ReefChooser: Processor Side Start", Autos.proSide());
     autoChooser.addOption("ReefChooser: Anti Processor Side Start", Autos.antiSide());
     autoChooser.addOption("ReefChooser: Middle Start", Autos.middle());
@@ -150,12 +151,12 @@ public class RobotContainer
             driver::getLeftX,
             driver::getRightX,
              true,
-            driver.y()::getAsBoolean,
-            driver.b()::getAsBoolean));
+            driver.leftBumper()::getAsBoolean/*,
+            driver.b()::getAsBoolean*/));
 
       specialist.a().onTrue(aCommands.groundPickup());
       specialist.b().onTrue(aCommands.coralStation());
-      specialist.y().toggleOnTrue(intake.algaeInOrOut());
+      specialist.y().toggleOnTrue(aCommands.algaeInOrOut());
       specialist.leftBumper().onTrue(aCommands.barge());
       specialist.rightBumper().onTrue(aCommands.processor());
       
@@ -163,7 +164,7 @@ public class RobotContainer
       specialist.povLeft().onTrue(aCommands.l3());
       specialist.povRight().onTrue(aCommands.l2());
       specialist.povDown().onTrue(aCommands.l1());
-
+      
       
       specialist.leftStick().or(specialist.rightStick()).onTrue(aCommands.zeroEverything());
 
@@ -192,7 +193,6 @@ public class RobotContainer
         ));
 
       driver.rightBumper().toggleOnTrue(intake.coralInOrOut());
-      driver.y().onTrue(swerve.highSpeedCommand());
 
       driver.a().whileTrue(new AutoAlign(swerve));
     }

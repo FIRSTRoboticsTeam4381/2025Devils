@@ -112,6 +112,9 @@ public class Elevator extends SubsystemBase
   public Command barge() {
     return elevatorTo(51.5).withName("Ground Pickup");
   }
+  public Command algaeHold() {
+    return elevatorTo(0).withName("Algae Hold");
+  }
 
   
   public Command zero() {

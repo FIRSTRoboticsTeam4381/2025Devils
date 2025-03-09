@@ -7,12 +7,14 @@ import java.util.function.Supplier;
 
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
+import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
@@ -28,18 +30,19 @@ import frc.robot.RobotContainer;
 @Logged
 public class Intake extends SubsystemBase
 {
-    public SparkMax intake1; // MOTORS 1 and 2 are algae, 2 follow one inverted
+    SendableChooser<Double> speedChooser = new SendableChooser<>();
+    public SparkFlex intake1; // MOTORS 1 and 2 are algae, 2 follow one inverted
     public double topSpeed = 4000;
     public double v = 0;
     public boolean hasAlgae = false;
     public final double ALGAE_SPIKE = 1500;
+    public double speed;
 
     private double[] currentTracker = new double[25];
     private double averageCurrent;
 
   
     public SparkLimitSwitch coralSensor1;
-    public SparkLimitSwitch coralSensor2;
 
     //public Supplier<Boolean> hasAlgae;
     //public Supplier<Boolean> hasCoral;
@@ -49,19 +52,18 @@ public class Intake extends SubsystemBase
   // create ArmIntake
   public Intake() 
   {
-    intake1 = new SparkMax(58, MotorType.kBrushless);
+    intake1 = new SparkFlex(58, MotorType.kBrushless);
   
     
      // CHANGE CHANNELS LATER
-    coralSensor1 = intake1.getForwardLimitSwitch();
-    coralSensor2 = intake1.getReverseLimitSwitch();
+    coralSensor1 = intake1.getReverseLimitSwitch();
     
 
     // speed = 0.5; // Not used anywhere as of right now
 
     // ARM INTAKE contains 3 total motors
     SparkMaxConfig intake1Config = new SparkMaxConfig();
-      intake1Config.smartCurrentLimit(40).idleMode(IdleMode.kBrake).inverted(true)
+      intake1Config.smartCurrentLimit(50).idleMode(IdleMode.kBrake).inverted(true)
       .limitSwitch.forwardLimitSwitchEnabled(false).reverseLimitSwitchEnabled(false);
         intake1.configure(intake1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
@@ -81,7 +83,7 @@ public class Intake extends SubsystemBase
     );
 
     intake1.getEncoder().getVelocity();
-    
+    SmartDashboard.putNumber("some speed", 0);
   }
 
 
@@ -89,22 +91,22 @@ public class Intake extends SubsystemBase
   // algae
   public Command algaeIntake() 
   {
-    return new InstantCommand(() -> intake1.set(0.6), this); 
+    return new InstantCommand(()-> intake1.set(0.45), this); 
   }
   public Command algaeEject() 
   {
-    return new InstantCommand(() -> intake1.set(-0.6), this);
+    return new InstantCommand(() -> intake1.set(-0.7), this);
   }
 
 
   // coral
   public Command coralIntake()
   {
-    return new InstantCommand(() -> intake1.set(-0.4), this); 
+    return new InstantCommand(() -> intake1.set(-0.6), this); 
   }
   public Command coralEject() 
   {
-    return new InstantCommand(() -> intake1.set(-0.4), this);
+    return new InstantCommand(() -> intake1.set(-0.6), this);
   }
 
   
@@ -122,8 +124,9 @@ public class Intake extends SubsystemBase
 
   public Command algaeHold() 
   {
-    return new InstantCommand(() -> intake1.set(0.3), this);
+    return new InstantCommand(() -> intake1.set(0.5), this);
   }
+
   public Command algaeTrue() 
   {
     return new InstantCommand(() -> hasAlgae = true);
@@ -141,10 +144,13 @@ public class Intake extends SubsystemBase
       () -> averageCurrent > 25
     ).andThen(
       algaeTrue()
-    ).andThen(
-      new RepeatCommand(
+    );
+  }
+
+  public Command holdAlgae()
+  {
+    return new RepeatCommand(
       algaeHold()
-    )
     );
   }
 
@@ -158,7 +164,6 @@ public class Intake extends SubsystemBase
     ).andThen(
       coralStop()
     ).andThen(
-      
       RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kRightRumble, 0.6, 1)
     );
   }
@@ -191,15 +196,20 @@ public class Intake extends SubsystemBase
     );
   }
 
-  public Command coralInOrOut() {
+  public Command coralInOrOut() 
+  {
     return new ConditionalCommand(ejectCoral(), intakeCoral(), coralSensor1::isPressed);
   }
   
 
-  public Command algaeInOrOut() {
-    return new ConditionalCommand(ejectAlgae(), intakeAlgae(), () -> {return hasAlgae;}).withName("Algae In or Out");
+  
+  
+  public void setSpeedThing(Double s)
+  {
+    speed = s;
   }
   
+
   @Override
   public void periodic() 
   {
@@ -207,6 +217,8 @@ public class Intake extends SubsystemBase
       SmartDashboard.putData(this);
       SmartDashboard.putNumber("Average Current", averageCurrent);
       SmartDashboard.putBoolean("Has Algae", hasAlgae);
+      SmartDashboard.putData("Intake Speed", speedChooser);
+      speed = SmartDashboard.getNumber("some speed", 0);
       /* 
       v = intake3.get();
       if(v > topSpeed) 
@@ -222,5 +234,6 @@ public class Intake extends SubsystemBase
         runningSum+=currentTracker[i];
       }
       averageCurrent = runningSum/25;
+      
   }
 }

@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SelectCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotContainer;
@@ -116,7 +117,9 @@ public class AdvancedCommands
   {
     return new ParallelCommandGroup(
         robot.swingArm.coralStation(),
-        robot.wrist.coralStation()
+        robot.wrist.coralStation(),
+        robot.elevator.coralStation(),
+        robot.extender.coralStation()
       ).andThen(new ParallelCommandGroup(
         robot.intake.coralInOrOut()
       ).andThen(
@@ -128,13 +131,22 @@ public class AdvancedCommands
 
   public Command processor()
   {
-    return combinedPositionCommand(
-      new ParallelCommandGroup(
+    return new SequentialCommandGroup(
+      new ParallelRaceGroup(
+        robot.intake.holdAlgae(),
+        new ParallelCommandGroup(
         robot.elevator.processor(),
         robot.extender.processor(),
         robot.swingArm.processor(),
-        robot.wrist.processor()
-    ));
+        robot.wrist.zero()
+        )
+      ),
+      new ParallelCommandGroup
+      (
+        robot.wrist.processor(),
+        robot.intake.holdAlgae()
+      )
+    );
   }
 
 
@@ -150,15 +162,47 @@ public class AdvancedCommands
   }
   public Command barge()
   { 
-    return combinedPositionCommand(
+    return new SequentialCommandGroup(
+      new ParallelRaceGroup(
+        robot.intake.holdAlgae(),
       new ParallelCommandGroup(
         robot.elevator.barge(),
         robot.extender.barge(),
         robot.swingArm.barge(),
-        robot.wrist.barge()
-    ));
+        robot.wrist.algaeHold()
+        
+      )),
+      new ParallelCommandGroup(
+        robot.wrist.barge(),
+        robot.intake.holdAlgae()
+      )
+    );
   }
     
+  public Command algaeHolding()
+  { 
+    return new SequentialCommandGroup(
+    robot.intake.intakeAlgae(),
+    new ParallelRaceGroup(
+      robot.intake.holdAlgae(),
+    new ParallelCommandGroup(
+      robot.extender.algaeHold(),
+      robot.swingArm.algaeHold()
+    )),
+    new ParallelCommandGroup(
+      robot.elevator.algaeHold(),
+      robot.wrist.algaeHold(),
+      robot.swingArm.zero(),
+      robot.intake.holdAlgae()
+    )
+    );
+  }
+
+  public Command algaeInOrOut() 
+  {
+    return new ConditionalCommand(robot.intake.ejectAlgae(), algaeHolding(), () -> {return robot.intake.hasAlgae;}).withName("Algae In or Out");
+  }
+  
 
   public Command zeroEverything()
   { 

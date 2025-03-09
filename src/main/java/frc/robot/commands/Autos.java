@@ -59,31 +59,38 @@ public final class Autos {
         return new PreviewAuto(Commands.none());
     }
 
-
+/* 
     public static PreviewAuto OutTheWayBlue() {
         return new PreviewAuto("Out The Way Blue");
     }
     public static PreviewAuto OutTheWayRed() {
         return new PreviewAuto("Out The Way Red");
     }
+     */
+    public static PreviewAuto AntiSideTrippleL4() {
+        return new PreviewAuto("AntiSideTrippleL4");
+    }
+    public static PreviewAuto ProSideTrippleL4() {
+        return new PreviewAuto("ProSideTrippleL4");
+    }
 
-
+/* 
     public static PreviewAuto ProSideTrippple() {
         return new PreviewAuto("proSide E,B,A (trippple)");
     }
     public static PreviewAuto AntiSideTrippple() {
         return new PreviewAuto("antiSide J,A,B (trippple)");
     }
-
-
+*/
+/* 
     public static PreviewAuto ProSideBasic() {
         return new PreviewAuto("proSide Basic (30s)");
     }
     public static PreviewAuto AntiSideBasic() {
         return new PreviewAuto("antiSide Basic (31s)");
     }
-
-
+*/
+/* 
       //ProSide_D_C means D,C; Not ideal but it works. Same for _G_H = G,H below
     public static PreviewAuto ProSide_D_C() {
         return new PreviewAuto("proSide D,C");
@@ -92,7 +99,7 @@ public final class Autos {
     public static PreviewAuto MiddleSide_G_H() {
         return new PreviewAuto("middleSide G,H");
     }
-
+*/
 
     
     public static PreviewAuto reefASideSelector(String autoName) {

@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.409754098360656,
-        "y": 6.930819672131147
+        "x": 1.3306352459016395,
+        "y": 7.003944672131147
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.3086065573770496,
-        "y": 4.808995901639344
+        "x": 3.229487704918033,
+        "y": 4.882120901639344
       },
       "isLocked": false,
       "linkedName": "antiSide Station"
@@ -33,13 +33,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "L2L",
+      "name": "L2",
       "waypointRelativePos": 0.2773026315789488,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "L2L"
+          "name": "L2"
         }
       }
     }

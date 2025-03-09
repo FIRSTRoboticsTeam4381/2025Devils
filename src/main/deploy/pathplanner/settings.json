@@ -5,6 +5,7 @@
   "pathFolders": [
     "D - Extra Base Auto Paths ",
     "D - Paths ONLY so were okay for Week-1",
+    "Week 3",
     "Out the way",
     "Place - Out of the way",
     "Reef to Station",
@@ -16,6 +17,7 @@
   ],
   "autoFolders": [
     "Chooser Autos",
+    "Week-3",
     "Week-1",
     "out the way"
   ],
@@ -44,6 +46,6 @@
   "bumperOffsetX": 0.0,
   "bumperOffsetY": 0.0,
   "robotFeatures": [
-    "{\"name\":\"Rectangle\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.114,\"y\":0.0},\"size\":{\"width\":0.4,\"length\":0.2},\"borderRadius\":0.05,\"strokeWidth\":0.02,\"filled\":false}}"
+    "{\"name\":\"Rectangle\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.127,\"y\":0.0},\"size\":{\"width\":0.4,\"length\":0.2},\"borderRadius\":0.05,\"strokeWidth\":0.02,\"filled\":false}}"
   ]
 }

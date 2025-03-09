@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.SparkPosition;
+import frc.robot.commands.SparkPositionProfiled;
 
 
 @Logged
@@ -61,8 +62,9 @@ public class SwingArm extends SubsystemBase
       .p(2.5)
       .i(0)
       .d(0)
-    .outputRange(-.8, .8);
+      .outputRange(-.25, .25);
     rotateConfig2
+
       .apply(rotateConfig1)
       .follow(rotate1)
       .idleMode(IdleMode.kBrake);
@@ -119,7 +121,7 @@ public class SwingArm extends SubsystemBase
 
   public Command l4() 
   {
-    return goToAngle(0.530).withName("Level 4");
+    return goToAngle(0.532).withName("Level 4");
   }
 
 
@@ -134,14 +136,16 @@ public class SwingArm extends SubsystemBase
   }
 
   public Command groundPickup() {
-    return goToAngle(0.475).withName("Ground Pickup");
+    return goToAngle(0.730).withName("Ground Pickup");
   }
 
   public Command barge() {
     return goToAngle(.5).withName("Barge");
   }
 
-
+  public Command algaeHold() {
+    return goToAngle(.4).withName("Algae Hold");
+  }
 
   public Command swing(Supplier<Double> joystickValue) 
   {

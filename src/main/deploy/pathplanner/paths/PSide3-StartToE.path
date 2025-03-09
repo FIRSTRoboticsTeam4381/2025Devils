@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.1,
-        "y": 0.55
+        "x": 7.192622950819672,
+        "y": 0.5066086065573756
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.697438524590163,
-        "y": 1.6648565573770489
+        "x": 5.790061475409836,
+        "y": 1.6214651639344244
       },
       "isLocked": false,
       "linkedName": "pStart"
@@ -47,13 +47,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "L4L",
+      "name": "L4",
       "waypointRelativePos": 0.4957236842105285,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "L4L"
+          "name": "L4"
         }
       }
     }
@@ -74,7 +74,7 @@
   "folder": "D - Extra Base Auto Paths ",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

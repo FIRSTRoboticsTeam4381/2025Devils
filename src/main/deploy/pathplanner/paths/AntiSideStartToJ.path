@@ -3,39 +3,39 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.3306352459016395,
-        "y": 7.003944672131147
+        "x": 7.18063524590164,
+        "y": 7.555379098360655
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.0470302847954986,
-        "y": 6.590098624842996
+        "x": 5.89633603397988,
+        "y": 5.997485401692016
       },
       "isLocked": false,
-      "linkedName": "antiSide Station"
+      "linkedName": "antiStart"
     },
     {
       "anchor": {
-        "x": 3.790512295081968,
-        "y": 5.190204918032787
+        "x": 5.142725409836065,
+        "y": 5.133862704918033
       },
       "prevControl": {
-        "x": 3.44879791750506,
-        "y": 5.367222859427095
+        "x": 5.887348420973779,
+        "y": 6.074738501715398
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "L"
+      "linkedName": "JNode"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.5,
+      "minWaypointRelativePos": 0.5752869682646831,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 1.0,
+        "maxVelocity": 0.75,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -47,13 +47,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Level",
-      "waypointRelativePos": 0.5,
+      "name": "L4",
+      "waypointRelativePos": 0.5185685347737965,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Level"
+          "name": "L4"
         }
       }
     }
@@ -68,13 +68,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -150.0
+    "rotation": 149.31104126260644
   },
   "reversed": false,
-  "folder": "Station to Reef",
+  "folder": "Week 3",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -145.0
+    "rotation": 179.66494078139087
   },
   "useDefaultConstraints": true
 }

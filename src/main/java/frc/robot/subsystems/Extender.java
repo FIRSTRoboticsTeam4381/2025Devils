@@ -129,6 +129,10 @@ public class Extender extends SubsystemBase
     return extendTo(0).withName("Ground Pickup");
  }  
 
+  public Command algaeHold() {
+    return extendTo(0).withName("Algae Hold");
+  }
+
   public Command zero() 
   {
     return extendTo(0).withName("Zero");

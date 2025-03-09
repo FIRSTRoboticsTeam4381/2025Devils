@@ -47,13 +47,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "L4L",
+      "name": "L4",
       "waypointRelativePos": 0.4957236842105285,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "L4L"
+          "name": "L4"
         }
       }
     }

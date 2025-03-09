@@ -7,61 +7,79 @@
         {
           "type": "path",
           "data": {
-            "pathName": "pStart pos"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Copy of pStart to D (L3L)"
+            "pathName": "AntiSideStartToJ"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": null
+            "name": "Coral"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "D to pStation"
+            "pathName": "AntiSideJToStation"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": null
+            "name": "Coral"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Copy of pStation to C  (L3L)"
+            "pathName": "AntiSideStationToK"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": null
+            "name": "Coral"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Copy of C to pStation"
+            "pathName": "AntiSideKToStation"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": null
+            "name": "Coral"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "AntiSideStationToL"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "AntiSideLToStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Week-1",
+  "folder": "Week-3",
   "choreoAuto": false
 }
