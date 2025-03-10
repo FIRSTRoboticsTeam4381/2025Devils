@@ -119,7 +119,7 @@ public final class Autos {
                                 Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStart to J"))),
                                 Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStart to K"))),
                                 Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStart to L")))
-                            ), Autos::chosenPosition),
+                            ), Autos::removeBranch),
                             RobotContainer.getRobot().intake.ejectCoral(),
                         new DeferredCommand(() -> {try {
                             return AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to aStation"));
@@ -144,7 +144,7 @@ public final class Autos {
                                 Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to J"))),
                                 Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to K"))),
                                 Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("aStation to L")))
-                            ), Autos::chosenPosition
+                            ), Autos::removeBranch
                         ),
                         RobotContainer.getRobot().intake.ejectCoral(),
                         RobotContainer.getRobot().aCommands.zeroEverything()
@@ -184,7 +184,7 @@ public final class Autos {
                                 Map.entry('F', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStart to F"))),
                                 Map.entry('G', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStart to G"))),
                                 Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStart to H")))
-                            ), Autos::chosenPosition),
+                            ), Autos::removeBranch),
                             new InstantCommand(() -> RobotContainer.getRobot().intake.ejectCoral()),
                         new DeferredCommand(() -> {try {
                             return AutoBuilder.followPath(PathPlannerPath.fromPathFile(prevChosenBranch + " to pStation"));
@@ -208,7 +208,7 @@ public final class Autos {
                                 Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to J"))),
                                 Map.entry('K', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to K"))),
                                 Map.entry('L', AutoBuilder.followPath(PathPlannerPath.fromPathFile("pStation to L")))
-                            ), Autos::chosenPosition
+                            ), Autos::removeBranch
                         ),
                         new InstantCommand(() -> RobotContainer.getRobot().intake.ejectCoral())
                         //Finished
@@ -245,7 +245,7 @@ public final class Autos {
                                 Map.entry('H', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to H"))),
                                 Map.entry('I', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to I"))),
                                 Map.entry('J', AutoBuilder.followPath(PathPlannerPath.fromPathFile("mStart to J")))
-                            ), Autos::chosenPosition),
+                            ), Autos::removeBranch),
                         new InstantCommand(() -> RobotContainer.getRobot().intake.ejectCoral()),
                         new DeferredCommand(() -> {try {
                             prevStation = station;
@@ -270,7 +270,7 @@ public final class Autos {
                                 Map.entry('J', deferChooserPath(() -> prevStation, "to J")),
                                 Map.entry('K', deferChooserPath(() -> prevStation, "to K")),
                                 Map.entry('L', deferChooserPath(() -> prevStation, "to L"))
-                            ), Autos::chosenPosition
+                            ), Autos::removeBranch
                         ),
                         new InstantCommand(() -> System.out.println(station)),
                         new InstantCommand(() -> RobotContainer.getRobot().intake.ejectCoral())
@@ -307,15 +307,15 @@ public final class Autos {
 
     public static Queue<Character> positionsTo = new LinkedList<>();
 
-    public static Character chosenPosition() {
+    public static Character removeBranch() {
         prevChosenBranch = positionsTo.remove();
         if(prevChosenBranch == 'A' || prevChosenBranch == 'H'|| prevChosenBranch == 'I'
         || prevChosenBranch == 'J'|| prevChosenBranch == 'K'|| prevChosenBranch == 'L') {
             station = "aStation";
-            System.out.println("ran IF statement: " + station);
+            System.out.println("AutoBuilder: ran IF statement: " + station);
         } else {
             station = "pStation";
-            System.out.println("ran IF statement: " + station);
+            System.out.println("AutoBuilder: ran IF statement: " + station);
         }
         return prevChosenBranch;
     }
