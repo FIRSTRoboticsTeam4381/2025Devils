@@ -1,0 +1,80 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "MiddleStartToH"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Zero"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "MiddleHtoCenter"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Algae In"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Zero"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "MiddleToBarge"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Algae Out"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Zero"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "MiddleRun"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "Week-3",
+  "choreoAuto": false
+}

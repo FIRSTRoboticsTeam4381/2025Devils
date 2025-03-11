@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.2946721311475409,
-        "y": 7.027920081967213
+        "x": 1.3665983606557375,
+        "y": 7.159784836065573
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.901024590163934,
-        "y": 6.23673155737705
+        "x": 4.089577647236188,
+        "y": 5.328886795623713
       },
       "isLocked": false,
       "linkedName": "antiSideStation"
     },
     {
       "anchor": {
-        "x": 4.099795081967213,
-        "y": 5.325665983606557
+        "x": 4.135758196721311,
+        "y": 5.361629098360655
       },
       "prevControl": {
-        "x": 2.972950819672131,
-        "y": 6.320645491803278
+        "x": 3.9447044244336356,
+        "y": 5.522869465808292
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,10 +32,10 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.590174966352627,
+      "minWaypointRelativePos": 0.3263795423956931,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 0.75,
+        "maxVelocity": 0.8,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -59,7 +59,7 @@
     },
     {
       "name": "L4",
-      "waypointRelativePos": 0.6009421265141324,
+      "waypointRelativePos": 0.3559892328398484,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -79,7 +79,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -148.4957332807957
+    "rotation": -150.0
   },
   "reversed": false,
   "folder": "Week 3",

@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.099795081967213,
-        "y": 5.325665983606557
+        "x": 4.135758196721311,
+        "y": 5.361629098360655
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.080840163934427,
-        "y": 6.056915983606556
+        "x": 3.25866828409446,
+        "y": 5.980951837725533
       },
       "isLocked": false,
       "linkedName": "KNode"
     },
     {
       "anchor": {
-        "x": 1.2946721311475409,
-        "y": 7.027920081967213
+        "x": 1.3665983606557375,
+        "y": 7.159784836065573
       },
       "prevControl": {
-        "x": 2.3136270491803277,
-        "y": 6.440522540983607
+        "x": 3.5597413439584242,
+        "y": 5.772342109452581
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,10 +33,10 @@
     {
       "name": "Constraints Zone",
       "minWaypointRelativePos": 0,
-      "maxWaypointRelativePos": 0.3559892328398383,
+      "maxWaypointRelativePos": 0.26985195154778024,
       "constraints": {
-        "maxVelocity": 1.0,
-        "maxAcceleration": 3.0,
+        "maxVelocity": 3.0,
+        "maxAcceleration": 1.7,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -85,7 +85,7 @@
   "folder": "Week 3",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -148.4957332807957
+    "rotation": -150.0
   },
   "useDefaultConstraints": true
 }

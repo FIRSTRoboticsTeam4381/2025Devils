@@ -102,11 +102,11 @@ public class Intake extends SubsystemBase
   // coral
   public Command coralIntake()
   {
-    return new InstantCommand(() -> intake1.set(-0.6), this); 
+    return new InstantCommand(() -> intake1.set(-0.7), this); 
   }
   public Command coralEject() 
   {
-    return new InstantCommand(() -> intake1.set(-0.6), this);
+    return new InstantCommand(() -> intake1.set(-0.9), this);
   }
 
   
@@ -186,7 +186,7 @@ public class Intake extends SubsystemBase
     ).until(
       () -> !coralSensor1.isPressed() 
     ).andThen(
-      new WaitCommand(0.75)
+      new WaitCommand(0.05)
     ).andThen(
       coralStop()
     ).andThen(

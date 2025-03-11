@@ -56,7 +56,7 @@ public class AdvancedCommands
    */
   public Command combinedPositionCommand(Command positions){
     return new SequentialCommandGroup(
-      new ParallelCommandGroup(robot.wrist.zero(), robot.extender.zero()),
+      //new ParallelCommandGroup(robot.wrist.zero(), robot.extender.zero()),
       positions,
       holdPositionCommand()
     );
@@ -103,6 +103,7 @@ public class AdvancedCommands
   {
     return combinedPositionCommand(
       new ParallelCommandGroup(
+        robot.wrist.zero(),
         robot.elevator.l4(),
         robot.extender.l4()
       ).andThen(new ParallelCommandGroup(

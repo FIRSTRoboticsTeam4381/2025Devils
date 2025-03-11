@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.142725409836065,
-        "y": 5.133862704918033
+        "x": 5.802049180327868,
+        "y": 4.1
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.302131520105503,
-        "y": 5.65614375312231
+        "x": 6.79702868852459,
+        "y": 3.8482581967213116
       },
       "isLocked": false,
-      "linkedName": "JNode"
+      "linkedName": "HNode"
     },
     {
       "anchor": {
-        "x": 1.3665983606557375,
-        "y": 7.159784836065573
+        "x": 5.730122950819672,
+        "y": 3.887141393442622
       },
       "prevControl": {
-        "x": 2.1457991803278684,
-        "y": 6.812141393442623
+        "x": 5.448996213077906,
+        "y": 3.930246183294576
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "antiSideStation"
+      "linkedName": "Center"
     }
   ],
   "rotationTargets": [],
@@ -33,10 +33,10 @@
     {
       "name": "Constraints Zone",
       "minWaypointRelativePos": 0,
-      "maxWaypointRelativePos": 0.2994616419919255,
+      "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 3.0,
-        "maxAcceleration": 1.7,
+        "maxVelocity": 0.5,
+        "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -47,24 +47,24 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Zero",
-      "waypointRelativePos": 0,
+      "name": "L2",
+      "waypointRelativePos": 0.05989232839838321,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Zero"
+          "name": "L2"
         }
       }
     },
     {
-      "name": "Coral Station",
-      "waypointRelativePos": 0.34791386271870783,
+      "name": "Algae In",
+      "waypointRelativePos": 0.517496635262448,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Coral Station"
+          "name": "Algae In"
         }
       }
     }
@@ -79,13 +79,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -145.0
+    "rotation": 90.0
   },
   "reversed": false,
   "folder": "Week 3",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 150.0
+    "rotation": 90.0
   },
   "useDefaultConstraints": true
 }

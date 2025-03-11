@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -87,7 +88,7 @@ public class RobotContainer
 
   public HangCam hangCam = new HangCam("HangCamera");
 
-  // Constructor: set up the robot! 
+  // Constructor: set u%p the robot! 
   public RobotContainer() 
   {
     robotReference = this;
@@ -105,9 +106,13 @@ public class RobotContainer
     autoChooser.onChange((listener) -> listener.showPreview());
     SmartDashboard.putNumber("Start Delay",0);
     NamedCommands.registerCommand("Coral", intake.coralInOrOut());
+    NamedCommands.registerCommand("Algae In", intake.algaeIntake());
+    NamedCommands.registerCommand("Algae Out", intake.algaeEject());
+    NamedCommands.registerCommand("Hold", intake.holdAlgae());
     
     NamedCommands.registerCommand("Algae Intake/Outtake On", aCommands.algaeInOrOut());
     NamedCommands.registerCommand("Coral Station", aCommands.coralStation());
+    NamedCommands.registerCommand("Barge", aCommands.barge());
     
     NamedCommands.registerCommand("L1", aCommands.l1());
     NamedCommands.registerCommand("L2", aCommands.l2());
@@ -127,6 +132,7 @@ public class RobotContainer
     autoChooser.setDefaultOption("None", Autos.none());
     autoChooser.addOption("ProSideTrippleL4", Autos.ProSideTrippleL4());
     autoChooser.addOption("AntiSideTrippleL4", Autos.AntiSideTrippleL4());
+    autoChooser.addOption("MiddleOneL4", Autos.MiddleOneL4());
     //autoChooser.addOption("proSide D,C", Autos.ProSide_D_C());
     //autoChooser.addOption("middleSide G,H", Autos.MiddleSide_G_H());
     //autoChooser.addOption("proSide Basic (30s)", Autos.ProSideBasic());

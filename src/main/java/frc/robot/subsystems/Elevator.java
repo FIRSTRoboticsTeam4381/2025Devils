@@ -45,7 +45,7 @@ public class Elevator extends SubsystemBase
       .p(0.09)
       .i(0)
       .d(0)
-      .outputRange(-.5, 1);
+      .outputRange(-.65, 1);
     
     elevator1.configure(elevator1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     elevator2.configure(elevator2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
