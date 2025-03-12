@@ -112,6 +112,9 @@ public class Extender extends SubsystemBase
     return extendTo(0).withName("Coral Station");
   }
 
+  public Command hang() {
+    return extendTo(0).withName("Hang");
+  }
   
   public Command processor()
   {

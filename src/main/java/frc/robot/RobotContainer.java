@@ -161,6 +161,7 @@ public class RobotContainer
 
       specialist.a().onTrue(aCommands.groundPickup());
       specialist.b().onTrue(aCommands.coralStation());
+      specialist.x().onTrue(aCommands.hang());
       specialist.y().toggleOnTrue(aCommands.algaeInOrOut());
       specialist.leftBumper().onTrue(aCommands.barge());
       specialist.rightBumper().onTrue(aCommands.processor());
