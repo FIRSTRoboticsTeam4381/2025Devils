@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.5032581967213117,
-        "y": 1.0184836065573768
+        "x": 1.283,
+        "y": 1.082
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.503258196721312,
-        "y": 1.0184836065573768
+        "x": 2.2830000000000004,
+        "y": 1.082
       },
       "isLocked": false,
       "linkedName": "proSide Station"
     },
     {
       "anchor": {
-        "x": 3.812090163934426,
-        "y": 2.904149590163935
+        "x": 3.824,
+        "y": 2.832
       },
       "prevControl": {
-        "x": 2.812090163934426,
-        "y": 2.904149590163935
+        "x": 3.200515176885922,
+        "y": 1.8008396461527394
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,10 +32,10 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.5,
+      "minWaypointRelativePos": 0.63,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 0.5,
+        "maxVelocity": 0.75,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -47,8 +47,19 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
+      "name": "Zero",
+      "waypointRelativePos": 0,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Zero"
+        }
+      }
+    },
+    {
       "name": "Level",
-      "waypointRelativePos": 0.5,
+      "waypointRelativePos": 0.64,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.5032581967213117,
-        "y": 1.0184836065573768
+        "x": 1.283,
+        "y": 1.082
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.608233606557377,
-        "y": 1.596530737704917
+        "x": 4.3879754098360655,
+        "y": 1.6600471311475402
       },
       "isLocked": false,
       "linkedName": "proSide Station"
