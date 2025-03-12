@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.536372950819672,
-        "y": 3.024026639344262
+        "x": 3.6082991803278692,
+        "y": 2.976075819672131
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.9609631147540987,
-        "y": 2.3407274590163936
+        "x": 3.032889344262296,
+        "y": 2.2927766393442623
       },
       "isLocked": false,
-      "linkedName": "CNode"
+      "linkedName": "C"
     },
     {
       "anchor": {
-        "x": 1.282684426229508,
-        "y": 1.0820184426229513
+        "x": 1.5032581967213117,
+        "y": 1.0184836065573768
       },
       "prevControl": {
-        "x": 2.181762295081967,
-        "y": 1.3097848360655735
+        "x": 2.4023360655737704,
+        "y": 1.246249999999999
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "proSideStation"
+      "linkedName": "proSide Station"
     }
   ],
   "rotationTargets": [],
@@ -79,7 +79,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -35.0
+    "rotation": -36.0
   },
   "reversed": false,
   "folder": "Week 3",

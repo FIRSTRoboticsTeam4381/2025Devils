@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.282684426229508,
-        "y": 1.0820184426229513
+        "x": 1.5032581967213117,
+        "y": 1.0184836065573768
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.2826844262295083,
-        "y": 1.0820184426229513
+        "x": 2.503258196721312,
+        "y": 1.0184836065573768
       },
       "isLocked": false,
-      "linkedName": "proSideStation"
+      "linkedName": "proSide Station"
     },
     {
       "anchor": {
-        "x": 3.8240778688524584,
-        "y": 2.832223360655737
+        "x": 3.812090163934426,
+        "y": 2.904149590163935
       },
       "prevControl": {
-        "x": 3.2007172131147534,
-        "y": 1.8012807377049176
+        "x": 3.188729508196721,
+        "y": 1.8732069672131153
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "DNode"
+      "linkedName": "D"
     }
   ],
   "rotationTargets": [],
@@ -85,7 +85,7 @@
   "folder": "Week 3",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -35.0
+    "rotation": -36.0
   },
   "useDefaultConstraints": true
 }
