@@ -3,39 +3,39 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.282684426229508,
-        "y": 1.0820184426229513
+        "x": 7.672131147540983,
+        "y": 5.469518442622951
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.8644754651314126,
-        "y": 2.5221427242427366
+        "x": 6.761065573770493,
+        "y": 5.745235655737704
       },
       "isLocked": false,
-      "linkedName": "proSideStation"
+      "linkedName": "Barge"
     },
     {
       "anchor": {
-        "x": 3.536372950819672,
-        "y": 3.024026639344262
+        "x": 5.154713114754099,
+        "y": 5.013985655737705
       },
       "prevControl": {
-        "x": 3.415966590042458,
-        "y": 2.804932348491243
+        "x": 5.622233606556594,
+        "y": 6.056915983601517
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "CNode"
+      "linkedName": "IJAlgae"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.6170928667564021,
+      "minWaypointRelativePos": 0.8372721134368611,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 0.75,
+        "maxVelocity": 0.5,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
@@ -47,24 +47,24 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Zero",
-      "waypointRelativePos": 0,
+      "name": "L3",
+      "waypointRelativePos": 0.6455097906819766,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Zero"
+          "name": "L3"
         }
       }
     },
     {
-      "name": "L4",
-      "waypointRelativePos": 0.6386271870794067,
+      "name": "Algae In",
+      "waypointRelativePos": 0.8993923024983032,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "L4"
+          "name": "Algae In"
         }
       }
     }
@@ -79,13 +79,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -29.999999999999996
+    "rotation": 150.8759465052226
   },
   "reversed": false,
   "folder": "Week 3",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -35.0
+    "rotation": -90.0
   },
   "useDefaultConstraints": true
 }
