@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.8644754651314126,
-        "y": 2.5221427242427366
+        "x": 2.282684426229508,
+        "y": 1.0820184426229513
       },
       "isLocked": false,
       "linkedName": "proSideStation"
@@ -20,12 +20,12 @@
         "y": 3.024026639344262
       },
       "prevControl": {
-        "x": 3.415966590042458,
-        "y": 2.804932348491243
+        "x": 3.2007172131147543,
+        "y": 1.8732069672131149
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "CNode"
+      "linkedName": "C"
     }
   ],
   "rotationTargets": [],

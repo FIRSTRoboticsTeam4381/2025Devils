@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.895027157625885,
-        "y": 2.2083586762130305
+        "x": 2.2826844262295083,
+        "y": 1.0820184426229513
       },
       "isLocked": false,
       "linkedName": "proSideStation"
@@ -20,12 +20,12 @@
         "y": 2.832223360655737
       },
       "prevControl": {
-        "x": 3.170994136837765,
-        "y": 2.381831466578898
+        "x": 3.2007172131147534,
+        "y": 1.8012807377049176
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "DNode"
+      "linkedName": "D"
     }
   ],
   "rotationTargets": [],

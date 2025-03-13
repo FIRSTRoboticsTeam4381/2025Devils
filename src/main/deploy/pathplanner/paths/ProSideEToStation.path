@@ -8,11 +8,11 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.901635776817977,
-        "y": 2.2297119316489806
+        "x": 3.35655737704918,
+        "y": 2.005071721311475
       },
       "isLocked": false,
-      "linkedName": "ENode"
+      "linkedName": "E"
     },
     {
       "anchor": {
@@ -20,8 +20,8 @@
         "y": 1.0820184426229513
       },
       "prevControl": {
-        "x": 3.2289253594330383,
-        "y": 1.946472119622228
+        "x": 2.349590163934425,
+        "y": 1.6094774590163934
       },
       "nextControl": null,
       "isLocked": false,

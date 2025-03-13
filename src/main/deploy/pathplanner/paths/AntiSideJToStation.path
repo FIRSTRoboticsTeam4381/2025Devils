@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.142725409836065,
+        "x": 5.143,
         "y": 5.133862704918033
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.302131520105503,
+        "x": 4.3024061102694375,
         "y": 5.65614375312231
       },
       "isLocked": false,
-      "linkedName": "JNode"
+      "linkedName": "J"
     },
     {
       "anchor": {

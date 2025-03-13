@@ -12,7 +12,7 @@
         "y": 5.980951837725533
       },
       "isLocked": false,
-      "linkedName": "KNode"
+      "linkedName": "K"
     },
     {
       "anchor": {
@@ -20,7 +20,7 @@
         "y": 7.159784836065573
       },
       "prevControl": {
-        "x": 3.5597413439584242,
+        "x": 3.5597413439584247,
         "y": 5.772342109452581
       },
       "nextControl": null,
