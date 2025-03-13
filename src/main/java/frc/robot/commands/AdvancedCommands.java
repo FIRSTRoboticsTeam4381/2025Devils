@@ -158,6 +158,18 @@ public class AdvancedCommands
     );
   }
 
+  public Command hang()
+  {
+    return combinedPositionCommand(
+        new ParallelCommandGroup(
+        robot.elevator.hang(),
+        robot.extender.hang(),
+        robot.swingArm.hang(),
+        robot.wrist.hang()
+        )
+    );
+  }
+
   /* 
   public Command groundPickup()
   { 

@@ -124,6 +124,10 @@ public class Wrist extends SubsystemBase
     return wristPosition(0.558).withName("Wrist Coral Station");
   }
   
+  public Command hang() {
+    return wristPosition(1.23).withName("Hang");
+  }
+
   public Command processor() 
   {
     return wristPosition(0.926).withName("Processor Scoring");

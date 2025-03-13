@@ -130,6 +130,10 @@ public class SwingArm extends SubsystemBase
     return goToAngle(0.36).withName("Coral Station");
   }
 
+  public Command hang() {
+    return goToAngle(0.72).withName("Hang");
+  }
+
   public Command processor()
   {
     return goToAngle(0.125).withName("Processor");

@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.128340163934427,
-        "y": 5.1614344262295075
+        "x": 5.142725409836065,
+        "y": 5.133862704918033
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.287746274203864,
-        "y": 5.683715474433785
+        "x": 4.302131520105503,
+        "y": 5.65614375312231
       },
       "isLocked": false,
-      "linkedName": "J"
+      "linkedName": "JNode"
     },
     {
       "anchor": {
-        "x": 1.3306352459016395,
-        "y": 7.003944672131147
+        "x": 1.3665983606557375,
+        "y": 7.159784836065573
       },
       "prevControl": {
-        "x": 2.1098360655737705,
-        "y": 6.6563012295081965
+        "x": 2.1457991803278684,
+        "y": 6.812141393442623
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "antiSide Station"
+      "linkedName": "antiSideStation"
     }
   ],
   "rotationTargets": [],
