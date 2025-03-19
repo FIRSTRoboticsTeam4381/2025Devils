@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.ejml.simple.SimpleMatrix;
@@ -20,6 +21,8 @@ import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.networktables.ProtobufPublisher;
+import edu.wpi.first.networktables.StructArrayPublisher;
 import edu.wpi.first.networktables.StructPublisher;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
@@ -31,6 +34,8 @@ import frc.robot.RobotContainer;
 public class PhotonCam extends SubsystemBase {
   private PhotonCamera cam;
   private StructPublisher<Pose3d> publisher;
+  private StructArrayPublisher<Transform3d> trackedPub;
+  private Transform3d offset;
 
   // The field from AprilTagFields will be different depending on the game.
   private AprilTagFieldLayout aprilTagFieldLayout = AprilTagFieldLayout.loadField(AprilTagFields.k2025ReefscapeWelded);
@@ -45,6 +50,7 @@ public class PhotonCam extends SubsystemBase {
   private Alert cameraOffline;
 
   public PhotonCam(String camera, Transform3d robotToCam) {
+    offset = robotToCam;
     cam = new PhotonCamera(camera);
     photonPoseEstimator = new PhotonPoseEstimator(aprilTagFieldLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR,
         robotToCam);
@@ -52,6 +58,7 @@ public class PhotonCam extends SubsystemBase {
     cameraOffline = new Alert("Camera "+camera+" is offline!", AlertType.kError);
 
     publisher = NetworkTableInstance.getDefault().getStructTopic(camera, Pose3d.struct).publish();
+    trackedPub = NetworkTableInstance.getDefault().getStructArrayTopic(camera+"_targets", Transform3d.struct).publish();
 
     //SmartDashboard.putNumber("Photon XY Confidence", 1000);
     //SmartDashboard.putNumber("Photon R Confidence", 10000);
@@ -70,6 +77,11 @@ public class PhotonCam extends SubsystemBase {
         EstimatedRobotPose e = o.get();
 
         publisher.set(e.estimatedPose);
+
+        trackedPub.set(
+          e.targetsUsed.stream().map<Transform3d>((tt) -> {return tt.bestCameraToTarget.plus(offset);})
+        );
+        
 
         // Display on map
         RobotContainer.getRobot().swerve.field.getObject(cam.getName()).setPose(e.estimatedPose.toPose2d());
