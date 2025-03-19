@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.ejml.simple.SimpleMatrix;
@@ -21,7 +20,6 @@ import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.networktables.ProtobufPublisher;
 import edu.wpi.first.networktables.StructArrayPublisher;
 import edu.wpi.first.networktables.StructPublisher;
 import edu.wpi.first.wpilibj.Alert;
@@ -34,7 +32,7 @@ import frc.robot.RobotContainer;
 public class PhotonCam extends SubsystemBase {
   private PhotonCamera cam;
   private StructPublisher<Pose3d> publisher;
-  private StructArrayPublisher<Transform3d> trackedPub;
+  private StructArrayPublisher<Pose3d> trackedPub;
   private Transform3d offset;
 
   // The field from AprilTagFields will be different depending on the game.
@@ -57,8 +55,8 @@ public class PhotonCam extends SubsystemBase {
 
     cameraOffline = new Alert("Camera "+camera+" is offline!", AlertType.kError);
 
-    publisher = NetworkTableInstance.getDefault().getStructTopic(camera, Pose3d.struct).publish();
-    trackedPub = NetworkTableInstance.getDefault().getStructArrayTopic(camera+"_targets", Transform3d.struct).publish();
+    publisher = NetworkTableInstance.getDefault().getStructTopic("SmartDashboard/vision/"+camera+"/pose", Pose3d.struct).publish();
+    trackedPub = NetworkTableInstance.getDefault().getStructArrayTopic("SmartDashboard/vision/"+camera+"/targets", Pose3d.struct).publish();
 
     //SmartDashboard.putNumber("Photon XY Confidence", 1000);
     //SmartDashboard.putNumber("Photon R Confidence", 10000);
@@ -79,7 +77,7 @@ public class PhotonCam extends SubsystemBase {
         publisher.set(e.estimatedPose);
 
         trackedPub.set(
-          e.targetsUsed.stream().map<Transform3d>((tt) -> {return tt.bestCameraToTarget.plus(offset);})
+          e.targetsUsed.stream().<Pose3d>map((tt) -> e.estimatedPose.plus(offset.plus(tt.bestCameraToTarget))).toArray(Pose3d[]::new)
         );
         
 
@@ -132,11 +130,11 @@ public class PhotonCam extends SubsystemBase {
         // Matt's equation from summer 2024
         // double calculatedConf = Math.pow(area,2) * 8.0/3.0 - 0.83333333;
 
-        SmartDashboard.putNumber(cam.getName() + "/total area", area);
-        SmartDashboard.putNumber(cam.getName() + "/ambiguity", ambiguity);
-        SmartDashboard.putNumber(cam.getName() + "/score", score);
+        SmartDashboard.putNumber("vision/"+cam.getName() + "/total area", area);
+        SmartDashboard.putNumber("vision/"+cam.getName() + "/ambiguity", ambiguity);
+        SmartDashboard.putNumber("vision/"+cam.getName() + "/score", score);
 
-        SmartDashboard.putNumber(cam.getName() + "/calculated conf", calculatedConf);
+        SmartDashboard.putNumber("vision/"+cam.getName() + "/calculated conf", calculatedConf);
 
         double xy;
         //SmartDashboard.getNumber("Photon XY Confidence", 0);
