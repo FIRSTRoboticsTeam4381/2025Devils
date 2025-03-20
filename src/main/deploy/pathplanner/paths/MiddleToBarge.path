@@ -12,16 +12,16 @@
         "y": 3.815215163934426
       },
       "isLocked": false,
-      "linkedName": "Center"
+      "linkedName": "GHAlgae"
     },
     {
       "anchor": {
-        "x": 7.684118852459015,
-        "y": 5.0379610655737705
+        "x": 7.672131147540983,
+        "y": 5.469518442622951
       },
       "prevControl": {
-        "x": 6.389446721311475,
-        "y": 5.061936475409837
+        "x": 6.377459016393443,
+        "y": 5.493493852459017
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,6 +33,19 @@
     {
       "name": "Constraints Zone",
       "minWaypointRelativePos": 0,
+      "maxWaypointRelativePos": 0.21066846725186172,
+      "constraints": {
+        "maxVelocity": 0.7,
+        "maxAcceleration": 0.1,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    },
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0.4969615124915633,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 0.5,
@@ -58,8 +71,14 @@
       }
     },
     {
+      "name": "Up",
+      "waypointRelativePos": 0.027008777852806323,
+      "endWaypointRelativePos": null,
+      "command": null
+    },
+    {
       "name": "Barge",
-      "waypointRelativePos": 0.2752355316285386,
+      "waypointRelativePos": 0.394328156650913,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

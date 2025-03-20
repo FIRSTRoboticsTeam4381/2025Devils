@@ -3,36 +3,36 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.192622950819672,
-        "y": 0.5066086065573756
+        "x": 7.181,
+        "y": 2.533
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.242315573770491,
-        "y": 1.0386270491803269
+        "x": 5.490754019450196,
+        "y": 2.7722729095528273
       },
       "isLocked": false,
       "linkedName": "proStart"
     },
     {
       "anchor": {
-        "x": 4.831045081967213,
-        "y": 2.6883709016393436
+        "x": 4.845750000000001,
+        "y": 2.7184999999999993
       },
       "prevControl": {
-        "x": 5.33452868852459,
-        "y": 2.0530225409836067
+        "x": 6.2692499999999995,
+        "y": 2.6502499999999998
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "ENode"
+      "linkedName": "E"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.571332436069989,
+      "minWaypointRelativePos": 0.5406474820143913,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 0.75,

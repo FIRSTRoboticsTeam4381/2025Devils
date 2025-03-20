@@ -25,7 +25,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "MiddleHtoCenter"
+            "pathName": "MiddleHtoGHAlgae"
           }
         },
         {
@@ -51,6 +51,49 @@
           "type": "path",
           "data": {
             "pathName": "MiddleToBarge"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Algae Out"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Zero"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "MiddleBargetoIJAlgae"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Algae In"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Zero"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "MiddleToBarge2"
           }
         },
         {

@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.026883561643835,
-        "y": 5.399850171232877
+        "x": 4.1237704918032785,
+        "y": 5.33765368852459
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.507872998263554,
-        "y": 6.120561438838511
+        "x": 3.604759928422997,
+        "y": 6.058364956130224
       },
       "isLocked": false,
       "linkedName": "K"
     },
     {
       "anchor": {
-        "x": 1.3306352459016395,
-        "y": 7.003944672131147
+        "x": 1.354610655737705,
+        "y": 7.09984631147541
       },
       "prevControl": {
-        "x": 2.4266311475409843,
-        "y": 6.488872950819672
+        "x": 2.45060655737705,
+        "y": 6.584774590163935
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "antiSide Station"
+      "linkedName": "antiSideStation"
     }
   ],
   "rotationTargets": [],
@@ -48,7 +48,7 @@
   "eventMarkers": [
     {
       "name": "Zero",
-      "waypointRelativePos": 0.19176232275489924,
+      "waypointRelativePos": 0.0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -59,12 +59,12 @@
     },
     {
       "name": "Coral Station",
-      "waypointRelativePos": 0.72923700202566,
+      "waypointRelativePos": 0.73,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": null
+          "name": "Coral Station"
         }
       }
     }

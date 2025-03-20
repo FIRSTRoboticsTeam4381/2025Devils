@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 1.5032581967213117,
-        "y": 1.0184836065573768
+        "x": 1.1028688524590162,
+        "y": 1.1059938524590154
       },
       "prevControl": {
-        "x": 3.019934108355499,
-        "y": 1.0523415917975838
+        "x": 2.6195447640932032,
+        "y": 1.1398518376992224
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "proSide Station"
+      "linkedName": "proSideStation"
     }
   ],
   "rotationTargets": [],
@@ -79,7 +79,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -36.0
+    "rotation": -35.0
   },
   "reversed": false,
   "folder": "Reef to Station",

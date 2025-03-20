@@ -109,6 +109,7 @@ public class RobotContainer
     NamedCommands.registerCommand("Algae In", intake.algaeIntake());
     NamedCommands.registerCommand("Algae Out", intake.algaeEject());
     NamedCommands.registerCommand("Hold", intake.holdAlgae());
+    NamedCommands.registerCommand("Up", wrist.algaeHold());
     
     NamedCommands.registerCommand("Algae Intake/Outtake On", aCommands.algaeInOrOut());
     NamedCommands.registerCommand("Coral Station", aCommands.coralStation());

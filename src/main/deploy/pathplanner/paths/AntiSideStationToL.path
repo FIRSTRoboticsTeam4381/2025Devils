@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.3665983606557375,
-        "y": 7.159784836065573
+        "x": 1.354610655737705,
+        "y": 7.09984631147541
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.948975409836066,
-        "y": 5.853125
+        "x": 2.9369877049180335,
+        "y": 5.793186475409837
       },
       "isLocked": false,
       "linkedName": "antiSideStation"
     },
     {
       "anchor": {
-        "x": 3.8960040983606556,
-        "y": 5.181813524590163
+        "x": 3.812090163934426,
+        "y": 5.145850409836064
       },
       "prevControl": {
-        "x": 3.692570730558972,
-        "y": 5.327123073019937
+        "x": 3.6086567961327423,
+        "y": 5.291159958265838
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "LNode"
+      "linkedName": "L"
     }
   ],
   "rotationTargets": [],
@@ -59,7 +59,7 @@
     },
     {
       "name": "L4",
-      "waypointRelativePos": 0.36406460296097753,
+      "waypointRelativePos": 0.3160027008777853,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
