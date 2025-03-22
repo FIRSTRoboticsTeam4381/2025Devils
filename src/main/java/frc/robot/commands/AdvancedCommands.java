@@ -112,6 +112,16 @@ public class AdvancedCommands
       )));
   }
 
+  public Command l4A()
+  {
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.l4(),
+        robot.extender.l4(),
+        robot.wrist.l4(),
+        robot.swingArm.l4()
+      ));
+  }
 
 
   public Command coralStation()
@@ -245,9 +255,9 @@ public class AdvancedCommands
   { 
     return new ParallelCommandGroup
     (
-    ).andThen(new ParallelCommandGroup(
-      robot.wrist.zero(),
       robot.swingArm.zero()
+    ).andThen(new ParallelCommandGroup(
+      robot.wrist.zero()
     )).andThen(new ParallelCommandGroup(
       robot.extender.zero(),
       robot.elevator.zero()

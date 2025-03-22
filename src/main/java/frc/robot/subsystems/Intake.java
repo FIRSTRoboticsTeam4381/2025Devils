@@ -124,7 +124,7 @@ public class Intake extends SubsystemBase
 
   public Command algaeHold() 
   {
-    return new InstantCommand(() -> intake1.set(1.0), this);
+    return new InstantCommand(() -> intake1.set(0.05), this);
   }
 
   public Command algaeTrue() 
@@ -141,7 +141,7 @@ public class Intake extends SubsystemBase
       algaeIntake()
     ).until(
       //() -> intake3.get() < (topSpeed - ALGAE_SPIKE)
-      () -> averageCurrent > 25
+      () -> averageCurrent > 30
     ).andThen(
       algaeTrue()
     );
@@ -186,7 +186,7 @@ public class Intake extends SubsystemBase
     ).until(
       () -> !coralSensor1.isPressed() 
     ).andThen(
-      new WaitCommand(0.05)
+      new WaitCommand(0.2)
     ).andThen(
       coralStop()
     ).andThen(

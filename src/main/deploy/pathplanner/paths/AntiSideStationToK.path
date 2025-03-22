@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.0775899423181565,
-        "y": 5.26894827103355
+        "x": 3.2870286885245905,
+        "y": 6.556803278688523
       },
       "isLocked": false,
       "linkedName": "antiSideStation"
     },
     {
       "anchor": {
-        "x": 4.1237704918032785,
-        "y": 5.33765368852459
+        "x": 4.164528688524591,
+        "y": 5.34125
       },
       "prevControl": {
-        "x": 3.9327167195156028,
-        "y": 5.498894055972227
+        "x": 3.5531557377049183,
+        "y": 6.19717213114754
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,11 +32,11 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.3263795423956931,
+      "minWaypointRelativePos": 0.5741379310344829,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 0.8,
-        "maxAcceleration": 3.0,
+        "maxVelocity": 3.0,
+        "maxAcceleration": 1.5,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -59,7 +59,7 @@
     },
     {
       "name": "L4",
-      "waypointRelativePos": 0.28089128966914134,
+      "waypointRelativePos": 0.4,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
