@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 
 import com.pathplanner.lib.auto.NamedCommands;
@@ -64,6 +65,7 @@ public class RobotContainer
   public final Elevator elevator = new Elevator();
   public final Hang hang = new Hang();
   public final AdvancedCommands aCommands;
+  public static boolean mode = false;
   
 
   // camA, Left-Below (Forward), Translation(6.44733 in. LEFT, 8.26353 in. BACK, 10.62979 in. UP) - Rotation(60 deg. LEFT, 15 deg. UP, 0 deg.)
@@ -71,10 +73,10 @@ public class RobotContainer
     new Transform3d(new Translation3d(Units.inchesToMeters(-8.26353), Units.inchesToMeters(6.44733), Units.inchesToMeters(10.62979)), 
     new Rotation3d(0*Math.PI/180.0, -15*Math.PI/180.0, 50*Math.PI/180.0)));
 
-  // camB, Left-Upper (Backwards), Translation(6.36902 in. LEFT, 8.46948 in. BACK, 14.12979 in. UP) - Rotation(140 deg. LEFT, 15 deg. UP, 0 deg.)
+  // camB, Left-Upper (Backwards), Translation(5.47553 in. LEFT, 8.69707 in. BACK, 11.80594 in. UP) - Rotation(140 deg. LEFT, 15 deg. UP, 0 deg.)
   public final PhotonCam camB = new PhotonCam("Camera_Left_Upper", 
-    new Transform3d(new Translation3d(Units.inchesToMeters(-8.46948), Units.inchesToMeters(6.36902), Units.inchesToMeters(14.12979)), 
-    new Rotation3d(0*Math.PI/180.0, -15*Math.PI/180.0, 150*Math.PI/180.0)));
+    new Transform3d(new Translation3d(Units.inchesToMeters(-8.69707), Units.inchesToMeters(5.47553), Units.inchesToMeters(11.80594)), 
+    new Rotation3d(0*Math.PI/180.0, 10*Math.PI/180.0, 100*Math.PI/180.0)));
 
   // camC, Right-Below (Forwards), Translation(6.24207 in. RIGHT, 8.01891 in. BACK, 10.62979 in. UP) - Rotation(60 deg. RIGHT, 15 deg. UP, 0 deg.)
   public final PhotonCam camC = new PhotonCam("Camera_Right_Below", 
@@ -167,14 +169,17 @@ public class RobotContainer
       specialist.leftBumper().onTrue(aCommands.barge());
       specialist.rightBumper().onTrue(aCommands.processor());
       
-      specialist.povUp().onTrue(aCommands.l4());
-      specialist.povLeft().onTrue(aCommands.l3());
-      specialist.povRight().onTrue(aCommands.l2());
-      specialist.povDown().onTrue(aCommands.l1());
-      
-      
-      specialist.leftStick().or(specialist.rightStick()).onTrue(aCommands.zeroEverything());
+      specialist.povUp().and(() -> !mode).onTrue(aCommands.l4());
+      specialist.povLeft().and(() -> !mode).onTrue(aCommands.l3());
+      specialist.povRight().and(() -> !mode).onTrue(aCommands.l2());
+      specialist.povDown().and(() -> !mode).onTrue(aCommands.l1());
 
+      specialist.povLeft().and(() -> mode).onTrue(aCommands.algael3());
+      specialist.povRight().and(() -> mode).onTrue(aCommands.algael2());
+      
+      
+      specialist.leftStick().and(()->(swingArm.angle.getPosition() < 0.2)).or(specialist.rightStick()).and(()->(swingArm.angle.getPosition() < 0.2)).onTrue(aCommands.proZeroEverything());
+      specialist.leftStick().and(()->(swingArm.angle.getPosition() > 0.2)).or(specialist.rightStick()).and(()->(swingArm.angle.getPosition() > 0.2)).onTrue(aCommands.zeroEverything());
       //elevator joystick controls
       elevator.setDefaultCommand(elevator.nothing());
 
@@ -202,6 +207,12 @@ public class RobotContainer
       driver.rightBumper().toggleOnTrue(intake.coralInOrOut());
 
       driver.a().whileTrue(new AutoAlign(swerve));
+
+      driver.y().onTrue(new InstantCommand(()->mode = true));
+      driver.x().onTrue(new InstantCommand(()->mode = false));
+
+      driver.povDown().whileTrue(new AutoAlign(swerve));
+      
     }
 
   public Command getAutonomousCommand() 

@@ -27,9 +27,32 @@ import frc.robot.subsystems.Swerve;
 public class AutoAlign extends Command 
 {
     public final ArrayList<Pose2d> snapPositions= new ArrayList<Pose2d>(){{
-        add(new Pose2d(0.726, 1.299, new Rotation2d(Radians.convertFrom(-60, Degrees))));
-        add(new Pose2d(1.575, 0.666, new Rotation2d(Radians.convertFrom(-60, Degrees))));
         
+        // A
+
+        // B
+        
+        // C
+
+        // D
+
+        // E
+
+        // F
+
+        // G
+
+        // H
+        
+        // I
+
+        // J
+        add(new Pose2d(5.143, 5.134, new Rotation2d(Radians.convertFrom(150, Degrees))));
+        // K
+        add(new Pose2d(4.165, 5.341, new Rotation2d(Radians.convertFrom(-150, Degrees))));
+        // L
+        add(new Pose2d(3.855, 5.133, new Rotation2d(Radians.convertFrom(-150, Degrees))));
+
     }};
     public Swerve swerve;
     private Pose2d target;
@@ -47,12 +70,11 @@ public class AutoAlign extends Command
         addRequirements(swerve);
         
     }
-
     // Called when the command is initially scheduled
     @Override
     public void initialize(){
         Pose2d currentpose = swerve.getPose();
-        
+        // target = currentpose.nearest(snapPositions);
 
         double bestDistance = Double.MAX_VALUE;
 

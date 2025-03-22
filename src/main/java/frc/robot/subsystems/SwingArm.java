@@ -124,6 +124,16 @@ public class SwingArm extends SubsystemBase
     return goToAngle(0.532).withName("Level 4");
   }
 
+  public Command algael2() 
+  {
+    return goToAngle(0.531).withName("Algae Level 2");
+  }
+
+  public Command algael3() 
+  {
+    return goToAngle(0.531).withName("Algae Level 3");
+  }
+
 
   public Command coralStation() 
   {

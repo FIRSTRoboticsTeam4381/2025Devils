@@ -124,7 +124,7 @@ public class Intake extends SubsystemBase
 
   public Command algaeHold() 
   {
-    return new InstantCommand(() -> intake1.set(0.05), this);
+    return new InstantCommand(() -> intake1.set(0.2), this);
   }
 
   public Command algaeTrue() 

@@ -104,7 +104,7 @@ public class Elevator extends SubsystemBase
     return elevatorTo(0).withName("Hang");
   }
   public Command processor() {
-    return elevatorTo(37).withName("Processor");
+    return elevatorTo(33).withName("Processor");
   }
   public Command up() {
     return elevatorTo(50).withName("Processor");

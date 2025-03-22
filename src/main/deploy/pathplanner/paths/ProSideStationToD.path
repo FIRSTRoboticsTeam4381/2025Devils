@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.7548869584795992,
-        "y": 1.6180795507230006
+        "x": 2.721209016393442,
+        "y": 1.369723360655737
       },
       "isLocked": false,
       "linkedName": "proSideStation"
@@ -20,8 +20,8 @@
         "y": 2.876
       },
       "prevControl": {
-        "x": 3.0225,
-        "y": 2.3675
+        "x": 3.224692622950819,
+        "y": 1.753329918032787
       },
       "nextControl": null,
       "isLocked": false,
@@ -35,8 +35,8 @@
       "minWaypointRelativePos": 0.6251682368775198,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 0.75,
-        "maxAcceleration": 3.0,
+        "maxVelocity": 3.0,
+        "maxAcceleration": 1.5,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -59,7 +59,7 @@
     },
     {
       "name": "L4",
-      "waypointRelativePos": 0.641318977119781,
+      "waypointRelativePos": 0.5227920227920229,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

@@ -24,12 +24,14 @@ import frc.robot.RobotContainer;
 public class AdvancedCommands 
 {
     RobotContainer robot;
+    boolean pro;
 
   //public Supplier<Boolean> algaeBoolean = robot.armIntake.algaeSensor::get;
 
   public AdvancedCommands(RobotContainer r)
   {
     robot = r;
+    pro = false;
   }
 
   /**
@@ -123,6 +125,29 @@ public class AdvancedCommands
       ));
   }
 
+  public Command algael2()
+  {
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.l2(),
+        robot.extender.l2(),
+        robot.swingArm.algael2(),
+        robot.wrist.algael2()
+      ));
+  }
+ 
+  public Command algael3()
+  {
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.elevator.l3(),
+        robot.extender.l3()
+      ).andThen(new ParallelCommandGroup(
+        robot.wrist.algael3(),
+        robot.swingArm.algael3()
+      )));
+  }
+
 
   public Command coralStation()
   {
@@ -146,11 +171,15 @@ public class AdvancedCommands
   {
     return combinedPositionCommand(
       new SequentialCommandGroup(
-        robot.wrist.upsideDown(),
         new ParallelRaceGroup(
           robot.intake.holdAlgae(),
           new ParallelCommandGroup(
-          robot.elevator.up(),
+            robot.wrist.preprocessor()
+        )),
+        new ParallelRaceGroup(
+          robot.intake.holdAlgae(),
+          new ParallelCommandGroup(
+          robot.elevator.processor(),
           robot.extender.processor(),
           robot.swingArm.processor()
           )
@@ -161,8 +190,7 @@ public class AdvancedCommands
           robot.wrist.processor()
         )),
         new ParallelCommandGroup(
-          robot.intake.holdAlgae(),
-          robot.elevator.processor()
+          robot.intake.holdAlgae()
         )
       )
     );
@@ -263,6 +291,19 @@ public class AdvancedCommands
       robot.elevator.zero()
     ));
   }
-  
+  public Command proZeroEverything()
+  { 
+    return new ParallelCommandGroup
+    (
+      robot.wrist.preprocessor()
+    ).andThen(
+      robot.swingArm.zero()
+    ).andThen(new ParallelCommandGroup(
+      robot.wrist.zero()
+    )).andThen(new ParallelCommandGroup(
+      robot.extender.zero(),
+      robot.elevator.zero()
+    ));
+  }
   
 }

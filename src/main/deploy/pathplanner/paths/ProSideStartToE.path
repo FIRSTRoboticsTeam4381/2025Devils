@@ -35,8 +35,8 @@
       "minWaypointRelativePos": 0.5406474820143913,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 0.75,
-        "maxAcceleration": 3.0,
+        "maxVelocity": 3.0,
+        "maxAcceleration": 1.5,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -47,19 +47,8 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Zero",
-      "waypointRelativePos": 0,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Zero"
-        }
-      }
-    },
-    {
       "name": "L4",
-      "waypointRelativePos": 0.5955585464333732,
+      "waypointRelativePos": 0.4316239316239315,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

@@ -117,7 +117,14 @@ public class Wrist extends SubsystemBase
     return wristPosition(0.665).withName("Level 4");
   }
 
-
+  public Command algael2() 
+  {
+    return wristPosition(0.757).withName("Algae Level 2");
+  }
+  public Command algael3() 
+  {
+    return wristPosition(0.757).withName("Algae Level 3");
+  }
 
   public Command coralStation() 
   {
@@ -132,9 +139,9 @@ public class Wrist extends SubsystemBase
   {
     return wristPosition(0.926).withName("Processor Scoring");
   }
-  public Command upsideDown() 
+  public Command preprocessor() 
   {
-    return wristPosition(1.27).withName("Upside Down");
+    return wristPosition(0.610).withName("Preprocessor");
   }
 
   public Command bargeCommand() 
