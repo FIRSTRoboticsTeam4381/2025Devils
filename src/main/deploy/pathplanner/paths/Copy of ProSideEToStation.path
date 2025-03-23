@@ -3,40 +3,40 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.207,
-        "y": 1.104
-      },
-      "prevControl": null,
-      "nextControl": {
-        "x": 2.970190399377829,
-        "y": 1.2927235888520423
-      },
-      "isLocked": false,
-      "linkedName": "proSideStation"
-    },
-    {
-      "anchor": {
         "x": 4.845750000000001,
         "y": 2.7184999999999993
       },
+      "prevControl": null,
+      "nextControl": {
+        "x": 3.42225,
+        "y": 2.0554999999999994
+      },
+      "isLocked": false,
+      "linkedName": "E"
+    },
+    {
+      "anchor": {
+        "x": 1.227,
+        "y": 1.174
+      },
       "prevControl": {
-        "x": 3.2584718309859175,
-        "y": 1.670711267605633
+        "x": 3.3960221208447603,
+        "y": 2.0268961613617003
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "E"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.6,
-      "maxWaypointRelativePos": 1.0,
+      "minWaypointRelativePos": 0,
+      "maxWaypointRelativePos": 0.2967698519515527,
       "constraints": {
-        "maxVelocity": 0.5,
-        "maxAcceleration": 3.0,
+        "maxVelocity": 3.0,
+        "maxAcceleration": 2.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -47,13 +47,24 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Level",
-      "waypointRelativePos": 0.6,
+      "name": "Zero",
+      "waypointRelativePos": 0.0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Level"
+          "name": "Zero"
+        }
+      }
+    },
+    {
+      "name": "Coral Station",
+      "waypointRelativePos": 0.3855989232839839,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Coral Station"
         }
       }
     }
@@ -68,13 +79,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 29.999999999999996
+    "rotation": -35.0
   },
   "reversed": false,
-  "folder": "Station to Reef",
+  "folder": "Temporary paths - Kentwood",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -35.0
+    "rotation": 29.999999999999996
   },
   "useDefaultConstraints": true
 }

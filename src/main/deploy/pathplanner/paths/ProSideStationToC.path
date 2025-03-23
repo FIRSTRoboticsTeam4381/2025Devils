@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.183,
-        "y": 1.0
+        "x": 1.227,
+        "y": 1.174
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.6454999999999997,
-        "y": 1.6233606557377047
+        "x": 2.6895,
+        "y": 1.7973606557377044
       },
       "isLocked": false,
-      "linkedName": "proSideStation"
+      "linkedName": "proSideStation2"
     },
     {
       "anchor": {
-        "x": 3.5685000000000002,
-        "y": 3.0304999999999995
+        "x": 3.549,
+        "y": 3.045
       },
       "prevControl": {
-        "x": 3.0688524590163935,
-        "y": 2.041034836065575
+        "x": 3.049352459016393,
+        "y": 2.055534836065575
       },
       "nextControl": null,
       "isLocked": false,
