@@ -106,7 +106,7 @@ public class Intake extends SubsystemBase
   }
   public Command coralEject() 
   {
-    return new InstantCommand(() -> intake1.set(-0.9), this);
+    return new InstantCommand(() -> intake1.set(-1), this);
   }
 
   
@@ -124,7 +124,7 @@ public class Intake extends SubsystemBase
 
   public Command algaeHold() 
   {
-    return new InstantCommand(() -> intake1.set(0.2), this);
+    return new InstantCommand(() -> intake1.set(0.25), this);
   }
 
   public Command algaeTrue() 

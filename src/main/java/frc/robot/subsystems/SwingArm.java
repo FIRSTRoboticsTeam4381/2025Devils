@@ -62,7 +62,7 @@ public class SwingArm extends SubsystemBase
       .p(2.5)
       .i(0)
       .d(0)
-      .outputRange(-.25, .25);
+      .outputRange(-.3, .3);
     rotateConfig2
 
       .apply(rotateConfig1)

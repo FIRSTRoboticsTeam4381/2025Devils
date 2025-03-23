@@ -3,60 +3,33 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.154713114754099,
-        "y": 5.013985655737705
+        "x": 5.1786885245901635,
+        "y": 5.025973360655737
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.113729508196722,
-        "y": 6.320645491803278
+        "x": 5.42026765126929,
+        "y": 5.542033287776462
       },
       "isLocked": false,
       "linkedName": "IJAlgae"
     },
     {
       "anchor": {
-        "x": 7.672131147540983,
-        "y": 5.469518442622951
+        "x": 7.756045081967213,
+        "y": 5.373616803278688
       },
       "prevControl": {
-        "x": 6.672131147540983,
-        "y": 5.469518442622951
+        "x": 5.300636676487352,
+        "y": 4.866292319939293
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Barge"
+      "linkedName": "Barge2"
     }
   ],
   "rotationTargets": [],
-  "constraintZones": [
-    {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 0,
-      "maxWaypointRelativePos": 0.2376772451046589,
-      "constraints": {
-        "maxVelocity": 0.7,
-        "maxAcceleration": 3.0,
-        "maxAngularVelocity": 540.0,
-        "maxAngularAcceleration": 720.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
-    },
-    {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.6563133018230866,
-      "maxWaypointRelativePos": 1.0,
-      "constraints": {
-        "maxVelocity": 0.5,
-        "maxAcceleration": 3.0,
-        "maxAngularVelocity": 540.0,
-        "maxAngularAcceleration": 720.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
-    }
-  ],
+  "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
@@ -82,15 +55,20 @@
       }
     },
     {
-      "name": "Barge",
-      "waypointRelativePos": 0.5644834571235607,
+      "name": "BargeR",
+      "waypointRelativePos": 0.4377123442808607,
       "endWaypointRelativePos": null,
-      "command": null
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "BargeR"
+        }
+      }
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 3.0,
-    "maxAcceleration": 3.0,
+    "maxVelocity": 1.5,
+    "maxAcceleration": 1.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -98,7 +76,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": 90.0
   },
   "reversed": false,
   "folder": "Week 3",
@@ -106,5 +84,5 @@
     "velocity": 0,
     "rotation": 150.8759465052226
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

@@ -116,11 +116,16 @@ public class RobotContainer
     NamedCommands.registerCommand("Algae Intake/Outtake On", aCommands.algaeInOrOut());
     NamedCommands.registerCommand("Coral Station", aCommands.coralStation());
     NamedCommands.registerCommand("Barge", aCommands.barge());
+
+    NamedCommands.registerCommand("BargeR", aCommands.bargeR());
     
     NamedCommands.registerCommand("L1", aCommands.l1());
     NamedCommands.registerCommand("L2", aCommands.l2());
     NamedCommands.registerCommand("L3", aCommands.l3());
     NamedCommands.registerCommand("L4", aCommands.l4A());
+
+    NamedCommands.registerCommand("AlgaeL2", aCommands.algael2());
+    NamedCommands.registerCommand("AlgaeL3", aCommands.algael3());
     
 
     NamedCommands.registerCommand("Level", aCommands.l4()); // Auto Chooser Level // Currently L4L because level is not fully functioning
@@ -136,6 +141,7 @@ public class RobotContainer
     autoChooser.addOption("ProSideTrippleL4", Autos.ProSideTrippleL4());
     autoChooser.addOption("AntiSideTrippleL4", Autos.AntiSideTrippleL4());
     autoChooser.addOption("MiddleOneL4", Autos.MiddleOneL4());
+    autoChooser.addOption("MiddleTwoL4", Autos.MiddleTwoL4());
     //autoChooser.addOption("proSide D,C", Autos.ProSide_D_C());
     //autoChooser.addOption("middleSide G,H", Autos.MiddleSide_G_H());
     //autoChooser.addOption("proSide Basic (30s)", Autos.ProSideBasic());
@@ -380,4 +386,6 @@ public class RobotContainer
   {
     return new ScheduleCommand(vibrateWhile(controller, rumbleside, rumblestrength, new WaitCommand(time)));
   }
+
+  
 }

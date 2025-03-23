@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.802049180327868,
-        "y": 4.1
+        "x": 5.754098360655737,
+        "y": 4.05
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.79702868852459,
-        "y": 3.8482581967213116
+        "x": 5.865901759530727,
+        "y": 3.8263932022500216
       },
       "isLocked": false,
       "linkedName": "H"
     },
     {
       "anchor": {
-        "x": 5.730122950819672,
+        "x": 5.6,
         "y": 3.887141393442622
       },
       "prevControl": {
-        "x": 5.448996213077906,
-        "y": 3.930246183294576
+        "x": 5.698479824644791,
+        "y": 4.116927650947137
       },
       "nextControl": null,
       "isLocked": false,
@@ -47,13 +47,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "L2",
+      "name": "AlgaeL2",
       "waypointRelativePos": 0.05989232839838321,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "L2"
+          "name": "AlgaeL2"
         }
       }
     },

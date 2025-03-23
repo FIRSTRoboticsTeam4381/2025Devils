@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.SelectCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotContainer;
@@ -172,12 +173,12 @@ public class AdvancedCommands
     return combinedPositionCommand(
       new SequentialCommandGroup(
         new ParallelRaceGroup(
-          robot.intake.holdAlgae(),
+          new RepeatCommand(new InstantCommand(()->robot.intake.intake1.set(0.5))),
           new ParallelCommandGroup(
             robot.wrist.preprocessor()
         )),
         new ParallelRaceGroup(
-          robot.intake.holdAlgae(),
+          new RepeatCommand(new InstantCommand(()->robot.intake.intake1.set(0.5))),
           new ParallelCommandGroup(
           robot.elevator.processor(),
           robot.extender.processor(),
@@ -249,6 +250,24 @@ public class AdvancedCommands
       )),
       new ParallelCommandGroup(
         robot.wrist.barge(),
+        robot.intake.holdAlgae()
+      )
+    );
+  }
+  public Command bargeR()
+  { 
+    return new SequentialCommandGroup(
+      new ParallelRaceGroup(
+        robot.intake.holdAlgae(),
+      new ParallelCommandGroup(
+        robot.elevator.barge(),
+        robot.extender.barge(),
+        robot.swingArm.barge(),
+        robot.wrist.algaeHold()
+        
+      )),
+      new ParallelCommandGroup(
+        robot.wrist.bargeR(),
         robot.intake.holdAlgae()
       )
     );

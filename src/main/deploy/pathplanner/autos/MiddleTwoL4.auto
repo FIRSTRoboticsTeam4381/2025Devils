@@ -49,7 +49,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "MiddleToRun"
+            "pathName": "MiddleToBarge2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Algae Out"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "MiddleRun"
           }
         }
       ]

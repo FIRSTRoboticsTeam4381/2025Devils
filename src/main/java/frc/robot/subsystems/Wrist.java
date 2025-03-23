@@ -7,11 +7,13 @@ package frc.robot.subsystems;
 import java.util.function.Supplier;
 
 import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.config.ClosedLoopConfig;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
@@ -34,6 +36,8 @@ public class Wrist extends SubsystemBase
 
     public Supplier<Double> joystickValue;
 
+    public ClosedLoopConfig wristCLC;
+
     public double value;
 
     private double initialPos;
@@ -49,12 +53,25 @@ public class Wrist extends SubsystemBase
       .absoluteEncoder.positionConversionFactor(1.5625).inverted(true);
 
       wrist1Config.closedLoop
-      .feedbackSensor(FeedbackSensor.kAbsoluteEncoder) // TODO change to kPrimaryEncoder if the adjusted position works
-      .p(20)
-      .i(0)
-      .d(2)
-      .outputRange(-1, 1);
+      .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
+
+      .p(20, ClosedLoopSlot.kSlot0)
+      .i(0, ClosedLoopSlot.kSlot0)
+      .d(2, ClosedLoopSlot.kSlot0)
+
+      .p(15, ClosedLoopSlot.kSlot1)
+      .i(0, ClosedLoopSlot.kSlot1)
+      .d(2, ClosedLoopSlot.kSlot1)
+
+      .outputRange(-1,1);
+
     wrist1.configure(wrist1Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+    
+    
+    
+    
+    
 
     initialPos = wrist1.getAbsoluteEncoder().getPosition();
     initialPos = wrist1.getEncoder().getPosition();
@@ -87,7 +104,7 @@ public class Wrist extends SubsystemBase
       new InstantCommand(() -> wrist1.set(0), this));
   }
 
-
+ 
 
   public Command wristPosition(double position) 
   {
@@ -141,13 +158,14 @@ public class Wrist extends SubsystemBase
   }
   public Command preprocessor() 
   {
-    return wristPosition(0.610).withName("Preprocessor");
+    return wristPosition(0.65).withName("Preprocessor");
   }
 
   public Command bargeCommand() 
   {
     return wristPosition(0).withName("Barge Scoring");
   }
+  
   public Command algaeHold() {
     return wristPosition(1.034).withName("Algae Hold");
   }
@@ -161,6 +179,11 @@ public class Wrist extends SubsystemBase
   public Command barge() 
   {
     return wristPosition(0.9).withName("Barge"); // Will need to change #s
+  }
+
+  public Command bargeR() 
+  {
+    return wristPosition(1.09).withName("BargeR"); // Will need to change #s
   }
   
 

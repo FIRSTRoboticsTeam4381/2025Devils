@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.672131147540983,
-        "y": 5.469518442622951
+        "x": 7.708094262295082,
+        "y": 4.82218237704918
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.761065573770493,
-        "y": 5.745235655737704
+        "x": 6.797028688524591,
+        "y": 5.097899590163934
       },
       "isLocked": false,
       "linkedName": "Barge"
     },
     {
       "anchor": {
-        "x": 5.154713114754099,
-        "y": 5.013985655737705
+        "x": 5.1786885245901635,
+        "y": 5.025973360655737
       },
       "prevControl": {
-        "x": 5.622233606556594,
-        "y": 6.056915983601517
+        "x": 5.646209016392659,
+        "y": 6.068903688519549
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,11 +32,11 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.8372721134368611,
+      "minWaypointRelativePos": 0.7602089268755936,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 0.5,
-        "maxAcceleration": 3.0,
+        "maxVelocity": 3.0,
+        "maxAcceleration": 1.5,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -47,13 +47,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "L3",
-      "waypointRelativePos": 0.6455097906819766,
+      "name": "AlgaeL3",
+      "waypointRelativePos": 0.0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "L3"
+          "name": "AlgaeL3"
         }
       }
     },
@@ -71,7 +71,7 @@
   ],
   "globalConstraints": {
     "maxVelocity": 3.0,
-    "maxAcceleration": 3.0,
+    "maxAcceleration": 2.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -85,7 +85,7 @@
   "folder": "Week 3",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": 90.0
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

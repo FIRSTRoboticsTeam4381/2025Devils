@@ -76,6 +76,9 @@ public final class Autos {
     public static PreviewAuto MiddleOneL4() {
         return new PreviewAuto("MiddleOneL4");
     }
+    public static PreviewAuto MiddleTwoL4() {
+        return new PreviewAuto("MiddleTwoL4");
+    }
 
 /* 
     public static PreviewAuto ProSideTrippple() {
