@@ -15,9 +15,11 @@ import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
@@ -65,7 +67,7 @@ public class RobotContainer
   public final Elevator elevator = new Elevator();
   public final Hang hang = new Hang();
   public final AdvancedCommands aCommands;
-  public static boolean mode = false;
+  public static Boolean mode = false;
   
 
   // camA, Left-Below (Forward), Translation(6.44733 in. LEFT, 8.26353 in. BACK, 10.62979 in. UP) - Rotation(60 deg. LEFT, 15 deg. UP, 0 deg.)
@@ -97,7 +99,7 @@ public class RobotContainer
 
     aCommands = new AdvancedCommands(robotReference);
 
-
+    
     // Add auto controls to the dashboard
     SmartDashboard.putData("Choose Auto:", autoChooser);
     //SmartDashboard.putData("Choose Reef Position:", autoBuilderChooser); // nevermind

@@ -130,7 +130,36 @@ public class Swerve extends SubsystemBase{
 
 
           setupSysIDTests();
+
+          SmartDashboard.putData("Swerve",
+          builder -> {
+            builder.addDoubleProperty(
+                "Front Left Angle", () -> FL.getPosition().angle.getRadians(), null);
+            builder.addDoubleProperty(
+                "Front Left Velocity", () -> FL.getState().speedMetersPerSecond, null);
+  
+            builder.addDoubleProperty(
+                "Front Right Angle", () -> FR.getPosition().angle.getRadians(), null);
+            builder.addDoubleProperty(
+                "Front Right Velocity", () ->FR.getState().speedMetersPerSecond, null);
+  
+            builder.addDoubleProperty(
+                "Back Left Angle", () -> BL.getPosition().angle.getRadians(), null);
+            builder.addDoubleProperty(
+                "Back Left Velocity", () -> BL.getState().speedMetersPerSecond, null);
+  
+            builder.addDoubleProperty(
+                "Back Right Angle", () -> BR.getPosition().angle.getRadians(), null);
+            builder.addDoubleProperty(
+                "Back Right Velocity", () -> BR.getState().speedMetersPerSecond, null);
+  
+            builder.addDoubleProperty(
+                "Robot Angle", () -> getPose().getRotation().getRadians(), null);
+
+            builder.setSmartDashboardType("SwerveDrive");
+          });
     }
+    
 
     public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop){
         

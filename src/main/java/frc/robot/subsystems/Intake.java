@@ -216,6 +216,7 @@ public class Intake extends SubsystemBase
       SmartDashboard.putNumber("Average Current", averageCurrent);
       SmartDashboard.putBoolean("Has Algae", hasAlgae);
       SmartDashboard.putData("Intake Speed", speedChooser);
+      SmartDashboard.putBoolean("Algae Mode", RobotContainer.mode);
       speed = SmartDashboard.getNumber("some speed", 0);
       /* 
       v = intake3.get();
