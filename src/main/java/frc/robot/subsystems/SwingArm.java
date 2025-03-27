@@ -36,6 +36,7 @@ public class SwingArm extends SubsystemBase
   public SparkFlex rotate2;
   
   public AbsoluteEncoder angle;
+  public double curAng;
 
   private Extender extender;
 
@@ -46,6 +47,8 @@ public class SwingArm extends SubsystemBase
     rotate2 = new SparkFlex(53, MotorType.kBrushless);
     
     angle = rotate1.getAbsoluteEncoder();
+    
+
     this.extender=extender;
     
 
@@ -87,6 +90,7 @@ public class SwingArm extends SubsystemBase
     */
 
     rotate1.getEncoder().getVelocity();
+    rotate2.getEncoder().getVelocity();
     angle.getPosition();
   }
 
@@ -206,5 +210,6 @@ public class SwingArm extends SubsystemBase
     SmartDashboard.putNumber("arm/Arbitrary Feedforward", arbFeedforward());
 
       SmartDashboard.putData(this);
+      curAng = angle.getPosition();
   }
 }

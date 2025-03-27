@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.SelectCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RobotContainer;
 
 /** Add your docs here. */
@@ -279,16 +280,45 @@ public class AdvancedCommands
     robot.intake.intakeAlgae(),
     new ParallelRaceGroup(
       robot.intake.holdAlgae(),
-    new ParallelCommandGroup(
-      robot.extender.algaeHold(),
-      robot.swingArm.algaeHold()
-    )),
-    new ParallelCommandGroup(
-      robot.elevator.algaeHold(),
-      robot.wrist.algaeHold(),
-      robot.swingArm.zero(),
-      robot.intake.holdAlgae()
-    )
+      new ParallelCommandGroup(
+        robot.extender.algaeHold(),
+        new ConditionalCommand(new WaitCommand(0), robot.swingArm.algaeHold(), () ->robot.swingArm.angle.getPosition() < 0.3)
+       )
+      ),
+      new ParallelCommandGroup(
+        new ConditionalCommand(
+          new SequentialCommandGroup(
+            new ParallelRaceGroup(
+              robot.intake.holdAlgae(),
+              new ParallelCommandGroup(
+              robot.extender.zero(),
+              robot.elevator.processor()
+              )
+            ),
+            new ParallelRaceGroup(
+              robot.intake.holdAlgae(),
+              new ParallelCommandGroup(
+                robot.swingArm.processor(),
+                robot.wrist.processor()
+              )
+            )
+          )
+          ,  
+        new ParallelCommandGroup(
+          new ParallelRaceGroup(
+              robot.intake.holdAlgae(),
+              new ParallelCommandGroup(
+                robot.extender.zero(),
+                robot.elevator.algaeHold(),
+                robot.wrist.algaeHold(),
+                robot.swingArm.zero()
+              )
+            )
+        )
+          , 
+        () -> robot.swingArm.curAng < 0.4)  
+      ),
+    robot.intake.holdAlgae()
     );
   }
 
