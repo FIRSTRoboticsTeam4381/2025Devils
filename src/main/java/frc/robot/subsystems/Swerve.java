@@ -1,6 +1,13 @@
 package frc.robot.subsystems;
 
 import java.util.Optional;
+import java.util.function.BooleanSupplier;
+import java.util.function.Consumer;
+import java.util.function.DoubleConsumer;
+import java.util.function.DoubleSupplier;
+import java.util.function.LongConsumer;
+import java.util.function.LongSupplier;
+import java.util.function.Supplier;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.config.RobotConfig;
@@ -18,9 +25,15 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.networktables.NTSendableBuilder;
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.networktables.StructArrayPublisher;
 import edu.wpi.first.networktables.StructPublisher;
+import edu.wpi.first.networktables.Topic;
+import edu.wpi.first.util.function.BooleanConsumer;
+import edu.wpi.first.util.function.FloatConsumer;
+import edu.wpi.first.util.function.FloatSupplier;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
@@ -128,11 +141,11 @@ public class Swerve extends SubsystemBase{
             field.getObject("path").setPoses(poses);
         });
 
+        
+        setupSysIDTests();
 
-          setupSysIDTests();
-
-          SmartDashboard.putData("Swerve",
-          builder -> {
+        SmartDashboard.putData("Swerve",
+        builder -> {
             builder.addDoubleProperty(
                 "Front Left Angle", () -> FL.getPosition().angle.getRadians(), null);
             builder.addDoubleProperty(

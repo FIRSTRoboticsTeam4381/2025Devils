@@ -102,7 +102,7 @@ public class Intake extends SubsystemBase
   // coral
   public Command coralIntake()
   {
-    return new InstantCommand(() -> intake1.set(-0.7), this); 
+    return new InstantCommand(() -> intake1.set(-0.6), this); 
   }
   public Command coralEject() 
   {
