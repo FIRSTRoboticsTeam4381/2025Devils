@@ -80,32 +80,7 @@ public final class Autos {
         return new PreviewAuto("MiddleTwoL4");
     }
 
-/* 
-    public static PreviewAuto ProSideTrippple() {
-        return new PreviewAuto("proSide E,B,A (trippple)");
-    }
-    public static PreviewAuto AntiSideTrippple() {
-        return new PreviewAuto("antiSide J,A,B (trippple)");
-    }
-*/
-/* 
-    public static PreviewAuto ProSideBasic() {
-        return new PreviewAuto("proSide Basic (30s)");
-    }
-    public static PreviewAuto AntiSideBasic() {
-        return new PreviewAuto("antiSide Basic (31s)");
-    }
-*/
-/* 
-      //ProSide_D_C means D,C; Not ideal but it works. Same for _G_H = G,H below
-    public static PreviewAuto ProSide_D_C() {
-        return new PreviewAuto("proSide D,C");
-    }
-
-    public static PreviewAuto MiddleSide_G_H() {
-        return new PreviewAuto("middleSide G,H");
-    }
-*/
+    //deleted a bunch of Autos to clear up PathPlanner, hopefully didnt break stuff :)
 
     
     public static PreviewAuto reefASideSelector(String autoName) {
