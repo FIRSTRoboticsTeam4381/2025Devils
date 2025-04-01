@@ -71,7 +71,7 @@
     "rotation": 150.0
   },
   "reversed": false,
-  "folder": "Week 3",
+  "folder": "mainAutosPaths",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 179.66494078139087

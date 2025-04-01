@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.5032581967213117,
-        "y": 1.0184836065573768
+        "x": 2.0,
+        "y": 7.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.776352459016394,
-        "y": 2.2987704918032774
+        "x": 3.0,
+        "y": 7.0
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.474036885245902,
-        "y": 3.9171106557377042
+        "x": 4.0,
+        "y": 6.0
       },
       "prevControl": {
-        "x": 2.4742622950819677,
-        "y": 3.8164139344262282
+        "x": 3.0,
+        "y": 6.0
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "B"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -33,15 +33,10 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "L2",
-      "waypointRelativePos": 0.47335526315789545,
+      "name": "yes I made this path only to explain the acronym",
+      "waypointRelativePos": 0.5018993352326695,
       "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "L2"
-        }
-      }
+      "command": null
     }
   ],
   "globalConstraints": {
@@ -54,13 +49,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": 0.0
   },
   "reversed": false,
-  "folder": "D - Extra Base Auto Paths ",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -36.0
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

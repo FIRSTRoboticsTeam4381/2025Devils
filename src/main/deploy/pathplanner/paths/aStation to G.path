@@ -87,7 +87,7 @@
     "rotation": 90.0
   },
   "reversed": false,
-  "folder": "Station to Reef",
+  "folder": "cAPs - Station to Reef",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -145.0

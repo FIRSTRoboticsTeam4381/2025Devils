@@ -68,6 +68,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "Week-3",
+  "folder": "mainAutos",
   "choreoAuto": false
 }

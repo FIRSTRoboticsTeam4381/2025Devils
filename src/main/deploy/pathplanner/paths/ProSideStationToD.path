@@ -21,7 +21,7 @@
       },
       "prevControl": {
         "x": 3.259309016393442,
-        "y": 1.7694918032786888
+        "y": 1.769491803278689
       },
       "nextControl": null,
       "isLocked": false,
@@ -82,7 +82,7 @@
     "rotation": -29.999999999999996
   },
   "reversed": false,
-  "folder": "Week 3",
+  "folder": "mainAutosPaths",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -35.0

@@ -45,7 +45,7 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": "Start pos(s) for Chooser",
+  "folder": "cAPs - Start pos(s)",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 0.0

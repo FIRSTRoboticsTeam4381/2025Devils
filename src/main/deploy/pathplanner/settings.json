@@ -3,24 +3,20 @@
   "robotLength": 0.925,
   "holonomicMode": true,
   "pathFolders": [
-    "D - Extra Base Auto Paths ",
-    "D - Paths ONLY so were okay for Week-1",
-    "Temporary paths - Kentwood",
     "Out the way",
-    "Place - Out of the way",
-    "Reef to Station",
-    "Start pos(s) for Chooser",
-    "Station to Reef",
-    "Week 3",
-    "aStart to Reef (aSide)",
-    "mStart to Reef",
-    "pStart to Reef (pSide)"
+    "Out of the way - Place",
+    "cAPs - Reef to Station",
+    "cAPs - Start pos(s)",
+    "cAPs - Station to Reef",
+    "mainAutosPaths",
+    "cAPs - aStart to Reef (aSide)",
+    "cAPs - mStart to Reef",
+    "cAPs - pStart to Reef (pSide)"
   ],
   "autoFolders": [
-    "Chooser Autos",
-    "Week-3",
-    "Week-1",
-    "out the way"
+    "cAAs",
+    "mainAutos",
+    "Out The Way"
   ],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 3.0,
