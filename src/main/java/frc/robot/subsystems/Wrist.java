@@ -119,7 +119,7 @@ public class Wrist extends SubsystemBase
   // Level commands
   public Command l1() 
   {
-    return wristPosition(0.75).withName("Level 1"); // Will NEED to update positions (currently 0 as defualt)
+    return wristPosition(0.78).withName("Level 1"); 
   }
   public Command l2() 
   {
@@ -131,7 +131,7 @@ public class Wrist extends SubsystemBase
   }
   public Command l4() 
   {
-    return wristPosition(0.6485).withName("Level 4");
+    return wristPosition(0.6465).withName("Level 4");
   }
 
   public Command algael2() 
@@ -146,6 +146,10 @@ public class Wrist extends SubsystemBase
   public Command coralStation() 
   {
     return wristPosition(0.558).withName("Wrist Coral Station");
+  }
+  public Command coralStationL1() 
+  {
+    return wristPosition(1.314).withName("Wrist Coral Station L1");
   }
   
   public Command hang() {

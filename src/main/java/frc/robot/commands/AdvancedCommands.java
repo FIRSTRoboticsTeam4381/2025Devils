@@ -168,6 +168,23 @@ public class AdvancedCommands
     );
   }
 
+  public Command coralStationL1()
+  {
+    return combinedPositionCommand(
+      new ParallelCommandGroup(
+        robot.swingArm.zero(),
+        robot.wrist.coralStationL1(),
+        robot.elevator.zero(),
+        robot.extender.zero()
+      ).andThen(new ParallelCommandGroup(
+        robot.intake.intakeL1Coral()
+      ).andThen(
+        robot.aCommands.zeroEverything()
+      )
+      )
+    );
+  }
+
 
   public Command processor()
   {
@@ -342,17 +359,22 @@ public class AdvancedCommands
   }
   public Command proZeroEverything()
   { 
-    return new ParallelCommandGroup
-    (
-      robot.wrist.preprocessor()
-    ).andThen(
-      robot.swingArm.zero()
-    ).andThen(new ParallelCommandGroup(
-      robot.wrist.zero()
-    )).andThen(new ParallelCommandGroup(
-      robot.extender.zero(),
-      robot.elevator.zero()
-    ));
+    return new SequentialCommandGroup(
+        new ParallelRaceGroup(
+            robot.intake.holdAlgae(),
+      new ParallelCommandGroup
+      (
+        robot.wrist.preprocessor()
+      ).andThen(
+        robot.swingArm.zero()
+      ).andThen(new ParallelCommandGroup(
+        robot.wrist.algaeHold()
+      )).andThen(new ParallelCommandGroup(
+        robot.extender.zero(),
+        robot.elevator.zero()
+      ))),
+      robot.intake.holdAlgae())
+      ;
   }
   
 }

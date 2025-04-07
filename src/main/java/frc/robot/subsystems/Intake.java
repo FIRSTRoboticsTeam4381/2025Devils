@@ -33,6 +33,7 @@ public class Intake extends SubsystemBase
     SendableChooser<Double> speedChooser = new SendableChooser<>();
     public SparkFlex intake1; // MOTORS 1 and 2 are algae, 2 follow one inverted
     public double topSpeed = 4000;
+    public double topSpeedRev = 1500;
     public double v = 0;
     public boolean hasAlgae = false;
     public final double ALGAE_SPIKE = 1500;
@@ -108,6 +109,10 @@ public class Intake extends SubsystemBase
   {
     return new InstantCommand(() -> intake1.set(-1), this);
   }
+  public Command coralRev() 
+  {
+    return new InstantCommand(() -> intake1.set(.3), this);
+  }
 
   
 
@@ -165,6 +170,17 @@ public class Intake extends SubsystemBase
       RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kRightRumble, 0.6, 1)
     );
   }
+  public Command intakeL1Coral() {
+    return new RepeatCommand(
+      coralIntake()
+    ).until(
+      () -> averageCurrent > 25
+    ).andThen(
+      coralStop()
+    ).andThen(
+      RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kRightRumble, 0.6, 1)
+    );
+  }
 
   public Command ejectAlgae() {
     
@@ -194,12 +210,22 @@ public class Intake extends SubsystemBase
     );
   }
 
+  public Command ejectL1Coral() {
+    return new RepeatCommand(
+      coralRev()
+    ).until(
+      () -> Math.abs(intake1.getEncoder().getVelocity()) > topSpeedRev
+    ).andThen(
+      coralStop()
+    ).andThen(
+      RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kLeftRumble, 0.6, 1)
+    );
+  }
+
   public Command coralInOrOut() 
   {
     return new ConditionalCommand(ejectCoral(), intakeCoral(), coralSensor1::isPressed);
   }
-  
-
   
   
   public void setSpeedThing(Double s)

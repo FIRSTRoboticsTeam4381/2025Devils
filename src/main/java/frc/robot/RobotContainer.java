@@ -170,11 +170,12 @@ public class RobotContainer
             driver.leftBumper()::getAsBoolean/*,
             driver.b()::getAsBoolean*/));
 
-      specialist.a().onTrue(aCommands.groundPickup());
+      specialist.a().and(() -> mode).onTrue(aCommands.groundPickup());
+      specialist.a().and(() -> !mode).onTrue(aCommands.coralStationL1());
       specialist.b().onTrue(aCommands.coralStation());
       specialist.x().onTrue(aCommands.hang());
       specialist.y().toggleOnTrue(aCommands.algaeInOrOut());
-      specialist.leftBumper().onTrue(aCommands.barge());
+      specialist.leftBumper().onTrue(aCommands.bargeR());
       specialist.rightBumper().onTrue(aCommands.processor());
       
       specialist.povUp().and(() -> !mode).onTrue(aCommands.l4());
@@ -214,12 +215,15 @@ public class RobotContainer
 
       driver.rightBumper().toggleOnTrue(intake.coralInOrOut());
 
-      driver.a().whileTrue(new AutoAlign(swerve));
+      //driver.a().whileTrue(new AutoAlign(swerve));
 
       driver.y().onTrue(new InstantCommand(()->mode = true));
       driver.x().onTrue(new InstantCommand(()->mode = false));
 
-      driver.povDown().whileTrue(new AutoAlign(swerve));
+      driver.a().onTrue(intake.intakeL1Coral());
+      driver.b().onTrue(intake.ejectL1Coral());
+
+      //driver.povDown().whileTrue(new AutoAlign(swerve));
       
     }
 

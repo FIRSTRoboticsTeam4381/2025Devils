@@ -110,7 +110,7 @@ public class SwingArm extends SubsystemBase
 
   public Command l1() 
   {
-    return goToAngle(0.59).withName("Level 1");
+    return goToAngle(0.55).withName("Level 1");
   }
 
   public Command l2() 
@@ -141,7 +141,7 @@ public class SwingArm extends SubsystemBase
 
   public Command coralStation() 
   {
-    return goToAngle(0.36).withName("Coral Station");
+    return goToAngle(0.386).withName("Coral Station");
   }
 
   public Command hang() {
