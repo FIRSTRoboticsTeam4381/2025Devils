@@ -91,6 +91,7 @@ public class RobotContainer
     new Rotation3d(0*Math.PI/180.0, -15*Math.PI/180.0, -150*Math.PI/180.0)));
 
   public HangCam hangCam = new HangCam("HangCamera");
+  public HangCam reefCam = new HangCam("Reef_Cam");
 
   // Constructor: set u%p the robot! 
   public RobotContainer() 
@@ -223,7 +224,7 @@ public class RobotContainer
       driver.a().onTrue(intake.intakeL1Coral());
       driver.b().onTrue(intake.ejectL1Coral());
 
-      //driver.povDown().whileTrue(new AutoAlign(swerve));
+      driver.povDown().whileTrue(new AutoAlign(swerve));
       
     }
 

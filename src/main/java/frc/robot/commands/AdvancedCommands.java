@@ -172,7 +172,7 @@ public class AdvancedCommands
   {
     return combinedPositionCommand(
       new ParallelCommandGroup(
-        robot.swingArm.zero(),
+        robot.swingArm.coralStationL1(),
         robot.wrist.coralStationL1(),
         robot.elevator.zero(),
         robot.extender.zero()

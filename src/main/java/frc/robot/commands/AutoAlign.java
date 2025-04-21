@@ -28,31 +28,34 @@ public class AutoAlign extends Command
 {
     public final ArrayList<Pose2d> snapPositions= new ArrayList<Pose2d>(){{
         
-        // A
-
-        // B
+        // Blue snaps
+        add(new Pose2d(3.261, 4.403, new Rotation2d(Radians.convertFrom(-90, Degrees))));//blue a
+        add(new Pose2d(3.261, 3.917, new Rotation2d(Radians.convertFrom(-90, Degrees))));//blue b
+        add(new Pose2d(3.584, 3.584, new Rotation2d(Radians.convertFrom(-30, Degrees))));//blue C
+        add(new Pose2d(3.884, 2.892, new Rotation2d(Radians.convertFrom(-30, Degrees))));//blue d
+        add(new Pose2d(4.833, 2.766, new Rotation2d(Radians.convertFrom(30, Degrees))));//blue e
+        add(new Pose2d(5.059, 2.904, new Rotation2d(Radians.convertFrom(30, Degrees))));//blue f
+        add(new Pose2d(5.850, 3.699, new Rotation2d(Radians.convertFrom(90, Degrees))));//blue g
+        add(new Pose2d(5.802, 4.100, new Rotation2d(Radians.convertFrom(90, Degrees))));//blue h
+        add(new Pose2d(4.951, 4.666, new Rotation2d(Radians.convertFrom(150, Degrees))));//blue i
+        add(new Pose2d(5.083, 5.170, new Rotation2d(Radians.convertFrom(150, Degrees))));//blue j
+        add(new Pose2d(4.100, 5.254, new Rotation2d(Radians.convertFrom(-150, Degrees))));//blue k
+        add(new Pose2d(3.788, 5.122, new Rotation2d(Radians.convertFrom(-150, Degrees))));//blue l
         
-        // C
-
-        // D
-
-        // E
-
-        // F
-
-        // G
-
-        // H
-        
-        // I
-
-        // J
-        add(new Pose2d(5.143, 5.134, new Rotation2d(Radians.convertFrom(150, Degrees))));
-        // K
-        add(new Pose2d(4.165, 5.341, new Rotation2d(Radians.convertFrom(-150, Degrees))));
-        // L
-        add(new Pose2d(3.855, 5.133, new Rotation2d(Radians.convertFrom(-150, Degrees))));
-
+        // Red snaps
+        add(new Pose2d(12.17, 2.738, new Rotation2d(Radians.convertFrom(59.62, Degrees))));//red ?
+        add(new Pose2d(11.49, 4.13, new Rotation2d(Radians.convertFrom(90, Degrees))));//red g
+        add(new Pose2d(14.56, 3.88, new Rotation2d(Radians.convertFrom(180, Degrees))));//red a
+        add(new Pose2d(12.43, 5.465, new Rotation2d(Radians.convertFrom(-60.17, Degrees))));//red e
+        add(new Pose2d(13.94, 5.26, new Rotation2d(Radians.convertFrom(-119.12, Degrees))));//red c
+        add(new Pose2d(14.55, 3.86, new Rotation2d(Radians.convertFrom(175.36, Degrees))));//red ?
+        add(new Pose2d(14.06, 2.86, new Rotation2d(Radians.convertFrom(124.59, Degrees))));//red L
+        add(new Pose2d(12.52, 2.61, new Rotation2d(Radians.convertFrom(63.16, Degrees))));//red d
+        add(new Pose2d(11.5, 3.77, new Rotation2d(Radians.convertFrom(90, Degrees))));//red h
+        add(new Pose2d(12.05, 5.29, new Rotation2d(Radians.convertFrom(-57.24, Degrees))));//red f
+        add(new Pose2d(13.64, 5.41, new Rotation2d(Radians.convertFrom(-121.06, Degrees))));//red d
+        add(new Pose2d(14.63, 4.16, new Rotation2d(Radians.convertFrom(176.9, Degrees))));//red b
+        add(new Pose2d(13.75, 2.67, new Rotation2d(Radians.convertFrom(127.89, Degrees))));//red k
     }};
     public Swerve swerve;
     private Pose2d target;
