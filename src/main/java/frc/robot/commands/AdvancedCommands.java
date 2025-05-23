@@ -341,7 +341,7 @@ public class AdvancedCommands
 
   public Command algaeInOrOut() 
   {
-    return new ConditionalCommand(robot.intake.ejectAlgae(), algaeHolding(), () -> {return robot.intake.hasAlgae;}).withName("Algae In or Out");
+    return new ConditionalCommand(robot.intake.ejectAlgae(), algaeHolding(), robot.intake.coralSensor1::isPressed).withName("Algae In or Out");
   }
   
 

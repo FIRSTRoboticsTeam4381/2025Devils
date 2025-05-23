@@ -44,6 +44,7 @@ public class Intake extends SubsystemBase
 
   
     public SparkLimitSwitch coralSensor1;
+    public SparkLimitSwitch algaeSensor1;
 
     //public Supplier<Boolean> hasAlgae;
     //public Supplier<Boolean> hasCoral;
@@ -58,6 +59,7 @@ public class Intake extends SubsystemBase
     
      // CHANGE CHANNELS LATER
     coralSensor1 = intake1.getReverseLimitSwitch();
+    algaeSensor1 = intake1.getForwardLimitSwitch();
     
 
     // speed = 0.5; // Not used anywhere as of right now
@@ -84,6 +86,7 @@ public class Intake extends SubsystemBase
     );
 
     intake1.getEncoder().getVelocity();
+    
     SmartDashboard.putNumber("some speed", 0);
   }
 
@@ -145,10 +148,9 @@ public class Intake extends SubsystemBase
     return new RepeatCommand(
       algaeIntake()
     ).until(
-      //() -> intake3.get() < (topSpeed - ALGAE_SPIKE)
-      () -> averageCurrent > 30
+      ()-> algaeSensor1.isPressed()
     ).andThen(
-      algaeTrue()
+      new WaitCommand(.5)
     );
   }
 
@@ -187,11 +189,11 @@ public class Intake extends SubsystemBase
     return new RepeatCommand(
       algaeEject()
     ).until(
-      () -> Math.abs(intake1.getEncoder().getVelocity()) > topSpeed
+      () -> !(algaeSensor1.isPressed())
+    ).andThen(
+      new WaitCommand(3)
     ).andThen(
       algaeStop()
-    ).andThen(
-      algaeFalse()
     );
 
   }
@@ -244,6 +246,7 @@ public class Intake extends SubsystemBase
       SmartDashboard.putData("Intake Speed", speedChooser);
       SmartDashboard.putBoolean("Algae Mode", RobotContainer.mode);
       speed = SmartDashboard.getNumber("some speed", 0);
+      SmartDashboard.putBoolean("algae sensor", algaeSensor1.isPressed());
       /* 
       v = intake3.get();
       if(v > topSpeed) 
