@@ -12,12 +12,18 @@ import edu.wpi.first.epilogue.Epilogue;
 import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.hal.can.CANStatus;
 import edu.wpi.first.net.PortForwarder;
+import edu.wpi.first.networktables.BooleanPublisher;
+import edu.wpi.first.networktables.BooleanTopic;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.networktables.NetworkTablesJNI;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Alert.AlertType;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -70,6 +76,16 @@ public class Robot extends TimedRobot {
     Epilogue.bind(this);
 
     m_robotContainer = new RobotContainer();
+
+    //enable vision turbo
+    //SmartDashboard.putBoolean("/photonvision/use_new_cscore_frametime", true);
+    
+    NetworkTableInstance inst = NetworkTableInstance.getDefault();
+    BooleanTopic turboTopic = inst.getBooleanTopic("/photonvision/use_new_cscore_frametime");
+    BooleanPublisher turbo = turboTopic.publish(); 
+    turbo.set(true);
+  
+
   }
 
   @Override
@@ -77,6 +93,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
 
     logRioData();
+
   }
 
   @Override
