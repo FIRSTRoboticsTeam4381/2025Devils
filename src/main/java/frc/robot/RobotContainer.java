@@ -30,9 +30,7 @@ import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.AdvancedCommands;
 import frc.robot.commands.AutoAlign;
 import frc.robot.commands.Autos;
@@ -54,10 +52,6 @@ public class RobotContainer
   // Controllers
   public final CommandXboxController driver = new CommandXboxController(0);
   public final CommandXboxController specialist = new CommandXboxController(1);
-
-  // Button Board
-  public CommandGenericHID specialGenericHID = new CommandGenericHID(1);
-  public CommandGenericHID specialGenericHID2 = new CommandGenericHID(2);
 
   //Auto Chooser
   SendableChooser<Autos.PreviewAuto> autoChooser = new SendableChooser<>();
@@ -177,21 +171,18 @@ public class RobotContainer
             driver.leftBumper()::getAsBoolean/*,
             driver.b()::getAsBoolean*/));
 
-      specialGenericHID.button(7).and(() -> mode).onTrue(aCommands.groundPickup());
-      specialist.a().and(() -> !mode).onTrue(aCommands.coralStationL1()); 
-      specialGenericHID.button(3).onTrue(aCommands.coralStation());
-      specialGenericHID.button(1).onTrue(aCommands.hang());
-      specialGenericHID.button(8).onTrue(aCommands.algaeInOrOut());
-      specialGenericHID2.button(8).onTrue(aCommands.bargeR());
-      specialGenericHID2.button(9).onTrue(aCommands.processor());
+      specialist.a().and(() -> mode).onTrue(aCommands.groundPickup());
+      specialist.a().and(() -> !mode).onTrue(aCommands.coralStationL1());
+      specialist.b().onTrue(aCommands.coralStation());
+      specialist.x().onTrue(aCommands.hang());
+      specialist.y().toggleOnTrue(aCommands.algaeInOrOut());
+      specialist.leftBumper().onTrue(aCommands.bargeR());
+      specialist.rightBumper().onTrue(aCommands.processor());
       
       specialist.povUp().and(() -> !mode).onTrue(aCommands.l4());
       specialist.povLeft().and(() -> !mode).onTrue(aCommands.l3());
       specialist.povRight().and(() -> !mode).onTrue(aCommands.l2());
-      specialist.povDown().and(() -> !mode).onTrue(aCommands.l1()); 
-
-      // dunnno intake thing
-      //specialGenericHID.button(2).and(new Trigger(intake.hasAlgae)).whileTrue(intake.coralIntake());
+      specialist.povDown().and(() -> !mode).onTrue(aCommands.l1());
 
       specialist.povLeft().and(() -> mode).onTrue(aCommands.algael3());
       specialist.povRight().and(() -> mode).onTrue(aCommands.algael2());
@@ -214,8 +205,7 @@ public class RobotContainer
       //hang triggers  
       hang.setDefaultCommand(hang.joystickCtrl(interpolateJoystick(driver :: getLeftTriggerAxis, Constants.stickDeadband), interpolateJoystick(driver :: getRightTriggerAxis, Constants.stickDeadband)));
       
-      specialGenericHID.button(12).or(driver.back()).onTrue(new InstantCommand(()->CommandScheduler.getInstance().cancelAll()));
-
+      specialist.back().or(driver.back()).onTrue(new InstantCommand(()->CommandScheduler.getInstance().cancelAll()));
 
       specialist.start().toggleOnTrue(new ParallelCommandGroup(
         elevator.joystickCtrl(interpolateJoystick(specialist:: getLeftY, Constants.stickDeadband)),
