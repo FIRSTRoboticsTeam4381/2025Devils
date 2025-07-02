@@ -93,10 +93,10 @@ public class Wrist extends SubsystemBase
     wrist1.getAbsoluteEncoder().getPosition();
   }
 
-  public Command joystickCtrl(Supplier<Double> downJoystickValue, Supplier<Double> upJoystickValue) 
+  public Command joystickCtrl(Supplier<Double> JoystickValue) 
   {
     return new RepeatCommand(
-      new InstantCommand(() -> wrist1.set(upJoystickValue.get()-downJoystickValue.get()), this));
+      new InstantCommand(() -> wrist1.set(JoystickValue.get()), this));
   }
   public Command nothing() 
   {

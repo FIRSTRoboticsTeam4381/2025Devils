@@ -30,7 +30,9 @@ import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.AdvancedCommands;
 import frc.robot.commands.AutoAlign;
 import frc.robot.commands.Autos;
@@ -51,7 +53,11 @@ public class RobotContainer
   
   // Controllers
   public final CommandXboxController driver = new CommandXboxController(0);
-  public final CommandXboxController specialist = new CommandXboxController(1);
+  public final CommandXboxController specialist = new CommandXboxController(4);
+
+  // Button Board
+  public CommandGenericHID specialGenericHID = new CommandGenericHID(1);
+  public CommandGenericHID specialGenericHID2 = new CommandGenericHID(2);
 
   //Auto Chooser
   SendableChooser<Autos.PreviewAuto> autoChooser = new SendableChooser<>();
@@ -171,25 +177,29 @@ public class RobotContainer
             driver.leftBumper()::getAsBoolean/*,
             driver.b()::getAsBoolean*/));
 
-      specialist.a().and(() -> mode).onTrue(aCommands.groundPickup());
-      specialist.a().and(() -> !mode).onTrue(aCommands.coralStationL1());
-      specialist.b().onTrue(aCommands.coralStation());
-      specialist.x().onTrue(aCommands.hang());
-      specialist.y().toggleOnTrue(aCommands.algaeInOrOut());
-      specialist.leftBumper().onTrue(aCommands.bargeR());
-      specialist.rightBumper().onTrue(aCommands.processor());
+      specialGenericHID.button(7).and(() -> mode).onTrue(aCommands.groundPickup());
+      specialist.a().and(() -> !mode).onTrue(aCommands.coralStationL1()); 
+      specialGenericHID.button(3).onTrue(aCommands.coralStation());
+      specialGenericHID.button(1).onTrue(aCommands.hang());
+      specialGenericHID.button(8).onTrue(aCommands.algaeInOrOut());
+      specialGenericHID2.button(8).onTrue(aCommands.bargeR());
+      specialGenericHID2.button(9).onTrue(aCommands.processor());
       
-      specialist.povUp().and(() -> !mode).onTrue(aCommands.l4());
-      specialist.povLeft().and(() -> !mode).onTrue(aCommands.l3());
-      specialist.povRight().and(() -> !mode).onTrue(aCommands.l2());
-      specialist.povDown().and(() -> !mode).onTrue(aCommands.l1());
+      specialGenericHID2.button(6).and(specialGenericHID2.button(4)).onTrue(aCommands.l4());
+      specialGenericHID2.button(6).and(specialGenericHID2.button(3)).onTrue(aCommands.l3());
+      specialGenericHID2.button(6).and(specialGenericHID2.button(2)).onTrue(aCommands.l2());
+      specialGenericHID2.button(6).and(specialGenericHID2.button(1)).onTrue(aCommands.l1()); 
 
-      specialist.povLeft().and(() -> mode).onTrue(aCommands.algael3());
-      specialist.povRight().and(() -> mode).onTrue(aCommands.algael2());
+      // dunnno intake thing
+      //specialGenericHID.button(2).and(new Trigger(intake.hasAlgae)).whileTrue(intake.coralIntake());
+
+      specialGenericHID.button(4).onTrue(aCommands.algael3());
+      specialGenericHID2.button(5).onTrue(aCommands.algael2());
       
       
-      specialist.leftStick().and(()->(swingArm.angle.getPosition() < 0.2)).or(specialist.rightStick()).and(()->(swingArm.angle.getPosition() < 0.2)).onTrue(aCommands.proZeroEverything());
-      specialist.leftStick().and(()->(swingArm.angle.getPosition() > 0.2)).or(specialist.rightStick()).and(()->(swingArm.angle.getPosition() > 0.2)).onTrue(aCommands.zeroEverything());
+      specialGenericHID.button(11).and(()->(swingArm.angle.getPosition() < 0.2)).onTrue(aCommands.proZeroEverything());
+      specialGenericHID.button(11).and(()->(swingArm.angle.getPosition() > 0.2)).onTrue(aCommands.zeroEverything());
+
       //elevator joystick controls
       elevator.setDefaultCommand(elevator.nothing());
 
@@ -205,16 +215,19 @@ public class RobotContainer
       //hang triggers  
       hang.setDefaultCommand(hang.joystickCtrl(interpolateJoystick(driver :: getLeftTriggerAxis, Constants.stickDeadband), interpolateJoystick(driver :: getRightTriggerAxis, Constants.stickDeadband)));
       
-      specialist.back().or(driver.back()).onTrue(new InstantCommand(()->CommandScheduler.getInstance().cancelAll()));
+      specialGenericHID.button(12).or(driver.back()).onTrue(new InstantCommand(()->CommandScheduler.getInstance().cancelAll()));
 
-      specialist.start().toggleOnTrue(new ParallelCommandGroup(
-        elevator.joystickCtrl(interpolateJoystick(specialist:: getLeftY, Constants.stickDeadband)),
-        wrist.joystickCtrl(interpolateJoystick(specialist :: getLeftTriggerAxis, Constants.stickDeadband), interpolateJoystick(specialist :: getRightTriggerAxis, Constants.stickDeadband)),
-        swingArm.swing(interpolateJoystick(specialist :: getRightX, Constants.stickDeadband)),
-        extender.extend(interpolateJoystick(specialist :: getRightY, Constants.stickDeadband))
+
+      specialGenericHID.axisGreaterThan(0, Constants.boardStickDeadband).or(specialGenericHID.axisLessThan(0, -Constants.boardStickDeadband)).or(specialGenericHID.axisGreaterThan(1, Constants.boardStickDeadband)).or(specialGenericHID.axisLessThan(1, -Constants.boardStickDeadband)).or(specialGenericHID2.axisGreaterThan(0, Constants.boardStickDeadband)).or(specialGenericHID2.axisLessThan(0, -Constants.boardStickDeadband)).or(specialGenericHID2.axisGreaterThan(1, Constants.boardStickDeadband)).or(specialGenericHID2.axisLessThan(1, -Constants.boardStickDeadband)).whileTrue(
+        new ParallelCommandGroup(
+          elevator.joystickCtrl(interpolateJoystick(() ->specialGenericHID2.getRawAxis(0), Constants.stickDeadband)),
+          wrist.joystickCtrl(interpolateJoystick(() ->specialGenericHID.getRawAxis(0), Constants.stickDeadband)),
+          swingArm.swing(interpolateJoystick(() ->specialGenericHID.getRawAxis(1), Constants.stickDeadband)),
+          extender.extend(interpolateJoystick(() ->specialGenericHID2.getRawAxis(1), Constants.stickDeadband))
         ));
-
-      driver.rightBumper().toggleOnTrue(intake.coralInOrOut());
+      
+      driver.rightBumper().or(specialGenericHID.button(2)).toggleOnTrue(intake.coralInOrOut());
+      specialGenericHID2.button(7).whileTrue(intake.ejectCoral());
 
       //driver.a().whileTrue(new AutoAlign(swerve));
 
