@@ -22,6 +22,7 @@ import frc.lib.util.SwerveModuleConstants;
  */
 public final class Constants {
     public static final double stickDeadband = 0.15;
+    public static final double boardStickDeadband = 0.25;
 
     public static final int NEO_TICKS_PER_REV = 7168; 
 
