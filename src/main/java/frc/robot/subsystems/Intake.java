@@ -169,7 +169,7 @@ public class Intake extends SubsystemBase
     ).andThen(
       coralStop()
     ).andThen(
-      RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kRightRumble, 0.6, 1)
+      //RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kRightRumble, 0.6, 1)
     );
   }
   public Command intakeL1Coral() {
@@ -180,7 +180,7 @@ public class Intake extends SubsystemBase
     ).andThen(
       coralStop()
     ).andThen(
-      RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kRightRumble, 0.6, 1)
+      //RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kRightRumble, 0.6, 1)
     );
   }
 
@@ -208,7 +208,7 @@ public class Intake extends SubsystemBase
     ).andThen(
       coralStop()
     ).andThen(
-      RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kLeftRumble, 0.6, 1)
+      //RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kLeftRumble, 0.6, 1)
     );
   }
 
@@ -220,7 +220,7 @@ public class Intake extends SubsystemBase
     ).andThen(
       coralStop()
     ).andThen(
-      RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kLeftRumble, 0.6, 1)
+      //RobotContainer.getRobot().vibrateSpecialistForTime(RumbleType.kLeftRumble, 0.6, 1)
     );
   }
 

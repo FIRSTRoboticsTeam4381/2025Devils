@@ -53,7 +53,7 @@ public class RobotContainer
   
   // Controllers
   public final CommandXboxController driver = new CommandXboxController(0);
-  public final CommandXboxController specialist = new CommandXboxController(4);
+  //public final CommandXboxController specialist = new CommandXboxController(4);
 
   // Button Board
   public CommandGenericHID specialGenericHID = new CommandGenericHID(1);
@@ -178,9 +178,10 @@ public class RobotContainer
             driver.b()::getAsBoolean*/));
 
       specialGenericHID.button(7).and(() -> mode).onTrue(aCommands.groundPickup());
-      specialist.a().and(() -> !mode).onTrue(aCommands.coralStationL1()); 
+      //specialist.a().and(() -> !mode).onTrue(aCommands.coralStationL1()); 
       specialGenericHID.button(3).onTrue(aCommands.coralStation());
       specialGenericHID.button(1).onTrue(aCommands.hang());
+      specialGenericHID.button(7).onTrue(aCommands.groundPickup());
       specialGenericHID.button(8).onTrue(aCommands.algaeInOrOut());
       specialGenericHID2.button(8).onTrue(aCommands.bargeR());
       specialGenericHID2.button(9).onTrue(aCommands.processor());
@@ -194,7 +195,7 @@ public class RobotContainer
       //specialGenericHID.button(2).and(new Trigger(intake.hasAlgae)).whileTrue(intake.coralIntake());
 
       specialGenericHID.button(4).onTrue(aCommands.algael3());
-      specialGenericHID2.button(5).onTrue(aCommands.algael2());
+      specialGenericHID.button(5).onTrue(aCommands.algael2());
       
       
       specialGenericHID.button(11).and(()->(swingArm.angle.getPosition() < 0.2)).onTrue(aCommands.proZeroEverything());
@@ -231,8 +232,8 @@ public class RobotContainer
 
       //driver.a().whileTrue(new AutoAlign(swerve));
 
-      driver.y().onTrue(new InstantCommand(()->mode = true));
-      driver.x().onTrue(new InstantCommand(()->mode = false));
+      //driver.y().onTrue(new InstantCommand(()->mode = true));
+      //driver.x().onTrue(new InstantCommand(()->mode = false));
 
       driver.a().onTrue(intake.intakeL1Coral());
       driver.b().onTrue(intake.ejectL1Coral());
@@ -308,10 +309,12 @@ public class RobotContainer
    * @param rumblestrength Strength of the rumble, from 0.0 to 1.0
    * @return Instant command to set rumble strength
    */
+  /* 
   public Command vibrateSpecialist(RumbleType rumbleside, double rumblestrength )
   {
     return new InstantCommand(() -> specialist.setRumble(rumbleside, rumblestrength));
   }
+  */
 
   /**
    * Set rumble for the driver controller
@@ -350,10 +353,12 @@ public class RobotContainer
    * @param c Command to run while rumbling
    * @return Instant command to set rumble strength
    */
+  /* 
   public Command vibrateSpecialistWhile(RumbleType rumbleside, double rumblestrength, Command c)
   {
     return vibrateWhile(specialist, rumbleside, rumblestrength, c);
   }
+    */
 
   /**
    * Rumble driver controller while a command is running, stopping when the command finishes
@@ -375,10 +380,12 @@ public class RobotContainer
    * @param time How long to rumble for
    * @return Command to schedule the rumble
    */
+  /* 
   public Command vibrateSpecialistForTime(RumbleType rumbleside, double rumblestrength, double time)
   {
     return vibrateForTime(specialist, rumbleside, rumblestrength, time);
   }
+    */
 
   /**
    * Set driver controller to rumble for a certain amount of time.
