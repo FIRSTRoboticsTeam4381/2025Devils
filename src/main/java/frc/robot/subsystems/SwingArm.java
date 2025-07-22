@@ -21,6 +21,7 @@ import edu.wpi.first.epilogue.Logged;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.SparkPosition;
@@ -39,6 +40,11 @@ public class SwingArm extends SubsystemBase
   public double curAng;
 
   private Extender extender;
+  
+  public SparkMaxConfig rotateConfig1;
+  public SparkMaxConfig rotateConfig2;
+  public SparkMaxConfig rotateConfig3;
+  public SparkMaxConfig rotateConfig4;
 
   /** This is the ground intake **/
   public SwingArm(Extender extender)
@@ -52,8 +58,10 @@ public class SwingArm extends SubsystemBase
     this.extender=extender;
     
 
-    SparkMaxConfig rotateConfig1 = new SparkMaxConfig();
-    SparkMaxConfig rotateConfig2 = new SparkMaxConfig();
+    rotateConfig1 = new SparkMaxConfig();
+    rotateConfig2 = new SparkMaxConfig();
+    rotateConfig3 = new SparkMaxConfig();
+    rotateConfig4 = new SparkMaxConfig();
 
     rotateConfig1
       .smartCurrentLimit(80)
@@ -67,11 +75,26 @@ public class SwingArm extends SubsystemBase
       .d(0)
       .outputRange(-.3, .3);
     rotateConfig2
-
       .apply(rotateConfig1)
       .follow(rotate1)
       .idleMode(IdleMode.kBrake);
-    
+
+
+    rotateConfig3
+      .smartCurrentLimit(80)
+      .idleMode(IdleMode.kBrake)
+      .inverted(false)
+      .absoluteEncoder.inverted(true);
+    rotateConfig3.closedLoop
+      .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
+      .p(2.5)
+      .i(0)
+      .d(0)
+      .outputRange(-.1, .1);
+    rotateConfig4
+      .apply(rotateConfig3)
+      .follow(rotate1)
+      .idleMode(IdleMode.kBrake);
       
 
     rotate1.configure(rotateConfig1, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -183,6 +206,34 @@ public class SwingArm extends SubsystemBase
   public Command zero() 
   {
     return goToAngle(0.5).withName("Zero");
+  }
+
+  // Main Configs Below
+  public Command armConfig1()
+  {
+    return new InstantCommand(() ->
+        rotate1.configure(rotateConfig1, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters)      
+    );
+  }
+  public Command armConfig2()
+  {
+    return new InstantCommand(() ->
+        rotate2.configure(rotateConfig2, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters)      
+    );
+  }
+
+  // Hang Configs Below
+  public Command armConfig3()
+  {
+    return new InstantCommand(() ->
+        rotate1.configure(rotateConfig3, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters)      
+    );
+  }
+  public Command armConfig4()
+  {
+    return new InstantCommand(() ->
+        rotate2.configure(rotateConfig4, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters)      
+    );
   }
 
   public double arbFeedforward(){

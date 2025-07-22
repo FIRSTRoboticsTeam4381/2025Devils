@@ -218,12 +218,16 @@ public class AdvancedCommands
   public Command hang()
   {
     return combinedPositionCommand(
+      new SequentialCommandGroup(
+        robot.swingArm.armConfig3(),
+        robot.swingArm.armConfig4(),
         new ParallelCommandGroup(
         robot.elevator.hang(),
         robot.extender.hang(),
         robot.swingArm.hang(),
         robot.wrist.hang()
         )
+      )
     );
   }
 
