@@ -216,6 +216,7 @@ public class AdvancedCommands
   }
 
   public Command hang()
+  
   {
     return combinedPositionCommand(
       new SequentialCommandGroup(

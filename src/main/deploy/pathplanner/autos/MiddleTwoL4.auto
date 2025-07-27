@@ -29,6 +29,12 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "Algae In"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "MiddleToBarge"
@@ -44,6 +50,12 @@
           "type": "path",
           "data": {
             "pathName": "MiddleBargetoIJAlgae"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Algae In"
           }
         },
         {
