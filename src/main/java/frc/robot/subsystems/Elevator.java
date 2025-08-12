@@ -69,7 +69,7 @@ public class Elevator extends SubsystemBase
   // GO TO  command
   public Command elevatorTo(double distance) 
   {
-    return new SparkPosition(elevator1, distance, 1.0, this);
+    return new SparkPosition(elevator1, distance, 2.0, this);
   } 
 
 

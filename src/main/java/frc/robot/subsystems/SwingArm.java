@@ -46,6 +46,8 @@ public class SwingArm extends SubsystemBase
   public SparkMaxConfig rotateConfig3;
   public SparkMaxConfig rotateConfig4;
 
+  public double lastTarget = 0;
+
   /** This is the ground intake **/
   public SwingArm(Extender extender)
   {
@@ -124,7 +126,7 @@ public class SwingArm extends SubsystemBase
 
   public Command goToAngle(double angle)
   {
-    return new SparkPosition(rotate1, angle, .02, this).withName("Rotating to " + angle); // TODO arbitrary feedforward will need to be included
+    return new SparkPosition(rotate1, angle, .02, this).alongWith(new InstantCommand(() -> lastTarget = angle)).withName("Rotating to " + angle); // TODO arbitrary feedforward will need to be included
   }
   public void setPositionReference(double angle)
   {
