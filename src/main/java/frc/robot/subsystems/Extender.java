@@ -36,7 +36,7 @@ public class Extender extends SubsystemBase
   // create Extender
   public Extender() 
   {
-    extend1 = new SparkFlex(54, MotorType.kBrushless);
+    //extend1 = new SparkFlex(54, MotorType.kBrushless);
 
     SparkFlexConfig extend1Config = new SparkFlexConfig();
 
