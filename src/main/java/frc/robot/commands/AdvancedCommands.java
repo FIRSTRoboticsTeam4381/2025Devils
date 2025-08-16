@@ -45,7 +45,7 @@ public class AdvancedCommands
   public Command holdPositionCommand(){
     return new FunctionalCommand(
       ()->{}, ()->{}, (interrupted)->{}, ()->{return false;}, 
-      robot.wrist,robot.extender,robot.swingArm,robot.elevator);
+      robot.wrist,robot.swingArm,robot.elevator);
   }
 
   /**
@@ -73,7 +73,7 @@ public class AdvancedCommands
     return combinedPositionCommand(
       new ParallelCommandGroup(
         robot.elevator.l1(),
-        robot.extender.l1(),
+        //robot.extender.l1(),
         robot.swingArm.l1(),
         robot.wrist.l1()
       )); 
@@ -84,7 +84,7 @@ public class AdvancedCommands
     return combinedPositionCommand(
       new ParallelCommandGroup(
         robot.elevator.l2(),
-        robot.extender.l2(),
+        //robot.extender.l2(),
         robot.swingArm.l2(),
         robot.wrist.l2()
       ));
@@ -94,8 +94,8 @@ public class AdvancedCommands
   {
     return combinedPositionCommand(
       new ParallelCommandGroup(
-        robot.elevator.l3(),
-        robot.extender.l3()
+        robot.elevator.l3()
+        //robot.extender.l3()
       ).andThen(new ParallelCommandGroup(
         robot.wrist.l3(),
         robot.swingArm.l3()
@@ -108,8 +108,8 @@ public class AdvancedCommands
     return combinedPositionCommand(
       new ParallelCommandGroup(
         robot.wrist.zero(),
-        robot.elevator.l4(),
-        robot.extender.l4()
+        robot.elevator.l4()
+        //robot.extender.l4()
       ).andThen(new ParallelCommandGroup(
         robot.wrist.l4(),
         robot.swingArm.l4()
@@ -121,7 +121,7 @@ public class AdvancedCommands
     return combinedPositionCommand(
       new ParallelCommandGroup(
         robot.elevator.l4(),
-        robot.extender.l4(),
+        //robot.extender.l4(),
         robot.wrist.l4(),
         robot.swingArm.l4()
       ));
@@ -132,7 +132,7 @@ public class AdvancedCommands
     return combinedPositionCommand(
       new ParallelCommandGroup(
         robot.elevator.l2(),
-        robot.extender.l2(),
+        //robot.extender.l2(),
         robot.swingArm.algael2(),
         robot.wrist.algael2()
       ));
@@ -142,8 +142,8 @@ public class AdvancedCommands
   {
     return combinedPositionCommand(
       new ParallelCommandGroup(
-        robot.elevator.l3(),
-        robot.extender.l3()
+        robot.elevator.l3()
+        //robot.extender.l3()
       ).andThen(new ParallelCommandGroup(
         robot.wrist.algael3(),
         robot.swingArm.algael3()
@@ -157,8 +157,8 @@ public class AdvancedCommands
       new ParallelCommandGroup(
         robot.swingArm.coralStation(),
         robot.wrist.coralStation(),
-        robot.elevator.coralStation(),
-        robot.extender.coralStation()
+        robot.elevator.coralStation()
+        //robot.extender.coralStation()
       ).andThen(new ParallelCommandGroup(
         robot.intake.coralInOrOut()
       ).andThen(
@@ -174,8 +174,8 @@ public class AdvancedCommands
       new ParallelCommandGroup(
         robot.swingArm.coralStationL1(),
         robot.wrist.coralStationL1(),
-        robot.elevator.zero(),
-        robot.extender.zero()
+        robot.elevator.zero()
+        //robot.extender.zero()
       ).andThen(new ParallelCommandGroup(
         robot.intake.intakeL1Coral()
       ).andThen(
@@ -199,7 +199,7 @@ public class AdvancedCommands
           new RepeatCommand(new InstantCommand(()->robot.intake.intake1.set(0.5))),
           new ParallelCommandGroup(
           robot.elevator.processor(),
-          robot.extender.processor(),
+          //robot.extender.processor(),
           robot.swingArm.processor()
           )
         ),
@@ -224,7 +224,7 @@ public class AdvancedCommands
         robot.swingArm.armConfig4(),
         new ParallelCommandGroup(
         robot.elevator.hang(),
-        robot.extender.hang(),
+        //robot.extender.hang(),
         robot.swingArm.hang(),
         robot.wrist.hang()
         )
@@ -250,7 +250,7 @@ public class AdvancedCommands
       new SequentialCommandGroup(
       new ParallelCommandGroup(
         robot.elevator.groundPickup(),
-        robot.extender.groundPickup(),
+        //robot.extender.groundPickup(),
         robot.wrist.groundPickup()
       ),
       new ParallelCommandGroup(
@@ -266,7 +266,7 @@ public class AdvancedCommands
         robot.intake.holdAlgae(),
       new ParallelCommandGroup(
         robot.elevator.barge(),
-        robot.extender.barge(),
+        //robot.extender.barge(),
         robot.swingArm.barge(),
         robot.wrist.algaeHold()
         
@@ -284,7 +284,7 @@ public class AdvancedCommands
         robot.intake.holdAlgae(),
       new ParallelCommandGroup(
         robot.elevator.barge(),
-        robot.extender.barge(),
+        //robot.extender.barge(),
         robot.swingArm.barge(),
         robot.wrist.algaeHold()
         
@@ -303,7 +303,7 @@ public class AdvancedCommands
     new ParallelRaceGroup(
       robot.intake.holdAlgae(),
       new ParallelCommandGroup(
-        robot.extender.algaeHold(),
+        //robot.extender.algaeHold(),
         new ConditionalCommand(new WaitCommand(0), robot.swingArm.algaeHold(), () ->robot.swingArm.angle.getPosition() < 0.3)
        )
       ),
@@ -313,7 +313,7 @@ public class AdvancedCommands
             new ParallelRaceGroup(
               robot.intake.holdAlgae(),
               new ParallelCommandGroup(
-              robot.extender.zero(),
+              //robot.extender.zero(),
               robot.elevator.processor()
               )
             ),
@@ -330,7 +330,7 @@ public class AdvancedCommands
           new ParallelRaceGroup(
               robot.intake.holdAlgae(),
               new ParallelCommandGroup(
-                robot.extender.zero(),
+                //robot.extender.zero(),
                 robot.elevator.algaeHold(),
                 robot.wrist.algaeHold(),
                 robot.swingArm.zero()
@@ -358,7 +358,7 @@ public class AdvancedCommands
     ).andThen(new ParallelCommandGroup(
       robot.wrist.zero()
     )).andThen(new ParallelCommandGroup(
-      robot.extender.zero(),
+      //robot.extender.zero(),
       robot.elevator.zero()
     ));
   }
@@ -375,7 +375,7 @@ public class AdvancedCommands
       ).andThen(new ParallelCommandGroup(
         robot.wrist.algaeHold()
       )).andThen(new ParallelCommandGroup(
-        robot.extender.zero(),
+        //robot.extender.zero(),
         robot.elevator.zero()
       ))),
       robot.intake.holdAlgae())
