@@ -39,7 +39,7 @@ public class SwingArm extends SubsystemBase
   public AbsoluteEncoder angle;
   public double curAng;
 
-  //private Extender extender;
+  private Extender extender;
   
   public SparkMaxConfig rotateConfig1;
   public SparkMaxConfig rotateConfig2;
@@ -49,7 +49,7 @@ public class SwingArm extends SubsystemBase
   public double lastTarget = 0;
 
   /** This is the ground intake **/
-  public SwingArm()
+  public SwingArm(Extender extender)
   {
     rotate1 = new SparkFlex(52, MotorType.kBrushless);
     rotate2 = new SparkFlex(53, MotorType.kBrushless);
@@ -57,7 +57,7 @@ public class SwingArm extends SubsystemBase
     angle = rotate1.getAbsoluteEncoder();
     
 
-    //this.extender=extender;
+    this.extender=extender;
     
 
     rotateConfig1 = new SparkMaxConfig();
@@ -166,7 +166,7 @@ public class SwingArm extends SubsystemBase
 
   public Command coralStation() 
   {
-    return goToAngle(0.366).withName("Coral Station");
+    return goToAngle(0.365).withName("Coral Station");
   }
   public Command coralStationL1() 
   {

@@ -67,8 +67,8 @@ public class RobotContainer
   public final Swerve swerve = new Swerve();
   //public final GroundIntake groundIntake = new GroundIntake();
   public final Intake intake = new Intake();
-  //public final Extender extender = new Extender();
-  public final SwingArm swingArm = new SwingArm();
+  public final Extender extender = new Extender();
+  public final SwingArm swingArm = new SwingArm(extender);
   public final Wrist wrist = new Wrist();
   public final Elevator elevator = new Elevator();
   public final Hang hang = new Hang();
@@ -211,7 +211,7 @@ public class RobotContainer
       swingArm.setDefaultCommand(swingArm.nothing());
 
       //extend joystick
-      //extender.setDefaultCommand(extender.nothing());
+      extender.setDefaultCommand(extender.nothing());
 
       //hang triggers  
       hang.setDefaultCommand(hang.joystickCtrl(interpolateJoystick(driver :: getLeftTriggerAxis, Constants.stickDeadband), interpolateJoystick(driver :: getRightTriggerAxis, Constants.stickDeadband)));
@@ -223,8 +223,8 @@ public class RobotContainer
         new ParallelCommandGroup(
           elevator.joystickCtrl(interpolateJoystick(() ->specialGenericHID2.getRawAxis(0), Constants.stickDeadband)),
           wrist.joystickCtrl(interpolateJoystick(() ->specialGenericHID.getRawAxis(0), Constants.stickDeadband)),
-          swingArm.swing(interpolateJoystick(() ->specialGenericHID.getRawAxis(1), Constants.stickDeadband))
-          //extender.extend(interpolateJoystick(() ->specialGenericHID2.getRawAxis(1), Constants.stickDeadband))
+          swingArm.swing(interpolateJoystick(() ->specialGenericHID.getRawAxis(1), Constants.stickDeadband)),
+          extender.extend(interpolateJoystick(() ->specialGenericHID2.getRawAxis(1), Constants.stickDeadband))
         ));
       
       driver.rightBumper().or(specialGenericHID.button(2)).toggleOnTrue(intake.coralInOrOut());
